@@ -8,6 +8,9 @@ public class HUD : MonoBehaviour
     public GameObject[] m_lives;
     public Text[] displayHealth;
     public Actor[] actorHealth;
+    public Text m_displayTimer;
+    public Spawner m_timer;
+
 
     private int m_playerLives = 5;
 
@@ -30,6 +33,7 @@ public class HUD : MonoBehaviour
         {
             displayHealth[i].text = actorHealth[i].Health.ToString();
         }
+        m_displayTimer.text = m_timer.RoundTimer.ToString();
     }
 
     public bool UseLife()

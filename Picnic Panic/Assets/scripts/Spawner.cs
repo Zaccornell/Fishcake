@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     public float m_roundLength;
     public int[] m_enemyCount;
     private int m_enemyToSpawn;
-    private float m_roundTimer;
+    private float m_roundTimer; 
     private int m_enemySpawned;
 
     public Actor[] m_players = null;
@@ -35,6 +35,11 @@ public class Spawner : MonoBehaviour
     private float m_timer;
     private int m_currentSpawns;
     private int m_enemiesToSpawn;
+
+    public float RoundTimer
+    {
+        get { return m_roundTimer; }
+    }
 
 	// Use this for initialization
 	void Start ()
