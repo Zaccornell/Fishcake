@@ -58,10 +58,23 @@ public class Spawner : MonoBehaviour
         {
             m_roundTimer = m_roundLength; // setting the Round timer to the round length 
             // checking to see if it doesn't go over the limit
-            if (m_currentRound < m_enemyCount.Length)
-            m_currentRound++; // add to the current round
+            if (m_currentRound + 1  < m_enemyCount.Length)
+                m_currentRound++; // add to the current round
 
             m_enemyToSpawn += m_enemyCount[m_currentRound]; // adding the limit that needs to be spawned
+
+            foreach(Actor player in m_players)
+            {
+                if (!player.gameObject.activeSelf)
+                {
+                    Vector3 spawnPos = new Vector3(Random.value, 0, Random.value);
+                    spawnPos.Normalize();
+                    spawnPos *= 9;
+                    spawnPos.y = 1;
+                    ((Player)player).ResetValues();
+                    player.gameObject.SetActive(true);
+                }
+            }
 
         }
         m_timer -= Time.deltaTime;

@@ -84,7 +84,7 @@ public class Player : MovingActor
                 {
                     if (m_enemies[i] != null)
                     {
-                        m_enemies[i].GetComponent<Enemy>().TakeDamage(10, this);
+                        m_enemies[i].GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
                     }
                     else
                     {
@@ -165,5 +165,10 @@ public class Player : MovingActor
             position.y -= 0.5f;
             Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
         }
+    }
+
+    public void ResetValues()
+    {
+        m_health = m_maxHealth;        
     }
 }
