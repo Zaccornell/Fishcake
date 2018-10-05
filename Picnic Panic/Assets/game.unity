@@ -751,6 +751,7 @@ GameObject:
   - component: {fileID: 1440455304}
   - component: {fileID: 1440455302}
   - component: {fileID: 1440455303}
+  - component: {fileID: 1440455306}
   m_Layer: 0
   m_Name: King
   m_TagString: Untagged
@@ -824,6 +825,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440455306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440455301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa25343f0cd28c4b8474625220e29a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealth: 400
+  m_restoreHealth: 0
 --- !u!1 &1563189226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1093,7 @@ MonoBehaviour:
   m_players:
   - {fileID: 989514640}
   - {fileID: 745201168}
+  m_king: {fileID: 1440455306}
   m_enemyPrefab: {fileID: 1140578774208144, guid: d08980ed7859c1f4389e8fa0129172c2,
     type: 2}
   m_health: 10
@@ -1086,7 +1101,8 @@ MonoBehaviour:
   m_spawnJitter: 1.5
   m_maxSpawns: 1
   m_attackRange: 2
-  m_attackSpeed: 0
+  m_attackSpeed: 1
+  m_agroRange: 5
   m_enemies: []
 --- !u!4 &1789537351
 Transform:

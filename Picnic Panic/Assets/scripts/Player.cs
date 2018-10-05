@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Actor
+/*
+ * Author: John Plant
+ * Date: 2018/10/3
+ */
+
+public class Player : MovingActor
 {
     public float m_dashDistance;
     public float m_dashCooldown;
@@ -30,8 +35,8 @@ public class Player : Actor
 
         if (m_playerNumber == 1)
         {
-            m_horizontalAxis = "HorizontalKB";
-            m_verticalAxis = "VerticalKB";
+            m_horizontalAxis = "Horizontal" + m_playerNumber;
+            m_verticalAxis = "Vertical" + m_playerNumber;
             m_attackButton = "Attack" + m_playerNumber;
             m_functionalX = "Functional Direction X" + m_playerNumber;
             m_functionalY = "Functional Direction Y" + m_playerNumber;
@@ -39,8 +44,8 @@ public class Player : Actor
         }
         else
         {
-            m_horizontalAxis = "Horizontal" + m_playerNumber;
-            m_verticalAxis = "Vertical" + m_playerNumber;
+            m_horizontalAxis = "HorizontalKB";
+            m_verticalAxis = "VerticalKB";
             m_attackButton = "Attack" + m_playerNumber;
             m_functionalX = "Functional Direction X" + m_playerNumber;
             m_functionalY = "Functional Direction Y" + m_playerNumber;

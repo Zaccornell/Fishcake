@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : Actor
+public class Enemy : MovingActor
 {
     public float m_attackRange;
-    public float m_kingAttackRange;
     public float m_agroRange;
     [HideInInspector] public Actor[] m_players = null;
     [HideInInspector] public Actor m_king = null;
@@ -20,7 +19,8 @@ public class Enemy : Actor
     private bool m_wasAttacked;
     private EnemyState[] m_states;
     private EnemyAttackPlayer m_attackPlayer;
-    private int m_index;
+    private EnemyAttackKing m_attackKing;
+    private int m_stateIndex;
 
 
     // Behaviour tree
@@ -48,15 +48,18 @@ public class Enemy : Actor
         m_path = new NavMeshPath();
         m_movement = new Vector3();
         m_wasAttacked = false;
-        m_index = 0;
+        m_stateIndex = 0;
 
-        m_states = new EnemyState[1];
-        m_attackPlayer = new EnemyAttackPlayer(this, m_players, m_attackRange);
-        m_attackPlayer.AttackSpeed = m_attackSpeed;
-        m_states[0] = m_attackPlayer;
+        m_states = new EnemyState[2];
+        m_attackKing = new EnemyAttackKing(this, m_players, m_king, m_attackSpeed, m_agroRange);
+        m_states[0] = m_attackKing;
+
+        m_attackPlayer = new EnemyAttackPlayer(this, m_players, m_attackRange, m_attackSpeed, m_agroRange);
+        m_states[1] = m_attackPlayer;
+
 
         // Behaviour Tree
-        //m_root = new SelectorNode();
+        //m_root = nzew SelectorNode();
         //{
         //    m_targetSide = new SelectorNode();
         //    m_root.AddChild(m_targetSide);
@@ -103,12 +106,13 @@ public class Enemy : Actor
     // Update is called once per frame
     void Update()
     {
-        m_states[m_index].Update();
-        m_target = m_states[m_index].Target;
+        m_states[m_stateIndex].Update();
+        m_target = m_states[m_stateIndex].Target;
 
         if (m_updatePath == 0)
         {
-            NavMesh.CalculatePath(transform.position, m_target.transform.position, -1, m_path);
+            //NavMesh.CalculatePath(transform.position, m_target.transform.position, -1, m_path);
+            m_states[m_stateIndex].UpdatePath(ref m_path);
             m_updatePath = 5;
             m_pathIndex = 0;
             for(int i = 0; i < m_path.corners.Length; i++)
@@ -126,9 +130,6 @@ public class Enemy : Actor
             m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized;
         else
             m_movement = Vector3.zero;
-
-
-        //m_rigidBody.AddForce(m_movement * m_speed);
         
         m_movement.y = 0;
         m_wasAttacked = false;
@@ -144,5 +145,10 @@ public class Enemy : Actor
         }
         m_attacker = attacker;
         m_wasAttacked = true;
+    }
+
+    public void ChangeState(int index)
+    {
+        m_stateIndex = index;
     }
 }

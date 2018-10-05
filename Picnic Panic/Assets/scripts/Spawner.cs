@@ -5,17 +5,25 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Actor[] m_players = null;
+    public PieKing m_king = null;
     public GameObject m_enemyPrefab = null;
-    public int m_health;
+
+    public int[] m_enemiesPerWave;
+    public int m_roundLength;
+
+    public int m_enemyHealth;
     public float m_spawnDelay;
     public float m_spawnJitter;
     public int m_maxSpawns;
     public float m_attackRange;
     public float m_attackSpeed;
+    public float m_agroRange;
+    public float m_loseAgroRange;
     [HideInInspector] public List<GameObject> m_enemies = new List<GameObject>();
 
     private float m_timer;
     private int m_currentSpawns;
+    private int m_enemiesToSpawn;
 
 	// Use this for initialization
 	void Start ()
@@ -62,9 +70,11 @@ public class Spawner : MonoBehaviour
             Enemy enemyScript = newEnemy.GetComponent<Enemy>();
             enemyScript.m_players = m_players;
             enemyScript.m_spawner = this;
-            enemyScript.m_maxHealth = m_health;
+            enemyScript.m_maxHealth = m_enemyHealth;
             enemyScript.m_attackRange = m_attackRange;
             enemyScript.m_attackSpeed = m_attackSpeed;
+            enemyScript.m_king = m_king;
+            enemyScript.m_agroRange = m_agroRange;
 
             m_enemies.Add(newEnemy);
             m_currentSpawns++;

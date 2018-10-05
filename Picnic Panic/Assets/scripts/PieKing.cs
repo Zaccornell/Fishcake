@@ -5,13 +5,9 @@ using UnityEngine;
  *Author: Bradyn Corkill
  * Date: 2018/10/3
  */
-public class PieKing : MonoBehaviour {
-
-    public int m_maxHealth; // setting the max health for the king
-
+public class PieKing : Actor
+{
     public int m_restoreHealth; // setting the amout of health to restore per round
-
-    private int m_health; // the kings health 
 
 	// Use this for initialization
 	void Start ()
@@ -26,9 +22,9 @@ public class PieKing : MonoBehaviour {
 	}
 
     // calling from another source to damage the king
-    void TakeDmg(int Dmg)
+    public override void TakeDamage(int damage, Actor attacker)
     {
-        m_health -= Dmg; // taking damage 
+        m_health -= damage; // taking damage 
     }
 
     // end of each round will call this function
