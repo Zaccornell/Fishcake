@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     public GameObject[] m_lives;
+    public Text[] displayHealth;
+    public Actor[] actorHealth;
+
     private int m_playerLives = 5;
 
     public int PlayerLives
@@ -23,8 +26,11 @@ public class HUD : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        for (int i = 0; i < actorHealth.Length; i++)
+        {
+            displayHealth[i].text = actorHealth[i].Health.ToString();
+        }
+    }
 
     public bool UseLife()
     {
