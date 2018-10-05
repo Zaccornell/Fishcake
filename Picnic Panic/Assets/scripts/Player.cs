@@ -28,24 +28,24 @@ public class Player : Actor
         m_movement = new Vector3();
         m_health = m_maxHealth;
 
-        //if (m_playerNumber == 1)
-        //{
+        if (m_playerNumber == 1)
+        {
+            m_horizontalAxis = "HorizontalKB";
+            m_verticalAxis = "VerticalKB";
+            m_attackButton = "Attack" + m_playerNumber;
+            m_functionalX = "Functional Direction X" + m_playerNumber;
+            m_functionalY = "Functional Direction Y" + m_playerNumber;
+            m_dashButton = "Dash" + m_playerNumber;
+        }
+        else
+        {
             m_horizontalAxis = "Horizontal" + m_playerNumber;
             m_verticalAxis = "Vertical" + m_playerNumber;
             m_attackButton = "Attack" + m_playerNumber;
             m_functionalX = "Functional Direction X" + m_playerNumber;
             m_functionalY = "Functional Direction Y" + m_playerNumber;
             m_dashButton = "Dash" + m_playerNumber;
-        //}
-        //else
-        //{
-        //    m_horizontalAxis = "HorizontalKB";
-        //    m_verticalAxis = "VerticalKB";
-        //    m_attackButton = "Attack" + m_playerNumber;
-        //    m_functionalX = "Functional Direction X" + m_playerNumber;
-        //    m_functionalY = "Functional Direction Y" + m_playerNumber;
-        //    m_dashButton = "Dash" + m_playerNumber;
-        //}
+        }
 	}
 
     // Update is called once per frame
