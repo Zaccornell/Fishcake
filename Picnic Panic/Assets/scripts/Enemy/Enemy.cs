@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+/*
+ * Author: Bradyn Corkill / John Plant
+ * Date: 2018/10/5
+ */
 public class Enemy : MovingActor
 {
+    public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_attackRange;
     public float m_agroRange;
     [HideInInspector] public Actor[] m_players = null;
@@ -138,6 +142,10 @@ public class Enemy : MovingActor
     public override void TakeDamage(int damage, Actor attacker)    
     {
         m_health -= damage;
+        // creating a knock back feel to the enemy once you hit it
+        // using Velocity and distance to push the enemy back
+        Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+        m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
         if (m_health <= 0)
         {
             m_spawner.GetComponent<Spawner>().EnemyDeath(gameObject);

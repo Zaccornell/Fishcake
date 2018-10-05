@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /*
- * Author: John Plant
+ * Author: Bradyn Corkill / John Plant
  * Date: 2018/10/3
  */
 
 public class Player : MovingActor
 {
+    public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_dashDistance;
     public float m_dashCooldown;
     public Renderer m_facing;
@@ -33,6 +35,7 @@ public class Player : MovingActor
         m_movement = new Vector3();
         m_health = m_maxHealth;
 
+
         if (m_playerNumber == 1)
         {
             m_horizontalAxis = "HorizontalKB";
@@ -50,6 +53,7 @@ public class Player : MovingActor
             m_functionalX = "Functional Direction X" + m_playerNumber;
             m_functionalY = "Functional Direction Y" + m_playerNumber;
             m_dashButton = "Dash" + m_playerNumber;
+
         }
 	}
 
@@ -148,6 +152,10 @@ public class Player : MovingActor
     public override void TakeDamage(int damage, Actor attacker)
     {
         m_health -= damage;
+        // once you get hit by the enemy you get knocked back
+        // giving us the feel of our players getting hit in game
+        Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+        m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
         if (m_health <= 0)
         {
             //Destroy(gameObject);

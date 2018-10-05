@@ -1090,17 +1090,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b018a526be85f44b6d6e18d6209b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_roundLength: 60
+  m_enemyCount: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   m_players:
   - {fileID: 989514640}
   - {fileID: 745201168}
+  m_king: {fileID: 1440455306}
   m_enemyPrefab: {fileID: 1140578774208144, guid: d08980ed7859c1f4389e8fa0129172c2,
     type: 2}
-  m_health: 10
+  m_spawnArea: {x: 50, y: 50}
+  m_spawnHeight: 0.5
+  m_enemyHealth: 10
   m_spawnDelay: 2
   m_spawnJitter: 1.5
   m_maxSpawns: 1
   m_attackRange: 2
   m_attackSpeed: 1
+  m_agroRange: 5
+  m_loseAgroRange: 10
   m_enemies: []
 --- !u!4 &1789537351
 Transform:
@@ -1158,6 +1165,11 @@ Prefab:
         type: 2}
       propertyPath: m_maxHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610533574785252, guid: 3ff2e298483abbb47ac8e30353b31702,
+        type: 2}
+      propertyPath: m_knockBackDistance
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ff2e298483abbb47ac8e30353b31702, type: 2}

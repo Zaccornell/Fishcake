@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Author: Bradyn Corkill / John Plant
+ * Date: 2018/10/5
+ */
 public class Spawner : MonoBehaviour
 {
+    private int m_currentRound;
+    public float m_roundLength;
+    public int[] m_enemyCount;
+    private int m_enemyToSpawn;
+    private float m_roundTimer;
+    private int m_enemySpawned;
+
     public Actor[] m_players = null;
     public PieKing m_king = null;
     public GameObject m_enemyPrefab = null;
     public Vector2 m_spawnArea;
     public float m_spawnHeight;
-
-    public int[] m_enemiesPerWave;
-    public int m_roundLength;
 
     public int m_enemyHealth;
     public float m_spawnDelay;
@@ -31,14 +38,29 @@ public class Spawner : MonoBehaviour
 	void Start ()
     {
         RandomizeDelay();
+
+        m_enemyToSpawn += m_enemyCount[m_currentRound];
+        m_roundTimer = m_roundLength;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (m_enemyToSpawn <= 0 && m_roundTimer > 5.0f && m_enemySpawned <= 0)
+        {
+            m_roundTimer = 5.0f;
+        }
+        m_roundTimer -= Time.deltaTime;
+        if (m_roundTimer <= 0.0f)
+        {
+            m_roundTimer = m_roundLength;
+            m_currentRound++;
+            m_enemyToSpawn += m_enemyCount[m_currentRound];
+           
+        }
         m_timer -= Time.deltaTime;
 
-        if (m_timer <= 0.0f && m_currentSpawns < m_maxSpawns)
+        if (m_timer <= 0.0f && m_enemyToSpawn > 0)
         {
             RandomizeDelay();
 
@@ -79,7 +101,8 @@ public class Spawner : MonoBehaviour
             enemyScript.m_agroRange = m_agroRange;
 
             m_enemies.Add(newEnemy);
-            m_currentSpawns++;
+            m_enemyToSpawn--;
+            m_enemySpawned++;
         }
 	}
 
@@ -92,5 +115,6 @@ public class Spawner : MonoBehaviour
     {
         m_currentSpawns--;
         m_enemies.Remove(enemy);
+        m_enemySpawned--;
     }
 }
