@@ -17,7 +17,7 @@ public class EnemyAttackKing : EnemyState
 {
     public Actor m_king;
     public Actor[] m_players = null;
-    public int m_damage = 10;
+    public int m_attackDamage = 10;
 
     private float m_attackSpeed;
     private float m_attackTimer;
@@ -43,11 +43,12 @@ public class EnemyAttackKing : EnemyState
      *      attackSpeed: rate of attack in seconds
      *      agroRange: Distance before the enemy changes to the attack player state
      */
-    public EnemyAttackKing(Enemy owner, Actor[] players, Actor king, float attackSpeed, float agroRange) : base(owner)
+    public EnemyAttackKing(Enemy owner, Actor[] players, Actor king, float attackSpeed, int attackDamage, float agroRange) : base(owner)
     {
         m_players = players;
         m_king = king;
         m_agroRange = agroRange;
+        m_attackDamage = attackDamage;
     }
 
     /*

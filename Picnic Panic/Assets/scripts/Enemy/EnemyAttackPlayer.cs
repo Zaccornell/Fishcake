@@ -15,7 +15,7 @@ using UnityEngine.AI;
 public class EnemyAttackPlayer : EnemyState
 {
     public Actor[] m_players = null;
-    public int m_damage = 10;
+    public int m_attackDamage = 10;
     public float m_agroRange;
 
     private float m_attackSpeed;
@@ -33,11 +33,12 @@ public class EnemyAttackPlayer : EnemyState
      *      owner: reference to the state machine, to be passed into the base constructor
      *      players: array of all players in the game
      */
-    public EnemyAttackPlayer(Enemy owner, Actor[] players, float attackRange, float attackSpeed, float agroRange) : base(owner)
+    public EnemyAttackPlayer(Enemy owner, Actor[] players, float attackRange, float attackSpeed, int attackDamage, float agroRange) : base(owner)
     {
         m_players = players;
         m_attackRange = attackRange;
         m_agroRange = agroRange + 5;
+        m_attackDamage = attackDamage;
     }
 
     /*
@@ -96,7 +97,7 @@ public class EnemyAttackPlayer : EnemyState
         {
             if ((m_target.transform.position - m_owner.transform.position).sqrMagnitude <= m_attackRange * m_attackRange)
             {
-                Attack(m_target, m_damage);
+                Attack(m_target, m_attackDamage);
                 m_attackTimer = m_attackSpeed;
 
                 if (!m_target.gameObject.activeSelf)

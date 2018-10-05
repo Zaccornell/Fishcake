@@ -26,6 +26,7 @@ public class Spawner : MonoBehaviour
     public int m_maxSpawns;
     public float m_attackRange;
     public float m_attackSpeed;
+    public int m_attackDamage;
     public float m_agroRange;
     public float m_loseAgroRange;
     [HideInInspector] public List<GameObject> m_enemies = new List<GameObject>();
@@ -102,6 +103,7 @@ public class Spawner : MonoBehaviour
             enemyScript.m_maxHealth = m_enemyHealth;
             enemyScript.m_attackRange = m_attackRange;
             enemyScript.m_attackSpeed = m_attackSpeed;
+            enemyScript.m_attackDamage = m_attackDamage;
             enemyScript.m_king = m_king;
             enemyScript.m_agroRange = m_agroRange;
 

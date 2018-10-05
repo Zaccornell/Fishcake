@@ -15,6 +15,7 @@ public class Player : MovingActor
     public float m_dashCooldown;
     public Renderer m_facing;
     public int m_playerNumber;
+    public GameObject m_corpsePrefab;
 
     private ParticleSystem m_dashParticle = null;
     private List<Collider> m_enemies = new List<Collider>();
@@ -35,8 +36,7 @@ public class Player : MovingActor
         m_movement = new Vector3();
         m_health = m_maxHealth;
 
-
-        if (m_playerNumber == 1)
+        if (m_playerNumber == 0)
         {
             m_horizontalAxis = "HorizontalKB";
             m_verticalAxis = "VerticalKB";
@@ -161,6 +161,9 @@ public class Player : MovingActor
             //Destroy(gameObject);
             m_alive = false;
             gameObject.SetActive(false);
+            Vector3 position = gameObject.transform.position;
+            position.y -= 0.5f;
+            Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
         }
     }
 }
