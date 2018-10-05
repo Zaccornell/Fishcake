@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     public PieKing m_king = null;
     public GameObject m_enemyPrefab = null;
     public Vector2 m_spawnArea;
+    public float m_spawnHeight;
 
     public int[] m_enemiesPerWave;
     public int m_roundLength;
@@ -65,7 +66,7 @@ public class Spawner : MonoBehaviour
 
             spawnPosition.x = Mathf.Min(Mathf.Max(position.x, playArea.xMin), playArea.xMax);
             spawnPosition.z = Mathf.Min(Mathf.Max(position.z, playArea.yMin), playArea.yMax);
-            spawnPosition.y = 0.5f;
+            spawnPosition.y = m_spawnHeight;
 
             GameObject newEnemy = Instantiate(m_enemyPrefab, spawnPosition, new Quaternion());
             Enemy enemyScript = newEnemy.GetComponent<Enemy>();

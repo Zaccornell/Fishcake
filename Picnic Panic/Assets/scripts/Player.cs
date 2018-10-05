@@ -35,8 +35,8 @@ public class Player : MovingActor
 
         if (m_playerNumber == 1)
         {
-            m_horizontalAxis = "Horizontal" + m_playerNumber;
-            m_verticalAxis = "Vertical" + m_playerNumber;
+            m_horizontalAxis = "HorizontalKB";
+            m_verticalAxis = "VerticalKB";
             m_attackButton = "Attack" + m_playerNumber;
             m_functionalX = "Functional Direction X" + m_playerNumber;
             m_functionalY = "Functional Direction Y" + m_playerNumber;
@@ -44,8 +44,8 @@ public class Player : MovingActor
         }
         else
         {
-            m_horizontalAxis = "HorizontalKB";
-            m_verticalAxis = "VerticalKB";
+            m_horizontalAxis = "Horizontal" + m_playerNumber;
+            m_verticalAxis = "Vertical" + m_playerNumber;
             m_attackButton = "Attack" + m_playerNumber;
             m_functionalX = "Functional Direction X" + m_playerNumber;
             m_functionalY = "Functional Direction Y" + m_playerNumber;
