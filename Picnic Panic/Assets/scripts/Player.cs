@@ -16,6 +16,7 @@ public class Player : MovingActor
     public Renderer m_facing;
     public int m_playerNumber;
     public GameObject m_corpsePrefab;
+    public HUD m_hud;
 
     private ParticleSystem m_dashParticle = null;
     private List<Collider> m_enemies = new List<Collider>();
@@ -27,6 +28,12 @@ public class Player : MovingActor
     private string m_functionalY;
     private string m_dashButton;
     private bool m_attackPressed = false;
+    private bool m_canRespawn = false;
+
+    public bool CanRespawn
+    {
+        get { return m_canRespawn; }
+    }
 
     // Use this for initialization
     void Start ()
@@ -164,11 +171,13 @@ public class Player : MovingActor
             Vector3 position = gameObject.transform.position;
             position.y -= 0.5f;
             Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+            m_canRespawn = m_hud.UseLife();
         }
     }
 
     public void ResetValues()
     {
-        m_health = m_maxHealth;        
+        m_health = m_maxHealth;
+        m_canRespawn = false;
     }
 }

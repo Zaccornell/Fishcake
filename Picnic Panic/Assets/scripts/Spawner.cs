@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
     public GameObject m_enemyPrefab = null;
     public Vector2 m_spawnArea;
     public float m_spawnHeight;
+    public HUD m_hud;
 
     public int m_enemyHealth;
     public float m_spawnDelay;
@@ -67,13 +68,18 @@ public class Spawner : MonoBehaviour
             {
                 if (!player.gameObject.activeSelf)
                 {
-                    Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-                    spawnPos.Normalize();
-                    spawnPos *= 9;
-                    spawnPos.y = 1;
-                    ((Player)player).ResetValues();
-                    player.gameObject.SetActive(true);
-                    player.gameObject.transform.position = spawnPos;
+                    Player playerScript = (Player)player;
+
+                    if (playerScript.CanRespawn)
+                    {
+                        Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+                        spawnPos.Normalize();
+                        spawnPos *= 9;
+                        spawnPos.y = 1;
+                        playerScript.ResetValues();
+                        player.gameObject.SetActive(true);
+                        player.gameObject.transform.position = spawnPos;
+                    }
                 }
             }
 
