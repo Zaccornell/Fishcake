@@ -40,10 +40,10 @@ public class Player : MovingActor
         {
             m_horizontalAxis = "HorizontalKB";
             m_verticalAxis = "VerticalKB";
-            m_attackButton = "Attack" + m_playerNumber;
-            m_functionalX = "Functional Direction X" + m_playerNumber;
-            m_functionalY = "Functional Direction Y" + m_playerNumber;
-            m_dashButton = "Dash" + m_playerNumber;
+            m_attackButton = "Attack1";
+            m_functionalX = "Functional Direction X1";
+            m_functionalY = "Functional Direction Y1";
+            m_dashButton = "Dash1";
         }
         else
         {
