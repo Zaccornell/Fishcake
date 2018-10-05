@@ -39,24 +39,29 @@ public class Spawner : MonoBehaviour
     {
         RandomizeDelay();
 
-        m_enemyToSpawn += m_enemyCount[m_currentRound];
-        m_roundTimer = m_roundLength;
+        m_enemyToSpawn += m_enemyCount[m_currentRound]; // adding the limit that needs to be spawned
+        m_roundTimer = m_roundLength; // setting the timer for the round 
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (m_enemyToSpawn <= 0 && m_roundTimer > 5.0f && m_enemySpawned <= 0)
+        // checking to see if there is no enemies spawned and to spawn and the timer is higher then 5 seconds 
+        if (m_enemyToSpawn <= 0 && m_roundTimer > 5.0f && m_enemySpawned <= 0) 
         {
-            m_roundTimer = 5.0f;
+            m_roundTimer = 5.0f; // setting the timer to 5 secounds 
         }
-        m_roundTimer -= Time.deltaTime;
+        m_roundTimer -= Time.deltaTime; // counting down in delta time
+        // round system
         if (m_roundTimer <= 0.0f)
         {
-            m_roundTimer = m_roundLength;
-            m_currentRound++;
-            m_enemyToSpawn += m_enemyCount[m_currentRound];
-           
+            m_roundTimer = m_roundLength; // setting the Round timer to the round length 
+            // checking to see if it doesn't go over the limit
+            if (m_currentRound < m_enemyCount.Length)
+            m_currentRound++; // add to the current round
+
+            m_enemyToSpawn += m_enemyCount[m_currentRound]; // adding the limit that needs to be spawned
+
         }
         m_timer -= Time.deltaTime;
 
@@ -101,8 +106,8 @@ public class Spawner : MonoBehaviour
             enemyScript.m_agroRange = m_agroRange;
 
             m_enemies.Add(newEnemy);
-            m_enemyToSpawn--;
-            m_enemySpawned++;
+            m_enemyToSpawn--; // removing the limit to spanw 
+            m_enemySpawned++; // adding what has been spawned 
         }
 	}
 
@@ -115,6 +120,6 @@ public class Spawner : MonoBehaviour
     {
         m_currentSpawns--;
         m_enemies.Remove(enemy);
-        m_enemySpawned--;
+        m_enemySpawned--; // removing what has been spawned
     }
 }
