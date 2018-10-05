@@ -47,8 +47,9 @@ public class EnemyAttackKing : EnemyState
     {
         m_players = players;
         m_king = king;
-        m_agroRange = agroRange;
+        m_attackSpeed = attackSpeed;
         m_attackDamage = attackDamage;
+        m_agroRange = agroRange;
     }
 
     /*

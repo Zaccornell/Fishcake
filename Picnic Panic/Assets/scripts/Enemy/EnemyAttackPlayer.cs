@@ -37,8 +37,9 @@ public class EnemyAttackPlayer : EnemyState
     {
         m_players = players;
         m_attackRange = attackRange;
-        m_agroRange = agroRange + 5;
+        m_attackSpeed = attackSpeed;
         m_attackDamage = attackDamage;
+        m_agroRange = agroRange + 5;
     }
 
     /*
@@ -55,16 +56,6 @@ public class EnemyAttackPlayer : EnemyState
             if (!current.gameObject.activeSelf)
                 continue;
 
-            //if (m_target == null || ((current.transform.position - m_owner.transform.position).sqrMagnitude < (m_target.transform.position - m_owner.transform.position).sqrMagnitude))
-            //{
-            //    m_target = current;
-            //    m_owner.m_target = m_target;
-            //    break;
-            //}
-            //if (m_target != null)
-            //{
-            //    playerInRange = true;
-            //}
             float distance = (current.transform.position - m_owner.transform.position).sqrMagnitude;
             if (distance <= m_agroRange * m_agroRange)
             {
