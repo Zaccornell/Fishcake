@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public Actor[] m_players = null;
     public PieKing m_king = null;
     public GameObject m_enemyPrefab = null;
+    public Vector2 m_spawnArea;
 
     public int[] m_enemiesPerWave;
     public int m_roundLength;
@@ -42,7 +43,7 @@ public class Spawner : MonoBehaviour
 
             Vector3 spawnPosition = new Vector3();
 
-            Rect playArea = new Rect(new Vector2(-25, -25), new Vector2(50, 50));
+            Rect playArea = new Rect(new Vector2(m_spawnArea.x / -2, m_spawnArea.y / -2), m_spawnArea);
 
             Vector3 playerPosition = new Vector3();
             foreach(Actor current in m_players)
