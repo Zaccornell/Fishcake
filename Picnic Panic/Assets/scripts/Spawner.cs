@@ -67,12 +67,13 @@ public class Spawner : MonoBehaviour
             {
                 if (!player.gameObject.activeSelf)
                 {
-                    Vector3 spawnPos = new Vector3(Random.value, 0, Random.value);
+                    Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
                     spawnPos.Normalize();
                     spawnPos *= 9;
                     spawnPos.y = 1;
                     ((Player)player).ResetValues();
                     player.gameObject.SetActive(true);
+                    player.gameObject.transform.position = spawnPos;
                 }
             }
 
