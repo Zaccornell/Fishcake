@@ -25,6 +25,10 @@ public class PieKing : Actor
     public override void TakeDamage(int damage, Actor attacker)
     {
         m_health -= damage; // taking damage 
+        if (m_health < 0)
+        {
+            m_health = 0;
+        }
     }
 
     // end of each round will call this function

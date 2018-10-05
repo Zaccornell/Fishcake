@@ -165,6 +165,7 @@ public class Player : MovingActor
         m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
         if (m_health <= 0)
         {
+            m_health = 0;
             //Destroy(gameObject);
             m_alive = false;
             gameObject.SetActive(false);
