@@ -12,7 +12,7 @@ public class Player : MovingActor
 {
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_dashDistance;
-    public float m_dashCooldown;
+    public float m_dashCooldown;    
     public Renderer m_facing;
     public int m_playerNumber;
     public GameObject m_corpsePrefab;

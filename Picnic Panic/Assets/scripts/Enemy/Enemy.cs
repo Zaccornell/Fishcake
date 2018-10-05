@@ -10,7 +10,6 @@ public class Enemy : MovingActor
 {
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_attackRange;
-    public int m_attackDamage;
     public float m_agroRange;
     [HideInInspector] public Actor[] m_players = null;
     [HideInInspector] public Actor m_king = null;
