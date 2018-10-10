@@ -86,9 +86,21 @@ public class EnemyAttackPlayer : EnemyState
 
         if (m_attackTimer <= 0 && m_target != null)
         {
-            if ((m_target.transform.position - m_owner.transform.position).sqrMagnitude <= m_attackRange * m_attackRange)
+            Collider[] targets = Physics.OverlapBox(m_owner.transform.position + m_owner.transform.forward, new Vector3(1, 1, 1), m_owner.transform.rotation);
+            bool attackedPlayer = false;
+            foreach(Collider current in targets)
             {
-                Attack(m_target, m_attackDamage);
+                foreach(Actor player in m_players)
+                {
+                    if (current.gameObject == player.gameObject)
+                    {
+                        Attack(player, m_attackDamage);
+                        attackedPlayer = true;
+                    }
+                }
+            }
+            if (attackedPlayer)
+            {
                 m_attackTimer = m_attackSpeed;
 
                 if (!m_target.gameObject.activeSelf)

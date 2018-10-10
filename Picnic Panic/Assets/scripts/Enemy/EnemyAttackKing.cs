@@ -73,7 +73,7 @@ public class EnemyAttackKing : EnemyState
 
         if (m_attackTimer <= 0)
         {
-            Collider[] targets = Physics.OverlapBox(m_owner.transform.position + m_owner.transform.forward, new Vector3(1, 1, 1));
+            Collider[] targets = Physics.OverlapBox(m_owner.transform.position + m_owner.transform.forward, new Vector3(1, 1, 1), m_owner.transform.rotation);
             foreach(Collider current in targets)
             {
                 if (current.gameObject == m_target.gameObject)

@@ -30,6 +30,7 @@ public class Spawner : MonoBehaviour
     public int m_attackDamage;
     public float m_agroRange;
     public float m_loseAgroRange;
+    public float m_knockbackDistance;
     [HideInInspector] public List<Enemy> m_enemies = new List<Enemy>();
 
     private float m_timer;
@@ -135,6 +136,7 @@ public class Spawner : MonoBehaviour
             enemyScript.m_attackDamage = m_attackDamage;
             enemyScript.m_king = m_king;
             enemyScript.m_agroRange = m_agroRange;
+            enemyScript.m_knockBackDistance = m_knockbackDistance;
 
             m_enemies.Add(enemyScript);
             m_enemyToSpawn--; // removing the limit to spanw 

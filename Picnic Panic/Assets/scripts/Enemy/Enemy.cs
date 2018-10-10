@@ -59,37 +59,7 @@ public class Enemy : MovingActor
         m_states[0] = m_attackKing;
 
         m_attackPlayer = new EnemyAttackPlayer(this, m_players, m_attackRange, m_attackSpeed, m_attackDamage, m_agroRange);
-        m_states[1] = m_attackPlayer;
-
-
-        // Behaviour Tree
-        //m_root = nzew SelectorNode();
-        //{
-        //    m_targetSide = new SelectorNode();
-        //    m_root.AddChild(m_targetSide);
-        //    {
-        //        m_attackingKing = new SequenceNode();
-        //        m_targetSide.AddChild(m_attackingKing);
-        //        {
-        //            m_targetIsKing = new IsSpecificActor();
-        //            m_targetIsKing.m_target = m_king;
-        //            m_attackingKing.AddChild(m_targetIsKing);
-
-        //            m_kingAttackingRange = new DistanceToActor();
-        //            m_kingAttackingRange.m_distance = m_attackRange;
-        //            m_kingAttackingRange.m_target = m_king;
-        //            m_attackingKing.AddChild(m_kingAttackingRange);
-
-        //            m_wasAttacked = new ToggleNode();
-        //            m_wasAttacked.m_toggled = false;
-        //            m_attackingKing.AddChild(m_wasAttacked);
-
-        //            m_setTargetAttacker = new SetTarget();
-        //            m_attackingKing.AddChild(m_setTargetAttacker);
-        //        }
-        //    }
-        //}
-        
+        m_states[1] = m_attackPlayer;        
     }
 
     public int PathIndex
