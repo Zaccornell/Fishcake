@@ -148,7 +148,7 @@ public class Enemy : MovingActor
         m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
         if (m_health <= 0)
         {
-            m_spawner.GetComponent<Spawner>().EnemyDeath(gameObject);
+            m_spawner.EnemyDeath(this);
             Destroy(gameObject);
         }
         m_attacker = attacker;

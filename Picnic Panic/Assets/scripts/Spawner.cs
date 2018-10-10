@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
     public int m_attackDamage;
     public float m_agroRange;
     public float m_loseAgroRange;
-    [HideInInspector] public List<GameObject> m_enemies = new List<GameObject>();
+    [HideInInspector] public List<Enemy> m_enemies = new List<Enemy>();
 
     private float m_timer;
     private int m_currentSpawns;
@@ -132,7 +132,7 @@ public class Spawner : MonoBehaviour
             enemyScript.m_king = m_king;
             enemyScript.m_agroRange = m_agroRange;
 
-            m_enemies.Add(newEnemy);
+            m_enemies.Add(enemyScript);
             m_enemyToSpawn--; // removing the limit to spanw 
             m_enemySpawned++; // adding what has been spawned 
         }
@@ -143,7 +143,7 @@ public class Spawner : MonoBehaviour
         m_timer = m_spawnDelay + (m_spawnJitter * Random.Range(-1, 1));
     }
 
-    public void EnemyDeath(GameObject enemy)
+    public void EnemyDeath(Enemy enemy)
     {
         m_currentSpawns--;
         m_enemies.Remove(enemy);

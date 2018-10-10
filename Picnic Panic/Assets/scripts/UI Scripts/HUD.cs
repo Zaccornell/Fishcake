@@ -33,7 +33,7 @@ public class HUD : MonoBehaviour
         {
             displayHealth[i].text = actorHealth[i].Health.ToString();
         }
-        m_displayTimer.text = m_timer.RoundTimer.ToString();
+        m_displayTimer.text = ((int)m_timer.RoundTimer).ToString();
     }
 
     public bool UseLife()

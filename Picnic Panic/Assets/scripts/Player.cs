@@ -83,7 +83,7 @@ public class Player : MovingActor
             m_dashParticle.Play();
         }
 
-        if ((Input.GetButtonDown("Fire1") || Input.GetAxisRaw(m_attackButton) != 0) && m_attackTimer <= 0)
+        if ((Input.GetMouseButtonDown(0) || Input.GetAxisRaw(m_attackButton) != 0) && m_attackTimer <= 0)
         {
             if (m_attackPressed == false)
             {
