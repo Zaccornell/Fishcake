@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33384041967886952}
   - component: {fileID: 23419893867763720}
   - component: {fileID: 95723402616153028}
+  - component: {fileID: 64874917370873790}
   m_Layer: 0
   m_Name: Envrionment_TeaCup_002
   m_TagString: Untagged
@@ -69,8 +70,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1323695230375196}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.79, y: -0.26, z: -7}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -37.7, y: -2.1182077, z: 1.7145061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4972575401012320}
@@ -227,6 +228,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1503420353970166}
   m_Mesh: {fileID: 4300004, guid: f5020c61005ec49458ec2ff2b77bcbf5, type: 3}
+--- !u!64 &64874917370873790
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323695230375196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: f5020c61005ec49458ec2ff2b77bcbf5, type: 3}
 --- !u!95 &95723402616153028
 Animator:
   serializedVersion: 3
