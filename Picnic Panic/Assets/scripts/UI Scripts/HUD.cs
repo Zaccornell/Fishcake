@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     public GameObject[] m_lives;
-    public Text[] displayHealth;
-    public Actor[] actorHealth;
+    public Text[] m_displayHealth;
+    public Actor[] m_actorHealth;
     public Text m_displayTimer;
-    public Spawner m_timer;
+    public Spawner m_spanwer;
 
+    public Text m_enemyCounter;
 
     private int m_playerLives = 5;
 
@@ -29,11 +30,13 @@ public class HUD : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        for (int i = 0; i < actorHealth.Length; i++)
+        for (int i = 0; i < m_actorHealth.Length; i++)
         {
-            displayHealth[i].text = actorHealth[i].Health.ToString();
+            m_displayHealth[i].text = m_actorHealth[i].Health.ToString();
         }
-        m_displayTimer.text = ((int)m_timer.RoundTimer).ToString();
+        m_displayTimer.text = ((int)m_spanwer.RoundTimer).ToString(); // displays timer onto the HUD
+        m_enemyCounter.text = (m_spanwer.EnemyTotal).ToString();// displays the amount of enemies left to spawn and spawned
+
     }
 
     public bool UseLife()

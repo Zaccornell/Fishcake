@@ -40,6 +40,10 @@ public class Spawner : MonoBehaviour
     {
         get { return m_roundTimer; }
     }
+    public int EnemyTotal
+    {
+        get { return m_enemySpawned + m_enemyToSpawn; }
+    }
 
 	// Use this for initialization
 	void Start ()
