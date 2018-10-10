@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222301373208283384}
   - component: {fileID: 114796116529110190}
   m_Layer: 5
-  m_Name: Player2Health
+  m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,12 +386,12 @@ MonoBehaviour:
   - {fileID: 1483878385654832}
   displayHealth:
   - {fileID: 114464686065548212}
-  - {fileID: 114796116529110190}
   - {fileID: 114488539845550494}
   actorHealth:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  m_displayTimer: {fileID: 114796116529110190}
+  m_timer: {fileID: 0}
 --- !u!114 &114914093207781718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -643,7 +643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 370, y: -234}
+  m_AnchoredPosition: {x: 0, y: -181.62186}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224410901772538664
