@@ -86,7 +86,7 @@ public class EnemyAttackPlayer : EnemyState
 
         if (m_attackTimer <= 0 && m_target != null)
         {
-            Collider[] targets = Physics.OverlapBox(m_owner.transform.position + m_owner.transform.forward, new Vector3(1, 1, 1), m_owner.transform.rotation);
+            Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward, 0.2f);
             bool attackedPlayer = false;
             foreach(Collider current in targets)
             {

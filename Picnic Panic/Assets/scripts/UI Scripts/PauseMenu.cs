@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public Image[] m_children;
+    public GameObject[] m_children;
     public Spawner m_spawner;
+    public Player[] m_players;
     public MonoBehaviour[] m_gameplayScripts;
 
     private bool m_active = false;
@@ -21,9 +22,9 @@ public class PauseMenu : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.Escape))
         {
-            foreach (Image child in m_children)
+            foreach (GameObject child in m_children)
             {
-                child.enabled = !m_active;
+                child.SetActive(!m_active);
             }
             foreach (Enemy current in m_spawner.m_enemies)
             {
@@ -33,7 +34,21 @@ public class PauseMenu : MonoBehaviour
             {
                 script.enabled = m_active;
             }
+            foreach (Player current in m_players)
+            {
+                current.enabled = m_active;
+            }
             m_active = !m_active;
         }
 	}
+
+    public void ResetClick()
+    {
+        foreach (Player current in m_players)
+        {
+            current.ResetValues();
+            current.Respawn();
+        }
+        m_spawner.ResetValues();
+    }
 }

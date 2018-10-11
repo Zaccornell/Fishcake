@@ -29,6 +29,7 @@ public class Player : MovingActor
     private string m_dashButton;
     private bool m_attackPressed = false;
     private bool m_canRespawn = false;
+    private float m_knockbackTimer;
 
     public bool CanRespawn
     {
@@ -69,6 +70,7 @@ public class Player : MovingActor
     {
         m_dashTimer -= Time.deltaTime;
         m_attackTimer -= Time.deltaTime;
+        m_knockbackTimer -= Time.deltaTime;
 
         m_movement.z = Input.GetAxisRaw(m_verticalAxis);
         m_movement.x = Input.GetAxisRaw(m_horizontalAxis);
@@ -87,15 +89,12 @@ public class Player : MovingActor
         {
             if (m_attackPressed == false)
             {
-                for (int i = 0; i < m_enemies.Count; i++)
+                Collider[] hits = Physics.OverlapBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(2, 1, 2), gameObject.transform.rotation);
+                foreach (Collider current in hits)
                 {
-                    if (m_enemies[i] != null)
+                    if (current.gameObject.tag == "Enemy")
                     {
-                        m_enemies[i].GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
-                    }
-                    else
-                    {
-                        m_enemies.RemoveAt(i);
+                        current.gameObject.GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
                     }
                 }
                 m_facing.material.color = new Color(1, 0, 0);
@@ -140,29 +139,17 @@ public class Player : MovingActor
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            m_enemies.Add(other);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            m_enemies.Remove(other);
-        }
-    }
-
     public override void TakeDamage(int damage, Actor attacker)
     {
         m_health -= damage;
-        // once you get hit by the enemy you get knocked back
-        // giving us the feel of our players getting hit in game
-        Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
-        m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
+        if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
+        {
+            // once you get hit by the enemy you get knocked back
+            // giving us the feel of our players getting hit in game
+            Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+            m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
+            m_knockbackTimer = 0.5f;
+        }
         if (m_health <= 0)
         {
             m_health = 0;
@@ -180,5 +167,15 @@ public class Player : MovingActor
     {
         m_health = m_maxHealth;
         m_canRespawn = false;
+    }
+
+    public void Respawn()
+    {
+        Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+        spawnPos.Normalize();
+        spawnPos *= 9;
+        spawnPos.y = 1;
+        gameObject.SetActive(true);
+        gameObject.transform.position = spawnPos;
     }
 }

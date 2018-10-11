@@ -5,11 +5,14 @@ using UnityEngine;
  * Author: Bradyn Corkill / John Plant
  * Date: 2018/10/5
  */
+
+public delegate void MyDel();
+
 public class Spawner : MonoBehaviour
 {
-    private int m_currentRound;
     public float m_roundLength;
     public int[] m_enemyCount;
+    private int m_currentRound;
     private int m_enemyToSpawn;
     private float m_roundTimer; 
     private int m_enemySpawned;
@@ -34,8 +37,6 @@ public class Spawner : MonoBehaviour
     [HideInInspector] public List<Enemy> m_enemies = new List<Enemy>();
 
     private float m_timer;
-    private int m_currentSpawns;
-    private int m_enemiesToSpawn;
 
     public float RoundTimer
     {
@@ -45,6 +46,8 @@ public class Spawner : MonoBehaviour
     {
         get { return m_enemySpawned + m_enemyToSpawn; }
     }
+
+    public event MyDel OnRoundEnd;
 
 	// Use this for initialization
 	void Start ()
@@ -82,17 +85,12 @@ public class Spawner : MonoBehaviour
 
                     if (playerScript.CanRespawn)
                     {
-                        Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-                        spawnPos.Normalize();
-                        spawnPos *= 9;
-                        spawnPos.y = 1;
                         playerScript.ResetValues();
-                        player.gameObject.SetActive(true);
-                        player.gameObject.transform.position = spawnPos;
+                        playerScript.Respawn();
                     }
                 }
             }
-
+            OnRoundEnd();
         }
         m_timer -= Time.deltaTime;
 
@@ -151,8 +149,23 @@ public class Spawner : MonoBehaviour
 
     public void EnemyDeath(Enemy enemy)
     {
-        m_currentSpawns--;
         m_enemies.Remove(enemy);
         m_enemySpawned--; // removing what has been spawned
+    }
+
+    public void ResetValues()
+    {
+        m_currentRound = 0;
+        m_enemyToSpawn = m_enemyCount[m_currentRound];
+        m_roundTimer = m_roundLength;
+        m_enemySpawned = 0;
+        RandomizeDelay();
+
+        foreach (Enemy current in m_enemies)
+        {
+            Destroy(current.gameObject);
+        }
+        m_enemies.Clear();
+
     }
 }

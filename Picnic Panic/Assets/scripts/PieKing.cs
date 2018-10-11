@@ -7,12 +7,14 @@ using UnityEngine;
  */
 public class PieKing : Actor
 {
+    public Spawner m_spawner;
     public int m_restoreHealth; // setting the amout of health to restore per round
 
 	// Use this for initialization
 	void Start ()
     {
         m_health = m_maxHealth; // setting the health to the max health 
+        m_spawner.OnRoundEnd += new MyDel(RoundEnd);
 	}
 	
 	// Update is called once per frame

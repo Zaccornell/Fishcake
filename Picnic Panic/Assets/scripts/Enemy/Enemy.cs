@@ -17,6 +17,7 @@ public class Enemy : MovingActor
     [HideInInspector] public Actor m_target;
     [HideInInspector] public NavMeshPath m_path = null;
 
+    private List<GameObject> m_attackable;
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
     private Actor m_attacker = null;
@@ -76,6 +77,8 @@ public class Enemy : MovingActor
     private void FixedUpdate()
     {
         m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        if (m_movement.magnitude != 0)
+            m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
     }
     // Update is called once per frame
     void Update()
@@ -91,7 +94,7 @@ public class Enemy : MovingActor
             m_pathIndex = 0;
             for(int i = 0; i < m_path.corners.Length; i++)
             {
-                m_path.corners[i].y = 0.5f;
+                m_path.corners[i].y = 0;
             }
         }
         m_updatePath--;
@@ -104,6 +107,11 @@ public class Enemy : MovingActor
             m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized;
         else
             m_movement = Vector3.zero;
+
+        //if (m_pathIndex == m_path.corners.Length - 1 && (transform.position - m_path.corners[m_pathIndex]).magnitude < 0.1)
+        //{
+        //    m_movement = Vector3.zero;
+        //}
         
         m_movement.y = 0;
         m_wasAttacked = false;
@@ -128,5 +136,25 @@ public class Enemy : MovingActor
     public void ChangeState(int index)
     {
         m_stateIndex = index;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position + transform.forward, 0.2f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            m_attackable.Add(other.gameObject);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            m_attackable.Remove(other.gameObject);
+        }
     }
 }
