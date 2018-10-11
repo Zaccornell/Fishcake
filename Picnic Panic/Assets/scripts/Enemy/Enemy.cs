@@ -94,7 +94,7 @@ public class Enemy : MovingActor
             m_pathIndex = 0;
             for(int i = 0; i < m_path.corners.Length; i++)
             {
-                m_path.corners[i].y = 0;
+                m_path.corners[i].y = 0.5f;
             }
         }
         m_updatePath--;
