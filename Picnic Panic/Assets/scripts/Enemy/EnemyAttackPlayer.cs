@@ -17,6 +17,8 @@ public class EnemyAttackPlayer : EnemyState
     public Actor[] m_players = null;
     public int m_attackDamage = 10;
     public float m_agroRange;
+    public float m_attackDistance;
+    public float m_attackRadius;
 
     private float m_attackSpeed;
     private float m_attackTimer;
@@ -33,10 +35,11 @@ public class EnemyAttackPlayer : EnemyState
      *      owner: reference to the state machine, to be passed into the base constructor
      *      players: array of all players in the game
      */
-    public EnemyAttackPlayer(Enemy owner, Actor[] players, float attackRange, float attackSpeed, int attackDamage, float agroRange) : base(owner)
+    public EnemyAttackPlayer(Enemy owner, Actor[] players, float attackDistance, float attackRadius, float attackSpeed, int attackDamage, float agroRange) : base(owner)
     {
         m_players = players;
-        m_attackRange = attackRange;
+        m_attackDistance = attackDistance;
+        m_attackRadius = attackRadius;
         m_attackSpeed = attackSpeed;
         m_attackDamage = attackDamage;
         m_agroRange = agroRange + 5;
@@ -86,7 +89,7 @@ public class EnemyAttackPlayer : EnemyState
 
         if (m_attackTimer <= 0 && m_target != null)
         {
-            Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward, 0.2f);
+            Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
             bool attackedPlayer = false;
             foreach(Collider current in targets)
             {

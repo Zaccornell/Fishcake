@@ -28,7 +28,8 @@ public class Spawner : MonoBehaviour
     public float m_spawnDelay;
     public float m_spawnJitter;
     public int m_maxSpawns;
-    public float m_attackRange;
+    public float m_attackDistance;
+    public float m_attackRadius;
     public float m_attackSpeed;
     public int m_attackDamage;
     public float m_agroRange;
@@ -129,12 +130,14 @@ public class Spawner : MonoBehaviour
             enemyScript.m_players = m_players;
             enemyScript.m_spawner = this;
             enemyScript.m_maxHealth = m_enemyHealth;
-            enemyScript.m_attackRange = m_attackRange;
+            enemyScript.m_attackDistance = m_attackDistance;
+            enemyScript.m_attackRadius = m_attackRadius;
             enemyScript.m_attackSpeed = m_attackSpeed;
             enemyScript.m_attackDamage = m_attackDamage;
             enemyScript.m_king = m_king;
             enemyScript.m_agroRange = m_agroRange;
             enemyScript.m_knockBackDistance = m_knockbackDistance;
+            enemyScript.m_height = m_spawnHeight;
 
             m_enemies.Add(enemyScript);
             m_enemyToSpawn--; // removing the limit to spanw 

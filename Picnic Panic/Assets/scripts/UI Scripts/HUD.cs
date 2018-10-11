@@ -34,7 +34,7 @@ public class HUD : MonoBehaviour
         {
             m_displayHealth[i].text = m_actorHealth[i].Health.ToString();
         }
-        m_displayTimer.text = ((int)m_spanwer.RoundTimer).ToString(); // displays timer onto the HUD
+        m_displayTimer.text = (Mathf.Ceil(m_spanwer.RoundTimer)).ToString(); // displays timer onto the HUD
         m_enemyCounter.text = (m_spanwer.EnemyTotal).ToString();// displays the amount of enemies left to spawn and spawned
 
     }

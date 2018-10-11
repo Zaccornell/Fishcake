@@ -9,8 +9,10 @@ using UnityEngine.AI;
 public class Enemy : MovingActor
 {
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
-    public float m_attackRange;
+    public float m_attackDistance;
+    public float m_attackRadius;
     public float m_agroRange;
+    public float m_height;
     [HideInInspector] public Actor[] m_players = null;
     [HideInInspector] public Actor m_king = null;
     [HideInInspector] public Spawner m_spawner = null;
@@ -56,10 +58,10 @@ public class Enemy : MovingActor
         m_stateIndex = 0;
 
         m_states = new EnemyState[2];
-        m_attackKing = new EnemyAttackKing(this, m_players, m_king, m_attackSpeed, m_attackDamage, m_agroRange);
+        m_attackKing = new EnemyAttackKing(this, m_players, m_king, m_attackDistance, m_attackRadius, m_attackSpeed, m_attackDamage, m_agroRange);
         m_states[0] = m_attackKing;
 
-        m_attackPlayer = new EnemyAttackPlayer(this, m_players, m_attackRange, m_attackSpeed, m_attackDamage, m_agroRange);
+        m_attackPlayer = new EnemyAttackPlayer(this, m_players, m_attackDistance, m_attackRadius, m_attackSpeed, m_attackDamage, m_agroRange);
         m_states[1] = m_attackPlayer;        
     }
 
@@ -94,7 +96,7 @@ public class Enemy : MovingActor
             m_pathIndex = 0;
             for(int i = 0; i < m_path.corners.Length; i++)
             {
-                m_path.corners[i].y = 0.5f;
+                m_path.corners[i].y = m_height;
             }
         }
         m_updatePath--;
@@ -140,7 +142,7 @@ public class Enemy : MovingActor
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position + transform.forward, 0.2f);
+        Gizmos.DrawSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
     }
 
     private void OnTriggerEnter(Collider other)

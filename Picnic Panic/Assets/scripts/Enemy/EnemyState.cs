@@ -15,7 +15,6 @@ public abstract class EnemyState
 {
     public Enemy m_owner;
 
-    protected float m_attackRange;
     protected Actor m_target;
 
     /*
@@ -30,11 +29,6 @@ public abstract class EnemyState
     public Actor Target
     {
         get { return m_target; }
-    }
-    public float AttackRange
-    {
-        get { return m_attackRange; }
-        set { m_attackRange = value; }
     }
 
     public abstract void Update();

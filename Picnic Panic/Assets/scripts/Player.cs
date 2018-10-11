@@ -11,8 +11,11 @@ using UnityEngine;
 public class Player : MovingActor
 {
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
+    public float m_knockbackCooldown;
     public float m_dashDistance;
-    public float m_dashCooldown;    
+    public float m_dashCooldown;
+    public float m_attackDistance;
+    public float m_attackRadius;
     public Renderer m_facing;
     public int m_playerNumber;
     public GameObject m_corpsePrefab;
@@ -30,6 +33,7 @@ public class Player : MovingActor
     private bool m_attackPressed = false;
     private bool m_canRespawn = false;
     private float m_knockbackTimer;
+    private float m_invulTimer;
 
     public bool CanRespawn
     {
@@ -71,6 +75,7 @@ public class Player : MovingActor
         m_dashTimer -= Time.deltaTime;
         m_attackTimer -= Time.deltaTime;
         m_knockbackTimer -= Time.deltaTime;
+        m_invulTimer -= Time.deltaTime;
 
         m_movement.z = Input.GetAxisRaw(m_verticalAxis);
         m_movement.x = Input.GetAxisRaw(m_horizontalAxis);
@@ -78,18 +83,25 @@ public class Player : MovingActor
         
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxisRaw(m_dashButton) == 1) && m_dashTimer < 0)
         {
-            Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
-            m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
-            m_dashTimer = m_dashCooldown;
+            if (m_movement.magnitude != 0)
+            {
+                Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+                m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
+                m_dashTimer = m_dashCooldown;
 
-            m_dashParticle.Play();
+                m_invulTimer = 1;
+                Physics.IgnoreLayerCollision(8, 9, true);
+                //m_rigidBody.isKinematic = true;
+
+                //m_dashParticle.Play();
+            }
         }
 
         if ((Input.GetMouseButtonDown(0) || Input.GetAxisRaw(m_attackButton) != 0) && m_attackTimer <= 0)
         {
             if (m_attackPressed == false)
             {
-                Collider[] hits = Physics.OverlapBox(gameObject.transform.position + gameObject.transform.forward, new Vector3(2, 1, 2), gameObject.transform.rotation);
+                Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
                 foreach (Collider current in hits)
                 {
                     if (current.gameObject.tag == "Enemy")
@@ -111,6 +123,11 @@ public class Player : MovingActor
         {
             m_facing.material.color = new Color(1, 1, 1);
             m_canAttack = true;
+        }
+
+        if (m_invulTimer <= 0)
+        {
+            Physics.IgnoreLayerCollision(8, 9, false);
         }
     }
 
@@ -135,31 +152,33 @@ public class Player : MovingActor
             {
                 m_dashParticle.Stop();
             }
-
         }
     }
 
     public override void TakeDamage(int damage, Actor attacker)
     {
-        m_health -= damage;
-        if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
+        if (m_invulTimer <= 0)
         {
-            // once you get hit by the enemy you get knocked back
-            // giving us the feel of our players getting hit in game
-            Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
-            m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
-            m_knockbackTimer = 0.5f;
-        }
-        if (m_health <= 0)
-        {
-            m_health = 0;
-            //Destroy(gameObject);
-            m_alive = false;
-            gameObject.SetActive(false);
-            Vector3 position = gameObject.transform.position;
-            position.y -= 0.5f;
-            Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
-            m_canRespawn = m_hud.UseLife();
+            m_health -= damage;
+            if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
+            {
+                // once you get hit by the enemy you get knocked back
+                // giving us the feel of our players getting hit in game
+                Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+                m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
+                m_knockbackTimer = m_knockbackCooldown;
+            }
+            if (m_health <= 0)
+            {
+                m_health = 0;
+                //Destroy(gameObject);
+                m_alive = false;
+                gameObject.SetActive(false);
+                Vector3 position = gameObject.transform.position;
+                position.y -= 0.5f;
+                Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+                m_canRespawn = m_hud.UseLife();
+            }
         }
     }
 
@@ -177,5 +196,10 @@ public class Player : MovingActor
         spawnPos.y = 1;
         gameObject.SetActive(true);
         gameObject.transform.position = spawnPos;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
     }
 }

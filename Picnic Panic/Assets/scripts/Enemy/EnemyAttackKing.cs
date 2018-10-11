@@ -18,6 +18,8 @@ public class EnemyAttackKing : EnemyState
     public Actor m_king;
     public Actor[] m_players = null;
     public int m_attackDamage = 10;
+    public float m_attackDistance;
+    public float m_attackRadius;
 
     private float m_attackSpeed;
     private float m_attackTimer;
@@ -43,11 +45,13 @@ public class EnemyAttackKing : EnemyState
      *      attackSpeed: rate of attack in seconds
      *      agroRange: Distance before the enemy changes to the attack player state
      */
-    public EnemyAttackKing(Enemy owner, Actor[] players, Actor king, float attackSpeed, int attackDamage, float agroRange) : base(owner)
+    public EnemyAttackKing(Enemy owner, Actor[] players, Actor king, float attackDistance, float attackRadius, float attackSpeed, int attackDamage, float agroRange) : base(owner)
     {
         m_players = players;
         m_king = king;
         m_attackSpeed = attackSpeed;
+        m_attackDistance = attackDistance;
+        m_attackRadius = attackRadius;
         m_attackDamage = attackDamage;
         m_agroRange = agroRange;
     }
@@ -73,7 +77,7 @@ public class EnemyAttackKing : EnemyState
 
         if (m_attackTimer <= 0)
         {
-            Collider[] targets = Physics.OverlapBox(m_owner.transform.position + m_owner.transform.forward, new Vector3(1, 1, 1), m_owner.transform.rotation);
+            Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
             foreach(Collider current in targets)
             {
                 if (current.gameObject == m_target.gameObject)
