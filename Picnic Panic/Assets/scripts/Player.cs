@@ -16,6 +16,7 @@ public class Player : MovingActor
     public float m_dashCooldown;
     public float m_attackDistance;
     public float m_attackRadius;
+    public float m_invulLength;
     public Renderer m_facing;
     public int m_playerNumber;
     public GameObject m_corpsePrefab;
@@ -89,7 +90,7 @@ public class Player : MovingActor
                 m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                 m_dashTimer = m_dashCooldown;
 
-                m_invulTimer = 1;
+                m_invulTimer = m_invulLength;
                 Physics.IgnoreLayerCollision(8, 9, true);
             }
         }
@@ -99,6 +100,7 @@ public class Player : MovingActor
             if (m_attackPressed == false)
             {
                 Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
+                //List<GameObject> objects
                 foreach (Collider current in hits)
                 {
                     if (current.gameObject.tag == "Enemy")
