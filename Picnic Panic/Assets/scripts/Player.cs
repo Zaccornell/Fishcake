@@ -91,9 +91,6 @@ public class Player : MovingActor
 
                 m_invulTimer = 1;
                 Physics.IgnoreLayerCollision(8, 9, true);
-                //m_rigidBody.isKinematic = true;
-
-                //m_dashParticle.Play();
             }
         }
 

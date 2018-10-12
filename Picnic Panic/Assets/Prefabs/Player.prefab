@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4637773169209596}
   - component: {fileID: 33193579039657240}
   - component: {fileID: 23440568599292658}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Facing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33838669104469534}
   - component: {fileID: 23720251269652764}
   - component: {fileID: 95868061727878418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Character_Greybox_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 114610533574785252}
   - component: {fileID: 65985975794784144}
   - component: {fileID: 64816165066673616}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 4101714941873588}
   - component: {fileID: 198589019088957354}
   - component: {fileID: 199461839754141816}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,10 +335,18 @@ MonoBehaviour:
   m_maxHealth: 100
   m_speed: 10
   m_attackSpeed: 0.1
-  m_dashDistance: 500
+  m_attackDamage: 10
+  m_knockBackDistance: 10
+  m_knockbackCooldown: 1
+  m_dashDistance: 10
   m_dashCooldown: 1
+  m_attackDistance: 1
+  m_attackRadius: 1
   m_facing: {fileID: 23440568599292658}
   m_playerNumber: 1
+  m_corpsePrefab: {fileID: 1284227549011586, guid: df60536e4ee77fe48854068101c3e352,
+    type: 2}
+  m_hud: {fileID: 0}
 --- !u!136 &136984771540150374
 CapsuleCollider:
   m_ObjectHideFlags: 1

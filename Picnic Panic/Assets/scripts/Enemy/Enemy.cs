@@ -19,11 +19,9 @@ public class Enemy : MovingActor
     [HideInInspector] public Actor m_target;
     [HideInInspector] public NavMeshPath m_path = null;
 
-    private List<GameObject> m_attackable;
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
     private Actor m_attacker = null;
-    private bool m_wasAttacked;
     private EnemyState[] m_states;
     private EnemyAttackPlayer m_attackPlayer;
     private EnemyAttackKing m_attackKing;
@@ -54,7 +52,6 @@ public class Enemy : MovingActor
         m_rigidBody = GetComponent<Rigidbody>();
         m_path = new NavMeshPath();
         m_movement = new Vector3();
-        m_wasAttacked = false;
         m_stateIndex = 0;
 
         m_states = new EnemyState[2];
@@ -116,7 +113,6 @@ public class Enemy : MovingActor
         //}
         
         m_movement.y = 0;
-        m_wasAttacked = false;
     }
 
     public override void TakeDamage(int damage, Actor attacker)    
@@ -125,14 +121,13 @@ public class Enemy : MovingActor
         // creating a knock back feel to the enemy once you hit it
         // using Velocity and distance to push the enemy back
         Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
-        m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass);
+        m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass, ForceMode.VelocityChange);
         if (m_health <= 0)
         {
             m_spawner.EnemyDeath(this);
             Destroy(gameObject);
         }
         m_attacker = attacker;
-        m_wasAttacked = true;
     }
 
     public void ChangeState(int index)
@@ -143,20 +138,5 @@ public class Enemy : MovingActor
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            m_attackable.Add(other.gameObject);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            m_attackable.Remove(other.gameObject);
-        }
     }
 }
