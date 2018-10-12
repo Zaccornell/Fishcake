@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1623052370803712}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3535378, y: 0, z: -11.329956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -113,7 +113,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0973423, y: 0.728257, z: 1.4378104}
+  m_Size: {x: 0.5529382, y: 0.728257, z: 1.4378104}
   m_Center: {x: 0.000000029802322, y: 0.29153225, z: -0.0037398636}
 --- !u!95 &95071676432832752
 Animator:
@@ -166,8 +166,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0.000000029802322, y: 0.29153225, z: -0.74}
+  m_Radius: 0.19
+  m_Center: {x: 0.000000029802322, y: 0.45, z: -0.74}
 --- !u!135 &135357460623256166
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -178,5 +178,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0.000000029802322, y: 0.29153225, z: 0.74}
+  m_Radius: 0.2
+  m_Center: {x: 0.000000029802322, y: 0.29153225, z: 0.8}
