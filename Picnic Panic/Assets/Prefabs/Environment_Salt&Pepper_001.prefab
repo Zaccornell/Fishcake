@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33137218256175220}
   - component: {fileID: 23513729758335114}
   - component: {fileID: 95658316171617648}
+  - component: {fileID: 65991658675669086}
   m_Layer: 0
   m_Name: Environment_Salt&Pepper_001
   m_TagString: Untagged
@@ -35,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707806797144326}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.4038105, y: -0.26, z: -5.1195383}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -35.08, y: -2.1182077, z: 8.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,6 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707806797144326}
   m_Mesh: {fileID: 4300000, guid: d776ab4a2262ab444a1fd26671f6011a, type: 3}
+--- !u!65 &65991658675669086
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1707806797144326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.04, y: 1.7905222, z: 1.04}
+  m_Center: {x: 0, y: 0.8952611, z: 0}
 --- !u!95 &95658316171617648
 Animator:
   serializedVersion: 3

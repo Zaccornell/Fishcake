@@ -105,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246000953730278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.039000034, y: -1, z: -0.179}
+  m_LocalPosition: {x: -0.039000034, y: -1.058, z: -0.179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4583992193729332}
@@ -118,7 +118,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286573024730034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.26, z: 1.96}
+  m_LocalPosition: {x: 0, y: -1.75, z: 1.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637773169209596}
@@ -222,7 +222,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 43d26b0aa7ff9944aaa516613134aba6, type: 3}
+  - {fileID: 2100000, guid: ceb68afcf76250842955d09620688318, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,11 +333,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealth: 100
-  m_speed: 10
-  m_attackSpeed: 0.1
-  m_attackDamage: 10
-  m_knockBackDistance: 10
-  m_knockbackCooldown: 1
+  m_speed: 6
+  m_attackSpeed: 0.5
+  m_attackDamage: 50
+  m_knockBackDistance: 5
+  m_knockbackCooldown: 0
   m_dashDistance: 10
   m_dashCooldown: 1
   m_attackDistance: 1
