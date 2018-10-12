@@ -7,7 +7,7 @@ using UnityEngine;
  */
 public class PieKing : Actor
 {
-    public Spawner m_spawner;
+    public Spawner m_spawner; // calling spanwer class
     public int m_restoreHealth; // setting the amout of health to restore per round
 
 	// Use this for initialization
@@ -20,7 +20,11 @@ public class PieKing : Actor
 	// Update is called once per frame
 	void Update ()
     {
-		
+        // checking to see if the round has ended 
+        if (m_timer.RoundTimer <= 0)
+        {
+            RoundEnd(); // call fucntions 
+        }
 	}
 
     // calling from another source to damage the king
