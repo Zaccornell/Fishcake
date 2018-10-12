@@ -22,6 +22,11 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    // open Option once the button is clicked
+    public void OptionClick()
+    {
+        SceneManager.LoadScene(2); // open Option Scene
+    }
     
     public void QuitClick()
     {
