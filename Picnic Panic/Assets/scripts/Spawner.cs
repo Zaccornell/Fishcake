@@ -10,6 +10,7 @@ public delegate void MyDel();
 
 public class Spawner : MonoBehaviour
 {
+    public bool m_showDebug;
     public float m_roundLength;
     public int[] m_enemyCount;
     private int m_currentRound;
@@ -104,26 +105,66 @@ public class Spawner : MonoBehaviour
             Rect playArea = new Rect(new Vector2(m_spawnArea.x / -2, m_spawnArea.y / -2), m_spawnArea);
 
             Vector3 playerPosition = new Vector3();
+
+            int playerCount = 0;
             foreach(Actor current in m_players)
             {
-                playerPosition += current.transform.position;
+                if (current.transform.position.magnitude >= 10)
+                {
+                    playerPosition += current.transform.position;
+                    playerCount++;
+                }
             }
-            playerPosition /= m_players.Length;
+            //foreach(Enemy current in m_enemies)
+            //{
+            //    playerPosition += current.transform.position;
+            //}
+            //playerPosition /= (m_players.Length * 10 + m_enemies.Count);
+            if (playerCount > 0)
+            {
+                playerPosition /= playerCount;
 
-            Vector3 direction = -playerPosition;
-            direction.y = 0;
-            direction.Normalize();
-            direction *= 35;
+                Vector3 direction = -playerPosition;
+                direction.y = 0;
+                direction.Normalize();
+                direction *= 35;
 
-            Vector3 jitter = new Vector3(Random.value, 0, Random.value);
-            jitter.Normalize();
-            jitter *= 5;
+                Vector3 jitter = new Vector3(Random.value, 0, Random.value);
+                jitter.Normalize();
+                jitter *= 0;
 
-            Vector3 position = direction + jitter;
 
-            spawnPosition.x = Mathf.Min(Mathf.Max(position.x, playArea.xMin), playArea.xMax);
-            spawnPosition.z = Mathf.Min(Mathf.Max(position.z, playArea.yMin), playArea.yMax);
-            spawnPosition.y = m_spawnHeight;
+                Vector3 position = direction + jitter;
+
+                spawnPosition.x = Mathf.Min(Mathf.Max(position.x, playArea.xMin), playArea.xMax);
+                spawnPosition.z = Mathf.Min(Mathf.Max(position.z, playArea.yMin), playArea.yMax);
+                spawnPosition.y = m_spawnHeight;
+            }
+            else
+            {
+                System.Random rnd = new System.Random();                
+                int side = rnd.Next(1, 4);
+
+                switch(side)
+                {
+                    case 1:
+                        spawnPosition.x = m_spawnArea.x / 2;
+                        spawnPosition.z = Random.Range(m_spawnArea.y / -2, m_spawnArea.y / 2);
+                        break;
+                    case 2:
+                        spawnPosition.x = Random.Range(m_spawnArea.y / -2, m_spawnArea.y / 2);
+                        spawnPosition.z = m_spawnArea.y / -2;
+                        break;
+                    case 3:
+                        spawnPosition.x = m_spawnArea.x / -2;
+                        spawnPosition.z = Random.Range(m_spawnArea.y / -2, m_spawnArea.y / 2);
+                        break;
+                    case 4:
+                        spawnPosition.x = Random.Range(m_spawnArea.y / -2, m_spawnArea.y / 2);
+                        spawnPosition.z = m_spawnArea.y / 2;
+                        break;
+                }
+            }
 
             GameObject newEnemy = Instantiate(m_enemyPrefab, spawnPosition, new Quaternion());
             Enemy enemyScript = newEnemy.GetComponent<Enemy>();
@@ -170,5 +211,13 @@ public class Spawner : MonoBehaviour
         }
         m_enemies.Clear();
 
+    }
+
+    public void OnDrawGizmos()
+    {
+        if (m_showDebug)
+        {
+            Gizmos.DrawWireCube(transform.position, new Vector3(m_spawnArea.x, 5, m_spawnArea.y));
+        }
     }
 }

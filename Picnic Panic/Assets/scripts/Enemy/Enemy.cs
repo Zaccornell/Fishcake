@@ -76,6 +76,7 @@ public class Enemy : MovingActor
     private void FixedUpdate()
     {
         m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        //m_rigidBody.AddForce(m_movement * Time.deltaTime * m_speed);
         if (m_movement.magnitude != 0)
             m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
     }

@@ -80,6 +80,7 @@ public class Player : MovingActor
 
         m_movement.z = Input.GetAxisRaw(m_verticalAxis);
         m_movement.x = Input.GetAxisRaw(m_horizontalAxis);
+        m_movement.Normalize();
 
         
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxisRaw(m_dashButton) == 1) && m_dashTimer < 0)
@@ -100,12 +101,30 @@ public class Player : MovingActor
             if (m_attackPressed == false)
             {
                 Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
-                //List<GameObject> objects
+                List<GameObject> enemies = new List<GameObject>();   
+                
                 foreach (Collider current in hits)
                 {
-                    if (current.gameObject.tag == "Enemy")
+                    bool unique = true;
+                    foreach (GameObject enemy in enemies)
                     {
-                        current.gameObject.GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
+                        if (enemy == current.gameObject)
+                        {
+                            unique = false;
+                        }
+                    }
+
+                    if (unique)
+                    {
+                        enemies.Add(current.gameObject);
+                    }
+                }
+
+                foreach (GameObject current in enemies)
+                {
+                    if (current.tag == "Enemy")
+                    {
+                        current.GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
                     }
                 }
                 m_facing.material.color = new Color(1, 0, 0);
