@@ -344,4 +344,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealth: 100
+  m_spawner: {fileID: 0}
   m_restoreHealth: 0

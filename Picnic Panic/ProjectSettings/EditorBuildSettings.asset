@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bradyn/MainMenu.unity
     guid: b0bb8579bf8ae4f42a68e99378d73535
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bradyn/Bradyn.unity
     guid: 71806d721b1e4b148ba3ae624f295bfc
   - enabled: 1
     path: Assets/Scenes/Bradyn/OptionMenu.unity
     guid: 288e50c31d846864faf7b68255edb1e8
+  - enabled: 1
+    path: Assets/Scenes/Zac/Main_Alpha_Greybox_001.unity
+    guid: 26e9a53893bb56f43a7e34f233916c09
