@@ -38,8 +38,8 @@ public class HUD : MonoBehaviour
     {
         foreach (Player current in m_players)
         {
-            m_playerDisplays[current.m_playerNumber].text = current.Health.ToString();
-            m_playerDisplays[current.m_playerNumber].enabled = true;
+            m_playerDisplays[current.m_playerNumber - 1].text = current.Health.ToString();
+            m_playerDisplays[current.m_playerNumber - 1].enabled = true;
         }
 
         m_kingDisplay.text = m_king.Health.ToString();
