@@ -10,7 +10,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject[] m_children;
     public Spawner m_spawner;
     public Player[] m_players;
+    public PieKing m_king;
     public MonoBehaviour[] m_gameplayScripts;
+    public GameObject m_hud;
 
     private bool m_active = false;
 	// Use this for initialization
@@ -23,6 +25,7 @@ public class PauseMenu : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+
 		if (Input.GetKeyDown(KeyCode.Escape) || XCI.GetButtonDown(XboxButton.Start))
         {
             foreach (GameObject child in m_children)
@@ -41,6 +44,9 @@ public class PauseMenu : MonoBehaviour
             {
                 current.enabled = m_active;
             }
+            m_king.enabled = m_active;
+            m_hud.SetActive(m_active);
+
             Cursor.visible = !m_active; // makes cursor visable
             m_active = !m_active;
 
@@ -64,6 +70,7 @@ public class PauseMenu : MonoBehaviour
             current.Respawn();
         }
         m_spawner.ResetValues();
+        m_king.ResetValues();
     }
 
     public void QuitClick()
