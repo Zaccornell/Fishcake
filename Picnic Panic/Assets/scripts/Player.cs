@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
+using XInputDotNetPure;
 
 /*
  * Author: Bradyn Corkill / John Plant
@@ -21,6 +22,7 @@ public class Player : MovingActor
     public int m_playerNumber;
     public GameObject m_corpsePrefab;
     public HUD m_hud;
+    public float m_vibrationTimer;
 
     private XboxController m_controller;
     private ParticleSystem m_dashParticle = null;
@@ -53,6 +55,7 @@ public class Player : MovingActor
     // Update is called once per frame
     void Update ()
     {
+        m_vibrationTimer -= Time.deltaTime;
         m_dashTimer -= Time.deltaTime;
         m_attackTimer -= Time.deltaTime;
         m_knockbackTimer -= Time.deltaTime;
@@ -160,6 +163,7 @@ public class Player : MovingActor
             if (m_invulTimer <= 0)
             {
                 m_health -= damage;
+                GamePad.SetVibration((PlayerIndex)m_playerNumber, 100, 100);
                 if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
                 {
                     // once you get hit by the enemy you get knocked back
@@ -179,6 +183,11 @@ public class Player : MovingActor
                     Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
                     m_canRespawn = m_hud.UseLife();
                 }
+                if (m_vibrationTimer <= 0)
+                {
+                    GamePad.SetVibration((PlayerIndex)m_playerNumber, 0, 0);
+                }
+
             }
         }
     }

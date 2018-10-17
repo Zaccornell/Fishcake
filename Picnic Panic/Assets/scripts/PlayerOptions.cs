@@ -12,6 +12,10 @@ public class PlayerOptions
     private static readonly PlayerOptions m_instance = new PlayerOptions();
 
     public bool m_invulToggle;
+    public bool m_vibrationToggle;
+    public bool m_cutsceneToggle;
+    public float m_SFX;
+    public float m_music;
 
     static PlayerOptions()
     {

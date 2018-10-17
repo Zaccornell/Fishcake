@@ -11,10 +11,12 @@ public class OptionMenu : MonoBehaviour
     public Player m_player;
     public PlayerOptions m_pOp;
 
+
     // Use this for initialization
     void Start ()
     {
         m_pOp = PlayerOptions.Instance;
+
 	}
 	
 	// Update is called once per frame
