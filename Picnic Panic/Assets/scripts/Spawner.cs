@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 /*
  * Author: Bradyn Corkill / John Plant
  * Date: 2018/10/5
@@ -127,18 +128,38 @@ public class Spawner : MonoBehaviour
                 Vector3 direction = -playerPosition;
                 direction.y = 0;
                 direction.Normalize();
-                direction *= 35;
 
-                Vector3 jitter = new Vector3(Random.value, 0, Random.value);
-                jitter.Normalize();
-                jitter *= 0;
+                //Vector3 jitter = new Vector3(Random.value, 0, Random.value);
+                //jitter.Normalize();
+                //jitter *= 0;
 
 
-                Vector3 position = direction + jitter;
+                //Vector3 position = direction + jitter;
 
-                spawnPosition.x = Mathf.Min(Mathf.Max(position.x, playArea.xMin), playArea.xMax);
-                spawnPosition.z = Mathf.Min(Mathf.Max(position.z, playArea.yMin), playArea.yMax);
-                spawnPosition.y = m_spawnHeight;
+                //spawnPosition.x = Mathf.Min(Mathf.Max(position.x, playArea.xMin), playArea.xMax);
+                //spawnPosition.z = Mathf.Min(Mathf.Max(position.z, playArea.yMin), playArea.yMax);
+                //spawnPosition.y = m_spawnHeight;
+
+                Vector3 position = new Vector3();
+
+                float angle = Mathf.Atan2(direction.z, direction.x);
+                angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
+
+                float rightAngle = Mathf.Round(angle / 90f) * 90;
+
+                if (rightAngle > angle)
+                {
+                    angle = rightAngle - angle;
+                }
+                else
+                {
+                    angle = angle - rightAngle;
+                }
+
+                float dist = (m_spawnArea.x / 2f) / Mathf.Cos(angle * (Mathf.PI / 180));
+                direction *= dist;
+                spawnPosition.x = direction.x;
+                spawnPosition.z = direction.z;
             }
             else
             {
@@ -218,6 +239,43 @@ public class Spawner : MonoBehaviour
         if (m_showDebug)
         {
             Gizmos.DrawWireCube(transform.position, new Vector3(m_spawnArea.x, 5, m_spawnArea.y));
+
+            for (int i = 0; i < 20; i++)
+            {
+                Vector3 position = new Vector3();
+                System.Random rnd = new System.Random();
+                int test = rnd.Next(0, 2);
+                Vector2 rand = new Vector2(Random.value, Random.value);
+                if (rnd.Next(0, 2) == 1)
+                    rand.x = -rand.x;
+                if (rnd.Next(0, 2) == 1)
+                    rand.y = -rand.y;
+
+                rand.Normalize();
+
+                float angle = Mathf.Atan2(rand.y, rand.x);
+                angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
+
+                float rightAngle = Mathf.Round(angle / 90f) * 90;
+
+                bool tmp = rightAngle > angle;
+
+                if (tmp)
+                {
+                    angle = rightAngle - angle;
+                }
+                else
+                {
+                    angle = angle - rightAngle;
+                }
+
+                float dist = (m_spawnArea.x / 2f) / Mathf.Cos(angle * (Mathf.PI / 180));
+                rand *= dist;
+                position.x = rand.x;
+                position.z = rand.y;
+
+                Gizmos.DrawSphere(position, 1);
+            }
         }
     }
 }

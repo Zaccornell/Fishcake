@@ -7,7 +7,7 @@ using XboxCtrlrInput;
 public class PlayerSelect : MonoBehaviour
 {
     public Image[] m_children;
-    public GameObject m_playerPrefab;
+    public GameObject[] m_playerPrefabs;
     public Spawner m_spawner;
     public HUD m_hud;
     public PauseMenu m_pauseMenu;
@@ -85,10 +85,10 @@ public class PlayerSelect : MonoBehaviour
             {
                 if (m_children[i].enabled)
                 {
-                    GameObject currentPlayer = Instantiate(m_playerPrefab);
+                    GameObject currentPlayer = Instantiate(m_playerPrefabs[i >= m_playerPrefabs.Length ? m_playerPrefabs.Length - 1 : i]);
                     Player playerScript = currentPlayer.GetComponent<Player>();
 
-                    playerScript.m_playerNumber = i;
+                    playerScript.m_playerNumber = i + 1;
                     playerScript.m_hud = m_hud;
                     playerScript.Respawn();
 
