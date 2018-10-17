@@ -5,9 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Player
-  - Player
-  - Player
+  - KillField
+  - Ground
   layers:
   - Default
   - TransparentFX
