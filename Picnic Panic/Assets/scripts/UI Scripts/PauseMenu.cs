@@ -25,31 +25,9 @@ public class PauseMenu : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
 		if (Input.GetKeyDown(KeyCode.Escape) || XCI.GetButtonDown(XboxButton.Start))
         {
-            foreach (GameObject child in m_children)
-            {
-                child.SetActive(!m_active);
-            }
-            foreach (Enemy current in m_spawner.m_enemies)
-            {
-                current.enabled = m_active;
-            }
-            foreach (MonoBehaviour script in m_gameplayScripts)
-            {
-                script.enabled = m_active;
-            }
-            foreach (Player current in m_players)
-            {
-                current.enabled = m_active;
-            }
-            m_king.enabled = m_active;
-            m_hud.SetActive(m_active);
-
-            Cursor.visible = !m_active; // makes cursor visable
-            m_active = !m_active;
-
+            ToggleObjects();
         }
         if (m_active) // if Puase Menu is up will ...
         {
@@ -58,8 +36,7 @@ public class PauseMenu : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.Locked; // keeped locked
-        }
-      
+        }      
 	}
 
     public void ResetClick()
@@ -80,6 +57,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeClick()
     {
+        ToggleObjects();
+    }
+
+    private void ToggleObjects()
+    {
         foreach (GameObject child in m_children)
         {
             child.SetActive(!m_active);
@@ -96,8 +78,10 @@ public class PauseMenu : MonoBehaviour
         {
             current.enabled = m_active;
         }
+        m_king.enabled = m_active;
+        m_hud.SetActive(m_active);
+
         Cursor.visible = !m_active; // makes cursor visable
         m_active = !m_active;
-
     }
 }
