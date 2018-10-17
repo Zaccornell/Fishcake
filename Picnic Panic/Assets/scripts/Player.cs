@@ -35,6 +35,7 @@ public class Player : MovingActor
     private bool m_canRespawn = false;
     private float m_knockbackTimer;
     private float m_invulTimer;
+    private bool m_invulToggle;
 
     public bool CanRespawn
     {
@@ -68,6 +69,8 @@ public class Player : MovingActor
             m_dashButton = "Dash" + m_playerNumber;
 
         }
+
+        m_invulToggle = PlayerOptions.Instance.m_invulToggle;
 	}
 
     // Update is called once per frame
@@ -175,27 +178,30 @@ public class Player : MovingActor
 
     public override void TakeDamage(int damage, Actor attacker)
     {
-        if (m_invulTimer <= 0)
+        if(!m_invulToggle)
         {
-            m_health -= damage;
-            if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
+            if (m_invulTimer <= 0)
             {
-                // once you get hit by the enemy you get knocked back
-                // giving us the feel of our players getting hit in game
-                Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
-                m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
-                m_knockbackTimer = m_knockbackCooldown;
-            }
-            if (m_health <= 0)
-            {
-                m_health = 0;
-                //Destroy(gameObject);
-                m_alive = false;
-                gameObject.SetActive(false);
-                Vector3 position = gameObject.transform.position;
-                position.y -= 0.5f;
-                Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
-                m_canRespawn = m_hud.UseLife();
+                m_health -= damage;
+                if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
+                {
+                    // once you get hit by the enemy you get knocked back
+                    // giving us the feel of our players getting hit in game
+                    Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+                    m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
+                    m_knockbackTimer = m_knockbackCooldown;
+                }
+                if (m_health <= 0)
+                {
+                    m_health = 0;
+                    //Destroy(gameObject);
+                    m_alive = false;
+                    gameObject.SetActive(false);
+                    Vector3 position = gameObject.transform.position;
+                    position.y -= 0.5f;
+                    Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+                    m_canRespawn = m_hud.UseLife();
+                }
             }
         }
     }
