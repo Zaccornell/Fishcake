@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using XboxCtrlrInput;
 public class PlayerSelect : MonoBehaviour
 {
     public Image[] m_children;
@@ -14,6 +14,8 @@ public class PlayerSelect : MonoBehaviour
     public CameraControl m_camera;
     public MonoBehaviour[] m_gameplayScripts;
 
+    private XboxController[] m_controllers;
+    private KeyCode[] m_testButtons;
     private bool[] m_ready;
     private List<Player> m_players;
 	// Use this for initialization
@@ -28,6 +30,18 @@ public class PlayerSelect : MonoBehaviour
         {
             current.enabled = false;
         }
+
+        m_testButtons = new KeyCode[4];
+        m_testButtons[0] = KeyCode.H;
+        m_testButtons[1] = KeyCode.J;
+        m_testButtons[2] = KeyCode.K;
+        m_testButtons[3] = KeyCode.L;
+
+        m_controllers = new XboxController[4];
+        for (int i = 0; i < 4; i++)
+        {
+            m_controllers[i] = (XboxController)(i + 1);
+        }
 	}
 	
 	// Update is called once per frame
@@ -35,7 +49,7 @@ public class PlayerSelect : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            if (Input.GetButtonDown("Submit" + (i + 1).ToString()))
+            if (XCI.GetButtonDown(XboxButton.A, m_controllers[i]) || Input.GetKeyDown(m_testButtons[i]))
             {
                 if (!m_children[i].enabled)
                 {

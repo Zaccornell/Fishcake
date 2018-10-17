@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using XboxCtrlrInput;
 
 /*
  * Author: Bradyn Corkill / John Plant
@@ -22,15 +22,10 @@ public class Player : MovingActor
     public GameObject m_corpsePrefab;
     public HUD m_hud;
 
+    private XboxController m_controller;
     private ParticleSystem m_dashParticle = null;
     private List<Collider> m_enemies = new List<Collider>();
     private float m_dashTimer;
-    private string m_horizontalAxis;
-    private string m_verticalAxis;
-    private string m_attackButton;
-    private string m_functionalX;
-    private string m_functionalY;
-    private string m_dashButton;
     private bool m_attackPressed = false;
     private bool m_canRespawn = false;
     private float m_knockbackTimer;
@@ -50,25 +45,7 @@ public class Player : MovingActor
         m_movement = new Vector3();
         m_health = m_maxHealth;
 
-        if (m_playerNumber == 0)
-        {
-            m_horizontalAxis = "HorizontalKB";
-            m_verticalAxis = "VerticalKB";
-            m_attackButton = "Attack1";
-            m_functionalX = "Functional Direction X1";
-            m_functionalY = "Functional Direction Y1";
-            m_dashButton = "Dash1";
-        }
-        else
-        {
-            m_horizontalAxis = "Horizontal" + m_playerNumber;
-            m_verticalAxis = "Vertical" + m_playerNumber;
-            m_attackButton = "Attack" + m_playerNumber;
-            m_functionalX = "Functional Direction X" + m_playerNumber;
-            m_functionalY = "Functional Direction Y" + m_playerNumber;
-            m_dashButton = "Dash" + m_playerNumber;
-
-        }
+        m_controller = (XboxController)m_playerNumber;
 
         m_invulToggle = PlayerOptions.Instance.m_invulToggle;
 	}
@@ -81,12 +58,12 @@ public class Player : MovingActor
         m_knockbackTimer -= Time.deltaTime;
         m_invulTimer -= Time.deltaTime;
 
-        m_movement.z = Input.GetAxisRaw(m_verticalAxis);
-        m_movement.x = Input.GetAxisRaw(m_horizontalAxis);
+        m_movement.z = XCI.GetAxisRaw(XboxAxis.LeftStickY);
+        m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX);
         m_movement.Normalize();
 
         
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxisRaw(m_dashButton) == 1) && m_dashTimer < 0)
+        if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger) == 1) && m_dashTimer < 0)
         {
             if (m_movement.magnitude != 0)
             {
@@ -99,7 +76,7 @@ public class Player : MovingActor
             }
         }
 
-        if ((Input.GetMouseButtonDown(0) || Input.GetAxisRaw(m_attackButton) != 0) && m_attackTimer <= 0)
+        if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger) != 0) && m_attackTimer <= 0)
         {
             if (m_attackPressed == false)
             {
@@ -136,7 +113,7 @@ public class Player : MovingActor
                 m_attackPressed = true;
             }
         }
-        if (Input.GetAxisRaw(m_attackButton) == 0)
+        if (XCI.GetAxisRaw(XboxAxis.RightTrigger) == 0)
         {
             m_attackPressed = false;
         }
@@ -156,7 +133,7 @@ public class Player : MovingActor
     {
         m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
 
-        Vector3 functional = new Vector3(Input.GetAxis(m_functionalX), 0, Input.GetAxis(m_functionalY));
+        Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX), 0, XCI.GetAxis(XboxAxis.RightStickY));
 
         if (functional.magnitude > 0)
         {
