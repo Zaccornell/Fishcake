@@ -1,22 +1,17 @@
 fileFormatVersion: 2
-guid: 34b1e78a1f45a2948b10fb437a196866
-timeCreated: 1539231634
+guid: 7e36411b22ba77340a4d5f9980458d7e
+timeCreated: 1539753344
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Character_Face
     400000: //RootNode
-    400002: Character_Face
     2100000: Character_Corn_Body
-    2100002: Character_Faces
+    2100002: Character_Corn_Faces
     2300000: //RootNode
-    2300002: Character_Face
     3300000: //RootNode
-    3300002: Character_Face
     4300000: Character_Corn
-    4300002: Character_Face
     9500000: //RootNode
   externalObjects: {}
   materials:
