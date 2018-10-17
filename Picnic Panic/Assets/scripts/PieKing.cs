@@ -51,4 +51,9 @@ public class PieKing : Actor
              // call end game
         }
     }
+
+    public void ResetValues()
+    {
+        m_health = m_maxHealth;
+    }
 }
