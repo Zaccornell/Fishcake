@@ -58,12 +58,12 @@ public class Player : MovingActor
         m_knockbackTimer -= Time.deltaTime;
         m_invulTimer -= Time.deltaTime;
 
-        m_movement.z = XCI.GetAxisRaw(XboxAxis.LeftStickY);
-        m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX);
+        m_movement.z = XCI.GetAxisRaw(XboxAxis.LeftStickY, m_controller);
+        m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
         m_movement.Normalize();
 
         
-        if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger) == 1) && m_dashTimer < 0)
+        if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
         {
             if (m_movement.magnitude != 0)
             {
@@ -76,7 +76,7 @@ public class Player : MovingActor
             }
         }
 
-        if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger) != 0) && m_attackTimer <= 0)
+        if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) != 0) && m_attackTimer <= 0)
         {
             if (m_attackPressed == false)
             {
@@ -113,7 +113,7 @@ public class Player : MovingActor
                 m_attackPressed = true;
             }
         }
-        if (XCI.GetAxisRaw(XboxAxis.RightTrigger) == 0)
+        if (XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) == 0)
         {
             m_attackPressed = false;
         }
@@ -133,7 +133,7 @@ public class Player : MovingActor
     {
         m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
 
-        Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX), 0, XCI.GetAxis(XboxAxis.RightStickY));
+        Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX, m_controller), 0, XCI.GetAxis(XboxAxis.RightStickY, m_controller));
 
         if (functional.magnitude > 0)
         {
