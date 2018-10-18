@@ -17,6 +17,7 @@ public class Player : MovingActor
     public float m_dashCooldown;
     public float m_attackDistance;
     public float m_attackRadius;
+    public float m_attackHeightOffset;
     public float m_invulLength;
     public Renderer m_facing;
     public int m_playerNumber;
@@ -27,7 +28,6 @@ public class Player : MovingActor
     public float m_virbationRespawn;
 
     private XboxController m_controller;
-    private ParticleSystem m_dashParticle = null;
     private float m_dashTimer;
     private bool m_attackPressed = false;
     private bool m_canRespawn = false;
@@ -46,7 +46,6 @@ public class Player : MovingActor
     void Start ()
     {
         m_rigidBody = GetComponent<Rigidbody>();
-        m_dashParticle = GetComponentInChildren<ParticleSystem>();
         m_movement = new Vector3();
         m_health = m_maxHealth;
         m_alive = true;
@@ -85,7 +84,10 @@ public class Player : MovingActor
         {
             if (m_attackPressed == false)
             {
-                Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
+                Vector3 height = transform.position;
+                height.y += m_attackHeightOffset;
+
+                Collider[] hits = Physics.OverlapSphere(height + transform.forward * m_attackDistance, m_attackRadius);
                 List<GameObject> enemies = new List<GameObject>();   
                 
                 foreach (Collider current in hits)
@@ -153,14 +155,6 @@ public class Player : MovingActor
         else if (m_movement.magnitude > 0)
         {
             m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
-        }
-
-        if (m_dashParticle.isPlaying && m_rigidBody.velocity.magnitude < 1)
-        {
-            if (m_rigidBody.velocity.magnitude != 0)
-            {
-                m_dashParticle.Stop();
-            }
         }
     }
 
@@ -244,7 +238,10 @@ public class Player : MovingActor
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
+        Vector3 height = transform.position;
+        height.y += m_attackHeightOffset;
+
+        Gizmos.DrawSphere(height + transform.forward * m_attackDistance, m_attackRadius);
     }
      public void FallDamage(int damage)
     {
