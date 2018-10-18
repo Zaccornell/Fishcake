@@ -899,7 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1324233564}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
 --- !u!4 &769677857
@@ -1275,6 +1275,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1324233564 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1779715693836288, guid: 2d3526ab6fc487140b3e1684b69d3f72,
+    type: 2}
+  m_PrefabInternal: {fileID: 1324233563}
 --- !u!1 &1370543378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,6 +1606,9 @@ MonoBehaviour:
   - {fileID: 1575463594}
   m_playerDisplays:
   - {fileID: 1506405448}
+  - {fileID: 1506405446}
+  - {fileID: 199320885}
+  - {fileID: 1009816966}
   m_players:
   - {fileID: 745201168}
   m_king: {fileID: 1440455306}
@@ -1951,7 +1959,7 @@ Prefab:
     - target: {fileID: 114610533574785252, guid: 3ff2e298483abbb47ac8e30353b31702,
         type: 2}
       propertyPath: m_playerNumber
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1286573024730034, guid: 3ff2e298483abbb47ac8e30353b31702, type: 2}
       propertyPath: m_IsActive

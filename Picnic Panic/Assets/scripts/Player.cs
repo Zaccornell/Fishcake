@@ -23,6 +23,8 @@ public class Player : MovingActor
     public GameObject m_corpsePrefab;
     public HUD m_hud;
     public float m_vibrationLength;
+    public float m_vibrationDeath;
+    public float m_virbationRespawn;
 
     private XboxController m_controller;
     private ParticleSystem m_dashParticle = null;
@@ -190,6 +192,7 @@ public class Player : MovingActor
                     position.y -= 0.5f;
                     Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
                     m_canRespawn = m_hud.UseLife();
+                    m_vibrationTimer = m_vibrationDeath;
                 }
 
             }
@@ -204,12 +207,14 @@ public class Player : MovingActor
 
     public void Respawn()
     {
+        GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
         Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
         spawnPos.Normalize();
         spawnPos *= 9;
         spawnPos.y = 1;
         gameObject.SetActive(true);
         gameObject.transform.position = spawnPos;
+        m_vibrationTimer = m_virbationRespawn;
     }
 
     private void OnDrawGizmos()

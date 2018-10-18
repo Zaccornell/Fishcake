@@ -60,8 +60,15 @@ public class PauseMenu : MonoBehaviour
         ToggleObjects();
     }
 
+    // 
     private void ToggleObjects()
     {
+        foreach (Player current in m_players)
+        {
+            XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
+
+        }
+
         foreach (GameObject child in m_children)
         {
             child.SetActive(!m_active);
