@@ -22,7 +22,7 @@ public class Player : MovingActor
     public int m_playerNumber;
     public GameObject m_corpsePrefab;
     public HUD m_hud;
-    public float m_vibrationTimer;
+    public float m_vibrationLength;
 
     private XboxController m_controller;
     private ParticleSystem m_dashParticle = null;
@@ -33,6 +33,7 @@ public class Player : MovingActor
     private float m_knockbackTimer;
     private float m_invulTimer;
     private bool m_invulToggle;
+    private float m_vibrationTimer;
 
     public bool CanRespawn
     {
@@ -130,6 +131,12 @@ public class Player : MovingActor
         {
             Physics.IgnoreLayerCollision(8, 9, false);
         }
+        // counting the timer down 
+        if (m_vibrationTimer <= 0)
+        {
+            GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 0, 0); // stop the vibration 
+            
+        }
     }
 
     private void FixedUpdate()
@@ -163,7 +170,8 @@ public class Player : MovingActor
             if (m_invulTimer <= 0)
             {
                 m_health -= damage;
-                GamePad.SetVibration((PlayerIndex)m_playerNumber, 100, 100);
+                GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 100, 100); //. set the vibration stregnth 
+                m_vibrationTimer = m_vibrationLength; // sets the timers for the vibration
                 if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
                 {
                     // once you get hit by the enemy you get knocked back
@@ -182,10 +190,6 @@ public class Player : MovingActor
                     position.y -= 0.5f;
                     Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
                     m_canRespawn = m_hud.UseLife();
-                }
-                if (m_vibrationTimer <= 0)
-                {
-                    GamePad.SetVibration((PlayerIndex)m_playerNumber, 0, 0);
                 }
 
             }
