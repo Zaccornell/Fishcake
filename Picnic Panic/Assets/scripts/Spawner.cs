@@ -13,23 +13,17 @@ public class Spawner : MonoBehaviour
 {
     public bool m_showDebug;
     public float m_roundLength;
+    public float m_roundEndBuffer;
     public int[] m_enemyCount;
-    private int m_currentRound;
-    private int m_enemyToSpawn;
-    private float m_roundTimer; 
-    private int m_enemySpawned;
 
     public Actor[] m_players = null;
     public PieKing m_king = null;
     public GameObject m_enemyPrefab = null;
+    public HUD m_hud;
     public Vector2 m_spawnArea;
     public float m_spawnHeight;
-    public HUD m_hud;
 
     public int m_enemyHealth;
-    public float m_spawnDelay;
-    public float m_spawnJitter;
-    public int m_maxSpawns;
     public float m_attackDistance;
     public float m_attackRadius;
     public float m_attackSpeed;
@@ -39,7 +33,12 @@ public class Spawner : MonoBehaviour
     public float m_knockbackDistance;
     [HideInInspector] public List<Enemy> m_enemies = new List<Enemy>();
 
-    private float m_timer;
+    private float m_spawnTimer;
+    private float m_spawnDelay;
+    private int m_currentRound;
+    private int m_enemyToSpawn;
+    private float m_roundTimer; 
+    private int m_enemySpawned;
 
     public float RoundTimer
     {
@@ -55,7 +54,7 @@ public class Spawner : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        RandomizeDelay();
+        CalculateDelay();
 
         m_enemyToSpawn += m_enemyCount[m_currentRound]; // adding the limit that needs to be spawned
         m_roundTimer = m_roundLength; // setting the timer for the round 
@@ -64,12 +63,15 @@ public class Spawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        m_roundTimer -= Time.deltaTime; // counting down in delta time
+        m_spawnTimer -= Time.deltaTime;
+
         // checking to see if there is no enemies spawned and to spawn and the timer is higher then 5 seconds 
         if (m_enemyToSpawn <= 0 && m_roundTimer > 5.0f && m_enemySpawned <= 0) 
         {
             m_roundTimer = 5.0f; // setting the timer to 5 secounds 
         }
-        m_roundTimer -= Time.deltaTime; // counting down in delta time
+
         // round system
         if (m_roundTimer <= 0.0f)
         {
@@ -94,12 +96,12 @@ public class Spawner : MonoBehaviour
                 }
             }
             OnRoundEnd();
+            CalculateDelay();
         }
-        m_timer -= Time.deltaTime;
 
-        if (m_timer <= 0.0f && m_enemyToSpawn > 0)
+        if (m_spawnTimer <= 0.0f && m_enemyToSpawn > 0)
         {
-            RandomizeDelay();
+            m_spawnTimer = m_spawnDelay;
 
             Vector3 spawnPosition = new Vector3();
 
@@ -110,43 +112,27 @@ public class Spawner : MonoBehaviour
             int playerCount = 0;
             foreach(Actor current in m_players)
             {
-                if (current.transform.position.magnitude >= 10)
-                {
-                    playerPosition += current.transform.position;
-                    playerCount++;
-                }
+                playerPosition += current.transform.position;
+                playerCount++;
             }
-            //foreach(Enemy current in m_enemies)
-            //{
-            //    playerPosition += current.transform.position;
-            //}
-            //playerPosition /= (m_players.Length * 10 + m_enemies.Count);
-            if (playerCount > 0)
-            {
-                playerPosition /= playerCount;
+            playerPosition /= playerCount;
 
+            // if average position is not within a 10 unit radius of the king
+            if (playerPosition.magnitude >= 10)
+            {
+                // Get opposite direction of the players
                 Vector3 direction = -playerPosition;
                 direction.y = 0;
                 direction.Normalize();
 
-                //Vector3 jitter = new Vector3(Random.value, 0, Random.value);
-                //jitter.Normalize();
-                //jitter *= 0;
-
-
-                //Vector3 position = direction + jitter;
-
-                //spawnPosition.x = Mathf.Min(Mathf.Max(position.x, playArea.xMin), playArea.xMax);
-                //spawnPosition.z = Mathf.Min(Mathf.Max(position.z, playArea.yMin), playArea.yMax);
-                //spawnPosition.y = m_spawnHeight;
-
-                Vector3 position = new Vector3();
-
+                // get the angle of the direction
                 float angle = Mathf.Atan2(direction.z, direction.x);
                 angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
 
+                // get the nearest 90 degrees to the angle
                 float rightAngle = Mathf.Round(angle / 90f) * 90;
 
+                // get the angle between angle and rightAngle
                 if (rightAngle > angle)
                 {
                     angle = rightAngle - angle;
@@ -156,16 +142,20 @@ public class Spawner : MonoBehaviour
                     angle = angle - rightAngle;
                 }
 
+                // Get the distance to the edge of the game area
                 float dist = (m_spawnArea.x / 2f) / Mathf.Cos(angle * (Mathf.PI / 180));
+                // the spawn position is the calculated by the using the direction and distance to find the position at the edge of the square
                 direction *= dist;
                 spawnPosition.x = direction.x;
                 spawnPosition.z = direction.z;
             }
             else
             {
+                // Pick a random side of the map
                 System.Random rnd = new System.Random();                
                 int side = rnd.Next(1, 4);
 
+                // Spawn position is randomly chosen on along the chosen side
                 switch(side)
                 {
                     case 1:
@@ -187,6 +177,7 @@ public class Spawner : MonoBehaviour
                 }
             }
 
+            // Allocate all values for the enemy
             GameObject newEnemy = Instantiate(m_enemyPrefab, spawnPosition, new Quaternion());
             Enemy enemyScript = newEnemy.GetComponent<Enemy>();
             enemyScript.m_players = m_players;
@@ -207,10 +198,15 @@ public class Spawner : MonoBehaviour
         }
 	}
 
-    private void RandomizeDelay()
+    /*
+     * Controls the length between enemy spawns
+     * Will ensure all enemies spawn within the allotted time
+     */
+    private void CalculateDelay()
     {
-        m_timer = m_spawnDelay + (m_spawnJitter * Random.Range(-1, 1));
+        m_spawnDelay = (m_roundLength - m_roundEndBuffer) / m_enemyCount[m_currentRound];
     }
+
 
     public void EnemyDeath(Enemy enemy)
     {
@@ -218,13 +214,16 @@ public class Spawner : MonoBehaviour
         m_enemySpawned--; // removing what has been spawned
     }
 
+    /*
+     * Resets all the values of the spawner back to what they were at the start
+     */
     public void ResetValues()
     {
         m_currentRound = 0;
         m_enemyToSpawn = m_enemyCount[m_currentRound];
         m_roundTimer = m_roundLength;
         m_enemySpawned = 0;
-        RandomizeDelay();
+        CalculateDelay();
 
         foreach (Enemy current in m_enemies)
         {
@@ -240,42 +239,52 @@ public class Spawner : MonoBehaviour
         {
             Gizmos.DrawWireCube(transform.position, new Vector3(m_spawnArea.x, 5, m_spawnArea.y));
 
-            for (int i = 0; i < 20; i++)
+            Vector3 avgPos = new Vector3();
+            int playerCount = 0;
+            foreach (Actor current in m_players)
             {
-                Vector3 position = new Vector3();
-                System.Random rnd = new System.Random();
-                int test = rnd.Next(0, 2);
-                Vector2 rand = new Vector2(Random.value, Random.value);
-                if (rnd.Next(0, 2) == 1)
-                    rand.x = -rand.x;
-                if (rnd.Next(0, 2) == 1)
-                    rand.y = -rand.y;
-
-                rand.Normalize();
-
-                float angle = Mathf.Atan2(rand.y, rand.x);
-                angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
-
-                float rightAngle = Mathf.Round(angle / 90f) * 90;
-
-                bool tmp = rightAngle > angle;
-
-                if (tmp)
-                {
-                    angle = rightAngle - angle;
-                }
-                else
-                {
-                    angle = angle - rightAngle;
-                }
-
-                float dist = (m_spawnArea.x / 2f) / Mathf.Cos(angle * (Mathf.PI / 180));
-                rand *= dist;
-                position.x = rand.x;
-                position.z = rand.y;
-
-                Gizmos.DrawSphere(position, 1);
+                avgPos += current.transform.position;
+                playerCount++;
             }
+            avgPos /= playerCount;
+            Gizmos.DrawSphere(avgPos, 1);
+
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    Vector3 position = new Vector3();
+            //    System.Random rnd = new System.Random();
+            //    int test = rnd.Next(0, 2);
+            //    Vector2 rand = new Vector2(Random.value, Random.value);
+            //    if (rnd.Next(0, 2) == 1)
+            //        rand.x = -rand.x;
+            //    if (rnd.Next(0, 2) == 1)
+            //        rand.y = -rand.y;
+
+            //    rand.Normalize();
+
+            //    float angle = Mathf.Atan2(rand.y, rand.x);
+            //    angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
+
+            //    float rightAngle = Mathf.Round(angle / 90f) * 90;
+
+            //    bool tmp = rightAngle > angle;
+
+            //    if (tmp)
+            //    {
+            //        angle = rightAngle - angle;
+            //    }
+            //    else
+            //    {
+            //        angle = angle - rightAngle;
+            //    }
+
+            //    float dist = (m_spawnArea.x / 2f) / Mathf.Cos(angle * (Mathf.PI / 180));
+            //    rand *= dist;
+            //    position.x = rand.x;
+            //    position.z = rand.y;
+
+            //    Gizmos.DrawSphere(position, 1);
+            //}
         }
     }
 }

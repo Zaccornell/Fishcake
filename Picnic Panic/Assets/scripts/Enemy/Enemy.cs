@@ -27,24 +27,6 @@ public class Enemy : MovingActor
     private EnemyAttackKing m_attackKing;
     private int m_stateIndex;
 
-
-    // Behaviour tree
-    //SelectorNode m_root;
-
-    //    SelectorNode m_targetSide;
-
-    //        SequenceNode m_attackingKing;
-
-    //            IsSpecificActor m_targetIsKing;
-    //            DistanceToActor m_kingAttackingRange;
-    //            ToggleNode m_wasAttacked;
-    //            SetTarget m_setTargetAttacker;
-
-    //        SequenceNode m_updateTarget;
-
-    //            S
-
-
     // Use this for initialization
     void Start()
     {
@@ -53,6 +35,7 @@ public class Enemy : MovingActor
         m_path = new NavMeshPath();
         m_movement = new Vector3();
         m_stateIndex = 0;
+        m_alive = true;
 
         m_states = new EnemyState[2];
         m_attackKing = new EnemyAttackKing(this, m_players, m_king, m_attackDistance, m_attackRadius, m_attackSpeed, m_attackDamage, m_agroRange);
@@ -118,17 +101,21 @@ public class Enemy : MovingActor
 
     public override void TakeDamage(int damage, Actor attacker)    
     {
-        m_health -= damage;
-        // creating a knock back feel to the enemy once you hit it
-        // using Velocity and distance to push the enemy back
-        Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
-        m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass, ForceMode.VelocityChange);
-        if (m_health <= 0)
+        if (m_alive)
         {
-            m_spawner.EnemyDeath(this);
-            Destroy(gameObject);
+            m_health -= damage;
+            // creating a knock back feel to the enemy once you hit it
+            // using Velocity and distance to push the enemy back
+            Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+            m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass, ForceMode.VelocityChange);
+            if (m_health <= 0)
+            {
+                m_spawner.EnemyDeath(this);
+                m_alive = false;
+                Destroy(gameObject);
+            }
+            m_attacker = attacker;
         }
-        m_attacker = attacker;
     }
 
     public void ChangeState(int index)

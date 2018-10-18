@@ -51,7 +51,7 @@ public class Player : MovingActor
         m_controller = (XboxController)m_playerNumber;
 
         m_invulToggle = PlayerOptions.Instance.m_invulToggle;
-	}
+    }
 
     // Update is called once per frame
     void Update ()
