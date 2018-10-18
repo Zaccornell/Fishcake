@@ -48,6 +48,11 @@ public class PauseMenu : MonoBehaviour
         }
         m_spawner.ResetValues();
         m_king.ResetValues();
+        foreach (Player current in m_players)
+        {
+            XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
+
+        }
     }
 
     public void QuitClick()
