@@ -15,6 +15,7 @@ public class PieKing : Actor
 	void Start ()
     {
         m_health = m_maxHealth; // setting the health to the max health 
+        m_alive = true;
         m_spawner.OnRoundEnd += new MyDel(RoundEnd);
 	}
 	

@@ -86,7 +86,7 @@ public class PlayerSelect : MonoBehaviour
             {
                 if (m_children[i].enabled)
                 {
-                    GameObject currentPlayer = Instantiate(m_playerPrefabs[i >= m_playerPrefabs.Length ? m_playerPrefabs.Length - 1 : i], m_spawnPoints[i]);
+                    GameObject currentPlayer = Instantiate(m_playerPrefabs[i >= m_playerPrefabs.Length ? m_playerPrefabs.Length - 1 : i], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
                     Player playerScript = currentPlayer.GetComponent<Player>();
 
                     playerScript.m_playerNumber = i + 1;

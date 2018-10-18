@@ -49,6 +49,7 @@ public class Player : MovingActor
         m_dashParticle = GetComponentInChildren<ParticleSystem>();
         m_movement = new Vector3();
         m_health = m_maxHealth;
+        m_alive = true;
 
         m_controller = (XboxController)m_playerNumber;
     }
