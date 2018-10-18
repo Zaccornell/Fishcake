@@ -36,6 +36,7 @@ public class Player : MovingActor
     private float m_invulTimer;
     private bool m_invulToggle;
     private float m_vibrationTimer;
+    private bool m_vibrationToggle;
 
     public bool CanRespawn
     {
@@ -53,6 +54,7 @@ public class Player : MovingActor
         m_controller = (XboxController)m_playerNumber;
 
         m_invulToggle = PlayerOptions.Instance.m_invulToggle;
+        m_vibrationToggle = PlayerOptions.Instance.m_vibrationToggle;
     }
 
     // Update is called once per frame
@@ -172,7 +174,10 @@ public class Player : MovingActor
             if (m_invulTimer <= 0)
             {
                 m_health -= damage;
-                GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 100, 100); //. set the vibration stregnth 
+                if (m_vibrationToggle)
+                {
+                     GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 100, 100); //. set the vibration stregnth 
+                }
                 m_vibrationTimer = m_vibrationLength; // sets the timers for the vibration
                 if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
                 {
@@ -207,7 +212,10 @@ public class Player : MovingActor
 
     public void Respawn()
     {
-        GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
+        if (m_vibrationToggle)
+        {
+             GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
+        }
         Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
         spawnPos.Normalize();
         spawnPos *= 9;
@@ -221,4 +229,25 @@ public class Player : MovingActor
     {
         Gizmos.DrawSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
     }
+     public void FallDamage(int damage)
+    {
+        m_health -= damage;
+        if (m_vibrationToggle)
+        {
+            GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
+        }
+        if (m_health <= 0)
+        {
+            m_health = 0;
+            //Destroy(gameObject);
+            m_alive = false;
+            gameObject.SetActive(false);
+            Vector3 position = gameObject.transform.position;
+            position.y -= 0.5f;
+            Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+            m_canRespawn = m_hud.UseLife();
+            m_vibrationTimer = m_vibrationDeath;
+        }
+    }
+
 }

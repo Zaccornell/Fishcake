@@ -8,14 +8,15 @@ public class OptionMenu : MonoBehaviour
 {
 
     public Toggle m_invul;
-    public Player m_player;
     public PlayerOptions m_pOp;
+    public Toggle m_vibration;
 
 
     // Use this for initialization
     void Start ()
     {
         m_pOp = PlayerOptions.Instance;
+        
 
 	}
 	
@@ -24,6 +25,7 @@ public class OptionMenu : MonoBehaviour
     {
 
         m_pOp.m_invulToggle = m_invul.isOn;
+        m_pOp.m_vibrationToggle = m_vibration.isOn;
 
 	}
 

@@ -342,11 +342,15 @@ MonoBehaviour:
   m_dashCooldown: 1
   m_attackDistance: 1
   m_attackRadius: 1
+  m_invulLength: 0
   m_facing: {fileID: 23440568599292658}
   m_playerNumber: 1
   m_corpsePrefab: {fileID: 1284227549011586, guid: df60536e4ee77fe48854068101c3e352,
     type: 2}
   m_hud: {fileID: 0}
+  m_vibrationLength: 0.4
+  m_vibrationDeath: 0
+  m_virbationRespawn: 0
 --- !u!136 &136984771540150374
 CapsuleCollider:
   m_ObjectHideFlags: 1

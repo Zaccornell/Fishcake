@@ -127,4 +127,15 @@ public class Enemy : MovingActor
     {
         Gizmos.DrawSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
     }
+
+    public void FallDamage(int damage)
+    {
+        m_health -= damage;
+        if (m_health <= 0)
+        {
+            m_spawner.EnemyDeath(this);
+            m_alive = false;
+            Destroy(gameObject);
+        }
+    }
 }
