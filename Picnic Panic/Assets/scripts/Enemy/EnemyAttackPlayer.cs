@@ -120,6 +120,8 @@ public class EnemyAttackPlayer : EnemyState
     public override void UpdatePath(ref NavMeshPath path)
     {
         if (m_target != null)
+        {
             NavMesh.CalculatePath(m_owner.transform.position, m_target.transform.position, -1, path);
+        }
     }
 }

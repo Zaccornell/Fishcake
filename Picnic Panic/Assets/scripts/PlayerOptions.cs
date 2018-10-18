@@ -18,15 +18,13 @@ public class PlayerOptions
     public float m_music;
 
 
-	void start()
-	{
-		m_vibrationToggle = true;
-	}
-    static PlayerOptions()
+	public PlayerOptions()
     {
-
+	    m_vibrationToggle = true;
     }
-    private PlayerOptions()
+	
+	 
+    static PlayerOptions()
     {
 
     }

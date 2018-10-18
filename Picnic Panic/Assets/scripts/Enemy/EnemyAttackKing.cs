@@ -94,8 +94,10 @@ public class EnemyAttackKing : EnemyState
      */
     public override void UpdatePath(ref NavMeshPath path)
     {
-        NavMeshHit hit = new NavMeshHit();
-        NavMesh.SamplePosition(m_target.transform.position + (m_owner.transform.position - m_target.transform.position).normalized, out hit, 5, -1);
-        NavMesh.CalculatePath(m_owner.transform.position, hit.position, -1, path);
+        NavMeshHit kingHit = new NavMeshHit();
+        NavMesh.SamplePosition(m_target.transform.position + (m_owner.transform.position - m_target.transform.position).normalized, out kingHit, 5, -1);
+        NavMeshHit positionHit = new NavMeshHit();
+        NavMesh.SamplePosition(m_owner.transform.position, out positionHit, 1, -1);
+        NavMesh.CalculatePath(positionHit.position, kingHit.position, -1, path);
     }
 }
