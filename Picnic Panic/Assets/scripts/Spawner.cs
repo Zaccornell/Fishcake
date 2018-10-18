@@ -57,7 +57,7 @@ public class Spawner : MonoBehaviour
     {
         CalculateDelay();
 
-        m_enemyToSpawn += m_enemyCount[m_currentRound]; // adding the limit that needs to be spawned
+        m_enemyToSpawn += m_enemyCount[m_currentRound] + Mathf.RoundToInt(m_enemyCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
         m_roundTimer = m_roundLength; // setting the timer for the round 
 	}
 	
@@ -81,9 +81,9 @@ public class Spawner : MonoBehaviour
             if (m_currentRound + 1  < m_enemyCount.Length)
                 m_currentRound++; // add to the current round
 
-            m_enemyToSpawn += m_enemyCount[m_currentRound]; // adding the limit that needs to be spawned
+            m_enemyToSpawn += m_enemyCount[m_currentRound] + Mathf.RoundToInt(m_enemyCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
 
-            foreach(Actor player in m_players)
+            foreach (Actor player in m_players)
             {
                 if (!player.gameObject.activeSelf)
                 {
@@ -106,15 +106,16 @@ public class Spawner : MonoBehaviour
 
             Vector3 spawnPosition = new Vector3();
 
-            Rect playArea = new Rect(new Vector2(m_spawnArea.x / -2, m_spawnArea.y / -2), m_spawnArea);
-
             Vector3 playerPosition = new Vector3();
 
             int playerCount = 0;
             foreach(Actor current in m_players)
             {
-                playerPosition += current.transform.position;
-                playerCount++;
+                if (current.Alive)
+                {
+                    playerPosition += current.transform.position;
+                    playerCount++;
+                }
             }
             playerPosition /= playerCount;
 
@@ -130,7 +131,7 @@ public class Spawner : MonoBehaviour
                 float angle = Mathf.Atan2(direction.y, direction.x);
                 angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
 
-                float baseAngle = angle; // 
+                float baseAngle = angle;
 
                 // Get the angles that point to the corner of the rect
                 float[] cornerAngles = new float[4];
@@ -265,7 +266,7 @@ public class Spawner : MonoBehaviour
     public void ResetValues()
     {
         m_currentRound = 0;
-        m_enemyToSpawn = m_enemyCount[m_currentRound];
+        m_enemyToSpawn = m_enemyCount[m_currentRound] + Mathf.RoundToInt(m_enemyCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0));
         m_roundTimer = m_roundLength;
         m_enemySpawned = 0;
         CalculateDelay();
@@ -275,7 +276,6 @@ public class Spawner : MonoBehaviour
             Destroy(current.gameObject);
         }
         m_enemies.Clear();
-
     }
 
     public void OnDrawGizmos()

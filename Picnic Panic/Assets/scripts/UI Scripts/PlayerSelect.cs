@@ -8,6 +8,7 @@ public class PlayerSelect : MonoBehaviour
 {
     public Image[] m_children;
     public GameObject[] m_playerPrefabs;
+    public Transform[] m_spawnPoints;
     public Spawner m_spawner;
     public HUD m_hud;
     public PauseMenu m_pauseMenu;
@@ -85,12 +86,11 @@ public class PlayerSelect : MonoBehaviour
             {
                 if (m_children[i].enabled)
                 {
-                    GameObject currentPlayer = Instantiate(m_playerPrefabs[i >= m_playerPrefabs.Length ? m_playerPrefabs.Length - 1 : i]);
+                    GameObject currentPlayer = Instantiate(m_playerPrefabs[i >= m_playerPrefabs.Length ? m_playerPrefabs.Length - 1 : i], m_spawnPoints[i]);
                     Player playerScript = currentPlayer.GetComponent<Player>();
 
                     playerScript.m_playerNumber = i + 1;
                     playerScript.m_hud = m_hud;
-                    playerScript.Respawn();
 
                     m_players.Add(playerScript);                    
                 }
@@ -99,14 +99,14 @@ public class PlayerSelect : MonoBehaviour
             m_hud.m_players = m_players.ToArray();
             m_pauseMenu.m_players = m_players.ToArray();
 
-            List<Transform> cameraTargets = new List<Transform>();
-            foreach(Transform current in m_camera.m_Targets)
+            List<Actor> cameraTargets = new List<Actor>();
+            foreach(Actor current in m_camera.m_Targets)
             {
                 cameraTargets.Add(current);
             }
             foreach(Player current in m_players)
             {
-                cameraTargets.Add(current.transform);
+                cameraTargets.Add(current);
             }
             m_camera.m_Targets = cameraTargets.ToArray();
 

@@ -21,7 +21,6 @@ public class Enemy : MovingActor
 
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
-    private Actor m_attacker = null;
     private EnemyState[] m_states;
     private EnemyAttackPlayer m_attackPlayer;
     private EnemyAttackKing m_attackKing;
@@ -114,7 +113,6 @@ public class Enemy : MovingActor
                 m_alive = false;
                 Destroy(gameObject);
             }
-            m_attacker = attacker;
         }
     }
 

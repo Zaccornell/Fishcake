@@ -19,9 +19,12 @@ public class EnemyAttackPlayer : EnemyState
     public float m_agroRange;
     public float m_attackDistance;
     public float m_attackRadius;
+    public float m_windUpLength = 0.5f;
 
     private float m_attackSpeed;
     private float m_attackTimer;
+    private float m_windUpTimer;
+    private bool m_playerAttackable;
 
     public float AttackSpeed
     {
@@ -51,6 +54,7 @@ public class EnemyAttackPlayer : EnemyState
 	public override void Update ()
     {
         m_attackTimer -= Time.deltaTime;
+        m_windUpTimer -= Time.deltaTime;
 
         List<Actor> playersInRange = new List<Actor>();
         List<float> distanceToPlayers = new List<float>();
@@ -90,26 +94,61 @@ public class EnemyAttackPlayer : EnemyState
         if (m_attackTimer <= 0 && m_target != null)
         {
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
-            bool attackedPlayer = false;
-            foreach(Collider current in targets)
+            bool foundPlayer = false;
+            foreach (Collider current in targets)
             {
                 foreach(Actor player in m_players)
                 {
                     if (current.gameObject == player.gameObject)
                     {
-                        Attack(player, m_attackDamage);
-                        attackedPlayer = true;
+                        //Attack(player, m_attackDamage);
+                        //attackedPlayer = true;
+                        if (m_playerAttackable == false)
+                        {
+                            m_playerAttackable = true;
+                            m_windUpTimer = m_windUpLength;
+                        }
+                        foundPlayer = true;
                     }
                 }
+                
             }
-            if (attackedPlayer)
+            if (foundPlayer == false)
             {
-                m_attackTimer = m_attackSpeed;
+                m_playerAttackable = false;
+            }
+            //if (attackedPlayer)
+            //{
+            //    m_attackTimer = m_attackSpeed;
 
-                if (!m_target.gameObject.activeSelf)
+            //    if (!m_target.gameObject.activeSelf)
+            //    {
+            //        m_target = null;
+            //    }
+            //}
+        }
+        else
+        {
+            m_playerAttackable = false;
+        }
+        if (m_windUpTimer <= 0 && m_playerAttackable && m_attackTimer <= 0)
+        {
+            Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
+            foreach (Collider current in targets)
+            {
+                foreach (Actor player in m_players)
                 {
-                    m_target = null;
+                    if (player.gameObject == current.gameObject)
+                        Attack(player, m_attackDamage);
                 }
+            }
+            m_attackTimer = m_attackSpeed;
+            m_playerAttackable = false;
+            m_windUpTimer = m_windUpLength;
+
+            if (!m_target.gameObject.activeSelf)
+            {
+                m_target = null;
             }
         }
     }

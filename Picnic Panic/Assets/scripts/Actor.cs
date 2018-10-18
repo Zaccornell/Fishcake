@@ -14,6 +14,12 @@ public class Actor : MonoBehaviour
         get { return m_health; }
         set { m_health = value; }
     }
+    
+    public bool Alive
+    {
+        get { return m_alive; }
+        set { m_alive = value; }
+    }
 
     public virtual void TakeDamage(int damage, Actor attacker)
     {

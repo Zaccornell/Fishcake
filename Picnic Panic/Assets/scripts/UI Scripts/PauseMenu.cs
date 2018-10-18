@@ -71,7 +71,6 @@ public class PauseMenu : MonoBehaviour
         foreach (Player current in m_players)
         {
             XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
-
         }
 
         foreach (GameObject child in m_children)
@@ -92,6 +91,7 @@ public class PauseMenu : MonoBehaviour
         }
         m_king.enabled = m_active;
         m_hud.SetActive(m_active);
+        Physics.autoSimulation = m_active;
 
         Cursor.visible = !m_active; // makes cursor visable
         m_active = !m_active;

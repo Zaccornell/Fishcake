@@ -28,7 +28,6 @@ public class Player : MovingActor
 
     private XboxController m_controller;
     private ParticleSystem m_dashParticle = null;
-    private List<Collider> m_enemies = new List<Collider>();
     private float m_dashTimer;
     private bool m_attackPressed = false;
     private bool m_canRespawn = false;
@@ -192,7 +191,11 @@ public class Player : MovingActor
                     m_health = 0;
                     //Destroy(gameObject);
                     m_alive = false;
-                    gameObject.SetActive(false);
+                    Renderer[] renderers = GetComponentsInChildren<Renderer>();
+                    foreach (Renderer current in renderers)
+                    {
+                        current.enabled = false;
+                    }
                     Vector3 position = gameObject.transform.position;
                     position.y -= 0.5f;
                     Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
@@ -220,9 +223,15 @@ public class Player : MovingActor
         spawnPos.Normalize();
         spawnPos *= 9;
         spawnPos.y = 1;
-        gameObject.SetActive(true);
         gameObject.transform.position = spawnPos;
         m_vibrationTimer = m_virbationRespawn;
+        m_alive = true;
+
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer current in renderers)
+        {
+            current.enabled = true;
+        }
     }
 
     private void OnDrawGizmos()
