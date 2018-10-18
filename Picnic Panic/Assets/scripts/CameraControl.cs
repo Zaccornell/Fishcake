@@ -14,11 +14,16 @@ public class CameraControl : MonoBehaviour {
 	public float m_ScreenEdgeBuffer = 4f; // keeps distanct from the edge and the ship
 	public float m_MinSize = 6.5f; // won't zoom to close in
 	public Actor[] m_Targets; // setting the target of the ships
+    public float m_posRotate;
+    public float m_negRotate;
+    public int m_amount;
 
 	private Camera m_Camera; // to reference the camera 
 	private float m_ZoomSpeed; // the speed for how smooth the camera zooms
 	private Vector3 m_MoveVelocity; // the velocity of the how smooth the postion moves
 	private Vector3 m_DesiredPosition; // the postion the cmaera moves towards 
+    private float m_currentRotate;
+    private float m_startRotate = 0;
 
 	// initialization before program runs
 	private void Awake()
@@ -31,8 +36,12 @@ public class CameraControl : MonoBehaviour {
 		Move(); // calling hte move function
 		Zoom(); // calling the zoom function
 	}
+    private void Update()
+    {
+        
+    }
 
-	private void Move()
+    private void Move()
 	{
 		FindAveragePosition(); // calling the findAvg function
 		transform.position = Vector3.SmoothDamp(transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime); // snooth the camera from current pos to derisred pos
@@ -138,5 +147,10 @@ public class CameraControl : MonoBehaviour {
 		// find and set the required size of the camera
 		m_Camera.orthographicSize =FindRequiredSize();
 	}
+
+    public void Shake()
+    {
+
+    }
 
 }

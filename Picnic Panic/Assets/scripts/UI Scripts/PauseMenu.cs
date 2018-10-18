@@ -7,6 +7,7 @@ using XboxCtrlrInput;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject[] m_optionMenu;
     public GameObject[] m_children;
     public Spawner m_spawner;
     public Player[] m_players;
@@ -95,5 +96,29 @@ public class PauseMenu : MonoBehaviour
 
         Cursor.visible = !m_active; // makes cursor visable
         m_active = !m_active;
+    }
+
+    public void OptionButton()
+    {
+        foreach (GameObject child in m_children)
+        {
+            child.SetActive(!m_active);
+        }
+        foreach (GameObject opchild in m_optionMenu)
+        {
+            opchild.SetActive(m_active);
+        }
+
+    }
+    public void BackButton()
+    {
+        foreach (GameObject child in m_children)
+        {
+            child.SetActive(m_active);
+        }
+        foreach (GameObject opchild in m_optionMenu)
+        {
+            opchild.SetActive(!m_active);
+        }
     }
 }

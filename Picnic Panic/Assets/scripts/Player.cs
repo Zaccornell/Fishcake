@@ -51,9 +51,6 @@ public class Player : MovingActor
         m_health = m_maxHealth;
 
         m_controller = (XboxController)m_playerNumber;
-
-        m_invulToggle = PlayerOptions.Instance.m_invulToggle;
-        m_vibrationToggle = PlayerOptions.Instance.m_vibrationToggle;
     }
 
     // Update is called once per frame
@@ -168,12 +165,12 @@ public class Player : MovingActor
 
     public override void TakeDamage(int damage, Actor attacker)
     {
-        if(!m_invulToggle)
+        if(!PlayerOptions.Instance.m_invulToggle)
         {
             if (m_invulTimer <= 0)
             {
                 m_health -= damage;
-                if (m_vibrationToggle)
+                if (PlayerOptions.Instance.m_vibrationToggle)
                 {
                      GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 100, 100); //. set the vibration stregnth 
                 }
@@ -215,7 +212,7 @@ public class Player : MovingActor
 
     public void Respawn()
     {
-        if (m_vibrationToggle)
+        if (PlayerOptions.Instance.m_vibrationToggle)
         {
              GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
         }
@@ -241,7 +238,7 @@ public class Player : MovingActor
      public void FallDamage(int damage)
     {
         m_health -= damage;
-        if (m_vibrationToggle)
+        if (PlayerOptions.Instance.m_vibrationToggle)
         {
             GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
         }
