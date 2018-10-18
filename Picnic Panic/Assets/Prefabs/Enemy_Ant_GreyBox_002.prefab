@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 65716291305845834}
   - component: {fileID: 114224160950927574}
   - component: {fileID: 135081656737270012}
-  - component: {fileID: 135357460623256166}
   m_Layer: 9
   m_Name: Enemy_Ant_GreyBox_002
   m_TagString: Enemy
@@ -72,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1623052370803712}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.215202, y: -0.164, z: -2.539545}
+  m_LocalPosition: {x: -2.0408306, y: -0.17999995, z: 5.6841607}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4468554347422962}
@@ -258,15 +257,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.19
   m_Center: {x: 0.000000029802322, y: 0.45, z: -0.74}
---- !u!135 &135357460623256166
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1623052370803712}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.4
-  m_Center: {x: 0.000000029802322, y: 0.29153225, z: 0.8}

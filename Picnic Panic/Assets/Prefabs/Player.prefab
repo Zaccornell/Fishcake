@@ -54,6 +54,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4583992193729332}
+  - component: {fileID: 33413439530532690}
   - component: {fileID: 136984771540150374}
   - component: {fileID: 23585753231099614}
   - component: {fileID: 54462816356674498}
@@ -115,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286573024730034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.055655, y: 1.58, z: -9.044735}
+  m_LocalPosition: {x: -1.9108667, y: 0.89, z: 5.128874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637773169209596}
@@ -246,6 +247,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1048441835298518}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33413439530532690
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1286573024730034}
+  m_Mesh: {fileID: 0}
 --- !u!33 &33838669104469534
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -306,7 +314,7 @@ MonoBehaviour:
   m_dashCooldown: 1
   m_attackDistance: 1
   m_attackRadius: 1
-  m_invulLength: 0.3
+  m_invulLength: 0
   m_facing: {fileID: 23440568599292658}
   m_playerNumber: 1
   m_corpsePrefab: {fileID: 1284227549011586, guid: df60536e4ee77fe48854068101c3e352,
@@ -388,7 +396,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2126486645
+  randomSeed: -602640991
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -1,31 +1,46 @@
 fileFormatVersion: 2
-guid: c2846f2bded540a4a9a1b9c9ecb35f80
-timeCreated: 1538705986
+guid: 569f84e06f7c0ed4c88cdd06a43d809e
+timeCreated: 1539814683
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Environment_PieKing_001_base
-    100004: Environment_PieKing_001_crown
-    100006: Environment_PieKing_001_Moustache
+    100002: Environment_PieKing_001
+    100004: Environment_PieKing_base_001
+    100006: Environment_PieKing_Crown_001
+    100008: Environment_PieKing_Face_001
+    100010: Environment_PieKing_facialfeatures_001
+    100012: Environment_PieKing_Moustache_001
+    100014: Environment_PieKing_Nose_001
+    100016: Environment_PieKing_Rim_001
+    100018: transform1
+    100020: transform2
+    100022: transform3
+    100024: transform4
+    100026: transform5
+    100028: transform6
+    100030: transform7
     400000: //RootNode
-    400002: Environment_PieKing_001_base
-    400004: Environment_PieKing_001_crown
-    400006: Environment_PieKing_001_Moustache
-    2100000: lambert3
-    2300000: //RootNode
-    2300002: Environment_PieKing_001_base
-    2300004: Environment_PieKing_001_crown
-    2300006: Environment_PieKing_001_Moustache
-    3300000: //RootNode
-    3300002: Environment_PieKing_001_base
-    3300004: Environment_PieKing_001_crown
-    3300006: Environment_PieKing_001_Moustache
+    400002: Environment_PieKing_001
+    400004: Environment_PieKing_base_001
+    400006: Environment_PieKing_Crown_001
+    400008: Environment_PieKing_Face_001
+    400010: Environment_PieKing_facialfeatures_001
+    400012: Environment_PieKing_Moustache_001
+    400014: Environment_PieKing_Nose_001
+    400016: Environment_PieKing_Rim_001
+    400018: transform1
+    400020: transform2
+    400022: transform3
+    400024: transform4
+    400026: transform5
+    400028: transform6
+    400030: transform7
+    2100000: lambert1
+    2300000: Environment_PieKing_001
+    3300000: Environment_PieKing_001
     4300000: Environment_PieKing_001
-    4300002: Environment_PieKing_001_base
-    4300004: Environment_PieKing_001_crown
-    4300006: Environment_PieKing_001_Moustache
     9500000: //RootNode
   externalObjects: {}
   materials:

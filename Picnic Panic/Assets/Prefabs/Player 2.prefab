@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114997298540151886}
   m_Layer: 8
   m_Name: Player 2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1604785963751226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.45, y: -2.18, z: -5.392}
+  m_LocalPosition: {x: -2.296564, y: 0.915, z: 5.831107}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4151736004156662}
@@ -275,7 +275,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &95212379947090724
 Animator:
@@ -321,6 +321,9 @@ MonoBehaviour:
   m_corpsePrefab: {fileID: 1284227549011586, guid: df60536e4ee77fe48854068101c3e352,
     type: 2}
   m_hud: {fileID: 0}
+  m_vibrationLength: 0.4
+  m_vibrationDeath: 0.8
+  m_virbationRespawn: 0.4
 --- !u!136 &136972472512741358
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -331,9 +334,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.33
-  m_Height: 1.29
+  m_Height: 1.1339908
   m_Direction: 1
-  m_Center: {x: 0, y: -0.53, z: -0.21}
+  m_Center: {x: 0, y: -0.45199537, z: -0.21000001}
 --- !u!198 &198510840607772752
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -394,7 +397,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -602640991
+  randomSeed: -1169046496
   InitialModule:
     serializedVersion: 3
     enabled: 1
