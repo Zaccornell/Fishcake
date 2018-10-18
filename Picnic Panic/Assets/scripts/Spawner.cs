@@ -21,6 +21,7 @@ public class Spawner : MonoBehaviour
     public GameObject m_enemyPrefab = null;
     public HUD m_hud;
     public Vector2 m_spawnArea;
+    public float m_randomSpawnRadius;
     public float m_spawnHeight;
     public float m_spawnJitter;
 
@@ -85,7 +86,7 @@ public class Spawner : MonoBehaviour
 
             foreach (Actor player in m_players)
             {
-                if (!player.gameObject.activeSelf)
+                if (!player.gameObject.activeSelf || !player.Alive)
                 {
                     Player playerScript = (Player)player;
 
@@ -119,8 +120,8 @@ public class Spawner : MonoBehaviour
             }
             playerPosition /= playerCount;
 
-            // if average position is not within a 10 unit radius of the king
-            if (playerPosition.magnitude >= 10)
+            // if average position is not within a specified radius of the king
+            if (playerPosition.magnitude >= m_randomSpawnRadius)
             {
                 // Get opposite direction of the players
                 Vector2 direction = new Vector2(-playerPosition.x, -playerPosition.z);
@@ -385,6 +386,8 @@ public class Spawner : MonoBehaviour
             Gizmos.DrawLine(Vector3.zero, spawnAreaPositions[0]);
             Gizmos.DrawLine(Vector3.zero, spawnAreaPositions[1]);
             Gizmos.DrawLine(Vector3.zero, spawnAreaPositions[2]);
+
+            Gizmos.DrawWireSphere(Vector3.zero, m_randomSpawnRadius);
         }
     }
 }

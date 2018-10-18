@@ -66,7 +66,7 @@ public class EnemyAttackKing : EnemyState
 
         foreach (Actor current in m_players)
         {
-            if (!current.gameObject.activeSelf)
+            if (!current.gameObject.activeSelf || !current.Alive)
                 continue;
 
             if ((current.transform.position - m_owner.transform.position).sqrMagnitude < m_agroRange * m_agroRange)

@@ -60,7 +60,7 @@ public class EnemyAttackPlayer : EnemyState
         List<float> distanceToPlayers = new List<float>();
         foreach (Actor current in m_players)
         {
-            if (!current.gameObject.activeSelf)
+            if (!current.gameObject.activeSelf || !current.Alive)
                 continue;
 
             float distance = (current.transform.position - m_owner.transform.position).sqrMagnitude;
@@ -91,6 +91,7 @@ public class EnemyAttackPlayer : EnemyState
             m_owner.ChangeState(0);
         }
 
+        // Check if player is in attack range
         if (m_attackTimer <= 0 && m_target != null)
         {
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
@@ -99,10 +100,11 @@ public class EnemyAttackPlayer : EnemyState
             {
                 foreach(Actor player in m_players)
                 {
-                    if (current.gameObject == player.gameObject)
+                    if (!player.gameObject.activeSelf || !player.Alive)
+                        continue;
+
+                    if ( current.gameObject == player.gameObject)
                     {
-                        //Attack(player, m_attackDamage);
-                        //attackedPlayer = true;
                         if (m_playerAttackable == false)
                         {
                             m_playerAttackable = true;
@@ -110,27 +112,20 @@ public class EnemyAttackPlayer : EnemyState
                         }
                         foundPlayer = true;
                     }
-                }
-                
+                }                
             }
             if (foundPlayer == false)
             {
                 m_playerAttackable = false;
             }
-            //if (attackedPlayer)
-            //{
-            //    m_attackTimer = m_attackSpeed;
-
-            //    if (!m_target.gameObject.activeSelf)
-            //    {
-            //        m_target = null;
-            //    }
-            //}
         }
         else
         {
             m_playerAttackable = false;
         }
+
+        // if the player has been in attack range for the duration of the wind up
+        // attack the player
         if (m_windUpTimer <= 0 && m_playerAttackable && m_attackTimer <= 0)
         {
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
@@ -146,7 +141,7 @@ public class EnemyAttackPlayer : EnemyState
             m_playerAttackable = false;
             m_windUpTimer = m_windUpLength;
 
-            if (!m_target.gameObject.activeSelf)
+            if (!m_target.gameObject.activeSelf || !m_target.Alive)
             {
                 m_target = null;
             }

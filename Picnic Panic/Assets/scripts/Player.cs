@@ -230,6 +230,16 @@ public class Player : MovingActor
         {
             current.enabled = true;
         }
+        m_rigidBody.isKinematic = false;
+    }
+    public void Death()
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer current in renderers)
+        {
+            current.enabled = false;
+        }
+        m_rigidBody.isKinematic = true;
     }
 
     private void OnDrawGizmos()
