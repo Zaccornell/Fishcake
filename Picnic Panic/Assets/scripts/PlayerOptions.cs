@@ -17,6 +17,11 @@ public class PlayerOptions
     public float m_SFX;
     public float m_music;
 
+
+	void start()
+	{
+		m_vibrationToggle = true;
+	}
     static PlayerOptions()
     {
 
