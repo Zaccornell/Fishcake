@@ -22,6 +22,7 @@ public class Spawner : MonoBehaviour
     public HUD m_hud;
     public Vector2 m_spawnArea;
     public float m_spawnHeight;
+    public float m_spawnJitter;
 
     public int m_enemyHealth;
     public float m_attackDistance;
@@ -121,12 +122,12 @@ public class Spawner : MonoBehaviour
             if (playerPosition.magnitude >= 10)
             {
                 // Get opposite direction of the players
-                Vector3 direction = -playerPosition;
-                direction.y = 0;
+                Vector2 direction = new Vector2(-playerPosition.x, -playerPosition.z);
+                direction += new Vector2(direction.y, -direction.x) * Random.Range(-m_spawnJitter, m_spawnJitter);
                 direction.Normalize();
 
                 // get the angle of the direction
-                float angle = Mathf.Atan2(direction.z, direction.x);
+                float angle = Mathf.Atan2(direction.y, direction.x);
                 angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
 
                 // get the nearest 90 degrees to the angle
@@ -147,7 +148,7 @@ public class Spawner : MonoBehaviour
                 // the spawn position is the calculated by the using the direction and distance to find the position at the edge of the square
                 direction *= dist;
                 spawnPosition.x = direction.x;
-                spawnPosition.z = direction.z;
+                spawnPosition.z = direction.y;
             }
             else
             {
@@ -248,6 +249,78 @@ public class Spawner : MonoBehaviour
             }
             avgPos /= playerCount;
             Gizmos.DrawSphere(avgPos, 1);
+
+            Vector3 spawnPos = new Vector3();
+            Vector3[] tempPos = new Vector3[2];
+            tempPos[0] = new Vector3();
+            tempPos[1] = new Vector3();
+
+            Vector2 direction = new Vector2(avgPos.x, avgPos.z);
+            direction = -direction;
+            direction.Normalize();
+
+            Vector2[] offset = new Vector2[2];
+            offset[0] = new Vector2(direction.y, -direction.x);
+            offset[0] = direction + offset[0] * m_spawnJitter;
+            offset[0].Normalize();
+            offset[1] = new Vector2(direction.y, -direction.x);
+            offset[1] = direction - offset[1] * m_spawnJitter;
+            offset[1].Normalize();
+
+            // get the angle of the direction
+            float angle = Mathf.Atan2(direction.y, direction.x);
+            angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
+
+            // get the nearest 90 degrees to the angle
+            float rightAngle = Mathf.Round(angle / 90f) * 90;
+
+            // get the angle between angle and rightAngle
+            if (rightAngle > angle)
+            {
+                angle = rightAngle - angle;
+            }
+            else
+            {
+                angle = angle - rightAngle;
+            }
+
+            // Get the distance to the edge of the game area
+            float dist = (m_spawnArea.x / 2f) / Mathf.Cos(angle * (Mathf.PI / 180));
+            // the spawn position is the calculated by the using the direction and distance to find the position at the edge of the square
+            direction *= dist;
+            spawnPos.x = direction.x;
+            spawnPos.z = direction.y;
+
+            for (int i = 0; i < 2; i++)
+            {
+                // get the angle of the direction
+                float angle2 = Mathf.Atan2(offset[i].y, offset[i].x);
+                angle2 = (angle2 > 0 ? angle2 : (2 * Mathf.PI + angle2)) * 360 / (2 * Mathf.PI);
+
+                // get the nearest 90 degrees to the angle
+                float rightAngle2 = Mathf.Round(angle2 / 90f) * 90;
+
+                // get the angle between angle and rightAngle
+                if (rightAngle2 > angle2)
+                {
+                    angle2 = rightAngle2 - angle2;
+                }
+                else
+                {
+                    angle2 = angle2 - rightAngle2;
+                }
+
+                // Get the distance to the edge of the game area
+                float dist2 = (m_spawnArea.x / 2f) / Mathf.Cos(angle2 * (Mathf.PI / 180));
+                // the spawn position is the calculated by the using the direction and distance to find the position at the edge of the square
+                offset[i] *= dist2;
+                tempPos[i].x = offset[i].x;
+                tempPos[i].z = offset[i].y;
+            }
+
+            Gizmos.DrawLine(Vector3.zero, spawnPos);
+            Gizmos.DrawLine(Vector3.zero, tempPos[0]);
+            Gizmos.DrawLine(Vector3.zero, tempPos[1]);
 
             //for (int i = 0; i < 20; i++)
             //{
