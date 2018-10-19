@@ -11019,6 +11019,39 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7247cd7ee088ac41a703e6209548bd1, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &973072185 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1338957431051530, guid: ef63f5eab7d77624986c003f9b186bea,
+    type: 2}
+  m_PrefabInternal: {fileID: 579259936}
+--- !u!114 &973072186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 973072185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa25343f0cd28c4b8474625220e29a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealth: 100
+  m_spawner: {fileID: 1211538502}
+  m_restoreHealth: 0
+  m_camera: {fileID: 854415104}
+--- !u!136 &973072187
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 973072185}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.079607
+  m_Height: 11.67
+  m_Direction: 1
+  m_Center: {x: 0.0022693877, y: 0.50030947, z: 0}
 --- !u!1001 &974233544
 Prefab:
   m_ObjectHideFlags: 0
@@ -12799,7 +12832,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  m_king: {fileID: 0}
+  m_king: {fileID: 973072186}
   m_kingDisplay: {fileID: 126374912}
   m_displayTimer: {fileID: 1736572011}
   m_spanwer: {fileID: 1211538502}
@@ -14077,21 +14110,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_showDebug: 0
   m_roundLength: 30
-  m_roundEndBuffer: 0
+  m_roundEndBuffer: 10
   m_enemyCount: 050000000a0000000f00000014000000190000001e00000023000000280000002d000000
   m_players:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  m_king: {fileID: 0}
+  m_king: {fileID: 973072186}
   m_enemyPrefab: {fileID: 1623052370803712, guid: 4df21f26fb7635f4fb1bd17e78482cc7,
     type: 2}
   m_hud: {fileID: 1114299478}
   m_spawnArea: {x: 43, y: 30}
   m_randomSpawnRadius: 0
   m_spawnHeight: -0.164
-  m_spawnJitter: 0
+  m_spawnJitter: 0.5
   m_enemyHealth: 100
   m_attackDistance: 0.5
   m_attackRadius: 0.6
@@ -23302,7 +23335,7 @@ MonoBehaviour:
   m_ScreenEdgeBuffer: 4
   m_MinSize: 6.5
   m_Targets:
-  - {fileID: 0}
+  - {fileID: 973072186}
   m_posRotate: 0
   m_negRotate: 0
   m_amount: 0
@@ -24697,7 +24730,7 @@ Prefab:
         type: 2}
       propertyPath: m_king
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 973072186}
     - target: {fileID: 114368256418147228, guid: 2d3526ab6fc487140b3e1684b69d3f72,
         type: 2}
       propertyPath: m_hud
@@ -24712,7 +24745,7 @@ Prefab:
         type: 2}
       propertyPath: m_gameplayScripts.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 973072186}
     - target: {fileID: 114368256418147228, guid: 2d3526ab6fc487140b3e1684b69d3f72,
         type: 2}
       propertyPath: m_gameplayScripts.Array.data[2]
