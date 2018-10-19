@@ -57,7 +57,7 @@ public class Spawner : MonoBehaviour
 	void Start ()
     {
         CalculateDelay();
-
+        m_spawnTimer = m_spawnDelay;
         m_enemyToSpawn += m_enemyCount[m_currentRound] + Mathf.RoundToInt(m_enemyCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
         m_roundTimer = m_roundLength; // setting the timer for the round 
 	}
@@ -251,7 +251,7 @@ public class Spawner : MonoBehaviour
      */
     private void CalculateDelay()
     {
-        m_spawnDelay = (m_roundLength - m_roundEndBuffer) / m_enemyCount[m_currentRound];
+        m_spawnDelay = (m_roundLength - m_roundEndBuffer) / (m_enemyCount[m_currentRound]);
     }
 
 
