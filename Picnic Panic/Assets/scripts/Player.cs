@@ -190,7 +190,6 @@ public class Player : MovingActor
                     Death();
 
                     Vector3 position = gameObject.transform.position;
-                    position.y -= 0.5f;
                     Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
                     m_canRespawn = m_hud.UseLife();
                     m_vibrationTimer = m_vibrationDeath;
