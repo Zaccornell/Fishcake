@@ -301,7 +301,10 @@ public class Spawner : MonoBehaviour
             spawnAreaPositions[2] = new Vector3();
 
             Vector2[] directions = new Vector2[3];
-            directions[0] = new Vector2(avgPos.x, avgPos.z);
+            if (m_players.Length > 0)
+                directions[0] = new Vector2(avgPos.x, avgPos.z);
+            else
+                directions[0] = Vector2.down;
             directions[0] = -directions[0];
             directions[0].Normalize();
 

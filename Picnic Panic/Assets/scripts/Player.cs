@@ -181,13 +181,10 @@ public class Player : MovingActor
                 if (m_health <= 0)
                 {
                     m_health = 0;
-                    //Destroy(gameObject);
                     m_alive = false;
-                    Renderer[] renderers = GetComponentsInChildren<Renderer>();
-                    foreach (Renderer current in renderers)
-                    {
-                        current.enabled = false;
-                    }
+
+                    Death();
+
                     Vector3 position = gameObject.transform.position;
                     position.y -= 0.5f;
                     Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
@@ -243,24 +240,28 @@ public class Player : MovingActor
 
         Gizmos.DrawSphere(height + transform.forward * m_attackDistance, m_attackRadius);
     }
-     public void FallDamage(int damage)
+    public void FallDamage(int damage)
     {
-        m_health -= damage;
-        if (PlayerOptions.Instance.m_vibrationToggle)
+        if (m_alive)
         {
-            GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
-        }
-        if (m_health <= 0)
-        {
-            m_health = 0;
-            //Destroy(gameObject);
-            m_alive = false;
-            gameObject.SetActive(false);
-            Vector3 position = gameObject.transform.position;
-            position.y -= 0.5f;
-            Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
-            m_canRespawn = m_hud.UseLife();
-            m_vibrationTimer = m_vibrationDeath;
+            m_health -= damage;
+            if (PlayerOptions.Instance.m_vibrationToggle)
+            {
+                GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
+            }
+            if (m_health <= 0)
+            {
+                m_health = 0;
+                m_alive = false;
+
+                Death();
+
+                Vector3 position = gameObject.transform.position;
+                position.y -= 0.5f;
+                Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+                m_canRespawn = m_hud.UseLife();
+                m_vibrationTimer = m_vibrationDeath;
+            }
         }
     }
 
