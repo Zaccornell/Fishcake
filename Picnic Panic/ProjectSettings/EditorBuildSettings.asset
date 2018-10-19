@@ -5,21 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/John/MainMenu.unity
-    guid: 03cda49855a4bd94b8a466f68a4e2a57
-  - enabled: 0
-    path: Assets/Scenes/John/game.unity
-    guid: ccb7ecda7dddc93438bdbe30fa134141
   - enabled: 1
     path: Assets/Scenes/Bradyn/MainMenu.unity
     guid: b0bb8579bf8ae4f42a68e99378d73535
-  - enabled: 0
-    path: Assets/Scenes/Bradyn/Bradyn.unity
-    guid: 71806d721b1e4b148ba3ae624f295bfc
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Zac/Main_Alpha_Greybox_001.unity
     guid: 26e9a53893bb56f43a7e34f233916c09
