@@ -11,10 +11,11 @@ public class PauseMenu : MonoBehaviour
     public Button m_backButton;
     public GameObject[] m_optionMenu;
     public GameObject[] m_children;
-    public Spawner m_spawner;
     public Player[] m_players;
+    public Spawner m_spawner;
     public PieKing m_king;
     public HUD m_hud;
+    public CustomInputModule m_inputModule;
     public MonoBehaviour[] m_gameplayScripts;
 
     private bool m_optionOpen;
@@ -32,9 +33,24 @@ public class PauseMenu : MonoBehaviour
     {
         if (!m_optionOpen)
         {
-		    if (Input.GetKeyDown(KeyCode.Escape) || XCI.GetButtonDown(XboxButton.Start))
+		    if (Input.GetKeyDown(KeyCode.Escape))
             {
                  ToggleObjects();
+            }
+            for (int i = 1; i <= 3; i++)
+            {
+                if (XCI.GetButtonDown(XboxButton.Start, (XboxController)i))
+                {
+                    ToggleObjects();
+                    if (m_active)
+                    {
+                        m_inputModule.m_controller = (XboxController)i;
+                    }
+                    else
+                    {
+                        m_inputModule.m_controller = XboxController.All;
+                    }
+                }
             }
 
         }
@@ -66,6 +82,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitClick()
     {
+        ToggleObjects();
         SceneManager.LoadScene(0);
     }
 

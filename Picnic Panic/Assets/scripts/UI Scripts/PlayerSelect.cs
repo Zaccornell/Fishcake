@@ -87,7 +87,7 @@ public class PlayerSelect : MonoBehaviour
         if (selected != 0 && selected == ready)
         {
             m_startGame.enabled = true;
-            if (XCI.GetButtonDown(XboxButton.A, m_controllers[m_playerOrder[0]]) || Input.GetKeyDown(m_testButtons[m_playerOrder[0]]))
+            if (XCI.GetButtonDown(XboxButton.Start, m_controllers[m_playerOrder[0]]) || Input.GetKeyDown(m_testButtons[m_playerOrder[0]]))
             {
                 for (int i = 0; i < m_playerOrder.Count; i++)
                 {
