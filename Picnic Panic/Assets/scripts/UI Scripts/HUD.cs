@@ -12,6 +12,9 @@ public class HUD : MonoBehaviour
     public Text m_kingDisplay;
     public Text m_displayTimer;
     public Spawner m_spanwer;
+    public GameObject m_endGame;
+    public Button m_restartButton;
+
 
     public Text m_enemyCounter;
 
@@ -47,6 +50,19 @@ public class HUD : MonoBehaviour
         m_displayTimer.text = (Mathf.Ceil(m_spanwer.RoundTimer)).ToString(); // displays timer onto the HUD
         m_enemyCounter.text = (m_spanwer.EnemyTotal).ToString();// displays the amount of enemies left to spawn and spawned
        
+        int playersAlive = 0; // setting a verible to keep count of living players
+        foreach (Player amount in m_players)
+        {
+            if (amount.Alive) // seeing if the amount of players is alive or not
+            {
+                playersAlive++; // plusing 1 to the varible to amount alive 
+            }
+        }
+        if (m_king.Health <= 0 || playersAlive <= 0) // cheeking to see if any players or king is alive 
+        {  
+            m_endGame.SetActive(true); // activating endscreen
+            m_restartButton.Select(); // setting a button to start event
+        }
 
     }
 

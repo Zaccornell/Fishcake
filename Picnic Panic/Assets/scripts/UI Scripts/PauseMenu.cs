@@ -99,6 +99,7 @@ public class PauseMenu : MonoBehaviour
             current.enabled = m_active;
         }
 
+        m_resumeButton.Select();
         m_king.enabled = m_active;
         m_hud.SetActive(m_active);
         Physics.autoSimulation = m_active;
@@ -110,7 +111,6 @@ public class PauseMenu : MonoBehaviour
 
     public void OptionButton()
     {
-        m_backButton.Select();
         foreach (GameObject child in m_children)
         {
             child.SetActive(!m_active);
@@ -120,12 +120,12 @@ public class PauseMenu : MonoBehaviour
             opchild.SetActive(m_active);
         }
 
+        m_backButton.Select();
         m_optionOpen = true;
 
     }
     public void BackButton()
     {
-        m_resumeButton.Select();
         foreach (GameObject child in m_children)
         {
             child.SetActive(m_active);
@@ -134,6 +134,7 @@ public class PauseMenu : MonoBehaviour
         {
             opchild.SetActive(!m_active);
         }
+        m_resumeButton.Select();
         m_optionOpen = false;
     }
 }
