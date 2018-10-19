@@ -14,8 +14,8 @@ public class PauseMenu : MonoBehaviour
     public Spawner m_spawner;
     public Player[] m_players;
     public PieKing m_king;
+    public HUD m_hud;
     public MonoBehaviour[] m_gameplayScripts;
-    public GameObject m_hud;
 
     private bool m_optionOpen;
 
@@ -33,9 +33,9 @@ public class PauseMenu : MonoBehaviour
         if (!m_optionOpen)
         {
 		    if (Input.GetKeyDown(KeyCode.Escape) || XCI.GetButtonDown(XboxButton.Start))
-             {
+            {
                  ToggleObjects();
-             }
+            }
 
         }
         if (m_active) // if Puase Menu is up will ...
@@ -101,7 +101,8 @@ public class PauseMenu : MonoBehaviour
 
         m_resumeButton.Select();
         m_king.enabled = m_active;
-        m_hud.SetActive(m_active);
+        m_spawner.enabled = m_active;
+        m_hud.gameObject.SetActive(m_active);
         Physics.autoSimulation = m_active;
 
         Cursor.visible = !m_active; // makes cursor visable

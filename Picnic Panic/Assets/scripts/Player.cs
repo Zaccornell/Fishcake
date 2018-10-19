@@ -41,6 +41,10 @@ public class Player : MovingActor
     {
         get { return m_canRespawn; }
     }
+    public XboxController Controller
+    {
+        get { return m_controller; }
+    }
 
     // Use this for initialization
     void Start ()
@@ -210,8 +214,7 @@ public class Player : MovingActor
         }
         Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
         spawnPos.Normalize();
-        spawnPos *= 9;
-        spawnPos.y = 1;
+        spawnPos *= 9;;
         gameObject.transform.position = spawnPos;
         m_vibrationTimer = m_virbationRespawn;
         m_alive = true;
