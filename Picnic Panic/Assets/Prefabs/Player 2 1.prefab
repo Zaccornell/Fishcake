@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 54614263604563746}
   - component: {fileID: 114997298540151886}
   m_Layer: 8
-  m_Name: Player 2
+  m_Name: Player 2 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,6 +315,7 @@ MonoBehaviour:
   m_dashCooldown: 1
   m_attackDistance: 1
   m_attackRadius: 1
+  m_attackHeightOffset: 0
   m_invulLength: 0
   m_facing: {fileID: 23797325911062226}
   m_playerNumber: 2
