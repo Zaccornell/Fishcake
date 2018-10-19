@@ -117,6 +117,7 @@ public class PauseMenu : MonoBehaviour
         }
 
         m_resumeButton.Select();
+        m_resumeButton.OnSelect(null);
         m_king.enabled = m_active;
         m_spawner.enabled = m_active;
         m_hud.gameObject.SetActive(m_active);
