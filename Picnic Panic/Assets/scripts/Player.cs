@@ -85,8 +85,9 @@ public class Player : MovingActor
         {
             Playerheal();
         }
-        
-        // When dash button is pressed        if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
+
+        // When dash button is pressed        
+        if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
         {
             m_dashing = true;
         }
@@ -117,7 +118,7 @@ public class Player : MovingActor
         }
 
         // Attack
-        if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) != 0 || XCI.GetButton(XboxButton.A, m_controller)) && m_attackTimer <= 0)
+        if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) != 0 || XCI.GetButtonDown(XboxButton.A, m_controller)) && m_attackTimer <= 0)
         {
             if (m_attackPressed == false)
             {
@@ -148,8 +149,8 @@ public class Player : MovingActor
                 {
                     if (current.tag == "Enemy")
                     {
-                        current.GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
-                        if (!current.GetComponent<Enemy>().Alive)
+                        current.GetComponent<MovingActor>().TakeDamage(m_attackDamage, this);
+                        if (!current.GetComponent<MovingActor>().Alive)
                         {
                             m_killCount++; // adding a plus one to kill count 
                             if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
