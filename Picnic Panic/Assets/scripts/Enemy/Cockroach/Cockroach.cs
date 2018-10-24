@@ -78,5 +78,7 @@ public class Cockroach : MovingActor
             m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized;
         else
             m_movement = Vector3.zero;
+
+        m_movement.y = 0;
     }
 }
