@@ -64,6 +64,9 @@ public class PauseMenu : MonoBehaviour
         }      
 	}
 
+    /*
+     * Handles resetting all values in the level
+     */
     public void ResetClick()
     {
         foreach (Player current in m_players)
@@ -80,18 +83,26 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /*
+     * Handles quitting back to the main menu
+     */
     public void QuitClick()
     {
         ToggleObjects();
         SceneManager.LoadScene(0);
     }
 
+    /*
+     * Starts the objects back up when resuming
+     */
     public void ResumeClick()
     {
         ToggleObjects();
     }
 
-    // 
+    /*
+     * Toggles all objects between active and inactive
+     */
     private void ToggleObjects()
     {
         foreach (Player current in m_players)
@@ -127,7 +138,9 @@ public class PauseMenu : MonoBehaviour
         m_active = !m_active;
     }
 
-
+    /*
+     * Handles opening up the option menu
+     */
     public void OptionButton()
     {
         foreach (GameObject child in m_children)
@@ -143,6 +156,10 @@ public class PauseMenu : MonoBehaviour
         m_optionOpen = true;
 
     }
+
+    /*
+     * Handles returning to the pause menu from the options menu
+     */
     public void BackButton()
     {
         foreach (GameObject child in m_children)

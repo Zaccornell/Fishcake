@@ -92,10 +92,10 @@ public class EnemyAttackKing : EnemyState
     /*
      * Function to get a new path between the enemy and the nearest position to the king
      */
-    public override void UpdatePath(ref NavMeshPath path)
+    public override void UpdatePath(ref NavMeshPath path, int areaMask)
     {
         NavMeshHit hit = new NavMeshHit();
-        NavMesh.SamplePosition(m_target.transform.position + (m_owner.transform.position - m_target.transform.position).normalized, out hit, 5, -1);
-        NavMesh.CalculatePath(m_owner.transform.position, hit.position, -1, path);
+        NavMesh.SamplePosition(m_target.transform.position + (m_owner.transform.position - m_target.transform.position).normalized, out hit, 5, areaMask);
+        NavMesh.CalculatePath(m_owner.transform.position, hit.position, areaMask, path);
     }
 }

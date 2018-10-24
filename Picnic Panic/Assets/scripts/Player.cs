@@ -11,10 +11,12 @@ using XInputDotNetPure;
 
 public class Player : MovingActor
 {
+    public bool m_showDebug;
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_knockbackCooldown;
     public float m_dashDistance;
     public float m_dashCooldown;
+    public bool m_friendlyFire;
     public float m_attackDistance;
     public float m_attackRadius;
     public float m_attackHeightOffset;
@@ -41,6 +43,9 @@ public class Player : MovingActor
     private float m_vibrationTimer;
     private bool m_vibrationToggle;
     private int m_killCount;
+
+    private bool m_dashing;
+    private float m_dashStrength;
 
     public bool CanRespawn
     {
@@ -81,20 +86,38 @@ public class Player : MovingActor
             Playerheal();
         }
         
-        if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
+        // When dash button is pressed        if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
+        {
+            m_dashing = true;
+        }
+        // when dash button is held
+        if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1)
+        {
+            m_dashStrength += 1;
+            if (m_dashStrength > m_dashDistance)
+            {
+                m_dashStrength = m_dashDistance;
+            }
+        }
+        // when dash button is let go
+        if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 0)
         {
             if (m_movement.magnitude != 0)
             {
-                Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+                Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrength * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                 m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                 m_dashTimer = m_dashCooldown;
 
                 m_invulTimer = m_invulLength;
                 Physics.IgnoreLayerCollision(8, 9, true);
             }
+
+            m_dashing = false;
+            m_dashStrength = 0;
         }
 
-        if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) != 0) && m_attackTimer <= 0)
+        // Attack
+        if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) != 0 || XCI.GetButton(XboxButton.A, m_controller)) && m_attackTimer <= 0)
         {
             if (m_attackPressed == false)
             {
@@ -102,14 +125,14 @@ public class Player : MovingActor
                 height.y += m_attackHeightOffset;
 
                 Collider[] hits = Physics.OverlapSphere(height + transform.forward * m_attackDistance, m_attackRadius);
-                List<GameObject> enemies = new List<GameObject>();   
+                List<GameObject> targets = new List<GameObject>();   
                 
                 foreach (Collider current in hits)
                 {
                     bool unique = true;
-                    foreach (GameObject enemy in enemies)
+                    foreach (GameObject target in targets)
                     {
-                        if (enemy == current.gameObject)
+                        if (target == current.gameObject)
                         {
                             unique = false;
                         }
@@ -117,11 +140,11 @@ public class Player : MovingActor
 
                     if (unique)
                     {
-                        enemies.Add(current.gameObject);
+                        targets.Add(current.gameObject);
                     }
                 }
 
-                foreach (GameObject current in enemies)
+                foreach (GameObject current in targets)
                 {
                     if (current.tag == "Enemy")
                     {
@@ -140,6 +163,10 @@ public class Player : MovingActor
                             }
                            
                         }
+                    }
+                    if (m_friendlyFire && current.tag == "Player")
+                    {
+                        current.GetComponent<Player>().TakeDamage(m_attackDamage, this);
                     }
                 }
                 m_facing.material.color = new Color(1, 0, 0);
@@ -164,12 +191,14 @@ public class Player : MovingActor
         }
         // counting the timer down 
         if (m_vibrationTimer <= 0)
-        {
-            GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 0, 0); // stop the vibration 
-            
+        {            
+            GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 0, 0); // stop the vibration             
         }
     }
 
+    /*
+     * Handles rigid body movement
+     */
     private void FixedUpdate()
     {
         m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
@@ -186,10 +215,18 @@ public class Player : MovingActor
         }
     }
 
+    /*
+     * Causes the player to take damage
+     * Params: 
+     *          Damage: the amount of damage to take
+     *          Attacker: the actor that attacked the player
+     */
     public override void TakeDamage(int damage, Actor attacker)
     {
+        // if invulnerability is turned off
         if(!PlayerOptions.Instance.m_invulToggle)
         {
+            // if the player has not been hit recently
             if (m_invulTimer <= 0)
             {
                 m_health -= damage;
@@ -198,14 +235,17 @@ public class Player : MovingActor
                      GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 100, 100); //. set the vibration stregnth 
                 }
                 m_vibrationTimer = m_vibrationLength; // sets the timers for the vibration
+
+
+                // once you get hit by the enemy you get knocked back
+                // giving us the feel of our players getting hit in game
                 if (m_rigidBody.velocity.magnitude <= 0.1f && m_knockbackTimer <= 0)
                 {
-                    // once you get hit by the enemy you get knocked back
-                    // giving us the feel of our players getting hit in game
                     Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                     m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                     m_knockbackTimer = m_knockbackCooldown;
                 }
+                // if the player has died
                 if (m_health <= 0)
                 {
 
@@ -264,10 +304,13 @@ public class Player : MovingActor
 
     private void OnDrawGizmos()
     {
-        Vector3 height = transform.position;
-        height.y += m_attackHeightOffset;
+        if (m_showDebug)
+        {
+            Vector3 height = transform.position;
+            height.y += m_attackHeightOffset;
 
-        Gizmos.DrawSphere(height + transform.forward * m_attackDistance, m_attackRadius);
+            Gizmos.DrawSphere(height + transform.forward * m_attackDistance, m_attackRadius);
+        }
     }
     public void FallDamage(int damage)
     {

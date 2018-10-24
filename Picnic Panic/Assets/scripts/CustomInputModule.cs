@@ -4,10 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using XboxCtrlrInput;
 
+/*
+ * Custom input to allow the UI to use xInput
+ */
 public class CustomInputModule : BaseInput
 {
     public XboxController m_controller;
 
+    /*
+     * Override of the base GetAxisRaw to use xInput
+     */
     public override float GetAxisRaw(string axisName)
     {
         if (axisName == "Horizontal")
@@ -24,6 +30,9 @@ public class CustomInputModule : BaseInput
         }
     }
 
+    /*
+     * Override of the base GetButtonDown to use xInput
+     */
     public override bool GetButtonDown(string buttonName)
     {
         if (buttonName == "Submit")

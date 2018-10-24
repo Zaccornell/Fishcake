@@ -329,6 +329,7 @@
     <Compile Include="Assets\scripts\CameraMovement.cs" />
     <Compile Include="Assets\scripts\CustomEventSystem.cs" />
     <Compile Include="Assets\scripts\CustomInputModule.cs" />
+    <Compile Include="Assets\scripts\Enemy\Cockroach\Cockroach.cs" />
     <Compile Include="Assets\scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\scripts\Enemy\EnemyAttackKing.cs" />
     <Compile Include="Assets\scripts\Enemy\EnemyAttackPlayer.cs" />
@@ -338,6 +339,7 @@
     <Compile Include="Assets\scripts\PieKing.cs" />
     <Compile Include="Assets\scripts\Player.cs" />
     <Compile Include="Assets\scripts\PlayerCorpse.cs" />
+    <Compile Include="Assets\scripts\PlayerNumberDisplay.cs" />
     <Compile Include="Assets\scripts\PlayerOptions.cs" />
     <Compile Include="Assets\scripts\Spawner.cs" />
     <Compile Include="Assets\scripts\UI Scripts\DisplayHaelth.cs" />

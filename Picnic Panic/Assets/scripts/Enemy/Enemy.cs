@@ -25,6 +25,7 @@ public class Enemy : MovingActor
     private EnemyAttackPlayer m_attackPlayer;
     private EnemyAttackKing m_attackKing;
     private int m_stateIndex;
+    private int m_areaMask;
 
     // Use this for initialization
     void Start()
@@ -35,6 +36,7 @@ public class Enemy : MovingActor
         m_movement = new Vector3();
         m_stateIndex = 0;
         m_alive = true;
+        m_areaMask = (1 << 0) + (0 << 1) + (1 << 2) + (1 << 3);
 
         m_states = new EnemyState[2];
         m_attackKing = new EnemyAttackKing(this, m_players, m_king, m_attackDistance, m_attackRadius, m_attackSpeed, m_attackDamage, m_agroRange);
@@ -58,7 +60,6 @@ public class Enemy : MovingActor
     private void FixedUpdate()
     {
         m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
-        //m_rigidBody.AddForce(m_movement * Time.deltaTime * m_speed);
         if (m_movement.magnitude != 0)
             m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
     }
@@ -71,7 +72,7 @@ public class Enemy : MovingActor
         if (m_updatePath == 0)
         {
             //NavMesh.CalculatePath(transform.position, m_target.transform.position, -1, m_path);
-            m_states[m_stateIndex].UpdatePath(ref m_path);
+            m_states[m_stateIndex].UpdatePath(ref m_path, m_areaMask);
             m_updatePath = 5;
             m_pathIndex = 0;
             for(int i = 0; i < m_path.corners.Length; i++)

@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1623052370803712}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.0408306, y: -0.17999995, z: 5.6841607}
+  m_LocalPosition: {x: 4.90519, y: 0, z: -20.036755}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4468554347422962}
@@ -232,14 +232,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e33de939f907c40b29372b077cd178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 0
+  m_maxHealth: 10
   m_speed: 5
-  m_attackSpeed: 0
-  m_attackDamage: 0
-  m_knockBackDistance: 0
-  m_attackDistance: 0
-  m_attackRadius: 0
-  m_agroRange: 0
+  m_attackSpeed: 1
+  m_attackDamage: 10
+  m_knockBackDistance: 500
+  m_attackDistance: 1
+  m_attackRadius: 0.2
+  m_agroRange: 5
   m_height: 0
   m_players: []
   m_king: {fileID: 0}

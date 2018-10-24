@@ -47,6 +47,6 @@ public abstract class EnemyState
      * Abstact function declaration for getting a path
      * Takes in a reference to a NavMeshPath
      */
-    public abstract void UpdatePath(ref NavMeshPath path);
+    public abstract void UpdatePath(ref NavMeshPath path, int areaMask);
 
 }

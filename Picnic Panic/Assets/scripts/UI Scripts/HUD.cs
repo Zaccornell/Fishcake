@@ -66,6 +66,9 @@ public class HUD : MonoBehaviour
 
     }
 
+    /*
+     * Use one of the players' shared 
+     */
     public bool UseLife()
     {
         if (m_playerLives > 0)

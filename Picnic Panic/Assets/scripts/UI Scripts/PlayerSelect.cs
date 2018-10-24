@@ -58,16 +58,19 @@ public class PlayerSelect : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
+            // when a controller presses the join button
             if (XCI.GetButtonDown(XboxButton.A, m_controllers[i]) || Input.GetKeyDown(m_testButtons[i]))
             {
+                // if the controller has not already joined
                 if (!m_playerOrder.Contains(i))
                 {
                     m_playerSlots[m_playerOrder.Count].text = "PRESS (A) TO READY";
-                    m_playerOrder.Add(i);
+                    m_playerOrder.Add(i); // add the current controller to the player list
                     m_startGame.enabled = false;
                 }
                 else
                 {
+                    // ready up
                     m_ready[m_playerOrder.IndexOf(i)] = true;
                     m_playerSlots[m_playerOrder.IndexOf(i)].text = "READY";
                 }
@@ -84,11 +87,15 @@ public class PlayerSelect : MonoBehaviour
             }
         }
 
+        // if the players have joined and have readied up
         if (selected != 0 && selected == ready)
         {
             m_startGame.enabled = true;
+
+            // When player one presses the start button
             if (XCI.GetButtonDown(XboxButton.Start, m_controllers[m_playerOrder[0]]) || Input.GetKeyDown(m_testButtons[m_playerOrder[0]]))
             {
+                // instantiate each player
                 for (int i = 0; i < m_playerOrder.Count; i++)
                 {
                     GameObject currentPlayer = Instantiate(m_playerPrefabs[i >= m_playerPrefabs.Length ? m_playerPrefabs.Length - 1 : i], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
@@ -100,6 +107,7 @@ public class PlayerSelect : MonoBehaviour
                     m_players.Add(playerScript);                    
                 }
 
+                // give objects access to the players
                 m_spawner.m_players = m_players.ToArray();
                 m_hud.m_players = m_players.ToArray();
                 m_pauseMenu.m_players = m_players.ToArray();

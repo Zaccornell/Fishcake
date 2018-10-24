@@ -151,11 +151,11 @@ public class EnemyAttackPlayer : EnemyState
     /*
      * Function to get a new path between the enemy and the target
      */
-    public override void UpdatePath(ref NavMeshPath path)
+    public override void UpdatePath(ref NavMeshPath path, int areaMask)
     {
         if (m_target != null)
         {
-            NavMesh.CalculatePath(m_owner.transform.position, m_target.transform.position, -1, path);
+            NavMesh.CalculatePath(m_owner.transform.position, m_target.transform.position, areaMask, path);
         }
     }
 }
