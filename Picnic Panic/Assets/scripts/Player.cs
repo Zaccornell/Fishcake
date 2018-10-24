@@ -26,6 +26,10 @@ public class Player : MovingActor
     public float m_vibrationLength;
     public float m_vibrationDeath;
     public float m_virbationRespawn;
+    public int m_neededKills;
+    public int m_healAmount;
+    public float m_healRadius;
+    public ParticleSystem m_healParticles;
 
     private XboxController m_controller;
     private float m_dashTimer;
@@ -36,6 +40,7 @@ public class Player : MovingActor
     private bool m_invulToggle;
     private float m_vibrationTimer;
     private bool m_vibrationToggle;
+    private int m_killCount;
 
     public bool CanRespawn
     {
@@ -70,6 +75,11 @@ public class Player : MovingActor
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
         m_movement.Normalize();
 
+        // getting the button X to call a Funtion
+        if (XCI.GetButtonDown(XboxButton.X, m_controller))
+        {
+            Playerheal();
+        }
         
         if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
         {
@@ -116,6 +126,20 @@ public class Player : MovingActor
                     if (current.tag == "Enemy")
                     {
                         current.GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
+                        if (!current.GetComponent<Enemy>().Alive)
+                        {
+                            m_killCount++; // adding a plus one to kill count 
+                            if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
+                            {
+                                m_killCount = m_neededKills; // setting the kill count to the max amount
+                            }
+                            if (m_killCount >= m_neededKills)
+                            {
+                                m_healParticles.Play();
+
+                            }
+                           
+                        }
                     }
                 }
                 m_facing.material.color = new Color(1, 0, 0);
@@ -184,6 +208,9 @@ public class Player : MovingActor
                 }
                 if (m_health <= 0)
                 {
+
+                    m_killCount = 0; // resetting kill count once die
+                    m_healParticles.Stop(); // stop particles 
                     m_health = 0;
                     m_alive = false;
 
@@ -264,6 +291,35 @@ public class Player : MovingActor
                 m_canRespawn = m_hud.UseLife();
                 m_vibrationTimer = m_vibrationDeath;
             }
+        }
+    }
+
+    // Healing Player and other players around them 
+    private void Playerheal()
+    {
+        if (m_killCount >= m_neededKills) // checking to see if the amount of kills 
+        {
+            Collider[] targets = Physics.OverlapSphere(transform.position, m_healRadius); // getting the Players in the Radius around them 
+            foreach (Collider item in targets) // looping though all the targets found in the radius
+            {
+                if (item.tag == "Player")// checking to see if the targets are players
+                {
+                    item.GetComponent<Player>().ShareHealing(); // Running the ShareHealing Funtion in each Player class
+                }
+               
+            }
+            m_killCount -= m_neededKills; // removing amount of kills from kill count
+        }
+        m_healParticles.Stop(); // stop particles 
+    }
+
+    // healing the player
+    public void ShareHealing()
+    {
+        m_health += m_healAmount; // adding the amount of health 
+        if (m_health >= m_maxHealth) // checking to see if the health is more than max health
+        {
+            m_health = m_maxHealth;// if so setting the health to max health 
         }
     }
 

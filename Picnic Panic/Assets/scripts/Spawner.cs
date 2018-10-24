@@ -105,6 +105,8 @@ public class Spawner : MonoBehaviour
         {
             m_spawnTimer = m_spawnDelay;
 
+            
+
             Vector3 spawnPosition = new Vector3();
 
             Vector3 playerPosition = new Vector3();

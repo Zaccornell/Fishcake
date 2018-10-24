@@ -222,6 +222,10 @@ MonoBehaviour:
   m_vibrationLength: 0.4
   m_vibrationDeath: 0.8
   m_virbationRespawn: 0.4
+  m_neededKills: 3
+  m_healAmount: 15
+  m_healRadius: 7
+  m_healParticles: {fileID: 0}
 --- !u!136 &136281918196902730
 CapsuleCollider:
   m_ObjectHideFlags: 1

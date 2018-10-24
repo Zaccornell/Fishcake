@@ -16,7 +16,7 @@ public class PieKing : Actor
     {
         m_health = m_maxHealth; // setting the health to the max health 
         m_alive = true;
-        m_spawner.OnRoundEnd += new MyDel(RoundEnd);
+        m_spawner.OnRoundEnd += new MyDel(RoundEnd); // it heals at the end of rounds 
 	}
 	
 	// Update is called once per frame
@@ -42,15 +42,6 @@ public class PieKing : Actor
         if (m_health >= m_maxHealth) // if the health is higher than max health
         {
             m_health = m_maxHealth; // reset health to max health 
-        }
-    }
-
-    // to end the game 
-    void EndGame()
-    {
-        if (m_health <= 0) // if the kings health is less than or is 0 
-        {
-             // call end game
         }
     }
 
