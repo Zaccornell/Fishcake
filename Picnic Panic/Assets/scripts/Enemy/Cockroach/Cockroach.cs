@@ -81,4 +81,38 @@ public class Cockroach : MovingActor
 
         m_movement.y = 0;
     }
+
+    public override void TakeDamage(int damage, Actor attacker)
+    {
+        if (m_alive)
+        {
+            m_health -= damage;
+            // creating a knock back feel to the enemy once you hit it
+            // using Velocity and distance to push the enemy back
+            Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+            m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass, ForceMode.VelocityChange);
+            if (m_health <= 0)
+            {
+                m_spawner.EnemyDeath(this);
+                m_alive = false;
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    public void FallDamage(int damage)
+    {
+        m_health -= damage;
+        if (m_health <= 0)
+        {
+            m_spawner.EnemyDeath(this);
+            m_alive = false;
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
+    }
 }
