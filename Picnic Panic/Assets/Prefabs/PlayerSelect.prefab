@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -168,7 +168,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS (A) TO START
+  m_Text: PRESS START TO BEGIN
 --- !u!114 &114618486083662428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,7 +231,11 @@ MonoBehaviour:
   m_hud: {fileID: 0}
   m_pauseMenu: {fileID: 0}
   m_camera: {fileID: 0}
-  m_gameplayScripts: []
+  m_gameplayScripts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114823965208609824
 MonoBehaviour:
   m_ObjectHideFlags: 1
