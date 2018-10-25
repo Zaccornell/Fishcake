@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703090319065450}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.567448, y: 0, z: -19.127605}
+  m_LocalPosition: {x: 2.2532709, y: -0.18, z: -1.3754519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ad063b7a975fc7e4d8d8e706c8b5626c, type: 3}
+  - {fileID: 2100000, guid: d90c1f12d5f4cf34ab334cbdf332529d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,11 +141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c47ae3bbf14ab47aca72fd38ae9895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 400
+  m_maxHealth: 150
   m_speed: 3
   m_attackSpeed: 1
   m_attackDamage: 10
-  m_knockBackDistance: 3
+  m_knockBackDistance: 500
   m_attackDistance: 2
   m_attackRadius: 0.2
   m_agroRange: 5
