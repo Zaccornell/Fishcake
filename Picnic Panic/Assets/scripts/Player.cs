@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 using XInputDotNetPure;
+using UnityEngine.UI;
 
 
 /*
@@ -15,7 +16,9 @@ public class Player : MovingActor
     public bool m_showDebug;
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_knockbackCooldown;
-    public float m_dashDistance;
+    public float m_dashStrengthMin;
+    public float m_dashStrengthMax;
+    public float m_timeToFull;
     public float m_dashCooldown;
     public bool m_friendlyFire;
     public float m_attackDistance;
@@ -39,6 +42,7 @@ public class Player : MovingActor
     public AudioClip[] m_playerAttack;
     public AudioClip[] m_playerDash;
     public AudioSource m_audioSource;
+    public Text m_dashStrengthDisplay;
 
 
     private XboxController m_controller;
@@ -71,6 +75,7 @@ public class Player : MovingActor
         m_movement = new Vector3();
         m_health = m_maxHealth;
         m_alive = true;
+        m_dashStrength = m_dashStrengthMin;
 
         m_controller = (XboxController)m_playerNumber;
     }
@@ -98,14 +103,15 @@ public class Player : MovingActor
         if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
         {
             m_dashing = true;
+            m_dashStrengthDisplay.enabled = true;
         }
         // when dash button is held
         if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1)
         {
-            m_dashStrength += 1;
-            if (m_dashStrength > m_dashDistance)
+            m_dashStrength += (Time.deltaTime / m_timeToFull) * (m_dashStrengthMax - m_dashStrengthMin);
+            if (m_dashStrength > m_dashStrengthMax)
             {
-                m_dashStrength = m_dashDistance;
+                m_dashStrength = m_dashStrengthMax;
             }
         }
         // when dash button is let go
@@ -123,7 +129,14 @@ public class Player : MovingActor
             }
 
             m_dashing = false;
-            m_dashStrength = 0;
+            m_dashStrength = m_dashStrengthMin;
+            m_dashStrengthDisplay.enabled = false;
+        }
+
+        if (m_dashing)
+        {
+            m_dashStrengthDisplay.text = m_dashStrength.ToString("#.0#");
+            
         }
 
         // Attack

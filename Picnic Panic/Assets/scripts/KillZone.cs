@@ -24,7 +24,7 @@ public class KillZone : MonoBehaviour
         }
         if (other.tag == "Enemy")
         {
-            other.gameObject.GetComponent<Enemy>().FallDamage(999);
+            other.gameObject.GetComponent<MovingActor>().TakeDamage(999, null);
         }
         
     }
