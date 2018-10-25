@@ -116,7 +116,7 @@ public class PauseMenu : MonoBehaviour
         {
             child.SetActive(!m_active);
         }
-        foreach (Enemy current in m_spawner.m_enemies)
+        foreach (MovingActor current in m_spawner.m_enemies)
         {
             current.enabled = m_active;
         }
