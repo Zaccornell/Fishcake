@@ -93,6 +93,7 @@ public class Spawner : MonoBehaviour
             m_antToSpawn += m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
             m_cockroachToSpawn += m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
 
+            // Respawn dead players
             foreach (Actor player in m_players)
             {
                 if (!player.gameObject.activeSelf || !player.Alive)
@@ -106,7 +107,7 @@ public class Spawner : MonoBehaviour
                     }
                 }
             }
-            OnRoundEnd();
+            OnRoundEnd(); // event call
             CalculateDelay();
         }
 
@@ -143,6 +144,10 @@ public class Spawner : MonoBehaviour
             cockroachScript.m_spawner = this;
             cockroachScript.m_king = m_king;
             cockroachScript.m_height = m_spawnHeight;
+
+            m_enemies.Add(cockroachScript);
+            m_cockroachToSpawn--;
+            m_enemySpawned++;
         }
 	}
 
@@ -284,8 +289,7 @@ public class Spawner : MonoBehaviour
         return spawnPosition;
     }
 
-
-    public void EnemyDeath(Enemy enemy)
+    public void EnemyDeath(MovingActor enemy)
     {
         m_enemies.Remove(enemy);
         m_enemySpawned--; // removing what has been spawned
