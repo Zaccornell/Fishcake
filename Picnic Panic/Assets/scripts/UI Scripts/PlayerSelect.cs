@@ -15,6 +15,10 @@ public class PlayerSelect : MonoBehaviour
     public PauseMenu m_pauseMenu;
     public CameraControl m_camera;
     public MonoBehaviour[] m_gameplayScripts;
+    public Image[] m_playerJoin;
+    public AudioClip m_lobbyMusic;
+    public AudioClip m_roundStart;
+    public AudioSource m_audioSource;
 
     private XboxController[] m_controllers;
     private KeyCode[] m_testButtons;
@@ -39,6 +43,9 @@ public class PlayerSelect : MonoBehaviour
         m_hud.enabled = false;
         m_pauseMenu.enabled = false;
         m_camera.enabled = false;
+        m_audioSource.clip = m_lobbyMusic;
+        m_audioSource.loop = true;
+        m_audioSource.Play();
 
         m_testButtons = new KeyCode[4];
         m_testButtons[0] = KeyCode.H;
@@ -56,6 +63,8 @@ public class PlayerSelect : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+
+        
         for (int i = 0; i < 4; i++)
         {
             // when a controller presses the join button
@@ -65,6 +74,7 @@ public class PlayerSelect : MonoBehaviour
                 if (!m_playerOrder.Contains(i))
                 {
                     m_playerSlots[m_playerOrder.Count].text = "PRESS (A) TO READY";
+                    m_playerJoin[m_playerOrder.Count].enabled = false;
                     m_playerOrder.Add(i); // add the current controller to the player list
                     m_startGame.enabled = false;
                 }
@@ -103,6 +113,7 @@ public class PlayerSelect : MonoBehaviour
 
                     playerScript.m_playerNumber = m_playerOrder[i] + 1;
                     playerScript.m_hud = m_hud;
+                    playerScript.m_audioSource = m_audioSource;
 
                     m_players.Add(playerScript);                    
                 }
@@ -133,10 +144,13 @@ public class PlayerSelect : MonoBehaviour
                 m_camera.enabled = true;
 
                 m_hud.gameObject.SetActive(true);
-
+                m_audioSource.loop = false;
+                m_audioSource.Stop();
+                m_audioSource.PlayOneShot(m_roundStart);
                 this.enabled = false;
                 gameObject.SetActive(false);
             }
         }
     }
+
 }

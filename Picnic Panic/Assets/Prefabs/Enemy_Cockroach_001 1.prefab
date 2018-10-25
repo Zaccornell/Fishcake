@@ -141,11 +141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c47ae3bbf14ab47aca72fd38ae9895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 1
+  m_maxHealth: 400
   m_speed: 3
   m_attackSpeed: 1
   m_attackDamage: 10
-  m_knockBackDistance: 500
+  m_knockBackDistance: 3
   m_attackDistance: 2
   m_attackRadius: 0.2
   m_agroRange: 5

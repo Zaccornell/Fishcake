@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /*
 Aurthor: Bradyn Corkill
-Date: 6/9/18
+Date: 2018/9/6
  */
  
 public class CameraControl : MonoBehaviour {

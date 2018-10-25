@@ -4,6 +4,7 @@ using UnityEngine;
 using XboxCtrlrInput;
 using XInputDotNetPure;
 
+
 /*
  * Author: Bradyn Corkill / John Plant
  * Date: 2018/10/3
@@ -32,6 +33,13 @@ public class Player : MovingActor
     public int m_healAmount;
     public float m_healRadius;
     public ParticleSystem m_healParticles;
+    public AudioClip[] m_missAttacks;
+    public AudioClip[] m_hitAttacks;
+    public AudioClip[] m_playerDamage;
+    public AudioClip[] m_playerAttack;
+    public AudioClip[] m_playerDash;
+    public AudioSource m_audioSource;
+
 
     private XboxController m_controller;
     private float m_dashTimer;
@@ -108,6 +116,7 @@ public class Player : MovingActor
                 Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrength * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                 m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                 m_dashTimer = m_dashCooldown;
+                m_audioSource.PlayOneShot(m_playerDash[Random.Range(0, m_playerDash.Length)]);
 
                 m_invulTimer = m_invulLength;
                 Physics.IgnoreLayerCollision(8, 9, true);
@@ -120,11 +129,12 @@ public class Player : MovingActor
         // Attack
         if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) != 0 || XCI.GetButtonDown(XboxButton.A, m_controller)) && m_attackTimer <= 0)
         {
+
             if (m_attackPressed == false)
             {
                 Vector3 height = transform.position;
                 height.y += m_attackHeightOffset;
-
+                m_audioSource.PlayOneShot(m_playerAttack[Random.Range(0, m_playerAttack.Length)]);
                 Collider[] hits = Physics.OverlapSphere(height + transform.forward * m_attackDistance, m_attackRadius);
                 List<GameObject> targets = new List<GameObject>();   
                 
@@ -144,14 +154,16 @@ public class Player : MovingActor
                         targets.Add(current.gameObject);
                     }
                 }
-
+                bool AttackHit = false;
                 foreach (GameObject current in targets)
                 {
                     if (current.tag == "Enemy")
                     {
-                        current.GetComponent<MovingActor>().TakeDamage(m_attackDamage, this);
+                        current.GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
+                        AttackHit = true;
                         if (!current.GetComponent<MovingActor>().Alive)
                         {
+
                             m_killCount++; // adding a plus one to kill count 
                             if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
                             {
@@ -160,16 +172,23 @@ public class Player : MovingActor
                             if (m_killCount >= m_neededKills)
                             {
                                 m_healParticles.Play();
-
                             }
-                           
-                        }
+                        }     
                     }
                     if (m_friendlyFire && current.tag == "Player")
                     {
                         current.GetComponent<Player>().TakeDamage(m_attackDamage, this);
                     }
                 }
+                if (AttackHit)
+                {
+                    m_audioSource.PlayOneShot(m_hitAttacks[Random.Range(0, m_hitAttacks.Length)]);
+                }
+                else
+                {
+                    m_audioSource.PlayOneShot(m_missAttacks[Random.Range(0, m_missAttacks.Length)]);
+                }
+                
                 m_facing.material.color = new Color(1, 0, 0);
                 m_canAttack = false;
                 m_attackTimer = m_attackSpeed;
@@ -231,6 +250,7 @@ public class Player : MovingActor
             if (m_invulTimer <= 0)
             {
                 m_health -= damage;
+                m_audioSource.PlayOneShot(m_playerDamage[Random.Range(0, m_playerDamage.Length)]);
                 if (PlayerOptions.Instance.m_vibrationToggle)
                 {
                      GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 100, 100); //. set the vibration stregnth 
@@ -324,6 +344,7 @@ public class Player : MovingActor
             }
             if (m_health <= 0)
             {
+                m_healParticles.Stop(); // stop particles 
                 m_health = 0;
                 m_alive = false;
 

@@ -14,6 +14,8 @@ public class HUD : MonoBehaviour
     public Spawner m_spanwer;
     public GameObject m_endGame;
     public Button m_restartButton;
+    public AudioSource m_audioSource;
+    public AudioClip m_gameMusic;
 
 
     public Text m_enemyCounter;

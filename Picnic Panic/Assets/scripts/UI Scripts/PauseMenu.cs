@@ -17,6 +17,8 @@ public class PauseMenu : MonoBehaviour
     public HUD m_hud;
     public CustomInputModule m_inputModule;
     public MonoBehaviour[] m_gameplayScripts;
+    public AudioSource m_audioSource;
+    public AudioClip m_lobbyMusic;
 
     private bool m_optionOpen;
 

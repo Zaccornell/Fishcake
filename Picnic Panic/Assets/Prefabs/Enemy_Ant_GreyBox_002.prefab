@@ -232,11 +232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e33de939f907c40b29372b077cd178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 10
+  m_maxHealth: 50
   m_speed: 5
   m_attackSpeed: 1
   m_attackDamage: 10
-  m_knockBackDistance: 500
+  m_knockBackDistance: 10
   m_attackDistance: 1
   m_attackRadius: 0.2
   m_agroRange: 5
@@ -245,6 +245,15 @@ MonoBehaviour:
   m_king: {fileID: 0}
   m_spawner: {fileID: 0}
   m_target: {fileID: 0}
+  m_audioSource: {fileID: 0}
+  m_enemyDeath:
+  - {fileID: 8300000, guid: bc1ea760e32485b4da15dd8186fc828f, type: 3}
+  - {fileID: 8300000, guid: 7436b6d49c4b25146a1d7c6371d287de, type: 3}
+  - {fileID: 8300000, guid: 0efb9e00fc2d0234f80674f8307bcc0a, type: 3}
+  - {fileID: 8300000, guid: 457f55a3bb31b0b458f874248d3486a8, type: 3}
+  - {fileID: 8300000, guid: 534610e547ac0ee4a887bc07ee51e6eb, type: 3}
+  - {fileID: 8300000, guid: 6aa132d14d9d44a4facc24cbfd618a99, type: 3}
+  - {fileID: 8300000, guid: eae6423da4ddf6e4b9c0b742229b93b8, type: 3}
 --- !u!135 &135081656737270012
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -236,10 +236,12 @@ MonoBehaviour:
   m_speed: 6
   m_attackSpeed: 0.5
   m_attackDamage: 50
+  m_showDebug: 0
   m_knockBackDistance: 5
   m_knockbackCooldown: 0
   m_dashDistance: 10
   m_dashCooldown: 1
+  m_friendlyFire: 0
   m_attackDistance: 1
   m_attackRadius: 1
   m_attackHeightOffset: 0.666
@@ -256,6 +258,20 @@ MonoBehaviour:
   m_healAmount: 15
   m_healRadius: 5
   m_healParticles: {fileID: 198225757704784384}
+  m_missAttacks:
+  - {fileID: 8300000, guid: 4b4591c6f437e8e479483ba944888d53, type: 3}
+  - {fileID: 8300000, guid: e3c56f852900673458eb40dbe2e20c66, type: 3}
+  - {fileID: 8300000, guid: 18afbb8a4fc73c54d9631438354fc1e5, type: 3}
+  m_hitAttacks:
+  - {fileID: 8300000, guid: eaa481d31024f1f499023da647795be8, type: 3}
+  - {fileID: 8300000, guid: ab0dd1bec798112408137d6c86ebc9cb, type: 3}
+  m_playerDamage:
+  - {fileID: 8300000, guid: b8dad5efff4eea04db03110a573a0b5b, type: 3}
+  m_playerAttack:
+  - {fileID: 8300000, guid: 0e5ee7e685edb0345a6a65a59ab584c5, type: 3}
+  m_playerDash:
+  - {fileID: 8300000, guid: e39875dec0be4ef42baea5c70f94b369, type: 3}
+  m_audioSource: {fileID: 0}
 --- !u!136 &136675255046026274
 CapsuleCollider:
   m_ObjectHideFlags: 1

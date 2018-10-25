@@ -18,6 +18,8 @@ public class Enemy : MovingActor
     [HideInInspector] public Spawner m_spawner = null;
     [HideInInspector] public Actor m_target;
     [HideInInspector] public NavMeshPath m_path = null;
+    public AudioSource m_audioSource;
+    public AudioClip[] m_enemyDeath;
 
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
@@ -110,6 +112,7 @@ public class Enemy : MovingActor
             m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass, ForceMode.VelocityChange);
             if (m_health <= 0)
             {
+                m_audioSource.PlayOneShot(m_enemyDeath[Random.Range(0, m_enemyDeath.Length)]);
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
                 Destroy(gameObject);
