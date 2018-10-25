@@ -159,7 +159,7 @@ public class Player : MovingActor
                 {
                     if (current.tag == "Enemy")
                     {
-                        current.GetComponent<Enemy>().TakeDamage(m_attackDamage, this);
+                        current.GetComponent<MovingActor>().TakeDamage(m_attackDamage, this);
                         AttackHit = true;
                         if (!current.GetComponent<MovingActor>().Alive)
                         {

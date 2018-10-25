@@ -25,7 +25,6 @@ public class PlayerSelect : MonoBehaviour
     private bool[] m_ready;
     private List<Player> m_players;
     private List<int> m_playerOrder;
-    private int m_playerAmount;
 	// Use this for initialization
 	void Start ()
     {

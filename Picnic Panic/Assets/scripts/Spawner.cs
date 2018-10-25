@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
+using UnityEngine.AI;
 /*
  * Author: Bradyn Corkill / John Plant
  * Date: 2018/10/5
@@ -34,7 +35,6 @@ public class Spawner : MonoBehaviour
     public HUD m_hud;
     public Vector2 m_spawnArea;
     public float m_randomSpawnRadius;
-    public float m_spawnHeight;
     public float m_spawnJitter;
     public AudioSource m_audioSource;
     public AudioClip[] m_kingLaugh;
@@ -121,18 +121,21 @@ public class Spawner : MonoBehaviour
             
             Vector3 spawnPosition = GetSpawnPosition();
 
-            // Allocate all values for the enemy
-            GameObject newEnemy = Instantiate(m_antPrefab, spawnPosition, new Quaternion());
-            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-            enemyScript.m_players = m_players;
-            enemyScript.m_spawner = this;
-            enemyScript.m_king = m_king;
-            enemyScript.m_height = m_spawnHeight;
-            enemyScript.m_audioSource = m_audioSource;
+            NavMeshHit hit = new NavMeshHit();
+            if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
+            {
+                // Allocate all values for the enemy
+                GameObject newEnemy = Instantiate(m_antPrefab, spawnPosition, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
+                Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+                enemyScript.m_players = m_players;
+                enemyScript.m_spawner = this;
+                enemyScript.m_king = m_king;
+                enemyScript.m_audioSource = m_audioSource;
 
-            m_enemies.Add(enemyScript);
-            m_antToSpawn--; // removing the limit to spanw 
-            m_enemySpawned++; // adding what has been spawned 
+                m_enemies.Add(enemyScript);
+                m_antToSpawn--; // removing the limit to spanw 
+                m_enemySpawned++; // adding what has been spawned 
+            }
         }
 
         // Spawn cockroach
@@ -142,16 +145,19 @@ public class Spawner : MonoBehaviour
 
             Vector3 spawnPosition = GetSpawnPosition();
 
-            // Allocate values for the enemy
-            GameObject newCockroach = Instantiate(m_cockroachPrefab, spawnPosition, new Quaternion());
-            Cockroach cockroachScript = newCockroach.GetComponent<Cockroach>();
-            cockroachScript.m_spawner = this;
-            cockroachScript.m_king = m_king;
-            cockroachScript.m_height = m_spawnHeight;
+            NavMeshHit hit = new NavMeshHit();
+            if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
+            {
+                // Allocate values for the enemy
+                GameObject newCockroach = Instantiate(m_cockroachPrefab, hit.position, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
+                Cockroach cockroachScript = newCockroach.GetComponent<Cockroach>();
+                cockroachScript.m_spawner = this;
+                cockroachScript.m_king = m_king;
 
-            m_enemies.Add(cockroachScript);
-            m_cockroachToSpawn--;
-            m_enemySpawned++;
+                m_enemies.Add(cockroachScript);
+                m_cockroachToSpawn--;
+                m_enemySpawned++;
+            }
         }
 	}
 
