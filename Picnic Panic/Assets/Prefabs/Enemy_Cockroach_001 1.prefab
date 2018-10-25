@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 54165185743802066}
   - component: {fileID: 65099116772728096}
   - component: {fileID: 114091296816139982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy_Cockroach_001 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,12 +141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c47ae3bbf14ab47aca72fd38ae9895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 10
-  m_speed: 5
+  m_maxHealth: 1
+  m_speed: 3
   m_attackSpeed: 1
   m_attackDamage: 10
   m_knockBackDistance: 500
-  m_attackDistance: 1
+  m_attackDistance: 2
   m_attackRadius: 0.2
   m_agroRange: 5
   m_height: 0
