@@ -22,13 +22,11 @@ public class PlayerSelect : MonoBehaviour
 
     private XboxController[] m_controllers;
     private KeyCode[] m_testButtons;
-    private bool[] m_ready;
     private List<Player> m_players;
     private List<int> m_playerOrder;
 	// Use this for initialization
 	void Start ()
     {
-        m_ready = new bool[4];
         m_players = new List<Player>();
         m_playerOrder = new List<int>();
 
@@ -72,32 +70,16 @@ public class PlayerSelect : MonoBehaviour
                 // if the controller has not already joined
                 if (!m_playerOrder.Contains(i))
                 {
-                    m_playerSlots[m_playerOrder.Count].text = "PRESS (A) TO READY";
+                    m_playerSlots[m_playerOrder.Count].text = "READY";
                     m_playerJoin[m_playerOrder.Count].enabled = false;
                     m_playerOrder.Add(i); // add the current controller to the player list
                     m_startGame.enabled = false;
                 }
-                else
-                {
-                    // ready up
-                    m_ready[m_playerOrder.IndexOf(i)] = true;
-                    m_playerSlots[m_playerOrder.IndexOf(i)].text = "READY";
-                }
-            }
-        }
-
-        int selected = m_playerOrder.Count;
-        int ready = 0;
-        for (int i = 0; i < 4; i++)
-        {
-            if (m_ready[i])
-            {
-                ready++;
             }
         }
 
         // if the players have joined and have readied up
-        if (selected != 0 && selected == ready)
+        if (m_playerOrder.Count != 0)
         {
             m_startGame.enabled = true;
 
