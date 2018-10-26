@@ -3608,8 +3608,8 @@ MonoBehaviour:
   m_spanwer: {fileID: 1211538502}
   m_endGame: {fileID: 192229825}
   m_restartButton: {fileID: 1221313505}
-  m_audioSource: {fileID: 0}
-  m_gameMusic: {fileID: 0}
+  m_audioSource: {fileID: 1317556256}
+  m_gameMusic: {fileID: 8300000, guid: df2fb2628c860394e9d5e63540217ba3, type: 3}
   m_enemyCounter: {fileID: 967338274}
 --- !u!224 &1114299479
 RectTransform:
@@ -6963,6 +6963,16 @@ Prefab:
       propertyPath: m_Colors.m_HighlightedColor.b
       value: 0.45588237
       objectReference: {fileID: 0}
+    - target: {fileID: 114368256418147228, guid: 2d3526ab6fc487140b3e1684b69d3f72,
+        type: 2}
+      propertyPath: m_audioSource
+      value: 
+      objectReference: {fileID: 1317556256}
+    - target: {fileID: 114368256418147228, guid: 2d3526ab6fc487140b3e1684b69d3f72,
+        type: 2}
+      propertyPath: m_lobbyMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 6515aae466a0f9146838aa8182c9f29b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
   m_IsPrefabParent: 0
