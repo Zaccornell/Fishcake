@@ -43,6 +43,7 @@ public class Player : MovingActor
     public AudioClip[] m_playerDash;
     public AudioSource m_audioSource;
     public Text m_dashStrengthDisplay;
+    public Text m_playerNumberDisplay;
 
 
     private XboxController m_controller;
@@ -135,14 +136,12 @@ public class Player : MovingActor
 
         if (m_dashing)
         {
-            m_dashStrengthDisplay.text = m_dashStrength.ToString("#.0#");
-            
+            m_dashStrengthDisplay.text = m_dashStrength.ToString("#.0#");            
         }
 
         // Attack
         if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) != 0 || XCI.GetButtonDown(XboxButton.A, m_controller)) && m_attackTimer <= 0)
         {
-
             if (m_attackPressed == false)
             {
                 Vector3 height = transform.position;
@@ -176,7 +175,6 @@ public class Player : MovingActor
                         AttackHit = true;
                         if (!current.GetComponent<MovingActor>().Alive)
                         {
-
                             m_killCount++; // adding a plus one to kill count 
                             if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
                             {
@@ -188,7 +186,7 @@ public class Player : MovingActor
                             }
                         }     
                     }
-                    if (m_friendlyFire && current.tag == "Player")
+                    if (m_friendlyFire && current != gameObject && current.tag == "Player")
                     {
                         current.GetComponent<Player>().TakeDamage(m_attackDamage, this);
                     }
@@ -217,6 +215,8 @@ public class Player : MovingActor
             m_facing.material.color = new Color(1, 1, 1);
             m_canAttack = true;
         }
+
+
 
         if (m_invulTimer <= 0)
         {
@@ -401,4 +401,8 @@ public class Player : MovingActor
         }
     }
 
+    public void DisplayPlayerNumber()
+    {
+        m_playerNumberDisplay.text = m_playerNumber.ToString();
+    }
 }
