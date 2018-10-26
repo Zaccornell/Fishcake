@@ -48,7 +48,14 @@ public class HUD : MonoBehaviour
         }
 
         m_kingDisplay.text = m_king.Health.ToString();
-
+      
+        if (!m_audioSource.isPlaying)
+        {
+            m_audioSource.loop = true;
+            m_audioSource.clip = m_gameMusic;
+            m_audioSource.Play();
+        }
+        
         m_displayTimer.text = (Mathf.Ceil(m_spanwer.RoundTimer)).ToString(); // displays timer onto the HUD
         m_enemyCounter.text = (m_spanwer.EnemyTotal).ToString();// displays the amount of enemies left to spawn and spawned
        

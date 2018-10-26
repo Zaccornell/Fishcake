@@ -334,6 +334,7 @@
     <Compile Include="Assets\scripts\Enemy\EnemyAttackKing.cs" />
     <Compile Include="Assets\scripts\Enemy\EnemyAttackPlayer.cs" />
     <Compile Include="Assets\scripts\Enemy\EnemyState.cs" />
+    <Compile Include="Assets\scripts\FaceCamera.cs" />
     <Compile Include="Assets\scripts\KillZone.cs" />
     <Compile Include="Assets\scripts\MovingActor.cs" />
     <Compile Include="Assets\scripts\PieKing.cs" />

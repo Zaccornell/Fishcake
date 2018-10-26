@@ -107,6 +107,20 @@ public class PauseMenu : MonoBehaviour
      */
     private void ToggleObjects()
     {
+        if (m_active)
+        {
+            m_hud.m_audioSource.loop = false;
+            m_hud.m_audioSource.Stop();
+        }
+        else
+        {
+            if (m_lobbyMusic != null)
+            {
+                m_audioSource.loop = true;
+                m_audioSource.clip = m_lobbyMusic;
+                m_audioSource.Play();
+            }
+        }
         foreach (Player current in m_players)
         {
             XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 

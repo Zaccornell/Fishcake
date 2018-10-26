@@ -106,8 +106,18 @@ public class Enemy : MovingActor
         if (m_alive)
         {
             m_health -= damage;
+          
             if (m_health <= 0)
             {
+                if (m_enemyDeath.Length > 0)
+                {
+                    int index = Random.Range(0, m_enemyDeath.Length);
+                    if (m_enemyDeath[index] != null)
+                    {
+                        m_audioSource.PlayOneShot(m_enemyDeath[index]);
+
+                    }
+                }
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
                 Destroy(gameObject);

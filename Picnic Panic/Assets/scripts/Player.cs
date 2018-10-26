@@ -123,7 +123,15 @@ public class Player : MovingActor
                 Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrength * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                 m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                 m_dashTimer = m_dashCooldown;
-                m_audioSource.PlayOneShot(m_playerDash[Random.Range(0, m_playerDash.Length)]);
+                if (m_playerDash.Length > 0)
+                {
+                    int index = Random.Range(0, m_playerDash.Length);
+                    if (m_playerDash[index] != null)
+                    {
+                        m_audioSource.PlayOneShot(m_playerDash[index]);
+                    }
+                }
+               
 
                 m_invulTimer = m_invulLength;
                 Physics.IgnoreLayerCollision(8, 9, true);
@@ -146,7 +154,7 @@ public class Player : MovingActor
             {
                 Vector3 height = transform.position;
                 height.y += m_attackHeightOffset;
-                m_audioSource.PlayOneShot(m_playerAttack[Random.Range(0, m_playerAttack.Length)]);
+                //m_audioSource.PlayOneShot(m_playerAttack[Random.Range(0, m_playerAttack.Length)]);
                 Collider[] hits = Physics.OverlapSphere(height + transform.forward * m_attackDistance, m_attackRadius);
                 List<GameObject> targets = new List<GameObject>();   
                 
@@ -171,7 +179,9 @@ public class Player : MovingActor
                 {
                     if (current.tag == "Enemy")
                     {
-                        current.GetComponent<MovingActor>().TakeDamage(m_attackDamage, this);
+                      
+                         current.GetComponent<MovingActor>().TakeDamage(m_attackDamage, this);
+                      
                         AttackHit = true;
                         if (!current.GetComponent<MovingActor>().Alive)
                         {
@@ -188,16 +198,34 @@ public class Player : MovingActor
                     }
                     if (m_friendlyFire && current != gameObject && current.tag == "Player")
                     {
+                    
                         current.GetComponent<Player>().TakeDamage(m_attackDamage, this);
                     }
                 }
                 if (AttackHit)
                 {
-                    m_audioSource.PlayOneShot(m_hitAttacks[Random.Range(0, m_hitAttacks.Length)]);
+                    if (m_hitAttacks.Length > 0)
+                    {
+                        int index = Random.Range(0, m_hitAttacks.Length);
+                        if (m_hitAttacks[index] != null)
+                        {
+                            m_audioSource.PlayOneShot(m_hitAttacks[index]);
+
+                        }
+                    }
+                   
                 }
                 else
                 {
-                    m_audioSource.PlayOneShot(m_missAttacks[Random.Range(0, m_missAttacks.Length)]);
+                    if (m_missAttacks.Length > 0)
+                    {
+                        int index = Random.Range(0, m_missAttacks.Length);
+                        if (m_missAttacks[index] != null)
+                        {
+                            m_audioSource.PlayOneShot(m_missAttacks[index]);
+
+                        }
+                    }  
                 }
                 
                 m_facing.material.color = new Color(1, 0, 0);
@@ -263,7 +291,16 @@ public class Player : MovingActor
             if (m_invulTimer <= 0)
             {
                 m_health -= damage;
-                m_audioSource.PlayOneShot(m_playerDamage[Random.Range(0, m_playerDamage.Length)]);
+                if (m_playerDamage.Length > 0)
+                {
+                    int index = Random.Range(0, m_playerDamage.Length);
+                    if (m_playerDamage[index] != null)
+                    {
+                        m_audioSource.PlayOneShot(m_playerDamage[index]);
+
+                    }
+                }
+               
                 if (PlayerOptions.Instance.m_vibrationToggle)
                 {
                      GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 100, 100); //. set the vibration stregnth 

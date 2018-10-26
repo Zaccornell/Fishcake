@@ -40,9 +40,13 @@ public class PlayerSelect : MonoBehaviour
         m_hud.enabled = false;
         m_pauseMenu.enabled = false;
         m_camera.enabled = false;
-        m_audioSource.clip = m_lobbyMusic;
-        m_audioSource.loop = true;
-        m_audioSource.Play();
+        if (m_lobbyMusic != null)
+        {
+            m_audioSource.clip = m_lobbyMusic;
+            m_audioSource.loop = true;
+            m_audioSource.Play();
+         
+        }
 
         m_testButtons = new KeyCode[4];
         m_testButtons[0] = KeyCode.H;
@@ -127,7 +131,11 @@ public class PlayerSelect : MonoBehaviour
                 m_hud.gameObject.SetActive(true);
                 m_audioSource.loop = false;
                 m_audioSource.Stop();
-                m_audioSource.PlayOneShot(m_roundStart);
+                if (m_roundStart != null)
+                {
+                    m_audioSource.PlayOneShot(m_roundStart);
+
+                }
                 this.enabled = false;
                 gameObject.SetActive(false);
             }
