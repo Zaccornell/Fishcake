@@ -28,6 +28,7 @@ public class Player : MovingActor
     public float m_360Cooldown;
     public float m_heavyAttackCooldown;
     public int m_heavyAttackDamage;
+    public bool m_attacksNeedPlayer;
     public float m_invulLength;
     public Renderer m_facing;
     public int m_playerNumber;
@@ -263,7 +264,7 @@ public class Player : MovingActor
         {
             if (m_360Timer <= 0)
             {
-                bool playerInRange = true;
+                bool playerInRange = !m_attacksNeedPlayer;
                 Collider[] hits = Physics.OverlapSphere(transform.position, m_360PlayerDistance);
                 foreach (Collider hit in hits)
                 {
@@ -276,8 +277,8 @@ public class Player : MovingActor
                 if (playerInRange)
                 {
                     m_animator.SetTrigger("360 Attack");
+                    m_360Timer = m_360Cooldown;
                 }
-                m_360Timer = m_360Cooldown;
             }
         }
 
@@ -286,8 +287,21 @@ public class Player : MovingActor
         {
             if (m_heavyAttackTimer <= 0)
             {
-                m_animator.SetTrigger("Heavy Attack");
-                m_heavyAttackTimer = m_heavyAttackCooldown;
+                bool playerInRange = !m_attacksNeedPlayer;
+                Collider[] hits = Physics.OverlapSphere(transform.position, m_360PlayerDistance);
+                foreach (Collider hit in hits)
+                {
+                    if (hit.gameObject.tag == "Player" && hit.gameObject != gameObject)
+                    {
+                        playerInRange = true;
+                    }
+                }
+
+                if (playerInRange)
+                {
+                    m_animator.SetTrigger("Heavy Attack");
+                    m_heavyAttackTimer = m_heavyAttackCooldown;
+                }
             }
         }
 
