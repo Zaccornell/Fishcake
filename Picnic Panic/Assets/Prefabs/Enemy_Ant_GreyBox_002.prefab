@@ -240,11 +240,14 @@ MonoBehaviour:
   m_attackDistance: 1
   m_attackRadius: 0.2
   m_agroRange: 5
-  m_height: 0
+  m_height: -0.1
   m_players: []
   m_king: {fileID: 0}
   m_spawner: {fileID: 0}
   m_target: {fileID: 0}
+  m_audioSource: {fileID: 0}
+  m_enemyDeath:
+  - {fileID: 8300000, guid: bc1ea760e32485b4da15dd8186fc828f, type: 3}
 --- !u!135 &135081656737270012
 SphereCollider:
   m_ObjectHideFlags: 1
