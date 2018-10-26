@@ -10,11 +10,11 @@ public class PlayerNumberDisplay : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        m_text = GetComponentInChildren<Text>();	
+        m_text = GetComponent<Text>();	
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
         Color color = m_text.color;
         color.a -= 0.005f;

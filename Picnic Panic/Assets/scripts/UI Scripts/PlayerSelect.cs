@@ -64,8 +64,6 @@ public class PlayerSelect : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
-        
         for (int i = 0; i < 4; i++)
         {
             // when a controller presses the join button
@@ -99,6 +97,8 @@ public class PlayerSelect : MonoBehaviour
                     playerScript.m_playerNumber = m_playerOrder[i] + 1;
                     playerScript.m_hud = m_hud;
                     playerScript.m_audioSource = m_audioSource;
+
+                    playerScript.DisplayPlayerNumber();
 
                     m_players.Add(playerScript);                    
                 }

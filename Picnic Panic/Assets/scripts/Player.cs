@@ -24,6 +24,10 @@ public class Player : MovingActor
     public float m_attackDistance;
     public float m_attackRadius;
     public float m_attackHeightOffset;
+    public float m_360PlayerDistance;
+    public float m_360Cooldown;
+    public float m_heavyAttackCooldown;
+    public int m_heavyAttackDamage;
     public float m_invulLength;
     public Renderer m_facing;
     public int m_playerNumber;
@@ -56,6 +60,9 @@ public class Player : MovingActor
     private float m_vibrationTimer;
     private bool m_vibrationToggle;
     private int m_killCount;
+    private float m_360Timer;
+    private float m_heavyAttackTimer;
+    private Animator m_animator;
 
     private bool m_dashing;
     private float m_dashStrength;
@@ -73,10 +80,13 @@ public class Player : MovingActor
     void Start ()
     {
         m_rigidBody = GetComponent<Rigidbody>();
+        m_animator = GetComponent<Animator>();
         m_movement = new Vector3();
         m_health = m_maxHealth;
         m_alive = true;
         m_dashStrength = m_dashStrengthMin;
+        m_360Timer = m_360Cooldown;
+        m_heavyAttackTimer = m_heavyAttackCooldown;
 
         m_controller = (XboxController)m_playerNumber;
     }
@@ -89,6 +99,8 @@ public class Player : MovingActor
         m_attackTimer -= Time.deltaTime;
         m_knockbackTimer -= Time.deltaTime;
         m_invulTimer -= Time.deltaTime;
+        m_360Timer -= Time.deltaTime;
+        m_heavyAttackTimer -= Time.deltaTime;
 
         m_movement.z = XCI.GetAxisRaw(XboxAxis.LeftStickY, m_controller);
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
@@ -144,7 +156,7 @@ public class Player : MovingActor
 
         if (m_dashing)
         {
-            m_dashStrengthDisplay.text = m_dashStrength.ToString("#.0#");            
+            m_dashStrengthDisplay.text = m_dashStrength.ToString("#.0");            
         }
 
         // Attack
@@ -152,6 +164,8 @@ public class Player : MovingActor
         {
             if (m_attackPressed == false)
             {
+                m_animator.SetTrigger("Attack Pressed");
+
                 Vector3 height = transform.position;
                 height.y += m_attackHeightOffset;
                 //m_audioSource.PlayOneShot(m_playerAttack[Random.Range(0, m_playerAttack.Length)]);
@@ -244,7 +258,38 @@ public class Player : MovingActor
             m_canAttack = true;
         }
 
+        // 360 attack
+        if (XCI.GetButtonDown(XboxButton.B, m_controller))
+        {
+            if (m_360Timer <= 0)
+            {
+                bool playerInRange = true;
+                Collider[] hits = Physics.OverlapSphere(transform.position, m_360PlayerDistance);
+                foreach (Collider hit in hits)
+                {
+                    if (hit.gameObject.tag == "Player" && hit.gameObject != gameObject)
+                    {
+                        playerInRange = true;
+                    }
+                }
 
+                if (playerInRange)
+                {
+                    m_animator.SetTrigger("360 Attack");
+                }
+                m_360Timer = m_360Cooldown;
+            }
+        }
+
+        // Heavy attack
+        if (XCI.GetButtonDown(XboxButton.RightBumper, m_controller))
+        {
+            if (m_heavyAttackTimer <= 0)
+            {
+                m_animator.SetTrigger("Heavy Attack");
+                m_heavyAttackTimer = m_heavyAttackCooldown;
+            }
+        }
 
         if (m_invulTimer <= 0)
         {
@@ -265,14 +310,17 @@ public class Player : MovingActor
         m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
 
         Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX, m_controller), 0, XCI.GetAxis(XboxAxis.RightStickY, m_controller));
-
-        if (functional.magnitude > 0)
+        AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
+        if (state.IsName("Entry") || state.IsName("Attack"))
         {
-            m_rigidBody.rotation = Quaternion.LookRotation(functional.normalized);
-        }
-        else if (m_movement.magnitude > 0)
-        {
-            m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
+            if (functional.magnitude > 0)
+            {
+                m_rigidBody.rotation = Quaternion.LookRotation(functional.normalized);
+            }
+            else if (m_movement.magnitude > 0)
+            {
+                m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
+            }
         }
     }
 
@@ -441,5 +489,21 @@ public class Player : MovingActor
     public void DisplayPlayerNumber()
     {
         m_playerNumberDisplay.text = m_playerNumber.ToString();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
+            if (state.IsName("Heavy Attack"))
+            {
+                other.gameObject.GetComponent<MovingActor>().TakeDamage(m_heavyAttackDamage, this);
+            }
+            else
+            {
+                other.gameObject.GetComponent<MovingActor>().TakeDamage(m_attackDamage, this);
+            }
+        }
     }
 }

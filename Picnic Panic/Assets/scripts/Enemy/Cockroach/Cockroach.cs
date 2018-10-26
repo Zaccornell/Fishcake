@@ -65,7 +65,7 @@ public class Cockroach : MovingActor
             m_pathIndex = 0;
             for (int i = 0; i < m_path.corners.Length; i++)
             {
-                m_path.corners[i].y = m_height;
+                m_path.corners[i].y = transform.position.y;
             }
         }
         m_updatePath--;

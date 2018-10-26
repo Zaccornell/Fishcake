@@ -311,8 +311,8 @@ public class Spawner : MonoBehaviour
     public void ResetValues()
     {
         m_currentRound = 0;
-        m_antToSpawn += m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
-        m_cockroachToSpawn += m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
+        m_antToSpawn = m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
+        m_cockroachToSpawn = m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
         m_roundTimer = m_roundLength;
         m_enemySpawned = 0;
         CalculateDelay();
