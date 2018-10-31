@@ -558,14 +558,22 @@ public class Player : MovingActor
     {
         if (other.gameObject.tag == "Enemy")
         {
-            AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
-            if (state.IsName("Heavy Attack"))
+            MovingActor enemy = other.gameObject.GetComponent<MovingActor>();
+            if (enemy != null)
             {
-                other.gameObject.GetComponent<MovingActor>().TakeDamage(m_heavyAttackDamage, this);
-            }
-            else
-            {
-                other.gameObject.GetComponent<MovingActor>().TakeDamage(m_attackDamage, this);
+                enemy.TakeDamage(m_attackDamage, this);
+                if (!enemy.Alive)
+                {
+                    m_killCount++; // adding a plus one to kill count 
+                    if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
+                    {
+                        m_killCount = m_neededKills; // setting the kill count to the max amount
+                    }
+                    if (m_killCount >= m_neededKills)
+                    {
+                        m_healParticles.Play();
+                    }
+                }
             }
         }
     }
