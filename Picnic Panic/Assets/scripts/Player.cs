@@ -20,7 +20,6 @@ public class Player : MovingActor
     public float m_dashStrengthMax;
     public float m_timeToFull;
     public float m_dashCooldown;
-    public bool m_friendlyFire;
     public float m_attackDistance;
     public float m_attackRadius;
     public float m_attackHeightOffset;
@@ -46,6 +45,7 @@ public class Player : MovingActor
     public AudioClip[] m_playerDamage;
     public AudioClip[] m_playerAttack;
     public AudioClip[] m_playerDash;
+    public AudioClip[] m_playerFall;
     public AudioSource m_audioSource;
     public Text m_dashStrengthDisplay;
     public Text m_playerNumberDisplay;
@@ -88,6 +88,7 @@ public class Player : MovingActor
         m_dashStrength = m_dashStrengthMin;
         m_360Timer = m_360Cooldown;
         m_heavyAttackTimer = m_heavyAttackCooldown;
+        
 
         m_controller = (XboxController)m_playerNumber;
     }
@@ -211,7 +212,7 @@ public class Player : MovingActor
                             }
                         }     
                     }
-                    if (m_friendlyFire && current != gameObject && current.tag == "Player")
+                    if (PlayerOptions.Instance.m_firendlyFire && current != gameObject && current.tag == "Player")
                     {
                     
                         current.GetComponent<Player>().TakeDamage(m_attackDamage, this);
@@ -468,6 +469,15 @@ public class Player : MovingActor
             }
             if (m_health <= 0)
             {
+                if (m_playerFall.Length > 0)
+                {
+                    int index = Random.Range(0, m_playerFall.Length);
+                    if (m_playerFall[index] != null)
+                    {
+                        m_audioSource.PlayOneShot(m_playerFall[index]);
+
+                    }
+                }
                 m_healParticles.Stop(); // stop particles 
                 m_health = 0;
                 m_alive = false;

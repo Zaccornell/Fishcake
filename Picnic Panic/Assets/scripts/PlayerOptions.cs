@@ -16,6 +16,7 @@ public class PlayerOptions
     public bool m_cutsceneToggle;
     public float m_SFX;
     public float m_music;
+    public bool m_firendlyFire;
 
 
 	public PlayerOptions()

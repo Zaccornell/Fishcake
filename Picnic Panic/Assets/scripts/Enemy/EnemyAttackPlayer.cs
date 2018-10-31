@@ -133,8 +133,21 @@ public class EnemyAttackPlayer : EnemyState
             {
                 foreach (Actor player in m_players)
                 {
-                    if (player.gameObject == current.gameObject)
-                        Attack(player, m_attackDamage);
+                    if (m_owner.m_enemyAttack.Length > 0)
+                    {
+
+
+                        if (player.gameObject == current.gameObject)
+                        {
+                            int index = Random.Range(0, m_owner.m_enemyAttack.Length);
+                            if (m_owner.m_enemyAttack[index] != null)
+                            {
+                                m_owner.m_audioSource.PlayOneShot(m_owner.m_enemyAttack[index]);
+
+                            }
+                            Attack(player, m_attackDamage);
+                        }
+                    }
                 }
             }
             m_attackTimer = m_attackSpeed;

@@ -10,6 +10,7 @@ public class OptionMenu : MonoBehaviour
     public Toggle m_invul;
     public PlayerOptions m_pOp;
     public Toggle m_vibration;
+    public Toggle m_friendlyFire;
 
 
     // Use this for initialization
@@ -24,6 +25,7 @@ public class OptionMenu : MonoBehaviour
 	void Update ()
     {
 
+        m_pOp.m_invulToggle = m_friendlyFire.isOn;
         m_pOp.m_invulToggle = m_invul.isOn;
         m_pOp.m_vibrationToggle = m_vibration.isOn;
 

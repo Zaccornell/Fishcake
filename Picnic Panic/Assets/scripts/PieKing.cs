@@ -28,11 +28,17 @@ public class PieKing : Actor
     // calling from another source to damage the king
     public override void TakeDamage(int damage, Actor attacker)
     {
-        m_health -= damage; // taking damage 
-        m_shake.StartShake();
-        if (m_health < 0)
-        {
-            m_health = 0;
+		if (!PlayerOptions.Instance.m_invulToggle)
+		{
+        	m_health -= damage; // taking damage 
+			m_shake.StartShake();
+		}
+        if (m_health < 0)        {
+            m_health -= damage; // taking damage 
+            if (m_health < 0)
+            {
+                m_health = 0;
+            }
         }
     }
 

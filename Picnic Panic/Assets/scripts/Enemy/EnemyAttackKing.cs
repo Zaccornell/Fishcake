@@ -82,6 +82,17 @@ public class EnemyAttackKing : EnemyState
             {
                 if (current.gameObject == m_target.gameObject)
                 {
+                    if (m_owner.m_enemyAttack.Length > 0)
+                    {
+
+
+                        int index = Random.Range(0, m_owner.m_enemyAttack.Length);
+                        if (m_owner.m_enemyAttack[index] != null)
+                        {
+                            m_owner.m_audioSource.PlayOneShot(m_owner.m_enemyAttack[index]);
+
+                        }
+                    }
                     m_target.TakeDamage(10, m_owner);
                     m_attackTimer = m_attackSpeed;
                 }

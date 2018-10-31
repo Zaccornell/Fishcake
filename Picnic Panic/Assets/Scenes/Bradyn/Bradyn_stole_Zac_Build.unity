@@ -4024,6 +4024,10 @@ Prefab:
       propertyPath: m_lobbyMusic
       value: 
       objectReference: {fileID: 8300000, guid: 6515aae466a0f9146838aa8182c9f29b, type: 3}
+    - target: {fileID: 1176828381412366, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
   m_IsPrefabParent: 0

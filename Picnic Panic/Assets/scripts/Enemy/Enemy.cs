@@ -20,6 +20,8 @@ public class Enemy : MovingActor
     [HideInInspector] public NavMeshPath m_path = null;
     public AudioSource m_audioSource;
     public AudioClip[] m_enemyDeath;
+    public AudioClip[] m_enemyFall;
+    public AudioClip[] m_enemyAttack;
 
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
@@ -28,6 +30,7 @@ public class Enemy : MovingActor
     private EnemyAttackKing m_attackKing;
     private int m_stateIndex;
     private int m_areaMask;
+
 
     // Use this for initialization
     void Start()
@@ -151,6 +154,17 @@ public class Enemy : MovingActor
         m_health -= damage;
         if (m_health <= 0)
         {
+            if (m_enemyFall.Length > 0)
+            {
+
+
+                int index = Random.Range(0, m_enemyFall.Length);
+                if (m_enemyFall[index] != null)
+                {
+                    m_audioSource.PlayOneShot(m_enemyFall[index]);
+
+                }
+            }
             m_spawner.EnemyDeath(this);
             m_alive = false;
             Destroy(gameObject);
