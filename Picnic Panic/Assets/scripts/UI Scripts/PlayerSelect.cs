@@ -46,8 +46,7 @@ public class PlayerSelect : MonoBehaviour
         {
             m_audioSource.clip = m_lobbyMusic;
             m_audioSource.loop = true;
-            m_audioSource.Play();
-         
+            m_audioSource.Play();         
         }
 
         m_testButtons = new KeyCode[4];

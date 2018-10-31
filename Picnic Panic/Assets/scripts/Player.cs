@@ -20,6 +20,7 @@ public class Player : MovingActor
     public float m_dashStrengthMax;
     public float m_timeToFull;
     public float m_dashCooldown;
+    public bool m_instantDash;
     public float m_attackDistance;
     public float m_attackRadius;
     public float m_attackHeightOffset;
@@ -114,46 +115,72 @@ public class Player : MovingActor
             Playerheal();
         }
 
-        // When dash button is pressed        
-        if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
+        if (m_instantDash)
         {
-            m_dashing = true;
-            m_dashStrengthDisplay.enabled = true;
-        }
-        // when dash button is held
-        if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1)
-        {
-            m_dashStrength += (Time.deltaTime / m_timeToFull) * (m_dashStrengthMax - m_dashStrengthMin);
-            if (m_dashStrength > m_dashStrengthMax)
+            if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
             {
-                m_dashStrength = m_dashStrengthMax;
-            }
-        }
-        // when dash button is let go
-        if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 0)
-        {
-            if (m_movement.magnitude != 0)
-            {
-                Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrength * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
-                m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
-                m_dashTimer = m_dashCooldown;
-                if (m_playerDash.Length > 0)
+                if (m_movement.magnitude != 0)
                 {
-                    int index = Random.Range(0, m_playerDash.Length);
-                    if (m_playerDash[index] != null)
+                    Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrengthMax * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+                    m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
+                    m_dashTimer = m_dashCooldown;
+                    if (m_playerDash.Length > 0)
                     {
-                        m_audioSource.PlayOneShot(m_playerDash[index]);
+                        int index = Random.Range(0, m_playerDash.Length);
+                        if (m_playerDash[index] != null)
+                        {
+                            m_audioSource.PlayOneShot(m_playerDash[index]);
+                        }
                     }
+
+                    m_invulTimer = m_invulLength;
+                    Physics.IgnoreLayerCollision(8, 9, true);
                 }
-               
-
-                m_invulTimer = m_invulLength;
-                Physics.IgnoreLayerCollision(8, 9, true);
             }
+        }
+        else
+        {
+            // When dash button is pressed        
+            if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
+            {
+                m_dashing = true;
+                m_dashStrengthDisplay.enabled = true;
+            }
+            // when dash button is held
+            if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1)
+            {
+                m_dashStrength += (Time.deltaTime / m_timeToFull) * (m_dashStrengthMax - m_dashStrengthMin);
+                if (m_dashStrength > m_dashStrengthMax)
+                {
+                    m_dashStrength = m_dashStrengthMax;
+                }
+            }
+            // when dash button is let go
+            if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 0)
+            {
+                if (m_movement.magnitude != 0)
+                {
+                    Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrength * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
+                    m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
+                    m_dashTimer = m_dashCooldown;
+                    if (m_playerDash.Length > 0)
+                    {
+                        int index = Random.Range(0, m_playerDash.Length);
+                        if (m_playerDash[index] != null)
+                        {
+                            m_audioSource.PlayOneShot(m_playerDash[index]);
+                        }
+                    }
 
-            m_dashing = false;
-            m_dashStrength = m_dashStrengthMin;
-            m_dashStrengthDisplay.enabled = false;
+
+                    m_invulTimer = m_invulLength;
+                    Physics.IgnoreLayerCollision(8, 9, true);
+                }
+
+                m_dashing = false;
+                m_dashStrength = m_dashStrengthMin;
+                m_dashStrengthDisplay.enabled = false;
+            }
         }
 
         if (m_dashing)
