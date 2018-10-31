@@ -33,29 +33,41 @@ public class PauseMenu : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (!m_optionOpen)
+		if (Input.GetKeyDown(KeyCode.Escape))
         {
-		    if (Input.GetKeyDown(KeyCode.Escape))
+            ToggleObjects();
+        }
+        for (int i = 1; i <= 4; i++)
+        {
+            if (XCI.GetButtonDown(XboxButton.Start, (XboxController)i))
             {
-                 ToggleObjects();
-            }
-            for (int i = 1; i <= 3; i++)
-            {
-                if (XCI.GetButtonDown(XboxButton.Start, (XboxController)i))
+                ToggleObjects();
+                if (m_active)
                 {
-                    ToggleObjects();
-                    if (m_active)
-                    {
-                        m_inputModule.m_controller = (XboxController)i;
-                    }
-                    else
-                    {
-                        m_inputModule.m_controller = XboxController.All;
-                    }
+                    m_inputModule.m_controller = (XboxController)i;
+                }
+                else
+                {
+                    m_inputModule.m_controller = XboxController.All;
                 }
             }
-
         }
+        
+        if (m_active)
+        {
+            if (XCI.GetButtonDown(XboxButton.B, m_inputModule.m_controller))
+            {
+                if (m_optionOpen)
+                {
+                    BackButton();
+                }
+                else
+                {
+                    ToggleObjects();
+                }
+            }
+        }
+
         if (m_active) // if Puase Menu is up will ...
         {
             Cursor.lockState = CursorLockMode.None; // unlock cursor
@@ -81,7 +93,6 @@ public class PauseMenu : MonoBehaviour
         foreach (Player current in m_players)
         {
             XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
-
         }
     }
 
@@ -130,6 +141,10 @@ public class PauseMenu : MonoBehaviour
         {
             child.SetActive(!m_active);
         }
+        foreach (GameObject opchild in m_optionMenu)
+        {
+            opchild.SetActive(false);
+        }
         foreach (MovingActor current in m_spawner.m_enemies)
         {
             current.enabled = m_active;
@@ -161,16 +176,15 @@ public class PauseMenu : MonoBehaviour
     {
         foreach (GameObject child in m_children)
         {
-            child.SetActive(!m_active);
+            child.SetActive(false);
         }
         foreach (GameObject opchild in m_optionMenu)
         {
-            opchild.SetActive(m_active);
+            opchild.SetActive(true);
         }
 
         m_backButton.Select();
         m_optionOpen = true;
-
     }
 
     /*
@@ -180,11 +194,11 @@ public class PauseMenu : MonoBehaviour
     {
         foreach (GameObject child in m_children)
         {
-            child.SetActive(m_active);
+            child.SetActive(true);
         }
         foreach (GameObject opchild in m_optionMenu)
         {
-            opchild.SetActive(!m_active);
+            opchild.SetActive(false);
         }
         m_resumeButton.Select();
         m_optionOpen = false;

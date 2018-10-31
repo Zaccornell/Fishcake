@@ -17,9 +17,7 @@ public class OptionMenu : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        m_pOp = PlayerOptions.Instance;
-        
-
+        m_pOp = PlayerOptions.Instance;  
 	}
 	
 	// Update is called once per frame
