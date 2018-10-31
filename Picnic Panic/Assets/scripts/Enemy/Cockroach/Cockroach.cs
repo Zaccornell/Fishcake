@@ -101,11 +101,14 @@ public class Cockroach : MovingActor
             m_health -= damage;
             if (m_health <= 0)
             {
-                int index = Random.Range(0, m_enemyDeath.Length);
-                if (m_enemyDeath[index] != null)
+                if (m_enemyDeath.Length > 0)
                 {
-                    m_audioSource.PlayOneShot(m_enemyDeath[index]); // play sound at random in array 
+                    int index = Random.Range(0, m_enemyDeath.Length);
+                    if (m_enemyDeath[index] != null)
+                    {
+                        m_audioSource.PlayOneShot(m_enemyDeath[index]); // play sound at random in array 
 
+                    }
                 }
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
