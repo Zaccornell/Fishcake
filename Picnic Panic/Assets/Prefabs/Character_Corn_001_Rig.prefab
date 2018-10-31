@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 136469624653723556}
   m_Layer: 0
   m_Name: Character_Corn_001_Rig
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1322,7 +1322,6 @@ MonoBehaviour:
   m_dashStrengthMax: 10
   m_timeToFull: 2
   m_dashCooldown: 1
-  m_friendlyFire: 0
   m_attackDistance: 0
   m_attackRadius: 0
   m_attackHeightOffset: 0.666
@@ -1355,6 +1354,7 @@ MonoBehaviour:
   m_playerAttack: []
   m_playerDash:
   - {fileID: 8300000, guid: e39875dec0be4ef42baea5c70f94b369, type: 3}
+  m_playerFall: []
   m_audioSource: {fileID: 0}
   m_dashStrengthDisplay: {fileID: 114429007795080662}
   m_playerNumberDisplay: {fileID: 114361730665556422}
