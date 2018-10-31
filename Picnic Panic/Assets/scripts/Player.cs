@@ -337,7 +337,7 @@ public class Player : MovingActor
 
         Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX, m_controller), 0, XCI.GetAxis(XboxAxis.RightStickY, m_controller));
         AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
-        if (state.IsName("Entry") || state.IsName("Attack"))
+        if (state.IsName("Character_Idle_001_ANIM") || state.IsName("Character_Attack_001_ANIM"))
         {
             if (functional.magnitude > 0)
             {
