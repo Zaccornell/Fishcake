@@ -24,11 +24,13 @@ public class PlayerSelect : MonoBehaviour
     private KeyCode[] m_testButtons;
     private List<Player> m_players;
     private List<int> m_playerOrder;
+    private List<int> m_characterIndex;
 	// Use this for initialization
 	void Start ()
     {
         m_players = new List<Player>();
         m_playerOrder = new List<int>();
+        m_characterIndex = new List<int>();
 
         m_hud.gameObject.SetActive(false);
 
@@ -72,11 +74,33 @@ public class PlayerSelect : MonoBehaviour
                 // if the controller has not already joined
                 if (!m_playerOrder.Contains(i))
                 {
-                    m_playerSlots[m_playerOrder.Count].text = "READY";
+                    m_playerSlots[m_playerOrder.Count].text = i.ToString();
                     m_playerJoin[m_playerOrder.Count].enabled = false;
                     m_playerOrder.Add(i); // add the current controller to the player list
+                    m_characterIndex.Add(i);
                     m_startGame.enabled = false;
                 }
+            }
+        }
+
+        
+        foreach (int current in m_playerOrder)
+        {
+            if (XCI.GetButtonDown(XboxButton.DPadUp, m_controllers[current]))
+            {
+                if ((m_characterIndex[current] += 1) > m_playerPrefabs.Length - 1)
+                {
+                    m_characterIndex[current] = 0;
+                }
+                m_playerSlots[current].text = m_characterIndex[current].ToString();
+            }
+            if (XCI.GetButtonDown(XboxButton.DPadDown, m_controllers[current]))
+            {
+                if ((m_characterIndex[current] -= 1) < 0)
+                {
+                    m_characterIndex[current] = m_playerPrefabs.Length - 1;                    
+                }
+                m_playerSlots[current].text = m_characterIndex[current].ToString();
             }
         }
 
@@ -91,7 +115,7 @@ public class PlayerSelect : MonoBehaviour
                 // instantiate each player
                 for (int i = 0; i < m_playerOrder.Count; i++)
                 {
-                    GameObject currentPlayer = Instantiate(m_playerPrefabs[i >= m_playerPrefabs.Length ? m_playerPrefabs.Length - 1 : i], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
+                    GameObject currentPlayer = Instantiate(m_playerPrefabs[m_characterIndex[i]], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
                     Player playerScript = currentPlayer.GetComponent<Player>();
 
                     playerScript.m_playerNumber = m_playerOrder[i] + 1;
