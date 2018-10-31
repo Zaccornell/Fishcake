@@ -61,7 +61,15 @@ public class Enemy : MovingActor
 
     private void FixedUpdate()
     {
-        m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        if (m_useForce)
+        {
+            m_rigidBody.AddForce(m_movement * m_speed * 2, ForceMode.Acceleration);
+        }
+        else
+        {
+            m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        }
+
         if (m_movement.magnitude != 0)
             m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
     }
@@ -92,11 +100,6 @@ public class Enemy : MovingActor
             m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized;
         else
             m_movement = Vector3.zero;
-
-        //if (m_pathIndex == m_path.corners.Length - 1 && (transform.position - m_path.corners[m_pathIndex]).magnitude < 0.1)
-        //{
-        //    m_movement = Vector3.zero;
-        //}
         
         m_movement.y = 0;
     }

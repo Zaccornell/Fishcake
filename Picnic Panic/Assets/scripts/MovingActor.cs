@@ -7,9 +7,19 @@ public class MovingActor : Actor
     public float m_speed;
     public float m_attackSpeed;
     public int m_attackDamage;
+    public bool m_useForce;
 
     protected float m_attackTimer;
     protected bool m_canAttack;
     protected Rigidbody m_rigidBody = null;
     protected Vector3 m_movement;
+
+    public Rigidbody RigidBody
+    {
+        get { return m_rigidBody; }
+    }
+    public Vector3 Movement
+    {
+        get { return m_movement; }
+    }
 }

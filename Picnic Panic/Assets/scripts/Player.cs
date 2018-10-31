@@ -321,7 +321,19 @@ public class Player : MovingActor
      */
     private void FixedUpdate()
     {
-        m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        if (m_useForce)
+        {
+            m_rigidBody.AddForce(m_movement * m_speed * 2, ForceMode.Acceleration);
+        }
+        else
+        {
+            m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        }
+
+        //if (m_rigidBody.velocity.magnitude > m_speed)
+        //{
+        //    m_rigidBody.velocity = m_rigidBody.velocity.normalized * m_speed;
+        //}
 
         Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX, m_controller), 0, XCI.GetAxis(XboxAxis.RightStickY, m_controller));
         AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);

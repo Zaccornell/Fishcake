@@ -32,7 +32,15 @@ public class Cockroach : MovingActor
 
     private void FixedUpdate()
     {
-        m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        if (m_useForce)
+        {
+            m_rigidBody.AddForce(m_movement * m_speed * 2, ForceMode.Acceleration);
+        }
+        else
+        {
+            m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        }
+
         if (m_movement.magnitude != 0)
             m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
     }
