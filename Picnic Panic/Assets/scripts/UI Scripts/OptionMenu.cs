@@ -11,6 +11,7 @@ public class OptionMenu : MonoBehaviour
     public PlayerOptions m_pOp;
     public Toggle m_vibration;
     public Toggle m_friendlyFire;
+    public Toggle m_screenShake;
 
 
     // Use this for initialization
@@ -24,8 +25,8 @@ public class OptionMenu : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
-        m_pOp.m_invulToggle = m_friendlyFire.isOn;
+        m_pOp.m_screenShake = m_screenShake.isOn;
+        m_pOp.m_firendlyFire = m_friendlyFire.isOn;
         m_pOp.m_invulToggle = m_invul.isOn;
         m_pOp.m_vibrationToggle = m_vibration.isOn;
 

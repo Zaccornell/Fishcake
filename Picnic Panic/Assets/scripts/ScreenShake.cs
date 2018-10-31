@@ -40,10 +40,13 @@ public class ScreenShake : MonoBehaviour
 
     public void StartShake()
     {
-        if (m_cooldownTimer <= 0)
+        if (PlayerOptions.Instance.m_screenShake)
         {
-            m_shakeTimer = m_shakeDuration;
-            m_cooldownTimer = m_cooldownLength;
+            if (m_cooldownTimer <= 0)
+            {
+                m_shakeTimer = m_shakeDuration;
+                m_cooldownTimer = m_cooldownLength;
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ public class PlayerOptions
     public float m_SFX;
     public float m_music;
     public bool m_firendlyFire;
+    public bool m_screenShake;
 
 
 	public PlayerOptions()
