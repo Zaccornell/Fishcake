@@ -6,7 +6,8 @@ Aurthor: Bradyn Corkill
 Date: 2018/9/6
  */
  
-public class CameraControl : MonoBehaviour {
+public class CameraControl : MonoBehaviour
+{
 
     public Spawner m_Spawner;
 
@@ -14,9 +15,6 @@ public class CameraControl : MonoBehaviour {
 	public float m_ScreenEdgeBuffer = 4f; // keeps distanct from the edge and the ship
 	public float m_MinSize = 6.5f; // won't zoom to close in
 	public Actor[] m_Targets; // setting the target of the ships
-    public float m_posRotate;
-    public float m_negRotate;
-    public int m_amount;
 
 	private Camera m_Camera; // to reference the camera 
 	private float m_ZoomSpeed; // the speed for how smooth the camera zooms
@@ -28,7 +26,7 @@ public class CameraControl : MonoBehaviour {
 	// initialization before program runs
 	private void Awake()
 	{
-		m_Camera =GetComponentInChildren<Camera>(); // set up the reference 
+		m_Camera = GetComponentInChildren<Camera>(); // set up the reference 
 	}
 	// initializating the update
 	private void FixedUpdate()

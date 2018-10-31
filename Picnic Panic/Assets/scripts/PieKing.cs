@@ -9,7 +9,7 @@ public class PieKing : Actor
 {
     public Spawner m_spawner; // calling spanwer class
     public int m_restoreHealth; // setting the amout of health to restore per round
-    public Camera m_camera;
+    public ScreenShake m_shake;
 
 	// Use this for initialization
 	void Start ()
@@ -29,6 +29,7 @@ public class PieKing : Actor
     public override void TakeDamage(int damage, Actor attacker)
     {
         m_health -= damage; // taking damage 
+        m_shake.StartShake();
         if (m_health < 0)
         {
             m_health = 0;
