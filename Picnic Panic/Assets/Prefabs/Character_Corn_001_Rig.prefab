@@ -667,7 +667,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492549080941026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.751983, y: -0.15951788, z: 3.0901623}
+  m_LocalPosition: {x: 0.20249808, y: -0.15951788, z: -12.571206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4970458431454024}
@@ -1202,7 +1202,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.19294192, y: 0.26, z: 1.83}
+  m_Size: {x: 0.19294192, y: 0.7, z: 1.83}
   m_Center: {x: 0.019004766, y: -0.040299635, z: 0.92}
 --- !u!65 &65364676638091254
 BoxCollider:
@@ -1322,14 +1322,15 @@ MonoBehaviour:
   m_dashStrengthMax: 10
   m_timeToFull: 2
   m_dashCooldown: 1
+  m_instantDash: 0
   m_attackDistance: 0
   m_attackRadius: 0
   m_attackHeightOffset: 0.666
-  m_360PlayerDistance: 0
+  m_360PlayerDistance: 5
   m_360Cooldown: 2
   m_heavyAttackCooldown: 0
   m_heavyAttackDamage: 80
-  m_attacksNeedPlayer: 0
+  m_attacksNeedPlayer: 1
   m_invulLength: 0
   m_facing: {fileID: 23468707439314116}
   m_playerNumber: 2
@@ -1342,6 +1343,8 @@ MonoBehaviour:
   m_neededKills: 3
   m_healAmount: 15
   m_healRadius: 7
+  m_healZonePrefab: {fileID: 1612114537055406, guid: 0afb19347976b2743a3c21b4d199c3bc,
+    type: 2}
   m_healParticles: {fileID: 198225757704784384, guid: 3a9a1ac45e8dd4f43ae7b4124e048cab,
     type: 2}
   m_missAttacks:
@@ -1355,7 +1358,7 @@ MonoBehaviour:
   m_playerDash:
   - {fileID: 8300000, guid: e39875dec0be4ef42baea5c70f94b369, type: 3}
   m_playerFall: []
-  m_audioSource: {fileID: 0}
+  m_audioSourceSFX: {fileID: 0}
   m_dashStrengthDisplay: {fileID: 114429007795080662}
   m_playerNumberDisplay: {fileID: 114361730665556422}
 --- !u!114 &114589696540479838
