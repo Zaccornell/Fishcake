@@ -76,7 +76,7 @@ public class PlayerSelect : MonoBehaviour
                     m_playerSlots[m_playerOrder.Count].text = i.ToString();
                     m_playerJoin[m_playerOrder.Count].enabled = false;
                     m_playerOrder.Add(i); // add the current controller to the player list
-                    m_characterIndex.Add(i);
+                    m_characterIndex.Add(i > m_playerPrefabs.Length - 1 ? m_playerPrefabs.Length - 1 : i);
                     m_startGame.enabled = false;
                 }
             }
