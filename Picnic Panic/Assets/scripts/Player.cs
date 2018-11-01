@@ -40,6 +40,7 @@ public class Player : MovingActor
     public int m_neededKills;
     public int m_healAmount;
     public float m_healRadius;
+    public GameObject m_healZonePrefab;
     public ParticleSystem m_healParticles;
     public AudioClip[] m_missAttacks;
     public AudioClip[] m_hitAttacks;
@@ -241,7 +242,6 @@ public class Player : MovingActor
                     }
                     if (PlayerOptions.Instance.m_firendlyFire && current != gameObject && current.tag == "Player")
                     {
-                    
                         current.GetComponent<Player>().TakeDamage(m_attackDamage, this);
                     }
                 }
@@ -523,19 +523,24 @@ public class Player : MovingActor
     // Healing Player and other players around them 
     private void Playerheal()
     {
-        if (m_killCount >= m_neededKills) // checking to see if the amount of kills 
-        {
-            Collider[] targets = Physics.OverlapSphere(transform.position, m_healRadius); // getting the Players in the Radius around them 
-            foreach (Collider item in targets) // looping though all the targets found in the radius
-            {
-                if (item.tag == "Player")// checking to see if the targets are players
-                {
-                    item.GetComponent<Player>().ShareHealing(); // Running the ShareHealing Funtion in each Player class
-                }
-               
-            }
-            m_killCount -= m_neededKills; // removing amount of kills from kill count
-        }
+        //if (m_killCount >= m_neededKills) // checking to see if the amount of kills 
+        //{
+        //    Collider[] targets = Physics.OverlapSphere(transform.position, m_healRadius); // getting the Players in the Radius around them 
+        //    foreach (Collider item in targets) // looping though all the targets found in the radius
+        //    {
+        //        if (item.tag == "Player")// checking to see if the targets are players
+        //        {
+        //            item.GetComponent<Player>().ShareHealing(); // Running the ShareHealing Funtion in each Player class
+        //        }
+
+        //    }
+        //}
+
+        Vector3 spawnPosition = transform.position;
+        spawnPosition.y = 0;
+        Instantiate(m_healZonePrefab, spawnPosition, Quaternion.Euler(-90, 0, 0));
+
+        m_killCount -= m_neededKills; // removing amount of kills from kill count
         m_healParticles.Stop(); // stop particles 
     }
 
@@ -549,11 +554,23 @@ public class Player : MovingActor
         }
     }
 
+    public void RestoreHealth(int amount)
+    {
+        m_health += amount;
+        if (m_health >= m_maxHealth) // checking to see if the health is more than max health
+        {
+            m_health = m_maxHealth;// if so setting the health to max health 
+        }
+    }
+
     public void DisplayPlayerNumber()
     {
         m_playerNumberDisplay.text = m_playerNumber.ToString();
     }
 
+    /*
+     * Handles the player's attack
+     */
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -575,6 +592,10 @@ public class Player : MovingActor
                     }
                 }
             }
+        }
+        if (PlayerOptions.Instance.m_firendlyFire && other.gameObject.tag == "Player")
+        {
+            other.gameObject.GetComponent<Player>().TakeDamage(m_attackDamage, this);
         }
     }
 }
