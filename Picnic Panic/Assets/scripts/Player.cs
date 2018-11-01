@@ -47,7 +47,7 @@ public class Player : MovingActor
     public AudioClip[] m_playerAttack;
     public AudioClip[] m_playerDash;
     public AudioClip[] m_playerFall;
-    public AudioSource m_audioSource;
+    public AudioSource m_audioSourceSFX;
     public Text m_dashStrengthDisplay;
     public Text m_playerNumberDisplay;
 
@@ -129,7 +129,7 @@ public class Player : MovingActor
                         int index = Random.Range(0, m_playerDash.Length);
                         if (m_playerDash[index] != null)
                         {
-                            m_audioSource.PlayOneShot(m_playerDash[index]);
+                            m_audioSourceSFX.PlayOneShot(m_playerDash[index]);
                         }
                     }
 
@@ -168,7 +168,7 @@ public class Player : MovingActor
                         int index = Random.Range(0, m_playerDash.Length);
                         if (m_playerDash[index] != null)
                         {
-                            m_audioSource.PlayOneShot(m_playerDash[index]);
+                            m_audioSourceSFX.PlayOneShot(m_playerDash[index]);
                         }
                     }
 
@@ -252,7 +252,7 @@ public class Player : MovingActor
                         int index = Random.Range(0, m_hitAttacks.Length);
                         if (m_hitAttacks[index] != null)
                         {
-                            m_audioSource.PlayOneShot(m_hitAttacks[index]);
+                            m_audioSourceSFX.PlayOneShot(m_hitAttacks[index]);
 
                         }
                     }
@@ -265,7 +265,7 @@ public class Player : MovingActor
                         int index = Random.Range(0, m_missAttacks.Length);
                         if (m_missAttacks[index] != null)
                         {
-                            m_audioSource.PlayOneShot(m_missAttacks[index]);
+                            m_audioSourceSFX.PlayOneShot(m_missAttacks[index]);
 
                         }
                     }  
@@ -398,7 +398,7 @@ public class Player : MovingActor
                     int index = Random.Range(0, m_playerDamage.Length);
                     if (m_playerDamage[index] != null)
                     {
-                        m_audioSource.PlayOneShot(m_playerDamage[index]);
+                        m_audioSourceSFX.PlayOneShot(m_playerDamage[index]);
 
                     }
                 }
@@ -501,7 +501,7 @@ public class Player : MovingActor
                     int index = Random.Range(0, m_playerFall.Length);
                     if (m_playerFall[index] != null)
                     {
-                        m_audioSource.PlayOneShot(m_playerFall[index]);
+                        m_audioSourceSFX.PlayOneShot(m_playerFall[index]);
 
                     }
                 }

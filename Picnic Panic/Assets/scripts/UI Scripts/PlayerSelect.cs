@@ -18,7 +18,8 @@ public class PlayerSelect : MonoBehaviour
     public Image[] m_playerJoin;
     public AudioClip m_lobbyMusic;
     public AudioClip m_roundStart;
-    public AudioSource m_audioSource;
+    public AudioSource m_audioSourceMusic;
+    public AudioSource m_audioSourceSFX;
 
     private XboxController[] m_controllers;
     private KeyCode[] m_testButtons;
@@ -44,9 +45,9 @@ public class PlayerSelect : MonoBehaviour
         m_camera.enabled = false;
         if (m_lobbyMusic != null)
         {
-            m_audioSource.clip = m_lobbyMusic;
-            m_audioSource.loop = true;
-            m_audioSource.Play();         
+            m_audioSourceMusic.clip = m_lobbyMusic;
+            m_audioSourceMusic.loop = true;
+            m_audioSourceMusic.Play();         
         }
 
         m_testButtons = new KeyCode[4];
@@ -119,7 +120,7 @@ public class PlayerSelect : MonoBehaviour
 
                     playerScript.m_playerNumber = m_playerOrder[i] + 1;
                     playerScript.m_hud = m_hud;
-                    playerScript.m_audioSource = m_audioSource;
+                    playerScript.m_audioSourceSFX = m_audioSourceSFX;
 
                     playerScript.DisplayPlayerNumber();
 
@@ -152,11 +153,11 @@ public class PlayerSelect : MonoBehaviour
                 m_camera.enabled = true;
 
                 m_hud.gameObject.SetActive(true);
-                m_audioSource.loop = false;
-                m_audioSource.Stop();
+                m_audioSourceMusic.loop = false;
+                m_audioSourceMusic.Stop();
                 if (m_roundStart != null)
                 {
-                    m_audioSource.PlayOneShot(m_roundStart);
+                    m_audioSourceMusic.PlayOneShot(m_roundStart);
                  
                 }
                 this.enabled = false;

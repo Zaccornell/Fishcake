@@ -13,7 +13,7 @@ public class Cockroach : MovingActor
     [HideInInspector] public Actor m_king = null;
     [HideInInspector] public Spawner m_spawner = null;
     [HideInInspector] public NavMeshPath m_path = null;
-    public AudioSource m_audioSource;
+    public AudioSource m_audioSourceSFX;
     public AudioClip[] m_enemyDeath;
     public AudioClip[] m_enemyFall;
     public AudioClip[] m_enemyAttack;
@@ -100,16 +100,13 @@ public class Cockroach : MovingActor
         {
             m_health -= damage;
             if (m_health <= 0)
-            {
+            {               
                 if (m_enemyDeath.Length > 0)
                 {
-                    int index = Random.Range(0, m_enemyDeath.Length);
-                    if (m_enemyDeath[index] != null)
-                    {
-                        m_audioSource.PlayOneShot(m_enemyDeath[index]); // play sound at random in array 
-
-                    }
-                }
+				int index = Random.Range(0, m_enemyDeath.Length);
+                if (m_enemyDeath[index] != null)
+                    m_audioSourceSFX.PlayOneShot(m_enemyDeath[index]); // play sound at random in array 
+                 }
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
                 Destroy(gameObject);
@@ -137,7 +134,7 @@ public class Cockroach : MovingActor
                 int index = Random.Range(0, m_enemyFall.Length);
                 if (m_enemyFall[index] != null)
                 {
-                    m_audioSource.PlayOneShot(m_enemyFall[index]);
+                    m_audioSourceSFX.PlayOneShot(m_enemyFall[index]);
 
                 }
             }
