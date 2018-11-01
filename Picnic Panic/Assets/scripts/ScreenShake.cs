@@ -7,6 +7,7 @@ public class ScreenShake : MonoBehaviour
     public float m_shakeDuration;
     public float m_cooldownLength;
     public float m_shakeAmount;
+    public CameraControl m_cameraControl;
 
     private float m_shakeTimer;
     private float m_cooldownTimer;
@@ -14,7 +15,7 @@ public class ScreenShake : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        m_originalPosition = transform.position;
+        m_originalPosition = transform.localPosition;
 	}
 	
 	// Update is called once per frame
@@ -27,14 +28,14 @@ public class ScreenShake : MonoBehaviour
 
 		if (m_shakeTimer > 0)
         {
-            transform.position = m_originalPosition + Random.insideUnitSphere * m_shakeAmount;
+            transform.localPosition = m_originalPosition + Random.insideUnitSphere * m_shakeAmount;
 
             m_shakeTimer -= Time.deltaTime;
         }
         else
         {
             m_shakeTimer = 0f;
-            transform.position = m_originalPosition;
+            transform.localPosition = m_originalPosition;
         }
 	}
 
