@@ -7,6 +7,8 @@ public class EndGame : MonoBehaviour
  {
 
     public GameObject[] m_objects;
+    public Spawner m_spawner;
+    
     
 
  
@@ -25,6 +27,14 @@ public class EndGame : MonoBehaviour
 
     private void OnEnable()
     {
+        foreach (Player player in m_spawner.m_players)
+        {
+            player.enabled = false;
+        }
+        foreach (MovingActor current in m_spawner.m_enemies)
+        {
+            current.enabled = false;
+        }
         foreach (GameObject child in m_objects) // going though and selecting every child inside of the array
         {
             child.SetActive(false); // turning the object off inside the array
