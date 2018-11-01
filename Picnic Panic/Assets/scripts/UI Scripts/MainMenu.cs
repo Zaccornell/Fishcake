@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*
  * Aurthor: Bradyn Corkill 
@@ -13,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public GameObject[] m_mainMenu;
     public GameObject[] m_OptionMenu;
+    public Button m_backButton;
 
 	// Use this for initialization
 	void Start ()
@@ -41,6 +43,7 @@ public class MainMenu : MonoBehaviour
         {
             child.SetActive(true);
         }
+        m_backButton.Select();
     }
     
     public void QuitClick()
