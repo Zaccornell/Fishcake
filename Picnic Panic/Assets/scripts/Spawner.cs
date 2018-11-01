@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
     public Vector2 m_spawnArea;
     public float m_randomSpawnRadius;
     public float m_spawnJitter;
-    public AudioSource m_audioSource;
+    public AudioSource m_audioSourceSFX;
     public AudioClip[] m_kingLaugh;
 
     [HideInInspector] public List<MovingActor> m_enemies = new List<MovingActor>();
@@ -82,7 +82,7 @@ public class Spawner : MonoBehaviour
         if ((m_antToSpawn <= 0 && m_cockroachToSpawn <= 0) && m_roundTimer > 5.0f && m_enemySpawned <= 0) 
         {
             m_roundTimer = 5.0f; // setting the timer to 5 secounds 
-            m_audioSource.PlayOneShot(m_kingLaugh[Random.Range(0, m_kingLaugh.Length)]);
+            m_audioSourceSFX.PlayOneShot(m_kingLaugh[Random.Range(0, m_kingLaugh.Length)]);
         }
 
         // round system
@@ -130,7 +130,7 @@ public class Spawner : MonoBehaviour
                 enemyScript.m_players = m_players;
                 enemyScript.m_spawner = this;
                 enemyScript.m_king = m_king;
-                enemyScript.m_audioSource = m_audioSource;
+                enemyScript.m_audioSourceSFX = m_audioSourceSFX;
 
                 m_enemies.Add(enemyScript);
                 m_antToSpawn--; // removing the limit to spanw 

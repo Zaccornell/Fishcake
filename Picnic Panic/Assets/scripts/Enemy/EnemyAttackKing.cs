@@ -89,7 +89,7 @@ public class EnemyAttackKing : EnemyState
                         int index = Random.Range(0, m_owner.m_enemyAttack.Length);
                         if (m_owner.m_enemyAttack[index] != null)
                         {
-                            m_owner.m_audioSource.PlayOneShot(m_owner.m_enemyAttack[index]);
+                            m_owner.m_audioSourceSFX.PlayOneShot(m_owner.m_enemyAttack[index]);
 
                         }
                     }

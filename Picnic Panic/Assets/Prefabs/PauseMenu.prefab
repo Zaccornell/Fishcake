@@ -1034,13 +1034,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 224333578551115512}
   m_HandleRect: {fileID: 224736157379011310}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: -80
+  m_MaxValue: -10
   m_WholeNumbers: 0
-  m_Value: 50
+  m_Value: -10
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114746360182775830}
+        m_MethodName: MasterVolumeChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114245333582174096
@@ -1411,11 +1422,7 @@ MonoBehaviour:
   m_king: {fileID: 0}
   m_hud: {fileID: 0}
   m_inputModule: {fileID: 0}
-  m_gameplayScripts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_gameplayScripts: []
   m_audioSource: {fileID: 0}
   m_lobbyMusic: {fileID: 8300000, guid: 6515aae466a0f9146838aa8182c9f29b, type: 3}
 --- !u!114 &114411299792293206
@@ -1771,13 +1778,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 224626148373167172}
   m_HandleRect: {fileID: 224276487408498158}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: -80
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 50
+  m_Value: -10
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114746360182775830}
+        m_MethodName: SFXVolumeChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114653199387859274
@@ -1819,13 +1837,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 224451156108321632}
   m_HandleRect: {fileID: 224685326530871190}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: -80
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 50
+  m_Value: -10
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114746360182775830}
+        m_MethodName: MusicVolumeChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114655449319879326
@@ -2049,6 +2078,10 @@ MonoBehaviour:
   m_vibration: {fileID: 114846446883464006}
   m_friendlyFire: {fileID: 114698852759712292}
   m_screenShake: {fileID: 114314240324840112}
+  m_master: {fileID: 114237997579195380}
+  m_SFX: {fileID: 114646256982977894}
+  m_music: {fileID: 114653199387859274}
+  m_audioMixer: {fileID: 24100000, guid: cd9c97e9c7dae0e4d8ee7ffcefabc72c, type: 2}
 --- !u!114 &114758018866729452
 MonoBehaviour:
   m_ObjectHideFlags: 1

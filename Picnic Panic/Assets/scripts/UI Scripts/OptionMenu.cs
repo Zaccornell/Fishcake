@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class OptionMenu : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class OptionMenu : MonoBehaviour
     public Toggle m_vibration;
     public Toggle m_friendlyFire;
     public Toggle m_screenShake;
+    public Slider m_master;
+    public Slider m_SFX;
+    public Slider m_music;
+    public AudioMixer m_audioMixer;
 
 
     // Use this for initialization
@@ -36,5 +41,18 @@ public class OptionMenu : MonoBehaviour
         SceneManager.LoadScene(0); // open Main menu Scene
     }
 
+
+    public void MusicVolumeChanged()
+    {
+        m_audioMixer.SetFloat("Music Volume", m_music.value);
+    }
+    public void SFXVolumeChanged()
+    {
+        m_audioMixer.SetFloat("SFX Volume", m_SFX.value);
+    }
+    public void MasterVolumeChanged()
+    {
+        m_audioMixer.SetFloat("Master Volume", m_master.value);
+    }
 
 }
