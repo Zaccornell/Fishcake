@@ -122,6 +122,8 @@ public class Player : MovingActor
             {
                 if (m_movement.magnitude != 0)
                 {
+                    m_animator.SetTrigger("Character Walk");
+
                     Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrengthMax * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                     m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                     m_dashTimer = m_dashCooldown;
@@ -523,25 +525,26 @@ public class Player : MovingActor
     // Healing Player and other players around them 
     private void Playerheal()
     {
-        //if (m_killCount >= m_neededKills) // checking to see if the amount of kills 
-        //{
-        //    Collider[] targets = Physics.OverlapSphere(transform.position, m_healRadius); // getting the Players in the Radius around them 
-        //    foreach (Collider item in targets) // looping though all the targets found in the radius
-        //    {
-        //        if (item.tag == "Player")// checking to see if the targets are players
-        //        {
-        //            item.GetComponent<Player>().ShareHealing(); // Running the ShareHealing Funtion in each Player class
-        //        }
+        if (m_killCount >= m_neededKills) // checking to see if the amount of kills 
+        {
+            //    Collider[] targets = Physics.OverlapSphere(transform.position, m_healRadius); // getting the Players in the Radius around them 
+            //    foreach (Collider item in targets) // looping though all the targets found in the radius
+            //    {
+            //        if (item.tag == "Player")// checking to see if the targets are players
+            //        {
+            //            item.GetComponent<Player>().ShareHealing(); // Running the ShareHealing Funtion in each Player class
+            //        }
 
-        //    }
-        //}
+            //    }
 
-        Vector3 spawnPosition = transform.position;
-        spawnPosition.y = 0;
-        Instantiate(m_healZonePrefab, spawnPosition, Quaternion.Euler(-90, 0, 0));
 
-        m_killCount -= m_neededKills; // removing amount of kills from kill count
-        m_healParticles.Stop(); // stop particles 
+            Vector3 spawnPosition = transform.position;
+            spawnPosition.y = 0;
+            Instantiate(m_healZonePrefab, spawnPosition, Quaternion.Euler(-90, 0, 0));
+
+            m_killCount -= m_neededKills; // removing amount of kills from kill count
+            m_healParticles.Stop(); // stop particles
+        }
     }
 
     // healing the player

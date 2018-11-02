@@ -29,13 +29,17 @@ public class HealZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            if (!m_players.Contains(other.gameObject))
-            {
-                m_players.Add(other.gameObject);
-                other.gameObject.GetComponent<Player>().RestoreHealth(m_healAmount);
-            }
-        }
+    
+
+       if (other.gameObject.tag == "Player")
+       {
+           if (!m_players.Contains(other.gameObject))
+           {
+               m_players.Add(other.gameObject);
+               other.gameObject.GetComponent<Player>().RestoreHealth(m_healAmount);
+           }
+       }
+    
+
     }
 }
