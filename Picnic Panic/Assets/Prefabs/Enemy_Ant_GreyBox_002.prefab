@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealth: 10
-  m_speed: 5
+  m_speed: 6
   m_attackSpeed: 1
   m_attackDamage: 10
   m_useForce: 0

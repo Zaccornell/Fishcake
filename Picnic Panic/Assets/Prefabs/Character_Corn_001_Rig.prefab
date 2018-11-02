@@ -72,7 +72,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1132586852969208
 GameObject:
   m_ObjectHideFlags: 1
@@ -703,7 +703,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492549080941026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -8.568005, y: -0.15951788, z: -11.657063}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4970458431454024}
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHealth: 100
-  m_speed: 6
+  m_speed: 7
   m_attackSpeed: 0.5
   m_attackDamage: 50
   m_useForce: 0
@@ -1448,10 +1448,10 @@ MonoBehaviour:
   m_attackDistance: 0
   m_attackRadius: 0
   m_attackHeightOffset: 0.666
-  m_360PlayerDistance: 5
+  m_360PlayerDistance: 0
   m_360Cooldown: 2
   m_heavyAttackCooldown: 0
-  m_heavyAttackDamage: 80
+  m_heavyAttackDamage: 0
   m_attacksNeedPlayer: 1
   m_invulLength: 0
   m_facing: {fileID: 23468707439314116}
@@ -1462,9 +1462,9 @@ MonoBehaviour:
   m_vibrationLength: 0.4
   m_vibrationDeath: 0.8
   m_virbationRespawn: 0.4
-  m_neededKills: 3
+  m_neededKills: 10
   m_healAmount: 15
-  m_healRadius: 7
+  m_healRadius: 6
   m_healZonePrefab: {fileID: 1821764085093514, guid: 3e239a5565abee745baaa9b3b9b89f89,
     type: 2}
   m_healParticles: {fileID: 198108041839454950}
@@ -1641,7 +1641,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -1689,14 +1689,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -706827903
+  randomSeed: -2053238324
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1841,7 +1841,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.6
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2249,7 +2249,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 6
       minScalar: 10
       maxCurve:
         serializedVersion: 2
