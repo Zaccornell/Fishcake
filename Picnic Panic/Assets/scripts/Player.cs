@@ -122,7 +122,10 @@ public class Player : MovingActor
             {
                 if (m_movement.magnitude != 0)
                 {
-                    m_animator.SetTrigger("Character Walk");
+                    if (m_movement.magnitude > 0)
+                    {
+                        m_animator.SetTrigger("Character Walk");
+                    }
 
 
                     Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrengthMax * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
