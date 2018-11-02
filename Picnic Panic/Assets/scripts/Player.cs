@@ -124,6 +124,7 @@ public class Player : MovingActor
                 {
                     m_animator.SetTrigger("Character Walk");
 
+
                     Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrengthMax * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                     m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                     m_dashTimer = m_dashCooldown;
