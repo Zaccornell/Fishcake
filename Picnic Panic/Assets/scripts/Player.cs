@@ -110,6 +110,11 @@ public class Player : MovingActor
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
         m_movement.Normalize();
 
+        if (m_movement.magnitude > 0)
+        {
+            m_animator.SetFloat("Character Walk", m_movement.magnitude);
+        }
+
         // getting the button X to call a Funtion
         if (XCI.GetButtonDown(XboxButton.X, m_controller))
         {
@@ -360,10 +365,7 @@ public class Player : MovingActor
         {
             m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
         }
-        if (m_movement.magnitude > 0)
-        {
-            m_animator.SetTrigger("Character Walk");
-        }
+     
 
         //if (m_rigidBody.velocity.magnitude > m_speed)
         //{
