@@ -110,9 +110,7 @@ public class Player : MovingActor
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
         m_movement.Normalize();
 
-       
-         m_animator.SetFloat("Character Walk", m_movement.magnitude);
-     
+         m_animator.SetFloat("Character Walk", m_movement.magnitude);        
 
         // getting the button X to call a Funtion
         if (XCI.GetButtonDown(XboxButton.X, m_controller))
@@ -363,18 +361,12 @@ public class Player : MovingActor
         else
         {
             m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
-        }
-     
-
-        //if (m_rigidBody.velocity.magnitude > m_speed)
-        //{
-        //    m_rigidBody.velocity = m_rigidBody.velocity.normalized * m_speed;
-        //}
+        }   
 
         Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX, m_controller), 0, XCI.GetAxis(XboxAxis.RightStickY, m_controller));
-        AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
-        if (state.IsName("Character_Idle_001_ANIM") || state.IsName("Character_Attack_001_ANIM"))
-        {
+        //AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
+        //if (state.IsName("Character_Idle_001_ANIM") || state.IsName("Character_Attack_001_ANIM"))
+        //{
             if (functional.magnitude > 0)
             {
                 m_rigidBody.rotation = Quaternion.LookRotation(functional.normalized);
@@ -383,7 +375,7 @@ public class Player : MovingActor
             {
                 m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
             }
-        }
+        //}
     }
 
     /*
