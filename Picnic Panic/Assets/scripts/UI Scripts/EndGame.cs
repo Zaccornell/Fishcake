@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using XInputDotNetPure;
 
 public class EndGame : MonoBehaviour
  {
-
     public GameObject[] m_objects;
     public Spawner m_spawner;
-    
-    
+    public Player[] m_players;
+    public Text m_roundValue;
+    public GameObject[] m_playerStats;
+    public Text[] m_player1Values;
+    public Text[] m_player2Values;
+    public Text[] m_player3Values;
+    public Text[] m_player4Values;
 
- 
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
 		
 	}
@@ -39,6 +43,55 @@ public class EndGame : MonoBehaviour
         {
             child.SetActive(false); // turning the object off inside the array
         }
+
+        m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
+
+        foreach (Player player in m_players)
+        {
+            switch(player.m_playerNumber)
+            {
+                case 1:
+                    m_playerStats[0].SetActive(true);
+                    m_player1Values[0].text = player.Kills.ToString();
+                    m_player1Values[1].text = player.Deaths.ToString();
+                    m_player1Values[2].text = player.AntKills.ToString();
+                    m_player1Values[3].text = player.RoachKills.ToString();
+                    m_player1Values[4].text = player.HealsUsed.ToString();
+                    break;
+
+                case 2:
+                    m_playerStats[1].SetActive(true);
+                    m_player2Values[0].text = player.Kills.ToString();
+                    m_player2Values[1].text = player.Deaths.ToString();
+                    m_player2Values[2].text = player.AntKills.ToString();
+                    m_player2Values[3].text = player.RoachKills.ToString();
+                    m_player2Values[4].text = player.HealsUsed.ToString();
+                    break;
+
+                case 3:
+                    m_playerStats[2].SetActive(true);
+                    m_player3Values[0].text = player.Kills.ToString();
+                    m_player3Values[1].text = player.Deaths.ToString();
+                    m_player3Values[2].text = player.AntKills.ToString();
+                    m_player3Values[3].text = player.RoachKills.ToString();
+                    m_player3Values[4].text = player.HealsUsed.ToString();
+                    break;
+
+                case 4:
+                    m_playerStats[3].SetActive(true);
+                    m_player4Values[0].text = player.Kills.ToString();
+                    m_player4Values[1].text = player.Deaths.ToString();
+                    m_player4Values[2].text = player.AntKills.ToString();
+                    m_player4Values[3].text = player.RoachKills.ToString();
+                    m_player4Values[4].text = player.HealsUsed.ToString();
+                    break;
+            }
+        }
+
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
+        GamePad.SetVibration(PlayerIndex.Two, 0, 0);
+        GamePad.SetVibration(PlayerIndex.Three, 0, 0);
+        GamePad.SetVibration(PlayerIndex.Four, 0, 0);
     }
 
     public void RestartButton()

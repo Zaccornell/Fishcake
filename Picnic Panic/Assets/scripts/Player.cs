@@ -78,6 +78,12 @@ public class Player : MovingActor
 
     private bool m_dashing;
     private float m_dashStrength;
+
+    private int m_kills;
+    private int m_deaths;
+    private int m_antKills;
+    private int m_roachKills;
+    private int m_healsUsed;
     #endregion
     #endregion 
     public bool CanRespawn
@@ -88,6 +94,27 @@ public class Player : MovingActor
     {
         get { return m_controller; }
     }
+    public int Kills
+    {
+        get { return m_kills; }
+    }
+    public int Deaths
+    {
+        get { return m_deaths; }
+    }
+    public int AntKills
+    {
+        get { return m_antKills; }
+    }
+    public int RoachKills
+    {
+        get { return m_roachKills; }
+    }
+    public int HealsUsed
+    {
+        get { return m_healsUsed; }
+    }
+
 
     // Use this for initialization
     void Start ()
@@ -137,9 +164,6 @@ public class Player : MovingActor
 
         m_movement.z = XCI.GetAxisRaw(XboxAxis.LeftStickY, m_controller);
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
-
-        m_movement.z = Input.GetAxisRaw("VerticalKB");
-        m_movement.x = Input.GetAxisRaw("HorizontalKB");
         m_movement.Normalize();
 
          m_animator.SetFloat("Character Walk", m_movement.magnitude);        
@@ -433,7 +457,6 @@ public class Player : MovingActor
                 // if the player has died
                 if (m_health <= 0)
                 {
-
                     m_killCount = 0; // resetting kill count once die
                     m_healParticles.Stop(); // stop particles 
                     m_health = 0;
@@ -485,6 +508,8 @@ public class Player : MovingActor
             current.enabled = false;
         }
         m_rigidBody.isKinematic = true;
+
+        m_deaths++;
     }
 
     private void OnDrawGizmos()
@@ -537,8 +562,8 @@ public class Player : MovingActor
     {
         if (m_killCount >= m_neededKills) // checking to see if the amount of kills 
         {
-
             m_healCount++;
+            m_healsUsed++;
 
             Vector3 spawnPosition = transform.position;
             spawnPosition.y = 0;
@@ -587,6 +612,7 @@ public class Player : MovingActor
                 if (!enemy.Alive)
                 {
                     m_killCount++; // adding a plus one to kill count 
+                    m_kills++;
                     if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
                     {
                         m_killCount = m_neededKills; // setting the kill count to the max amount
@@ -594,6 +620,15 @@ public class Player : MovingActor
                     if (m_killCount >= m_neededKills)
                     {
                         m_healParticles.Play();
+                    }
+
+                    if (enemy.m_type == Type.Ant)
+                    {
+                        m_antKills++;
+                    }
+                    else if (enemy.m_type == Type.Cockroach)
+                    {
+                        m_roachKills++;
                     }
                 }
             }

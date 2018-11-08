@@ -54,7 +54,10 @@ public class Spawner : MonoBehaviour
     {
         get { return m_enemySpawned + m_antToSpawn + m_cockroachToSpawn; }
     }
-
+    public int CurrentRound
+    {
+        get { return m_currentRound; }
+    }
     public event MyDel OnRoundEnd;
 
 	// Use this for initialization

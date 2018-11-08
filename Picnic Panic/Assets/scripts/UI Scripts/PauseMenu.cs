@@ -171,6 +171,15 @@ public class PauseMenu : MonoBehaviour
         m_hud.gameObject.SetActive(m_active);
         Physics.autoSimulation = m_active;
 
+        if (m_active)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
+
         Cursor.visible = !m_active; // makes cursor visable
         m_active = !m_active;
     }

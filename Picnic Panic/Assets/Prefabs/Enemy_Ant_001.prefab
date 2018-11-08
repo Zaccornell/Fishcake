@@ -145,6 +145,8 @@ MonoBehaviour:
   m_speed: 5
   m_attackSpeed: 1
   m_attackDamage: 10
+  m_useForce: 0
+  m_type: 1
   m_knockBackDistance: 500
   m_attackDistance: 1
   m_attackRadius: 0.2
@@ -154,7 +156,7 @@ MonoBehaviour:
   m_king: {fileID: 0}
   m_spawner: {fileID: 0}
   m_target: {fileID: 0}
-  m_audioSource: {fileID: 0}
+  m_audioSourceSFX: {fileID: 0}
   m_enemyDeath:
   - {fileID: 8300000, guid: bc1ea760e32485b4da15dd8186fc828f, type: 3}
   - {fileID: 8300000, guid: 7436b6d49c4b25146a1d7c6371d287de, type: 3}
@@ -163,3 +165,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 534610e547ac0ee4a887bc07ee51e6eb, type: 3}
   - {fileID: 8300000, guid: 6aa132d14d9d44a4facc24cbfd618a99, type: 3}
   - {fileID: 8300000, guid: eae6423da4ddf6e4b9c0b742229b93b8, type: 3}
+  m_enemyFall: []
+  m_enemyAttack: []
