@@ -20,8 +20,6 @@ public class CameraControl : MonoBehaviour
 	private float m_ZoomSpeed; // the speed for how smooth the camera zooms
 	private Vector3 m_MoveVelocity; // the velocity of the how smooth the postion moves
 	private Vector3 m_DesiredPosition; // the postion the cmaera moves towards 
-    private float m_currentRotate;
-    private float m_startRotate = 0;
 
 	// initialization before program runs
 	private void Awake()
@@ -145,10 +143,4 @@ public class CameraControl : MonoBehaviour
 		// find and set the required size of the camera
 		m_Camera.orthographicSize =FindRequiredSize();
 	}
-
-    public void Shake()
-    {
-
-    }
-
 }

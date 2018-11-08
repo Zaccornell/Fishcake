@@ -22,6 +22,7 @@ public class Player : MovingActor
     public float m_dashStrengthMax;
     public float m_timeToFull;
     public float m_dashCooldown;
+    public float m_COOPDashCooldownIncrease;
     public bool m_instantDash;
     public float m_attackDistance;
     public float m_attackRadius;
@@ -108,15 +109,37 @@ public class Player : MovingActor
     void Update ()
     {
         m_vibrationTimer -= Time.deltaTime;
-        m_dashTimer -= Time.deltaTime;
+        //m_dashTimer -= Time.deltaTime;
         m_attackTimer -= Time.deltaTime;
         m_knockbackTimer -= Time.deltaTime;
         m_invulTimer -= Time.deltaTime;
         m_360Timer -= Time.deltaTime;
         m_heavyAttackTimer -= Time.deltaTime;
 
+        bool playerInRange = false;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, m_360PlayerDistance);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.tag == "Player" && collider.gameObject != gameObject)
+            {
+                playerInRange = true;
+            }
+        }
+
+        if (playerInRange)
+        {
+            m_dashTimer -= Time.deltaTime * m_COOPDashCooldownIncrease;
+        }
+        else
+        {
+            m_dashTimer -= Time.deltaTime;
+        }
+
         m_movement.z = XCI.GetAxisRaw(XboxAxis.LeftStickY, m_controller);
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
+
+        m_movement.z = Input.GetAxisRaw("VerticalKB");
+        m_movement.x = Input.GetAxisRaw("HorizontalKB");
         m_movement.Normalize();
 
          m_animator.SetFloat("Character Walk", m_movement.magnitude);        
@@ -306,16 +329,6 @@ public class Player : MovingActor
         {
             if (m_360Timer <= 0)
             {
-                bool playerInRange = !m_attacksNeedPlayer;
-                Collider[] hits = Physics.OverlapSphere(transform.position, m_360PlayerDistance);
-                foreach (Collider hit in hits)
-                {
-                    if (hit.gameObject.tag == "Player" && hit.gameObject != gameObject)
-                    {
-                        playerInRange = true;
-                    }
-                }
-
                 if (playerInRange)
                 {
                     m_animator.SetTrigger("360 Attack");
@@ -329,16 +342,6 @@ public class Player : MovingActor
         {
             if (m_heavyAttackTimer <= 0)
             {
-                bool playerInRange = !m_attacksNeedPlayer;
-                Collider[] hits = Physics.OverlapSphere(transform.position, m_360PlayerDistance);
-                foreach (Collider hit in hits)
-                {
-                    if (hit.gameObject.tag == "Player" && hit.gameObject != gameObject)
-                    {
-                        playerInRange = true;
-                    }
-                }
-
                 if (playerInRange)
                 {
                     m_animator.SetTrigger("Heavy Attack");

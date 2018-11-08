@@ -31,7 +31,8 @@ public class PieKing : Actor
 		if (!PlayerOptions.Instance.m_invulToggle)
 		{
         	m_health -= damage; // taking damage 
-			m_shake.StartShake();
+            if (m_shake != null)
+			    m_shake.StartShake();
 		}
         if (m_health < 0)        {
             m_health -= damage; // taking damage 

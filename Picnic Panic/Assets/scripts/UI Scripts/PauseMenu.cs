@@ -39,15 +39,21 @@ public class PauseMenu : MonoBehaviour
         }
         for (int i = 1; i <= 4; i++)
         {
-            if (XCI.GetButtonDown(XboxButton.Start, (XboxController)i))
+            if (!m_active)
             {
-                ToggleObjects();
-                if (m_active)
+                if (XCI.GetButtonDown(XboxButton.Start, (XboxController)i))
                 {
-                    m_inputModule.m_controller = (XboxController)i;
+                    ToggleObjects();
+                    
+                    m_inputModule.m_controller = (XboxController)i;                                                             
                 }
-                else
+            }
+            else
+            {
+                if (XCI.GetButtonDown(XboxButton.Start, m_inputModule.m_controller))
                 {
+                    ToggleObjects();
+
                     m_inputModule.m_controller = XboxController.All;
                 }
             }

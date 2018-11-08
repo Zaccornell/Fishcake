@@ -56,11 +56,6 @@ public class Enemy : MovingActor
         get { return m_pathIndex; }
         set { m_pathIndex = value; }
     }
-    public Vector3 Movement
-    {
-        get { return m_movement; }
-        set { m_movement = value; }
-    }
 
     private void FixedUpdate()
     {
