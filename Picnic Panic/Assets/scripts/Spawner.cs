@@ -171,7 +171,9 @@ public class Spawner : MonoBehaviour
     private void CalculateDelay()
     {
         m_antSpawnDelay = (m_roundLength - m_roundEndBuffer) / (m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)));
+        m_antSpawnTimer = m_antSpawnDelay;
         m_cockroachSpawnDelay = (m_roundLength - m_roundEndBuffer) / (m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)));
+        m_cockroachSpawnTimer = m_cockroachSpawnDelay;
     }
     
     /*
