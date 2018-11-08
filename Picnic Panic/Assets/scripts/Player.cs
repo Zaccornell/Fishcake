@@ -13,6 +13,8 @@ using UnityEngine.UI;
 
 public class Player : MovingActor
 {
+    #region Variables
+    #region Public
     public bool m_showDebug;
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_knockbackCooldown;
@@ -34,14 +36,17 @@ public class Player : MovingActor
     public int m_playerNumber;
     public GameObject m_corpsePrefab;
     public HUD m_hud;
+    #region Vibration
     public float m_vibrationLength;
     public float m_vibrationDeath;
     public float m_virbationRespawn;
+    #endregion
     public int m_neededKills;
     public int m_healAmount;
     public float m_healRadius;
     public GameObject m_healZonePrefab;
     public ParticleSystem m_healParticles;
+    #region Music
     public AudioClip[] m_missAttacks;
     public AudioClip[] m_hitAttacks;
     public AudioClip[] m_playerDamage;
@@ -49,10 +54,13 @@ public class Player : MovingActor
     public AudioClip[] m_playerDash;
     public AudioClip[] m_playerFall;
     public AudioSource m_audioSourceSFX;
+    #endregion
     public Text m_dashStrengthDisplay;
     public Text m_playerNumberDisplay;
+    public int m_healCount;
+    #endregion
 
-
+    #region Private
     private XboxController m_controller;
     private float m_dashTimer;
     private bool m_attackPressed = false;
@@ -69,7 +77,8 @@ public class Player : MovingActor
 
     private bool m_dashing;
     private float m_dashStrength;
-
+    #endregion
+    #endregion 
     public bool CanRespawn
     {
         get { return m_canRespawn; }
@@ -525,16 +534,8 @@ public class Player : MovingActor
     {
         if (m_killCount >= m_neededKills) // checking to see if the amount of kills 
         {
-            //    Collider[] targets = Physics.OverlapSphere(transform.position, m_healRadius); // getting the Players in the Radius around them 
-            //    foreach (Collider item in targets) // looping though all the targets found in the radius
-            //    {
-            //        if (item.tag == "Player")// checking to see if the targets are players
-            //        {
-            //            item.GetComponent<Player>().ShareHealing(); // Running the ShareHealing Funtion in each Player class
-            //        }
 
-            //    }
-
+            m_healCount++;
 
             Vector3 spawnPosition = transform.position;
             spawnPosition.y = 0;
