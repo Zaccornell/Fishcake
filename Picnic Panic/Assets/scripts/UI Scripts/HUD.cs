@@ -16,6 +16,7 @@ public class HUD : MonoBehaviour
     public Button m_restartButton;
     public AudioSource m_audioSource;
     public AudioClip m_gameMusic;
+    public float m_timer;
 
 
     public Text m_enemyCounter;
@@ -41,6 +42,8 @@ public class HUD : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        m_timer += Time.deltaTime;
+      
         foreach (Player current in m_players)
         {
             m_playerDisplays[current.m_playerNumber - 1].text = current.Health.ToString();
