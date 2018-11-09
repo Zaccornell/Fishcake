@@ -71,7 +71,7 @@ public class EndGame : MonoBehaviour
             m_endCauseValue.text = "You all died";
         }
 
-        //m_timer.text
+        m_timer.text = "You survived for " + m_hud.m_timer.ToString("0") + " seconds";
 
         foreach (Player player in m_players)
         {

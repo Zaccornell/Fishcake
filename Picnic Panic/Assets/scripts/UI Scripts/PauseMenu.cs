@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     public Spawner m_spawner;
     public PieKing m_king;
     public HUD m_hud;
+    public ScreenShake m_screenShake;
     public CustomInputModule m_inputModule;
     public MonoBehaviour[] m_gameplayScripts;
     public AudioSource m_audioSource;
@@ -180,6 +181,7 @@ public class PauseMenu : MonoBehaviour
             m_king.enabled = m_active;
             m_spawner.enabled = m_active;
             m_hud.gameObject.SetActive(m_active);
+            m_screenShake.enabled = m_active;
             Physics.autoSimulation = m_active;
 
             if (m_active)

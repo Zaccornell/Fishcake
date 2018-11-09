@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4303609959822772}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Left_B_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4575625920741754}
   - component: {fileID: 137686618483187558}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy_Ant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4977916652295566}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4518889231541634}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Right_F_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,9 +82,11 @@ GameObject:
   - component: {fileID: 4887002089915830}
   - component: {fileID: 95520566819500938}
   - component: {fileID: 65513582210600902}
-  m_Layer: 0
+  - component: {fileID: 54211608304054194}
+  - component: {fileID: 114615736175319472}
+  m_Layer: 9
   m_Name: Enemy_Ant_001_Rig
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +99,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4574727764731934}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Right_B_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +114,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4902009134776880}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Left_B_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +129,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4840631977237492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Right_Mandible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +144,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4084201080006114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Left_M_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +159,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4096723008918588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Right_Antenna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +174,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4303581210761988}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +189,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4130529333822866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Butt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +204,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4006741239088188}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Left_F_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +219,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4314899160919456}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Left_M_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +234,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4472002653311812}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Right_M_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +249,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4807634358498796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Left_Antenna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +264,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4826605200723316}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Right_B_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +279,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4465285843558578}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Right_M_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +294,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4944693583159270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Left_Mandible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +309,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4878144120220680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CTRL_Ant_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +324,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4638395673189900}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Right_F_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +339,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4027677994521940}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ant_Left_F_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,6 +653,21 @@ Transform:
   m_Father: {fileID: 4887002089915830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54211608304054194
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312305954643220}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 2
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!65 &65513582210600902
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -661,8 +678,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.290473, y: 0.7866354, z: 1.4828136}
-  m_Center: {x: 0, y: 0.38534927, z: 0}
+  m_Size: {x: 0.55, y: 0.9032262, z: 1.4}
+  m_Center: {x: 0, y: 0.44708642, z: 0}
 --- !u!95 &95520566819500938
 Animator:
   serializedVersion: 3
@@ -680,6 +697,43 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114615736175319472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312305954643220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e33de939f907c40b29372b077cd178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealth: 10
+  m_speed: 5
+  m_attackSpeed: 1
+  m_attackDamage: 10
+  m_useForce: 0
+  m_type: 1
+  m_knockBackDistance: 500
+  m_attackDistance: 1
+  m_attackRadius: 0.2
+  m_agroRange: 5
+  m_height: 0
+  m_players: []
+  m_king: {fileID: 0}
+  m_spawner: {fileID: 0}
+  m_target: {fileID: 0}
+  m_audioSourceSFX: {fileID: 0}
+  m_enemyDeath:
+  - {fileID: 8300000, guid: bc1ea760e32485b4da15dd8186fc828f, type: 3}
+  - {fileID: 8300000, guid: 7436b6d49c4b25146a1d7c6371d287de, type: 3}
+  - {fileID: 8300000, guid: 0efb9e00fc2d0234f80674f8307bcc0a, type: 3}
+  - {fileID: 8300000, guid: 457f55a3bb31b0b458f874248d3486a8, type: 3}
+  - {fileID: 8300000, guid: 534610e547ac0ee4a887bc07ee51e6eb, type: 3}
+  - {fileID: 8300000, guid: 6aa132d14d9d44a4facc24cbfd618a99, type: 3}
+  - {fileID: 8300000, guid: eae6423da4ddf6e4b9c0b742229b93b8, type: 3}
+  m_enemyFall: []
+  m_enemyAttack: []
 --- !u!137 &137686618483187558
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

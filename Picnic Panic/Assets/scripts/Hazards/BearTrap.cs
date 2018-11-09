@@ -7,6 +7,7 @@ public class BearTrap : MonoBehaviour
     public float m_duration;
 
     private MovingActor m_affectedActor;
+    private Vector3 m_position;
     private float m_originalSpeed;
     private float m_timer;
     private bool m_activated = false;
@@ -18,9 +19,17 @@ public class BearTrap : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    private void FixedUpdate()
+    {
+        if (m_affectedActor != null)
+        {
+            m_affectedActor.RigidBody.position = m_position;
+        }
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         m_timer -= Time.deltaTime;
 
@@ -29,6 +38,7 @@ public class BearTrap : MonoBehaviour
             m_affectedActor.m_speed = m_originalSpeed;
             m_animator.SetTrigger("Open");
             m_playerTrapped = false;
+            m_affectedActor = null;
         }
 
         if (m_activated)
@@ -44,6 +54,9 @@ public class BearTrap : MonoBehaviour
             Player player = other.gameObject.GetComponent<Player>();
             if (player != null)
             {
+                m_affectedActor = player;
+                m_position = player.RigidBody.position;
+
                 m_originalSpeed = player.m_speed;
                 player.m_speed = 0;
                 m_affectedActor = player;
