@@ -32,6 +32,10 @@ public class Enemy : MovingActor
     private int m_areaMask;
     private Animator m_animator;
 
+    public Animator Animator
+    {
+        get { return m_animator; }
+    }
 
     // Use this for initialization
     void Start()
@@ -174,5 +178,10 @@ public class Enemy : MovingActor
             m_alive = false;
             Destroy(gameObject);
         }
+    }
+
+    public void Attack()
+    {
+        m_states[m_stateIndex].Attack();
     }
 }

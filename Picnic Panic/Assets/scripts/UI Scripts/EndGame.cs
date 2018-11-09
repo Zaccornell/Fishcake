@@ -59,6 +59,7 @@ public class EndGame : MonoBehaviour
         {
             child.SetActive(false); // turning the object off inside the array
         }
+        m_spawner.enabled = false;
 
         m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
 

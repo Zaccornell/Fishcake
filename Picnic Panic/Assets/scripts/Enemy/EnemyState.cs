@@ -35,13 +35,9 @@ public abstract class EnemyState
 
     /*
      * Base attack function for the enemy
-     * calls the take damage function on the target
-     * Params: target actor and amount of damage
+     * Called by the owner in relation to the attack animation
      */
-    public virtual void Attack(Actor target, int damage)
-    {
-        target.TakeDamage(damage, m_owner);
-    }
+    public abstract void Attack();
 
     /*
      * Abstact function declaration for getting a path

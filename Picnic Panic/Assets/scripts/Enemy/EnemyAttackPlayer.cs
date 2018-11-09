@@ -98,21 +98,16 @@ public class EnemyAttackPlayer : EnemyState
             bool foundPlayer = false;
             foreach (Collider current in targets)
             {
-                foreach(Actor player in m_players)
+                if ( current.gameObject == m_target.gameObject)
                 {
-                    if (!player.gameObject.activeSelf || !player.Alive)
-                        continue;
-
-                    if ( current.gameObject == player.gameObject)
+                    if (m_playerAttackable == false)
                     {
-                        if (m_playerAttackable == false)
-                        {
-                            m_playerAttackable = true;
-                            m_windUpTimer = m_windUpLength;
-                        }
-                        foundPlayer = true;
+                        m_playerAttackable = true;
+                        m_windUpTimer = m_windUpLength;
                     }
-                }                
+                    foundPlayer = true;
+                }
+                                
             }
             if (foundPlayer == false)
             {
@@ -130,24 +125,21 @@ public class EnemyAttackPlayer : EnemyState
         {
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
             foreach (Collider current in targets)
-            {
-                foreach (Actor player in m_players)
-                {                   
-                    if (player.gameObject == current.gameObject)
+            {                 
+                if (m_target.gameObject == current.gameObject)
+                {
+                    if (m_owner.m_enemyAttack.Length > 0)
                     {
-                        Attack(player, m_attackDamage);
-
-                        if (m_owner.m_enemyAttack.Length > 0)
+                        int index = Random.Range(0, m_owner.m_enemyAttack.Length);
+                        if (m_owner.m_enemyAttack[index] != null)
                         {
-                            int index = Random.Range(0, m_owner.m_enemyAttack.Length);
-                            if (m_owner.m_enemyAttack[index] != null)
-                            {
-                                m_owner.m_audioSourceSFX.PlayOneShot(m_owner.m_enemyAttack[index]);
-                            }
+                            m_owner.m_audioSourceSFX.PlayOneShot(m_owner.m_enemyAttack[index]);
                         }
-                    }                                        
-                }
+                    }                   
+                }                                        
+                
             }
+            m_owner.Animator.SetTrigger("Attack");
             m_attackTimer = m_attackSpeed;
             m_playerAttackable = false;
             m_windUpTimer = m_windUpLength;
@@ -168,5 +160,10 @@ public class EnemyAttackPlayer : EnemyState
         {
             NavMesh.CalculatePath(m_owner.transform.position, m_target.transform.position, areaMask, path);
         }
+    }
+
+    public override void Attack()
+    {
+        m_target.TakeDamage(m_attackDamage, m_owner);
     }
 }

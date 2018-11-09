@@ -84,16 +84,13 @@ public class EnemyAttackKing : EnemyState
                 {
                     if (m_owner.m_enemyAttack.Length > 0)
                     {
-
-
                         int index = Random.Range(0, m_owner.m_enemyAttack.Length);
                         if (m_owner.m_enemyAttack[index] != null)
                         {
                             m_owner.m_audioSourceSFX.PlayOneShot(m_owner.m_enemyAttack[index]);
-
                         }
-                    }
-                    m_target.TakeDamage(10, m_owner);
+                    }                    
+                    m_owner.Animator.SetTrigger("Attack");
                     m_attackTimer = m_attackSpeed;
                 }
             }
@@ -108,5 +105,10 @@ public class EnemyAttackKing : EnemyState
         NavMeshHit hit = new NavMeshHit();
         NavMesh.SamplePosition(m_target.transform.position + (m_owner.transform.position - m_target.transform.position).normalized, out hit, 5, areaMask);
         NavMesh.CalculatePath(m_owner.transform.position, hit.position, areaMask, path);
+    }
+
+    public override void Attack()
+    {
+        m_target.TakeDamage(m_attackDamage, m_owner);
     }
 }

@@ -84,7 +84,6 @@ public class HUD : MonoBehaviour
             m_endGame.SetActive(true); // activating endscreen
             m_restartButton.Select(); // setting a button to start event
         }
-
     }
 
     /*
