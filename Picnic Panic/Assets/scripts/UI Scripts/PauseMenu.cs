@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     public AudioClip m_lobbyMusic;
 
     private bool m_optionOpen;
+    private bool m_toggledThisFrame;
 
     private bool m_active = false;
 	// Use this for initialization
@@ -37,6 +38,12 @@ public class PauseMenu : MonoBehaviour
         {
             ToggleObjects();
         }
+        if (m_active && XCI.GetButtonDown(XboxButton.Start, m_inputModule.m_controller))
+        {
+            ToggleObjects();
+
+            m_inputModule.m_controller = XboxController.All;
+        }
         for (int i = 1; i <= 4; i++)
         {
             if (!m_active)
@@ -46,15 +53,6 @@ public class PauseMenu : MonoBehaviour
                     ToggleObjects();
                     
                     m_inputModule.m_controller = (XboxController)i;                                                             
-                }
-            }
-            else
-            {
-                if (XCI.GetButtonDown(XboxButton.Start, m_inputModule.m_controller))
-                {
-                    ToggleObjects();
-
-                    m_inputModule.m_controller = XboxController.All;
                 }
             }
         }
@@ -81,7 +79,9 @@ public class PauseMenu : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.Locked; // keeped locked
-        }      
+        }
+
+        m_toggledThisFrame = false;
 	}
 
     /*
@@ -124,73 +124,78 @@ public class PauseMenu : MonoBehaviour
      */
     private void ToggleObjects()
     {
-        if (m_active)
+        if (!m_toggledThisFrame)
         {
-            m_hud.m_audioSource.loop = false;
-            m_hud.m_audioSource.Stop();
-        }
-        else
-        {
-            if (m_lobbyMusic != null)
+            if (m_active)
             {
-                m_audioSource.loop = true;
-                m_audioSource.clip = m_lobbyMusic;
-                m_audioSource.Play();
+                m_hud.m_audioSource.loop = false;
+                m_hud.m_audioSource.Stop();
             }
-        }
-        foreach (Player current in m_players)
-        {
-            XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
-        }
+            else
+            {
+                if (m_lobbyMusic != null)
+                {
+                    m_audioSource.loop = true;
+                    m_audioSource.clip = m_lobbyMusic;
+                    m_audioSource.Play();
+                }
+            }
+            foreach (Player current in m_players)
+            {
+                XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
+            }
 
-        foreach (GameObject child in m_children)
-        {
-            child.SetActive(!m_active);
-        }
-        foreach (GameObject opchild in m_optionMenu)
-        {
-            opchild.SetActive(false);
-        }
-        foreach (MovingActor current in m_spawner.m_enemies)
-        {
-            current.enabled = m_active;
-        }
-        foreach (MonoBehaviour script in m_gameplayScripts)
-        {
-            script.enabled = m_active;
-        }
-        foreach (Player current in m_players)
-        {
-            current.enabled = m_active;
-        }
+            foreach (GameObject child in m_children)
+            {
+                child.SetActive(!m_active);
+            }
+            foreach (GameObject opchild in m_optionMenu)
+            {
+                opchild.SetActive(false);
+            }
+            foreach (MovingActor current in m_spawner.m_enemies)
+            {
+                current.enabled = m_active;
+            }
+            foreach (MonoBehaviour script in m_gameplayScripts)
+            {
+                script.enabled = m_active;
+            }
+            foreach (Player current in m_players)
+            {
+                current.enabled = m_active;
+            }
 
-        if (m_active)
-        {
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            Time.timeScale = 0f;
-        }
+            if (m_active)
+            {
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                Time.timeScale = 0f;
+            }
 
-        m_resumeButton.Select();
-        m_resumeButton.OnSelect(null);
-        m_king.enabled = m_active;
-        m_spawner.enabled = m_active;
-        m_hud.gameObject.SetActive(m_active);
-        Physics.autoSimulation = m_active;
+            m_resumeButton.Select();
+            m_resumeButton.OnSelect(null);
+            m_king.enabled = m_active;
+            m_spawner.enabled = m_active;
+            m_hud.gameObject.SetActive(m_active);
+            Physics.autoSimulation = m_active;
 
-        if (m_active)
-        {
-            Time.timeScale = 1;
-        }
-        else
-        {
-            Time.timeScale = 0;
-        }
+            if (m_active)
+            {
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
+            }
 
-        Cursor.visible = !m_active; // makes cursor visable
-        m_active = !m_active;
+            Cursor.visible = !m_active; // makes cursor visable
+            m_active = !m_active;
+
+            m_toggledThisFrame = true;
+        }
     }
 
     /*
