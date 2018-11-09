@@ -37,6 +37,7 @@ public class Player : MovingActor
     public int m_playerNumber;
     public GameObject m_corpsePrefab;
     public HUD m_hud;
+    public Slider m_healthSlider;
     #region Vibration
     public float m_vibrationLength;
     public float m_vibrationDeath;
@@ -127,7 +128,7 @@ public class Player : MovingActor
         m_dashStrength = m_dashStrengthMin;
         m_360Timer = m_360Cooldown;
         m_heavyAttackTimer = m_heavyAttackCooldown;
-        
+        m_healthSlider.maxValue = m_maxHealth;        
 
         m_controller = (XboxController)m_playerNumber;
     }
@@ -161,6 +162,8 @@ public class Player : MovingActor
         {
             m_dashTimer -= Time.deltaTime;
         }
+
+        m_healthSlider.value = m_health;
 
         m_movement.z = XCI.GetAxisRaw(XboxAxis.LeftStickY, m_controller);
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
@@ -203,13 +206,13 @@ public class Player : MovingActor
         else
         {
             // When dash button is pressed        
-            if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
+            if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) > 0) && m_dashTimer < 0)
             {
                 m_dashing = true;
                 m_dashStrengthDisplay.enabled = true;
             }
             // when dash button is held
-            if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1)
+            if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) > 0)
             {
                 m_dashStrength += (Time.deltaTime / m_timeToFull) * (m_dashStrengthMax - m_dashStrengthMin);
                 if (m_dashStrength > m_dashStrengthMax)
@@ -233,7 +236,6 @@ public class Player : MovingActor
                             m_audioSourceSFX.PlayOneShot(m_playerDash[index]);
                         }
                     }
-
 
                     m_invulTimer = m_invulLength;
                     Physics.IgnoreLayerCollision(8, 9, true);
@@ -580,6 +582,7 @@ public class Player : MovingActor
 
             m_killCount -= m_neededKills; // removing amount of kills from kill count
             m_healParticles.Stop(); // stop particles
+            m_healParticles.Clear();
         }
     }
 
