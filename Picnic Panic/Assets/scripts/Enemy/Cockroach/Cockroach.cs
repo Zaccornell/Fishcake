@@ -117,7 +117,7 @@ public class Cockroach : MovingActor
                 // creating a knock back feel to the enemy once you hit it
                 // using Velocity and distance to push the enemy back
                 Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
-                m_rigidBody.AddForce(dashVelocity * m_rigidBody.mass, ForceMode.VelocityChange);
+                m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
             }
         }
     }

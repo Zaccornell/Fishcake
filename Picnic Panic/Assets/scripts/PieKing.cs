@@ -15,12 +15,16 @@ public class PieKing : Actor
 	void Start ()
     {
         m_health = m_maxHealth; // setting the health to the max health 
-        m_alive = true;
-        m_spawner.OnRoundEnd += new MyDel(RoundEnd); // it heals at the end of rounds 
+        m_alive = true;        
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    void Awake()
+    {
+        m_spawner.OnRoundEnd += new MyDel(RoundEnd); // it heals at the end of rounds 
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
     
 	}

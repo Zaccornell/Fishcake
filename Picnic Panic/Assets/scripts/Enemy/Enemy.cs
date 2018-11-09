@@ -30,6 +30,7 @@ public class Enemy : MovingActor
     private EnemyAttackKing m_attackKing;
     private int m_stateIndex;
     private int m_areaMask;
+    private Animator m_animator;
 
 
     // Use this for initialization
@@ -48,7 +49,9 @@ public class Enemy : MovingActor
         m_states[0] = m_attackKing;
 
         m_attackPlayer = new EnemyAttackPlayer(this, m_players, m_attackDistance, m_attackRadius, m_attackSpeed, m_attackDamage, m_agroRange);
-        m_states[1] = m_attackPlayer;        
+        m_states[1] = m_attackPlayer;
+
+        m_animator = GetComponent<Animator>();
     }
 
     public int PathIndex
@@ -66,6 +69,11 @@ public class Enemy : MovingActor
         else
         {
             m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
+        }
+
+        if (m_rigidBody.velocity.magnitude > m_speed)
+        {
+            m_rigidBody.velocity = m_rigidBody.velocity.normalized * m_speed;
         }
 
         if (m_movement.magnitude != 0)
@@ -100,6 +108,8 @@ public class Enemy : MovingActor
             m_movement = Vector3.zero;
         
         m_movement.y = 0;
+
+        m_animator.SetFloat("Speed", m_movement.magnitude);
     }
 
     public override void TakeDamage(int damage, Actor attacker)    
