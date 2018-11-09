@@ -5,17 +5,33 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using XInputDotNetPure;
 
+public enum Cause
+{
+    PieKing,
+    Player
+}
+
 public class EndGame : MonoBehaviour
- {
+{
     public GameObject[] m_objects;
     public Spawner m_spawner;
+    public HUD m_hud;
     public Player[] m_players;
     public Text m_roundValue;
+    public Text m_endCauseValue;
+    public Text m_timer;
     public GameObject[] m_playerStats;
     public Text[] m_player1Values;
     public Text[] m_player2Values;
     public Text[] m_player3Values;
     public Text[] m_player4Values;
+
+    private Cause m_cause;
+
+    public Cause Cause
+    {
+        set { m_cause = value; }
+    }
 
     // Use this for initialization
     void Start ()
@@ -45,6 +61,17 @@ public class EndGame : MonoBehaviour
         }
 
         m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
+
+        if (m_cause == Cause.PieKing)
+        {
+            m_endCauseValue.text = "You let your king die";
+        }
+        else
+        {
+            m_endCauseValue.text = "You all died";
+        }
+
+        //m_timer.text
 
         foreach (Player player in m_players)
         {

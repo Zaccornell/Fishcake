@@ -72,6 +72,15 @@ public class HUD : MonoBehaviour
         }
         if (m_king.Health <= 0 || playersAlive <= 0) // cheeking to see if any players or king is alive 
         {  
+            if (m_king.Health <= 0)
+            {
+                m_endGame.GetComponent<EndGame>().Cause = Cause.PieKing;
+            }
+            else
+            {
+                m_endGame.GetComponent<EndGame>().Cause = Cause.Player;
+            }
+
             m_endGame.SetActive(true); // activating endscreen
             m_restartButton.Select(); // setting a button to start event
         }

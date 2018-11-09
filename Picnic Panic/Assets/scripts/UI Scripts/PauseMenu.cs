@@ -164,6 +164,15 @@ public class PauseMenu : MonoBehaviour
             current.enabled = m_active;
         }
 
+        if (m_active)
+        {
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Time.timeScale = 0f;
+        }
+
         m_resumeButton.Select();
         m_resumeButton.OnSelect(null);
         m_king.enabled = m_active;

@@ -480,6 +480,11 @@ public class Player : MovingActor
         m_canRespawn = false;
     }
 
+    /*
+     * Handles respawnning dead players
+     * Spawns them at a radius of 9 from the pieking
+     * Re-enables all the colliders
+     */
     public void Respawn()
     {
         if (PlayerOptions.Instance.m_vibrationToggle)
@@ -500,6 +505,10 @@ public class Player : MovingActor
         }
         m_rigidBody.isKinematic = false;
     }
+
+    /*
+     * Handles hiding the player's renderers on death
+     */
     public void Death()
     {
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
