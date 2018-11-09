@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: f2543363809aad34bae3d1c372833857
+timeCreated: 1541720770
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Ant_Butt
+    100002: Ant_Head
+    100004: Ant_Left_Antenna
+    100006: Ant_Left_B_Knee
+    100008: Ant_Left_B_Leg
+    100010: Ant_Left_F_Knee
+    100012: Ant_Left_F_Leg
+    100014: Ant_Left_M_Knee
+    100016: Ant_Left_M_Leg
+    100018: Ant_Left_Mandible
+    100020: Ant_Right_Antenna
+    100022: Ant_Right_B_Knee
+    100024: Ant_Right_B_Leg
+    100026: Ant_Right_F_Knee
+    100028: Ant_Right_F_Leg
+    100030: Ant_Right_M_Knee
+    100032: Ant_Right_M_Leg
+    100034: Ant_Right_Mandible
+    100036: Ant_Root
+    100038: CTRL_Ant_Root
+    100040: Enemy_Ant
+    100042: //RootNode
+    400000: Ant_Butt
+    400002: Ant_Head
+    400004: Ant_Left_Antenna
+    400006: Ant_Left_B_Knee
+    400008: Ant_Left_B_Leg
+    400010: Ant_Left_F_Knee
+    400012: Ant_Left_F_Leg
+    400014: Ant_Left_M_Knee
+    400016: Ant_Left_M_Leg
+    400018: Ant_Left_Mandible
+    400020: Ant_Right_Antenna
+    400022: Ant_Right_B_Knee
+    400024: Ant_Right_B_Leg
+    400026: Ant_Right_F_Knee
+    400028: Ant_Right_F_Leg
+    400030: Ant_Right_M_Knee
+    400032: Ant_Right_M_Leg
+    400034: Ant_Right_Mandible
+    400036: Ant_Root
+    400038: CTRL_Ant_Root
+    400040: Enemy_Ant
+    400042: //RootNode
+    2100000: Enemy_Ant_Albedo
+    4300000: Enemy_Ant
+    9500000: //RootNode
+    13700000: Enemy_Ant
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
