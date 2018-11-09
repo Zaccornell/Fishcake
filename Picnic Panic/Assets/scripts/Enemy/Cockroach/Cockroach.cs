@@ -17,6 +17,7 @@ public class Cockroach : MovingActor
     public AudioClip[] m_enemyDeath;
     public AudioClip[] m_enemyFall;
     public AudioClip[] m_enemyAttack;
+    public ParticleSystem m_eatingKing;
 
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
@@ -63,6 +64,7 @@ public class Cockroach : MovingActor
                 {
                     m_king.TakeDamage(10, this);
                     m_attackTimer = m_attackSpeed;
+                    m_eatingKing.Play();
                 }
             }
         }

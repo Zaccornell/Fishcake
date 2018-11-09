@@ -92,6 +92,7 @@ public class EnemyAttackKing : EnemyState
                     }                    
                     m_owner.Animator.SetTrigger("Attack");
                     m_attackTimer = m_attackSpeed;
+                    m_owner.m_eatingKing.Play();
                 }
             }
         }
