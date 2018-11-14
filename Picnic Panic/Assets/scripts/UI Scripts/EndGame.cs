@@ -118,10 +118,12 @@ public class EndGame : MonoBehaviour
         foreach (Player player in m_spawner.m_players)
         {
             player.enabled = false;
+            player.Animator.enabled = false;
         }
         foreach (MovingActor current in m_spawner.m_enemies)
         {
             current.enabled = false;
+            ((Enemy)current).Animator.enabled = false;
         }
         foreach (GameObject child in m_objects) // going though and selecting every child inside of the array
         {

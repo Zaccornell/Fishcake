@@ -91,8 +91,7 @@ public class EnemyAttackKing : EnemyState
                         }
                     }                    
                     m_owner.Animator.SetTrigger("Attack");
-                    m_attackTimer = m_attackSpeed;
-                    m_owner.m_eatingKing.Play();
+                    m_attackTimer = m_attackSpeed;                    
                 }
             }
         }
@@ -111,5 +110,6 @@ public class EnemyAttackKing : EnemyState
     public override void Attack()
     {
         m_target.TakeDamage(m_attackDamage, m_owner);
+        m_owner.m_eatingKing.Play();
     }
 }

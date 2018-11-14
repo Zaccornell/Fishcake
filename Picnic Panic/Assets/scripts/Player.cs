@@ -116,6 +116,10 @@ public class Player : MovingActor
     {
         get { return m_healsUsed; }
     }
+    public Animator Animator
+        {
+            get { return m_animator; }
+        }
 
 
     // Use this for initialization
