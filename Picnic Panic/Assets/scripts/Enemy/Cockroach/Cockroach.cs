@@ -22,6 +22,8 @@ public class Cockroach : MovingActor
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
     private int m_areaMask;
+    private Animator m_animator;
+    private Vector3 m_lastPos;
 
     // Use this for initialization
     void Start ()
@@ -31,12 +33,14 @@ public class Cockroach : MovingActor
         m_path = new NavMeshPath();
         m_movement = new Vector3();
         m_alive = true;
+        m_animator = GetComponent<Animator>();
 
         m_areaMask = (1 << 0) + (0 << 1) + (1 << 2) + (0 << 3);
     }
 
     private void FixedUpdate()
     {
+        m_lastPos = m_rigidBody.position;
         if (m_useForce)
         {
             m_rigidBody.AddForce(m_movement * m_speed * 2, ForceMode.Acceleration);
@@ -62,9 +66,11 @@ public class Cockroach : MovingActor
             {
                 if (current.gameObject == m_king.gameObject)
                 {
-                    m_king.TakeDamage(10, this);
+                    //m_king.TakeDamage(10, this);
+                    //m_eatingKing.Play();
+
+                    m_animator.SetTrigger("Attack");
                     m_attackTimer = m_attackSpeed;
-                    m_eatingKing.Play();
                 }
             }
         }
@@ -94,6 +100,18 @@ public class Cockroach : MovingActor
             m_movement = Vector3.zero;
 
         m_movement.y = 0;
+
+        bool temp = false;
+        Collider[] targetstemp = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
+        foreach (Collider current in targetstemp)
+        {
+            if (current.gameObject == m_king.gameObject)
+            {
+                temp = true;
+            }
+        }
+
+        m_animator.SetFloat("Speed", temp ? 0 : m_movement.magnitude);
     }
 
     public override void TakeDamage(int damage, Actor attacker)
@@ -144,6 +162,11 @@ public class Cockroach : MovingActor
             m_alive = false;
             Destroy(gameObject);
         }
+    }
+
+    public void Attack()
+    {
+        m_king.TakeDamage(m_attackDamage, this);
     }
 
     private void OnDrawGizmos()
