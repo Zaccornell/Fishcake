@@ -153,6 +153,7 @@ public class Enemy : MovingActor
     public void ChangeState(int index)
     {
         m_stateIndex = index;
+        m_animator.SetTrigger("StateChanged");
     }
 
     private void OnDrawGizmos()

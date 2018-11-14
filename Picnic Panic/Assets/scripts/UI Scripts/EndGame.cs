@@ -120,15 +120,19 @@ public class EndGame : MonoBehaviour
         GamePad.SetVibration(PlayerIndex.Two, 0, 0);
         GamePad.SetVibration(PlayerIndex.Three, 0, 0);
         GamePad.SetVibration(PlayerIndex.Four, 0, 0);
+
+        Time.timeScale = 0;
     }
 
     public void RestartButton()
     {
         SceneManager.LoadScene(1); // loading the scene up of the gmae
+        Time.timeScale = 1;
     }
 
     public void MainMenuButton()
     {
         SceneManager.LoadScene(0); // loading the screen up for mainmenu
+        Time.timeScale = 1;
     }
 }
