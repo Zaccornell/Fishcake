@@ -425,6 +425,10 @@ Prefab:
       propertyPath: m_spawner
       value: 
       objectReference: {fileID: 1211538502}
+    - target: {fileID: 1396635353476876, guid: 45095329a8d73b14aa0bb3882cc0fd92, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45095329a8d73b14aa0bb3882cc0fd92, type: 2}
   m_IsPrefabParent: 0
@@ -2587,11 +2591,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_lives:
-  - {fileID: 1523002863}
-  - {fileID: 1575785526}
-  - {fileID: 968121749}
-  - {fileID: 2026422355}
-  - {fileID: 2044710522}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_playerDisplays:
   - {fileID: 756028347}
   - {fileID: 2135400104}
@@ -2610,6 +2614,8 @@ MonoBehaviour:
   m_restartButton: {fileID: 1221313505}
   m_audioSource: {fileID: 1317556256}
   m_gameMusic: {fileID: 8300000, guid: df2fb2628c860394e9d5e63540217ba3, type: 3}
+  m_timer: 0
+  m_usedHeart: {fileID: 0}
   m_enemyCounter: {fileID: 967338274}
 --- !u!224 &1114299479
 RectTransform:
