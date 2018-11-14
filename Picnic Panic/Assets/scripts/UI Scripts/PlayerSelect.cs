@@ -78,7 +78,7 @@ public class PlayerSelect : MonoBehaviour
             {
                 if (!m_playersReady[i])
                 {
-                    m_playerSlots[i].text = i.ToString();
+                    m_playerSlots[i].gameObject.SetActive(false);
                     m_playerJoin[i].enabled = false;
                     m_playersReady[i] = true;
                     m_startGame.enabled = false;
