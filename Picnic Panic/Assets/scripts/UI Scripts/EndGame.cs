@@ -135,4 +135,9 @@ public class EndGame : MonoBehaviour
         SceneManager.LoadScene(0); // loading the screen up for mainmenu
         Time.timeScale = 1;
     }
+
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
 }
