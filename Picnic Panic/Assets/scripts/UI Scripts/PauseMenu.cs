@@ -90,17 +90,18 @@ public class PauseMenu : MonoBehaviour
      */
     public void ResetClick()
     {
-        foreach (Player current in m_players)
-        {
-            current.ResetValues();
-            current.Respawn();
-        }
-        m_spawner.ResetValues();
-        m_king.ResetValues();
-        foreach (Player current in m_players)
-        {
-            XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
-        }
+        //foreach (Player current in m_players)
+        //{
+        //    current.ResetValues();
+        //    current.Respawn();
+        //}
+        //m_spawner.ResetValues();
+        //m_king.ResetValues();
+        //foreach (Player current in m_players)
+        //{
+        //    XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
+        //}
+        SceneManager.LoadScene(1);
     }
 
     /*

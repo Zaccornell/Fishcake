@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     public GameObject[] m_mainMenu;
     public GameObject[] m_OptionMenu;
     public Button m_backButton;
+    public Button m_playButton;
 
 	// Use this for initialization
 	void Start ()
@@ -61,5 +62,6 @@ public class MainMenu : MonoBehaviour
         {
             child.SetActive(false);
         }
+        m_playButton.Select();
     }
 }
