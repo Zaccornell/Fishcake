@@ -38,7 +38,7 @@ public class EnemyAttackPlayer : EnemyState
      *      owner: reference to the state machine, to be passed into the base constructor
      *      players: array of all players in the game
      */
-    public EnemyAttackPlayer(Enemy owner, Actor[] players, float attackDistance, float attackRadius, float attackSpeed, int attackDamage, float agroRange) : base(owner)
+    public EnemyAttackPlayer(Enemy owner, Actor[] players, float attackDistance, float attackRadius, float attackSpeed, int attackDamage, float agroRange, float windUpLength) : base(owner)
     {
         m_players = players;
         m_attackDistance = attackDistance;
@@ -46,6 +46,7 @@ public class EnemyAttackPlayer : EnemyState
         m_attackSpeed = attackSpeed;
         m_attackDamage = attackDamage;
         m_agroRange = agroRange + 5;
+        m_windUpLength = windUpLength;
     }
 
     /*

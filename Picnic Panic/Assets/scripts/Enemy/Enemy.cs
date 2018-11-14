@@ -8,6 +8,7 @@ using UnityEngine.AI;
  */
 public class Enemy : MovingActor
 {
+    public float m_windUpLength;
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_attackDistance;
     public float m_attackRadius;
@@ -53,7 +54,7 @@ public class Enemy : MovingActor
         m_attackKing = new EnemyAttackKing(this, m_players, m_king, m_attackDistance, m_attackRadius, m_attackSpeed, m_attackDamage, m_agroRange);
         m_states[0] = m_attackKing;
 
-        m_attackPlayer = new EnemyAttackPlayer(this, m_players, m_attackDistance, m_attackRadius, m_attackSpeed, m_attackDamage, m_agroRange);
+        m_attackPlayer = new EnemyAttackPlayer(this, m_players, m_attackDistance, m_attackRadius, m_attackSpeed, m_attackDamage, m_agroRange, m_windUpLength);
         m_states[1] = m_attackPlayer;
 
         m_animator = GetComponent<Animator>();
