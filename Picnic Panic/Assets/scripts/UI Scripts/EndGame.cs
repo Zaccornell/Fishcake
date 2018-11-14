@@ -19,12 +19,15 @@ public class EndGame : MonoBehaviour
     public Player[] m_players;
     public Text m_roundValue;
     public Text m_endCauseValue;
-    public Text m_timer;
+    public Text m_gameTimer;
     public GameObject[] m_playerStats;
     public Text[] m_player1Values;
     public Text[] m_player2Values;
     public Text[] m_player3Values;
     public Text[] m_player4Values;
+    public float m_length;
+
+    private float m_timer;
 
     private Cause m_cause;
 
@@ -36,13 +39,70 @@ public class EndGame : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
+        m_timer = m_length;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
+        m_timer -= Time.deltaTime;
+        if (m_timer <= 0)
+        {
+            m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
+
+            if (m_cause == Cause.PieKing)
+            {
+                m_endCauseValue.text = "You let your king die";
+            }
+            else
+            {
+                m_endCauseValue.text = "You all died";
+            }
+
+            m_gameTimer.text = "You survived for " + m_hud.m_timer.ToString("0") + " seconds";
+
+            foreach (Player player in m_players)
+            {
+                switch (player.m_playerNumber)
+                {
+                    case 1:
+                        m_playerStats[0].SetActive(true);
+                        m_player1Values[0].text = player.Kills.ToString();
+                        m_player1Values[1].text = player.Deaths.ToString();
+                        m_player1Values[2].text = player.AntKills.ToString();
+                        m_player1Values[3].text = player.RoachKills.ToString();
+                        m_player1Values[4].text = player.HealsUsed.ToString();
+                        break;
+
+                    case 2:
+                        m_playerStats[1].SetActive(true);
+                        m_player2Values[0].text = player.Kills.ToString();
+                        m_player2Values[1].text = player.Deaths.ToString();
+                        m_player2Values[2].text = player.AntKills.ToString();
+                        m_player2Values[3].text = player.RoachKills.ToString();
+                        m_player2Values[4].text = player.HealsUsed.ToString();
+                        break;
+
+                    case 3:
+                        m_playerStats[2].SetActive(true);
+                        m_player3Values[0].text = player.Kills.ToString();
+                        m_player3Values[1].text = player.Deaths.ToString();
+                        m_player3Values[2].text = player.AntKills.ToString();
+                        m_player3Values[3].text = player.RoachKills.ToString();
+                        m_player3Values[4].text = player.HealsUsed.ToString();
+                        break;
+
+                    case 4:
+                        m_playerStats[3].SetActive(true);
+                        m_player4Values[0].text = player.Kills.ToString();
+                        m_player4Values[1].text = player.Deaths.ToString();
+                        m_player4Values[2].text = player.AntKills.ToString();
+                        m_player4Values[3].text = player.RoachKills.ToString();
+                        m_player4Values[4].text = player.HealsUsed.ToString();
+                        break;
+                }
+            }
+        }
 	}
 
     private void OnEnable()
@@ -61,60 +121,9 @@ public class EndGame : MonoBehaviour
         }
         m_spawner.enabled = false;
 
-        m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
+        
 
-        if (m_cause == Cause.PieKing)
-        {
-            m_endCauseValue.text = "You let your king die";
-        }
-        else
-        {
-            m_endCauseValue.text = "You all died";
-        }
-
-        m_timer.text = "You survived for " + m_hud.m_timer.ToString("0") + " seconds";
-
-        foreach (Player player in m_players)
-        {
-            switch(player.m_playerNumber)
-            {
-                case 1:
-                    m_playerStats[0].SetActive(true);
-                    m_player1Values[0].text = player.Kills.ToString();
-                    m_player1Values[1].text = player.Deaths.ToString();
-                    m_player1Values[2].text = player.AntKills.ToString();
-                    m_player1Values[3].text = player.RoachKills.ToString();
-                    m_player1Values[4].text = player.HealsUsed.ToString();
-                    break;
-
-                case 2:
-                    m_playerStats[1].SetActive(true);
-                    m_player2Values[0].text = player.Kills.ToString();
-                    m_player2Values[1].text = player.Deaths.ToString();
-                    m_player2Values[2].text = player.AntKills.ToString();
-                    m_player2Values[3].text = player.RoachKills.ToString();
-                    m_player2Values[4].text = player.HealsUsed.ToString();
-                    break;
-
-                case 3:
-                    m_playerStats[2].SetActive(true);
-                    m_player3Values[0].text = player.Kills.ToString();
-                    m_player3Values[1].text = player.Deaths.ToString();
-                    m_player3Values[2].text = player.AntKills.ToString();
-                    m_player3Values[3].text = player.RoachKills.ToString();
-                    m_player3Values[4].text = player.HealsUsed.ToString();
-                    break;
-
-                case 4:
-                    m_playerStats[3].SetActive(true);
-                    m_player4Values[0].text = player.Kills.ToString();
-                    m_player4Values[1].text = player.Deaths.ToString();
-                    m_player4Values[2].text = player.AntKills.ToString();
-                    m_player4Values[3].text = player.RoachKills.ToString();
-                    m_player4Values[4].text = player.HealsUsed.ToString();
-                    break;
-            }
-        }
+       
 
         GamePad.SetVibration(PlayerIndex.One, 0, 0);
         GamePad.SetVibration(PlayerIndex.Two, 0, 0);
