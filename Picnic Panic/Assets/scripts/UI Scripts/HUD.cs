@@ -17,7 +17,6 @@ public class HUD : MonoBehaviour
     public AudioSource m_audioSource;
     public AudioClip m_gameMusic;
     public float m_timer;
-    public Sprite m_usedHeart;
 
     public Text m_enemyCounter;
 
@@ -36,7 +35,6 @@ public class HUD : MonoBehaviour
         {
             current.enabled = false;
         }
-
 	}
 	
 	// Update is called once per frame
@@ -92,15 +90,8 @@ public class HUD : MonoBehaviour
     public bool UseLife()
     {
         if (m_playerLives > 0)
-        {
-            if (m_usedHeart != null)
-            {
-                m_lives[m_playerLives - 1].sprite = m_usedHeart;
-            }
-            else
-            {
-                m_lives[m_playerLives - 1].gameObject.SetActive(false);
-            }
+        {            
+            m_lives[m_playerLives - 1].gameObject.SetActive(false);            
 
             m_playerLives--;
             return true;

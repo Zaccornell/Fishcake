@@ -12,6 +12,7 @@ public class PlayerSelect : MonoBehaviour
     public Material[] m_playerMaterials;
     public GameObject[] m_playerDisplays;
     public Transform[] m_spawnPoints;
+    public GameObject[] m_playerNumberCovers;
     public Spawner m_spawner;
     public HUD m_hud;
     public PauseMenu m_pauseMenu;
@@ -79,6 +80,7 @@ public class PlayerSelect : MonoBehaviour
                 if (!m_playersReady[i])
                 {
                     m_playerSlots[i].gameObject.SetActive(false);
+                    m_playerNumberCovers[i].SetActive(false);
                     m_playerJoin[i].enabled = false;
                     m_playersReady[i] = true;
                     m_startGame.enabled = false;

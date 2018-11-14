@@ -13,6 +13,7 @@ public enum Cause
 
 public class EndGame : MonoBehaviour
 {
+    public GameObject[] m_children;
     public GameObject[] m_objects;
     public Spawner m_spawner;
     public HUD m_hud;
@@ -48,6 +49,11 @@ public class EndGame : MonoBehaviour
         m_timer -= Time.deltaTime;
         if (m_timer <= 0)
         {
+            foreach(GameObject current in m_children)
+            {
+                current.SetActive(true);
+            }
+
             m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
 
             if (m_cause == Cause.PieKing)
@@ -102,6 +108,8 @@ public class EndGame : MonoBehaviour
                         break;
                 }
             }
+
+            Time.timeScale = 0;
         }
 	}
 
@@ -119,18 +127,12 @@ public class EndGame : MonoBehaviour
         {
             child.SetActive(false); // turning the object off inside the array
         }
-        m_spawner.enabled = false;
-
-        
-
-       
+        m_spawner.enabled = false;             
 
         GamePad.SetVibration(PlayerIndex.One, 0, 0);
         GamePad.SetVibration(PlayerIndex.Two, 0, 0);
         GamePad.SetVibration(PlayerIndex.Three, 0, 0);
-        GamePad.SetVibration(PlayerIndex.Four, 0, 0);
-
-        Time.timeScale = 0;
+        GamePad.SetVibration(PlayerIndex.Four, 0, 0);        
     }
 
     public void RestartButton()

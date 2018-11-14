@@ -137,8 +137,7 @@ public class EnemyAttackPlayer : EnemyState
                             m_owner.m_audioSourceSFX.PlayOneShot(m_owner.m_enemyAttack[index]);
                         }
                     }                   
-                }                                        
-                
+                }                                                      
             }
             m_owner.Animator.SetTrigger("Attack");
             m_attackTimer = m_attackSpeed;

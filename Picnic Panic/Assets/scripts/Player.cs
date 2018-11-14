@@ -76,6 +76,7 @@ public class Player : MovingActor
     private float m_360Timer;
     private float m_heavyAttackTimer;
     private Animator m_animator;
+    private Collider m_collider;
 
     private bool m_dashing;
     private float m_dashStrength;
@@ -122,6 +123,7 @@ public class Player : MovingActor
     {
         m_rigidBody = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
+        m_collider = GetComponent<Collider>();
         m_movement = new Vector3();
         m_health = m_maxHealth;
         m_alive = true;
@@ -505,7 +507,9 @@ public class Player : MovingActor
         {
             current.enabled = true;
         }
+        m_collider.enabled = true;
         m_rigidBody.isKinematic = false;
+        m_healthSlider.gameObject.SetActive(true);
     }
 
     /*
@@ -518,7 +522,9 @@ public class Player : MovingActor
         {
             current.enabled = false;
         }
+        m_collider.enabled = false;
         m_rigidBody.isKinematic = true;
+        m_healthSlider.gameObject.SetActive(false);
 
         m_deaths++;
     }
