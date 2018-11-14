@@ -741,10 +741,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 10
   m_speed: 5
-  m_attackSpeed: 1
+  m_attackSpeed: 0.5
   m_attackDamage: 10
   m_useForce: 0
   m_type: 1
+  m_windUpLength: 0
   m_knockBackDistance: 500
   m_attackDistance: 1
   m_attackRadius: 0.2
@@ -765,7 +766,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eae6423da4ddf6e4b9c0b742229b93b8, type: 3}
   m_enemyFall: []
   m_enemyAttack: []
-  m_eatingKing: {fileID: 0}
+  m_eatingKing: {fileID: 198028037620274372}
 --- !u!137 &137686618483187558
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
