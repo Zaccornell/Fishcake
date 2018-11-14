@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public GameObject[] m_lives;
+    public Image[] m_lives;
     public Text[] m_playerDisplays;
     public Player[] m_players;
     public Actor m_king;
@@ -17,7 +17,7 @@ public class HUD : MonoBehaviour
     public AudioSource m_audioSource;
     public AudioClip m_gameMusic;
     public float m_timer;
-
+    public Sprite m_usedHeart;
 
     public Text m_enemyCounter;
 
@@ -93,7 +93,15 @@ public class HUD : MonoBehaviour
     {
         if (m_playerLives > 0)
         {
-            m_lives[m_playerLives - 1].SetActive(false);
+            if (m_usedHeart != null)
+            {
+                m_lives[m_playerLives - 1].sprite = m_usedHeart;
+            }
+            else
+            {
+                m_lives[m_playerLives - 1].gameObject.SetActive(false);
+            }
+
             m_playerLives--;
             return true;
         }
