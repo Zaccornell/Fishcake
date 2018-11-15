@@ -887,6 +887,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_playerNumberCovers:
+  - {fileID: 1938365251619876}
+  - {fileID: 1853351250984540}
+  - {fileID: 1651772654974144}
+  - {fileID: 1342778507760950}
+  m_playerNumberSprites:
+  - {fileID: 21300000, guid: 052f96f9fe56bd54988295ff06abb752, type: 3}
+  - {fileID: 21300000, guid: c739764925d751543b3fbaac120ae8eb, type: 3}
+  - {fileID: 21300000, guid: 0b1b25ab31ed8c04c9ec02298eda6241, type: 3}
+  - {fileID: 21300000, guid: 929ee2d7407e6884199861cd8ce0e2ea, type: 3}
   m_spawner: {fileID: 0}
   m_hud: {fileID: 0}
   m_pauseMenu: {fileID: 0}
