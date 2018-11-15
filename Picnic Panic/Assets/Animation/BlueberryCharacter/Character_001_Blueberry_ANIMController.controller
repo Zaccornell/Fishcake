@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Player - AttackMoveTest
+  m_Name: Character_001_Blueberry_ANIMController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Attack Pressed
@@ -57,36 +57,6 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!206 &206075979500954460
-BlendTree:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Blend Tree
-  m_Childs:
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 377687e51d2c3d44181cb27746872bf0, type: 2}
-    m_Threshold: 0
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: Character Walk
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: eb49683d8bdee7840a6f13dd9d932816, type: 2}
-    m_Threshold: 1
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: Character Walk
-    m_Mirror: 0
-  m_BlendParameter: Character Walk
-  m_BlendParameterY: Character Walk
-  m_MinThreshold: 0
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 0
-  m_NormalizedBlendValues: 0
-  m_BlendType: 0
 --- !u!1101 &1101050812965666716
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -387,31 +357,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &1102069931798514660
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Blend Tree
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 206075979500954460}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &1102147357886277228
 AnimatorState:
   serializedVersion: 5
@@ -470,7 +415,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Character_Attack_001_ANIM
+  m_Name: Character_Blueberry_001_Attack_ANIM
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -484,7 +429,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: eb49683d8bdee7840a6f13dd9d932816, type: 2}
+  m_Motion: {fileID: 7400000, guid: d06639b2fbe495147880ff07fd2729af, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -496,7 +441,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Character_Attack_001_ANIM 0
+  m_Name: Character_Blueberry_001_Attack_ANIM 0
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -510,7 +455,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: eb49683d8bdee7840a6f13dd9d932816, type: 2}
+  m_Motion: {fileID: 7400000, guid: d06639b2fbe495147880ff07fd2729af, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -548,7 +493,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Character_Walk_001_ANIM
+  m_Name: Character_Blueberry_001_Walk_ANIM
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -563,7 +508,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 377687e51d2c3d44181cb27746872bf0, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1390ecbd1c697984a817fc275c177509, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -575,7 +520,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Character_Idle_001_ANIM
+  m_Name: Character_Blueberry_001_Idle_ANIM
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -592,7 +537,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 943bcabfe1aac2a469ad962165dd894a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 218d63d19cde5bb409dd68d5b147eb10, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -647,9 +592,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102882302058953646}
     m_Position: {x: 612, y: 180, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102069931798514660}
-    m_Position: {x: 612, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102407309738532514}
     m_Position: {x: 612, y: 252, z: 0}
