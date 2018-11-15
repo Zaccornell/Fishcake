@@ -161,12 +161,20 @@ public class EndGame : MonoBehaviour
     {
         SceneManager.LoadScene(1); // loading the scene up of the gmae
         Time.timeScale = 1;
+        foreach (GameObject child in m_objects) // going though and selecting every child inside of the array
+        {
+            child.SetActive(true); // turning the object off inside the array
+        }
     }
 
     public void MainMenuButton()
     {
         SceneManager.LoadScene(0); // loading the screen up for mainmenu
         Time.timeScale = 1;
+        foreach (GameObject child in m_objects) // going though and selecting every child inside of the array
+        {
+            child.SetActive(true); // turning the object off inside the array
+        }
     }
 
     public void QuitButton()
