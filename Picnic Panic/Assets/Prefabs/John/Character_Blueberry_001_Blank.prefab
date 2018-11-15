@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4616203405476864}
   - component: {fileID: 95075593942573596}
   m_Layer: 0
-  m_Name: Character_Blueberry_001_Rig 1
+  m_Name: Character_Blueberry_001_Blank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
