@@ -29,6 +29,7 @@ public class EndGame : MonoBehaviour
     public float m_length;
 
     private float m_timer;
+    private int m_minutes;
 
     private Cause m_cause;
 
@@ -64,8 +65,26 @@ public class EndGame : MonoBehaviour
             {
                 m_endCauseValue.text = "You all died";
             }
+            
 
-            m_gameTimer.text = "You survived for " + m_hud.m_timer.ToString("0") + " seconds";
+            // checking to see if the timer is greater than 60 seconds 
+            if (m_timer >= 60)
+            {
+                m_minutes =(int)m_timer / 60; // dividing it from the time 
+                if (m_minutes > 1)
+                {
+                    m_gameTimer.text = "You survived for " + m_minutes.ToString() + "minutes" + m_hud.m_timer.ToString("0") + " seconds"; // checking to see if its more than a minute
+                }
+                else
+                {
+                    m_gameTimer.text = "You survived for " + m_minutes.ToString() + "minute" + m_hud.m_timer.ToString("0") + " seconds"; // only outputing when it is 1 minute 
+                }
+            }
+            else
+            {
+                m_gameTimer.text = "You survived for " + m_hud.m_timer.ToString("0") + " seconds"; // if it doesnt go over a minute 
+
+            }
 
             foreach (Player player in m_players)
             {
