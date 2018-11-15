@@ -2002,6 +2002,7 @@ MonoBehaviour:
   - {fileID: 1793962975}
   - {fileID: 1099884809}
   m_backButton: {fileID: 1419692291}
+  m_playButton: {fileID: 1484386661}
 --- !u!1001 &1921095071
 Prefab:
   m_ObjectHideFlags: 0
