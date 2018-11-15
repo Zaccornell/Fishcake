@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class PlayerNumberDisplay : MonoBehaviour
 {
-    private Text m_text;
+    private Image m_image;
 
 	// Use this for initialization
 	void Start ()
     {
-        m_text = GetComponent<Text>();	
+        m_image = GetComponent<Image>();	
 	}
 
     // Update is called once per frame
     void Update ()
     {
-        Color color = m_text.color;
+        Color color = m_image.color;
         color.a -= 0.005f;
-        m_text.color = color;
+        m_image.color = color;
 
         if (color.a <= 0)
         {
