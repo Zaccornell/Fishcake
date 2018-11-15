@@ -70,16 +70,15 @@ public class EndGame : MonoBehaviour
             // checking to see if the timer is greater than 60 seconds 
             if (m_hud.m_timer >= 60)
             {
-                m_minutes =(int)m_hud.m_timer / 60; // dividing it from the time \
+                m_minutes =(int)m_hud.m_timer / 60; // dividing it from the time 
+                //m_hud.m_timer -= m_minutes * 60; // resets the timer for minutes and secounds 
                 if (m_minutes > 1)
                 {
-                    m_hud.m_timer -= m_minutes * 60; // resets the timer for minutes and secounds  
-                    m_gameTimer.text = "You survived for " + m_minutes.ToString() + "minutes" + m_hud.m_timer.ToString("0") + " seconds"; // checking to see if its more than a minute
+                    m_gameTimer.text = "You survived for " + m_minutes.ToString() + " minutes and " + (m_hud.m_timer - m_minutes * 60).ToString("0") + " seconds"; // checking to see if its more than a minute
                 }
                 else
                 {
-                    m_hud.m_timer -= m_minutes * 60; // resets the timer for minutes and secounds  
-                    m_gameTimer.text = "You survived for " + m_minutes.ToString() + "minute" + m_hud.m_timer.ToString("0") + " seconds"; // only outputing when it is 1 minute 
+                    m_gameTimer.text = "You survived for " + m_minutes.ToString() + " minute and " + (m_hud.m_timer - m_minutes * 60).ToString("0") + " seconds";  // only outputing when it is 1 minute 
                 }
             }
             else
