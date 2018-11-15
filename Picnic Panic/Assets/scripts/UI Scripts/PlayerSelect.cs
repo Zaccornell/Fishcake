@@ -12,7 +12,8 @@ public class PlayerSelect : MonoBehaviour
     public GameObject[] m_playerModels;
     public GameObject[] m_playerWeapons;
     public Material[] m_playerMaterials;
-    public GameObject[] m_playerDisplays;
+    public Material[] m_candyCornMaterials;
+    public Material[] m_blueberryMaterials;
     public Transform[] m_spawnPoints;
     public GameObject[] m_playerNumberCovers;
     public Sprite[] m_playerNumberSprites;
@@ -35,8 +36,8 @@ public class PlayerSelect : MonoBehaviour
     private List<Player> m_players;
     private int[] m_selectedModels;
     private int[] m_selectedWeapons;
-    //private List<int> m_playerOrder;
     private bool[] m_playersReady;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -97,7 +98,24 @@ public class PlayerSelect : MonoBehaviour
 
                     canStart = false;
 
-                    m_TEMP[i] = Instantiate(m_playerModels[Mathf.Min(m_playerModels.Length - 1, i)], m_displayLocations[i]);
+                    m_TEMP[i] = Instantiate(m_playerModels[0/*Mathf.Min(m_playerModels.Length - 1, i)*/], m_displayLocations[i]);
+
+                    if (i == 0)
+                    {
+                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                    }
+                    if (i == 1)
+                    {
+                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                    }
+                    if (i == 2)
+                    {
+                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                    }
+                    if (i == 3)
+                    {
+                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                    }
                 }
             }
         }
@@ -124,6 +142,7 @@ public class PlayerSelect : MonoBehaviour
                     start = true;
                 }
 
+                // Scroll selected weapon up
                 if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadUp, m_controllers[i]) || Input.GetKeyDown(KeyCode.UpArrow)))
                 {
                     if (m_selectedWeapons[i]++ >= m_playerWeapons.Length - 1)
@@ -139,6 +158,7 @@ public class PlayerSelect : MonoBehaviour
                     Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
                     
                 }
+                // Scroll selected weapon down
                 if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadDown, m_controllers[i]) || Input.GetKeyDown(KeyCode.DownArrow)))
                 {
                     if (m_selectedWeapons[i]-- <= 0)
@@ -153,6 +173,7 @@ public class PlayerSelect : MonoBehaviour
                     }
                     Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));                    
                 }
+                // Scroll selected charactor right
                 if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadRight, m_controllers[i]) || Input.GetKeyDown(KeyCode.RightArrow)))
                 {
                     if (m_selectedModels[i]++ >= m_playerPrefabs.Length - 1)
@@ -161,9 +182,20 @@ public class PlayerSelect : MonoBehaviour
                     }
 
                     GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
+
+                    if (m_selectedModels[i] == 0)
+                    {
+                        temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                    }
+                    else if (m_selectedModels[i] == 1)
+                    {
+                        temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
+                    }
+                    
                     Destroy(m_TEMP[i]);
                     m_TEMP[i] = temp;                    
                 }
+                // Scroll selected charactor left
                 if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadLeft, m_controllers[i]) || Input.GetKeyDown(KeyCode.LeftArrow)))
                 {
                     if (m_selectedModels[i]-- <= 0)
@@ -172,6 +204,16 @@ public class PlayerSelect : MonoBehaviour
                     }
 
                     GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
+
+                    if (m_selectedModels[i] == 0)
+                    {
+                        temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                    }
+                    else if (m_selectedModels[i] == 1)
+                    {
+                        temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
+                    }
+
                     Destroy(m_TEMP[i]);
                     m_TEMP[i] = temp;                    
                 }
@@ -189,7 +231,14 @@ public class PlayerSelect : MonoBehaviour
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
                         SkinnedMeshRenderer renderer = currentPlayer.GetComponentInChildren<SkinnedMeshRenderer>();
-                        renderer.material = m_playerMaterials[i];
+                        if (m_selectedModels[i] == 0)
+                        {
+                            renderer.material = m_candyCornMaterials[i];
+                        }
+                        else if (m_selectedModels[i] == 1)
+                        {
+                            renderer.material = m_blueberryMaterials[i];
+                        }
 
                         Player playerScript = currentPlayer.GetComponent<Player>();
                         playerScript.m_playerNumber = i + 1;
@@ -234,10 +283,7 @@ public class PlayerSelect : MonoBehaviour
                 {
                     current.enabled = true;
                 }
-                foreach (GameObject current in m_playerDisplays)
-                {
-                    current.SetActive(false);
-                }
+
                 m_spawner.enabled = true;
                 m_hud.enabled = true;
                 m_pauseMenu.enabled = true;

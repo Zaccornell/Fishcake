@@ -2157,28 +2157,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
-        time: 0.00000011920929
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 0.5000001
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_Enabled
-    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Cleaver
-    classID: 25
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
         time: 0
         value: 0
         inSlope: Infinity
@@ -2206,7 +2184,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Cleaver
+    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Weapon
     classID: 65
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -2330,7 +2308,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2544201097
+      path: 1943895331
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 65
@@ -2581,13 +2559,6 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2544201097
-      attribute: 3305885265
-      script: {fileID: 0}
-      typeID: 25
-      customType: 0
-      isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -2610,28 +2581,6 @@ AnimationClip:
     m_HeightFromFeet: 0
     m_Mirror: 0
   m_EditorCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0.00000011920929
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 0.5000001
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_Enabled
-    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Cleaver
-    classID: 25
-    script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10999,7 +10948,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Cleaver
+    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Weapon
     classID: 65
     script: {fileID: 0}
   m_EulerEditorCurves:

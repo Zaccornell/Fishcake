@@ -2977,7 +2977,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Spatula
+    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Weapon(Clone)
     classID: 65
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -3185,7 +3185,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1091728900
+      path: 2382546302
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 65
@@ -15002,7 +15002,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Spatula
+    path: Character_Root/Hips/Spine/Right_Arm/Right_Elbow/Right_Hand/Weapon(Clone)
     classID: 65
     script: {fileID: 0}
   m_EulerEditorCurves:
