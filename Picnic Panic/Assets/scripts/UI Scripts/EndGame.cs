@@ -30,6 +30,7 @@ public class EndGame : MonoBehaviour
 
     private float m_timer;
     private int m_minutes;
+    private bool m_check;
 
     private Cause m_cause;
 
@@ -48,7 +49,7 @@ public class EndGame : MonoBehaviour
 	void Update ()
     {
         m_timer -= Time.deltaTime;
-        if (m_timer <= 0)
+        if (m_timer <= 0 && !m_check)
         {
             foreach(GameObject current in m_children)
             {
@@ -130,6 +131,7 @@ public class EndGame : MonoBehaviour
             }
 
             Time.timeScale = 0;
+            m_check = true;
         }
 	}
 
@@ -159,22 +161,22 @@ public class EndGame : MonoBehaviour
 
     public void RestartButton()
     {
-        SceneManager.LoadScene(1); // loading the scene up of the gmae
         Time.timeScale = 1;
         foreach (GameObject child in m_objects) // going though and selecting every child inside of the array
         {
             child.SetActive(true); // turning the object off inside the array
         }
+        SceneManager.LoadScene(1); // loading the scene up of the gmae
     }
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene(0); // loading the screen up for mainmenu
         Time.timeScale = 1;
         foreach (GameObject child in m_objects) // going though and selecting every child inside of the array
         {
             child.SetActive(true); // turning the object off inside the array
         }
+        SceneManager.LoadScene(0); // loading the screen up for mainmenu
     }
 
     public void QuitButton()
