@@ -13,6 +13,7 @@ public class PlayerSelect : MonoBehaviour
     public GameObject[] m_playerDisplays;
     public Transform[] m_spawnPoints;
     public GameObject[] m_playerNumberCovers;
+    public Sprite[] m_playerNumberSprites;
     public Spawner m_spawner;
     public HUD m_hud;
     public PauseMenu m_pauseMenu;
@@ -133,7 +134,7 @@ public class PlayerSelect : MonoBehaviour
                         playerScript.m_hud = m_hud;
                         playerScript.m_audioSourceSFX = m_audioSourceSFX;
 
-                        playerScript.DisplayPlayerNumber();
+                        playerScript.DisplayPlayerNumber(m_playerNumberSprites[Mathf.Max(0, m_playerNumberSprites.Length - 1)]);
 
                         m_players.Add(playerScript);
                     }

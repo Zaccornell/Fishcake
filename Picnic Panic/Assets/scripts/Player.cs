@@ -58,7 +58,7 @@ public class Player : MovingActor
     public AudioSource m_audioSourceSFX;
     #endregion
     public Text m_dashStrengthDisplay;
-    public Text m_playerNumberDisplay;
+    public Image m_playerNumberDisplay;
     public int m_healCount;
     #endregion
 
@@ -499,9 +499,21 @@ public class Player : MovingActor
         {
              GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
         }
-        Vector3 spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-        spawnPos.Normalize();
-        spawnPos *= 9;;
+
+        Vector3 spawnPos;
+        bool validPos = false;
+
+        do
+        {
+            spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+            spawnPos.Normalize();
+            spawnPos *= 9;
+
+            validPos = Physics.CheckCapsule(new Vector3(spawnPos.x, 0.5f, spawnPos.z), new Vector3(spawnPos.x, 0.5f + 1.72f, spawnPos.z), 0.5f);
+        } while (!validPos);
+
+
+
         gameObject.transform.position = spawnPos;
         m_vibrationTimer = m_virbationRespawn;
         m_alive = true;
@@ -615,9 +627,9 @@ public class Player : MovingActor
         }
     }
 
-    public void DisplayPlayerNumber()
+    public void DisplayPlayerNumber(Sprite sprite)
     {
-        m_playerNumberDisplay.text = m_playerNumber.ToString();
+        m_playerNumberDisplay.sprite = sprite;
     }
 
     /*
