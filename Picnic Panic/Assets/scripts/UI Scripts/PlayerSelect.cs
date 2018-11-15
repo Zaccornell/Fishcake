@@ -136,7 +136,7 @@ public class PlayerSelect : MonoBehaviour
 
                         if (m_playerNumberSprites.Length > 0)
                         {
-                            playerScript.DisplayPlayerNumber(m_playerNumberSprites[Mathf.Max(0, m_playerNumberSprites.Length - 1)]);
+                            playerScript.DisplayPlayerNumber(m_playerNumberSprites[Mathf.Min(i, m_playerNumberSprites.Length - 1)]);
                         }
 
                         m_players.Add(playerScript);
