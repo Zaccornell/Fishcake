@@ -23,7 +23,6 @@ public class Cockroach : MovingActor
     private int m_updatePath = 0;
     private int m_areaMask;
     private Animator m_animator;
-    private Vector3 m_lastPos;
 
     // Use this for initialization
     void Start ()
@@ -40,7 +39,6 @@ public class Cockroach : MovingActor
 
     private void FixedUpdate()
     {
-        m_lastPos = m_rigidBody.position;
         if (m_useForce)
         {
             m_rigidBody.AddForce(m_movement * m_speed * 2, ForceMode.Acceleration);
@@ -59,20 +57,23 @@ public class Cockroach : MovingActor
     {
         m_attackTimer -= Time.deltaTime;
 
+        bool kingInRange = false;
+        Collider[] targetstemp = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
+        foreach (Collider current in targetstemp)
+        {
+            if (current.gameObject == m_king.gameObject)
+            {
+                kingInRange = true;
+            }
+        }
+
         if (m_attackTimer <= 0)
         {
-            Collider[] targets = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
-            foreach (Collider current in targets)
+            if (kingInRange)
             {
-                if (current.gameObject == m_king.gameObject)
-                {
-                    //m_king.TakeDamage(10, this);
-                    //m_eatingKing.Play();
-
-                    m_animator.SetTrigger("Attack");
-                    m_attackTimer = m_attackSpeed;
-                }
-            }
+                m_animator.SetTrigger("Attack");
+                m_attackTimer = m_attackSpeed;
+            }            
         }
 
         if (m_updatePath == 0)
@@ -88,30 +89,21 @@ public class Cockroach : MovingActor
                 m_path.corners[i].y = transform.position.y;
             }
         }
+
         m_updatePath--;
 
         if (m_pathIndex < m_path.corners.Length && (transform.position - m_path.corners[m_pathIndex]).magnitude < 0.1)
         {
             m_pathIndex++;
         }
-        if (m_pathIndex < m_path.corners.Length)
+        if (m_pathIndex < m_path.corners.Length && !kingInRange)
             m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized;
         else
             m_movement = Vector3.zero;
 
-        m_movement.y = 0;
+        m_movement.y = 0;        
 
-        bool temp = false;
-        Collider[] targetstemp = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
-        foreach (Collider current in targetstemp)
-        {
-            if (current.gameObject == m_king.gameObject)
-            {
-                temp = true;
-            }
-        }
-
-        m_animator.SetFloat("Speed", temp ? 0 : m_movement.magnitude);
+        m_animator.SetFloat("Speed", kingInRange ? 0 : m_movement.magnitude);
     }
 
     public override void TakeDamage(int damage, Actor attacker)

@@ -9,6 +9,8 @@ public class PlayerSelect : MonoBehaviour
     public Text[] m_playerSlots;
     public Text m_startGame;
     public GameObject[] m_playerPrefabs;
+    public GameObject[] m_playerModels;
+    public GameObject[] m_playerWeapons;
     public Material[] m_playerMaterials;
     public GameObject[] m_playerDisplays;
     public Transform[] m_spawnPoints;
@@ -25,10 +27,14 @@ public class PlayerSelect : MonoBehaviour
     public AudioClip m_roundStart;
     public AudioSource m_audioSourceMusic;
     public AudioSource m_audioSourceSFX;
+    public Transform[] m_displayLocations;
+    public GameObject[] m_TEMP;
 
     private XboxController[] m_controllers;
     private KeyCode[] m_testButtons;
     private List<Player> m_players;
+    private int[] m_selectedModels;
+    private int[] m_selectedWeapons;
     //private List<int> m_playerOrder;
     private bool[] m_playersReady;
 	// Use this for initialization
@@ -37,6 +43,9 @@ public class PlayerSelect : MonoBehaviour
         m_players = new List<Player>();
         //m_playerOrder = new List<int>();
         m_playersReady = new bool[4];
+        m_selectedModels = new int[4];
+        m_selectedWeapons = new int[4];
+        m_TEMP = new GameObject[4];
 
         m_hud.gameObject.SetActive(false);
 
@@ -88,7 +97,7 @@ public class PlayerSelect : MonoBehaviour
 
                     canStart = false;
 
-                    m_playerDisplays[i].SetActive(true);
+                    m_TEMP[i] = Instantiate(m_playerModels[Mathf.Min(m_playerModels.Length - 1, i)], m_displayLocations[i]);
                 }
             }
         }
@@ -114,6 +123,58 @@ public class PlayerSelect : MonoBehaviour
                 {
                     start = true;
                 }
+
+                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadUp, m_controllers[i]) || Input.GetKeyDown(KeyCode.UpArrow)))
+                {
+                    if (m_selectedWeapons[i]++ >= m_playerWeapons.Length - 1)
+                    {
+                        m_selectedWeapons[i] = 0;
+                    }
+
+                    // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
+                    if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
+                    {
+                        Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
+                    }
+                    Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                    
+                }
+                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadDown, m_controllers[i]) || Input.GetKeyDown(KeyCode.DownArrow)))
+                {
+                    if (m_selectedWeapons[i]-- <= 0)
+                    {
+                        m_selectedWeapons[i] = m_playerWeapons.Length - 1;
+                    }
+
+                    // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
+                    if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
+                    {
+                        Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
+                    }
+                    Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));                    
+                }
+                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadRight, m_controllers[i]) || Input.GetKeyDown(KeyCode.RightArrow)))
+                {
+                    if (m_selectedModels[i]++ >= m_playerPrefabs.Length - 1)
+                    {
+                        m_selectedModels[i] = 0;
+                    }
+
+                    GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
+                    Destroy(m_TEMP[i]);
+                    m_TEMP[i] = temp;                    
+                }
+                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadLeft, m_controllers[i]) || Input.GetKeyDown(KeyCode.LeftArrow)))
+                {
+                    if (m_selectedModels[i]-- <= 0)
+                    {
+                        m_selectedModels[i] = m_playerPrefabs.Length - 1;
+                    }
+
+                    GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
+                    Destroy(m_TEMP[i]);
+                    m_TEMP[i] = temp;                    
+                }
             }
 
             // When player one presses the start button
@@ -124,12 +185,13 @@ public class PlayerSelect : MonoBehaviour
                 {
                     if (m_playersReady[i])
                     {
-                        GameObject currentPlayer = Instantiate(m_playerPrefabs[0], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
-                        SkinnedMeshRenderer[] tmp = currentPlayer.GetComponentsInChildren<SkinnedMeshRenderer>();
-                        SkinnedMeshRenderer tmp2 = currentPlayer.GetComponentInChildren<SkinnedMeshRenderer>();
-                        tmp2.material = m_playerMaterials[i];
-                        Player playerScript = currentPlayer.GetComponent<Player>();
+                        GameObject currentPlayer = Instantiate(m_playerPrefabs[m_selectedModels[i]], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
+                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
+                        SkinnedMeshRenderer renderer = currentPlayer.GetComponentInChildren<SkinnedMeshRenderer>();
+                        renderer.material = m_playerMaterials[i];
+
+                        Player playerScript = currentPlayer.GetComponent<Player>();
                         playerScript.m_playerNumber = i + 1;
                         playerScript.m_hud = m_hud;
                         playerScript.m_audioSourceSFX = m_audioSourceSFX;
@@ -140,6 +202,14 @@ public class PlayerSelect : MonoBehaviour
                         }
 
                         m_players.Add(playerScript);
+                    }
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (m_TEMP[i] != null)
+                    {
+                        m_TEMP[i].SetActive(false);
                     }
                 }
 
