@@ -876,18 +876,23 @@ MonoBehaviour:
   - {fileID: 1769286371164400, guid: f9ec96ba5d7ea144e9565d887eba8105, type: 2}
   - {fileID: 1151642031478226, guid: d409fdfd6b3466d42b9e4733c96d387a, type: 2}
   m_playerWeapons:
-  - {fileID: 1782817178387138, guid: ca4336587fe33984c98a786c538ede50, type: 2}
   - {fileID: 1561896232599252, guid: 432f5177868f58c4bb2b2c2554eb33ec, type: 2}
+  - {fileID: 1782817178387138, guid: ca4336587fe33984c98a786c538ede50, type: 2}
   m_playerMaterials:
   - {fileID: 2100000, guid: 431b314a5fb3d1143a9182118cf41f52, type: 2}
   - {fileID: 2100000, guid: 239df13977aa95e4280010a82dbb8ef7, type: 2}
   - {fileID: 2100000, guid: 5ee993bce57d9454ca2394c09953bb9d, type: 2}
   - {fileID: 2100000, guid: 54621cd7851d2e241a19160e7a894a88, type: 2}
-  m_playerDisplays:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_candyCornMaterials:
+  - {fileID: 2100000, guid: ba0d965fc9c50ad4b9fa8871f9c9bafe, type: 2}
+  - {fileID: 2100000, guid: 239df13977aa95e4280010a82dbb8ef7, type: 2}
+  - {fileID: 2100000, guid: 5ee993bce57d9454ca2394c09953bb9d, type: 2}
+  - {fileID: 2100000, guid: 54621cd7851d2e241a19160e7a894a88, type: 2}
+  m_blueberryMaterials:
+  - {fileID: 2100000, guid: 1354e140dabfcfc4bafca7de09ad9eec, type: 2}
+  - {fileID: 2100000, guid: 28e12b3c1da18f54184a00c28e3b61b4, type: 2}
+  - {fileID: 2100000, guid: 7849fb597412cb248af8bf12d58c0f0b, type: 2}
+  - {fileID: 2100000, guid: 030620b8417d6d94092b75cab4009bf7, type: 2}
   m_spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
