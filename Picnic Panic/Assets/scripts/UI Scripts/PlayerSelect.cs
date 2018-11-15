@@ -134,7 +134,10 @@ public class PlayerSelect : MonoBehaviour
                         playerScript.m_hud = m_hud;
                         playerScript.m_audioSourceSFX = m_audioSourceSFX;
 
-                        playerScript.DisplayPlayerNumber(m_playerNumberSprites[Mathf.Max(0, m_playerNumberSprites.Length - 1)]);
+                        if (m_playerNumberSprites.Length > 0)
+                        {
+                            playerScript.DisplayPlayerNumber(m_playerNumberSprites[Mathf.Max(0, m_playerNumberSprites.Length - 1)]);
+                        }
 
                         m_players.Add(playerScript);
                     }
