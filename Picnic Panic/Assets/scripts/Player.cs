@@ -38,6 +38,7 @@ public class Player : MovingActor
     public GameObject m_corpsePrefab;
     public HUD m_hud;
     public Slider m_healthSlider;
+    public Collider m_weaponCollider;
     #region Vibration
     public float m_vibrationLength;
     public float m_vibrationDeath;
@@ -263,7 +264,7 @@ public class Player : MovingActor
         {
             if (m_attackPressed == false)
             {
-                m_animator.SetTrigger("Attack Pressed");
+                m_animator.SetTrigger("Attack Pressed");               
 
                 Vector3 height = transform.position;
                 height.y += m_attackHeightOffset;
@@ -671,5 +672,14 @@ public class Player : MovingActor
         {
             other.gameObject.GetComponent<Player>().TakeDamage(m_attackDamage, this);
         }
+    }
+
+    void EnableWeapon()
+    {
+        m_weaponCollider.enabled = true;
+    }
+    void DisableWeapon()
+    {
+        m_weaponCollider.enabled = false;
     }
 }

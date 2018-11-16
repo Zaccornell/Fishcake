@@ -11,7 +11,6 @@ public class PlayerSelect : MonoBehaviour
     public GameObject[] m_playerPrefabs;
     public GameObject[] m_playerModels;
     public GameObject[] m_playerWeapons;
-    public Material[] m_playerMaterials;
     public Material[] m_candyCornMaterials;
     public Material[] m_blueberryMaterials;
     public Transform[] m_spawnPoints;
@@ -99,23 +98,11 @@ public class PlayerSelect : MonoBehaviour
                     canStart = false;
 
                     m_TEMP[i] = Instantiate(m_playerModels[0/*Mathf.Min(m_playerModels.Length - 1, i)*/], m_displayLocations[i]);
+                    m_selectedModels[i] = 0;
+                    m_selectedWeapons[i] = 0;
 
-                    if (i == 0)
-                    {
-                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
-                    }
-                    if (i == 1)
-                    {
-                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
-                    }
-                    if (i == 2)
-                    {
-                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
-                    }
-                    if (i == 3)
-                    {
-                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
-                    }
+                    m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+
                 }
             }
         }
@@ -228,7 +215,7 @@ public class PlayerSelect : MonoBehaviour
                     if (m_playersReady[i])
                     {
                         GameObject currentPlayer = Instantiate(m_playerPrefabs[m_selectedModels[i]], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
-                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                        GameObject weapon = Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
                         SkinnedMeshRenderer renderer = currentPlayer.GetComponentInChildren<SkinnedMeshRenderer>();
                         if (m_selectedModels[i] == 0)
@@ -244,6 +231,7 @@ public class PlayerSelect : MonoBehaviour
                         playerScript.m_playerNumber = i + 1;
                         playerScript.m_hud = m_hud;
                         playerScript.m_audioSourceSFX = m_audioSourceSFX;
+                        playerScript.m_weaponCollider = weapon.GetComponent<Collider>();
 
                         if (m_playerNumberSprites.Length > 0)
                         {
