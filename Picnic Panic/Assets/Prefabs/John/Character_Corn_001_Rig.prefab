@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_timeToFull: 2
   m_dashCooldown: 1
   m_COOPDashCooldownIncrease: 0
-  m_instantDash: 0
+  m_instantDash: 1
   m_attackDistance: 0
   m_attackRadius: 0
   m_attackHeightOffset: 0.666
@@ -1488,6 +1488,7 @@ MonoBehaviour:
     type: 2}
   m_hud: {fileID: 0}
   m_healthSlider: {fileID: 114716056229880144}
+  m_weaponCollider: {fileID: 0}
   m_vibrationLength: 0.4
   m_vibrationDeath: 0.8
   m_virbationRespawn: 0.4

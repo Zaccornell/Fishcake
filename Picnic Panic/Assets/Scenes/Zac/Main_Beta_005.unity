@@ -938,6 +938,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114197923530946410, guid: ef63f5eab7d77624986c003f9b186bea,
+        type: 2}
+      propertyPath: m_spawner
+      value: 
+      objectReference: {fileID: 1211538502}
+    - target: {fileID: 114197923530946410, guid: ef63f5eab7d77624986c003f9b186bea,
+        type: 2}
+      propertyPath: m_shake
+      value: 
+      objectReference: {fileID: 1835428523}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
   m_IsPrefabParent: 0
@@ -946,6 +956,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4251093219616936, guid: ef63f5eab7d77624986c003f9b186bea,
     type: 2}
   m_PrefabInternal: {fileID: 579259936}
+--- !u!114 &579259938 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114197923530946410, guid: ef63f5eab7d77624986c003f9b186bea,
+    type: 2}
+  m_PrefabInternal: {fileID: 579259936}
+  m_Script: {fileID: 11500000, guid: 0aa25343f0cd28c4b8474625220e29a1, type: 3}
 --- !u!1001 &601657585
 Prefab:
   m_ObjectHideFlags: 0
@@ -1538,39 +1554,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4529687121312522, guid: c20b31e3dbfce5d4cb1f6ce3185ac391,
     type: 2}
   m_PrefabInternal: {fileID: 956633863}
---- !u!1 &973072185 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1338957431051530, guid: ef63f5eab7d77624986c003f9b186bea,
-    type: 2}
-  m_PrefabInternal: {fileID: 579259936}
---- !u!114 &973072186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 973072185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aa25343f0cd28c4b8474625220e29a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_maxHealth: 100
-  m_spawner: {fileID: 1211538502}
-  m_restoreHealth: 100
-  m_shake: {fileID: 0}
---- !u!136 &973072187
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 973072185}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 2.079607
-  m_Height: 11.67
-  m_Direction: 1
-  m_Center: {x: 0.0022693877, y: 0.50030947, z: 0}
 --- !u!1001 &981672191
 Prefab:
   m_ObjectHideFlags: 0
@@ -1855,7 +1838,7 @@ Prefab:
         type: 2}
       propertyPath: m_king
       value: 
-      objectReference: {fileID: 973072186}
+      objectReference: {fileID: 579259938}
     - target: {fileID: 114368256418147228, guid: 2d3526ab6fc487140b3e1684b69d3f72,
         type: 2}
       propertyPath: m_hud
@@ -2031,16 +2014,16 @@ MonoBehaviour:
   m_antCount: 0f000000190000001e00000014000000230000002d0000001e0000003200000050000000
   m_cockroachCount: 000000000000000000000000020000000400000008000000060000000900000014000000
   m_players: []
-  m_king: {fileID: 0}
+  m_king: {fileID: 579259938}
   m_antPrefab: {fileID: 1312305954643220, guid: eeacc4f5450bc9f4aad5ed45d1996c17,
     type: 2}
   m_cockroachPrefab: {fileID: 1223827664196678, guid: 5bd80941c3bf6cd40be8990c6beedbcc,
     type: 2}
-  m_hud: {fileID: 0}
+  m_hud: {fileID: 1114299478}
   m_spawnArea: {x: 43, y: 30}
   m_randomSpawnRadius: 9
   m_spawnJitter: 0.5
-  m_audioSourceSFX: {fileID: 0}
+  m_audioSourceSFX: {fileID: 288981113}
   m_kingLaugh:
   - {fileID: 8300000, guid: cea8d497a6aba374494ef25d422da9b4, type: 3}
   m_enemies: []
@@ -2163,7 +2146,7 @@ Prefab:
         type: 2}
       propertyPath: m_king
       value: 
-      objectReference: {fileID: 973072186}
+      objectReference: {fileID: 579259938}
     - target: {fileID: 114904869368712404, guid: 916a598228613914ab9782a2cfaffa48,
         type: 2}
       propertyPath: m_spanwer
@@ -3214,7 +3197,7 @@ Prefab:
         type: 2}
       propertyPath: m_Targets.Array.data[0]
       value: 
-      objectReference: {fileID: 973072186}
+      objectReference: {fileID: 579259938}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d9d55b6b4ea6f6408ae9a8561fae135, type: 2}
   m_IsPrefabParent: 0

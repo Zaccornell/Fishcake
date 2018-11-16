@@ -2128,6 +2128,7 @@ MonoBehaviour:
   m_SFX: {fileID: 114646256982977894}
   m_music: {fileID: 114653199387859274}
   m_audioMixer: {fileID: 24100000, guid: cd9c97e9c7dae0e4d8ee7ffcefabc72c, type: 2}
+  m_cutScene: {fileID: 0}
 --- !u!114 &114758018866729452
 MonoBehaviour:
   m_ObjectHideFlags: 1

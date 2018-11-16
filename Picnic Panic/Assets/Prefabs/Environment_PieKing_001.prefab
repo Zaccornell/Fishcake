@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33663454370780208}
   - component: {fileID: 23768067073089578}
   - component: {fileID: 95944807711418898}
+  - component: {fileID: 136722633152001036}
+  - component: {fileID: 114197923530946410}
   m_Layer: 0
   m_Name: Environment_PieKing_001
   m_TagString: Untagged
@@ -57,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 2baa097f7063ac94dad57eb5ac1b1b59, type: 2}
-  - {fileID: 2100000, guid: ed12b98073b0af34ab856798c5ba99ec, type: 2}
+  - {fileID: 2100000, guid: 66a0988bebb7c594fb7a47168411be1b, type: 2}
   - {fileID: 2100004, guid: a16976c7daf72cd47b03b22cc62dd972, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -102,3 +104,31 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114197923530946410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338957431051530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa25343f0cd28c4b8474625220e29a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxHealth: 100
+  m_spawner: {fileID: 0}
+  m_restoreHealth: 100
+  m_shake: {fileID: 0}
+--- !u!136 &136722633152001036
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338957431051530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.079607
+  m_Height: 11.67
+  m_Direction: 1
+  m_Center: {x: 0.0022693877, y: 0.50030947, z: 0}
