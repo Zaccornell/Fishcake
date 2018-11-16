@@ -17,6 +17,7 @@ public class OptionMenu : MonoBehaviour
     public Slider m_SFX;
     public Slider m_music;
     public AudioMixer m_audioMixer;
+    public Toggle m_cutScene;
 
 
     // Use this for initialization
@@ -32,6 +33,11 @@ public class OptionMenu : MonoBehaviour
         m_pOp.m_firendlyFire = m_friendlyFire.isOn;
         m_pOp.m_invulToggle = m_invul.isOn;
         m_pOp.m_vibrationToggle = m_vibration.isOn;
+        if (m_cutScene != null)
+        {
+            m_pOp.m_cutsceneToggle = m_cutScene.isOn;
+        }
+        
 
 	}
 

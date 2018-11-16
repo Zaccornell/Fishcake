@@ -297,11 +297,12 @@ public class PlayerSelect : MonoBehaviour
         }
         else
         {
-            if (XCI.GetButtonDown(XboxButton.Start))
+            if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.H) || PlayerOptions.Instance.m_cutsceneToggle)
             {
                 m_cutSence.SetActive(false);
             }
         }
+
     }
 
 }
