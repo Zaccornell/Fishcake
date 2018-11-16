@@ -2542,19 +2542,19 @@ MonoBehaviour:
   m_showDebug: 1
   m_roundLength: 30
   m_roundEndBuffer: 10
-  m_antCount: 000000000100000002000000030000000400000005000000060000000700000008000000
-  m_cockroachCount: 000000000000000000000000000000000000000000000000000000000000000000000000
+  m_antCount: 0f000000190000001e000000140000002800000032000000280000003c00000050000000
+  m_cockroachCount: 000000000000000000000000020000000400000008000000060000000900000014000000
   m_players: []
-  m_king: {fileID: 973072186}
+  m_king: {fileID: 0}
   m_antPrefab: {fileID: 1312305954643220, guid: eeacc4f5450bc9f4aad5ed45d1996c17,
     type: 2}
   m_cockroachPrefab: {fileID: 1223827664196678, guid: 5bd80941c3bf6cd40be8990c6beedbcc,
     type: 2}
-  m_hud: {fileID: 1114299478}
+  m_hud: {fileID: 0}
   m_spawnArea: {x: 43, y: 30}
   m_randomSpawnRadius: 9
   m_spawnJitter: 0.5
-  m_audioSourceSFX: {fileID: 288981113}
+  m_audioSourceSFX: {fileID: 0}
   m_kingLaugh:
   - {fileID: 8300000, guid: cea8d497a6aba374494ef25d422da9b4, type: 3}
   m_enemies: []
