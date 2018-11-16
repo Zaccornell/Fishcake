@@ -7,6 +7,7 @@ public class HUD : MonoBehaviour
 {
     public Image[] m_lives;
     public Text[] m_playerDisplays;
+    public Image[] m_playerColor;
     public Player[] m_players;
     public Actor m_king;
     public Text m_kingDisplay;
@@ -35,7 +36,11 @@ public class HUD : MonoBehaviour
         {
             current.enabled = false;
         }
-	}
+        foreach (Image child in m_playerColor)
+        {
+            child.enabled = false;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -46,7 +51,10 @@ public class HUD : MonoBehaviour
         {
             m_playerDisplays[current.m_playerNumber - 1].text = current.Health.ToString();
             m_playerDisplays[current.m_playerNumber - 1].enabled = true;
+            m_playerColor[current.m_playerNumber - 1].enabled = true;
+
         }
+
 
         m_kingDisplay.text = m_king.Health.ToString();
       

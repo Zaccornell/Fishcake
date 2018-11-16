@@ -29,6 +29,7 @@ public class PlayerSelect : MonoBehaviour
     public AudioSource m_audioSourceSFX;
     public Transform[] m_displayLocations;
     public GameObject[] m_TEMP;
+    public GameObject m_cutSence;
 
     private XboxController[] m_controllers;
     private KeyCode[] m_testButtons;
@@ -36,6 +37,7 @@ public class PlayerSelect : MonoBehaviour
     private int[] m_selectedModels;
     private int[] m_selectedWeapons;
     private bool[] m_playersReady;
+
 
 	// Use this for initialization
 	void Start ()
@@ -80,212 +82,224 @@ public class PlayerSelect : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        bool canStart = true;
-
-        for (int i = 0; i < 4; i++)
+        if (m_cutSence.activeSelf != true)
         {
-            // when a controller presses the join button
-            if (XCI.GetButtonDown(XboxButton.A, m_controllers[i]) || Input.GetKeyDown(m_testButtons[i]))
+
+
+            bool canStart = true;
+
+            for (int i = 0; i < 4; i++)
             {
-                if (!m_playersReady[i])
+                // when a controller presses the join button
+                if (XCI.GetButtonDown(XboxButton.A, m_controllers[i]) || Input.GetKeyDown(m_testButtons[i]))
                 {
-                    m_playerSlots[i].gameObject.SetActive(false);
-                    m_playerNumberCovers[i].SetActive(false);
-                    m_playerJoin[i].enabled = false;
-                    m_playersReady[i] = true;
-                    m_startGame.enabled = false;
+                    if (!m_playersReady[i])
+                    {
+                        m_playerSlots[i].gameObject.SetActive(false);
+                        m_playerNumberCovers[i].SetActive(false);
+                        m_playerJoin[i].enabled = false;
+                        m_playersReady[i] = true;
+                        m_startGame.enabled = false;
 
-                    canStart = false;
+                        canStart = false;
 
-                    m_TEMP[i] = Instantiate(m_playerModels[0/*Mathf.Min(m_playerModels.Length - 1, i)*/], m_displayLocations[i]);
-                    m_selectedModels[i] = 0;
-                    m_selectedWeapons[i] = 0;
+                        m_TEMP[i] = Instantiate(m_playerModels[0/*Mathf.Min(m_playerModels.Length - 1, i)*/], m_displayLocations[i]);
+                        m_selectedModels[i] = 0;
+                        m_selectedWeapons[i] = 0;
 
-                    m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
 
+                    }
                 }
             }
-        }
 
-        int playersReady = 0;
-        for (int i = 0; i < m_playersReady.Length; i++)
-        {
-            if (m_playersReady[i])
-            {             
-                playersReady++;
-            }
-        }
-
-        // if the players have joined and have readied up
-        if (playersReady != 0 && canStart)
-        {
-            m_startGame.enabled = true;
-
-            bool start = false;
+            int playersReady = 0;
             for (int i = 0; i < m_playersReady.Length; i++)
             {
-                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.Start, m_controllers[i]) || Input.GetKeyDown(m_testButtons[i])))
+                if (m_playersReady[i])
                 {
-                    start = true;
-                }
-
-                // Scroll selected weapon up
-                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadUp, m_controllers[i]) || Input.GetKeyDown(KeyCode.UpArrow)))
-                {
-                    if (m_selectedWeapons[i]++ >= m_playerWeapons.Length - 1)
-                    {
-                        m_selectedWeapons[i] = 0;
-                    }
-
-                    // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
-                    if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
-                    {
-                        Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
-                    }
-                    Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
-                    
-                }
-                // Scroll selected weapon down
-                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadDown, m_controllers[i]) || Input.GetKeyDown(KeyCode.DownArrow)))
-                {
-                    if (m_selectedWeapons[i]-- <= 0)
-                    {
-                        m_selectedWeapons[i] = m_playerWeapons.Length - 1;
-                    }
-
-                    // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
-                    if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
-                    {
-                        Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
-                    }
-                    Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));                    
-                }
-                // Scroll selected charactor right
-                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadRight, m_controllers[i]) || Input.GetKeyDown(KeyCode.RightArrow)))
-                {
-                    if (m_selectedModels[i]++ >= m_playerPrefabs.Length - 1)
-                    {
-                        m_selectedModels[i] = 0;
-                    }
-
-                    GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
-
-                    if (m_selectedModels[i] == 0)
-                    {
-                        temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
-                    }
-                    else if (m_selectedModels[i] == 1)
-                    {
-                        temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
-                    }
-                    
-                    Destroy(m_TEMP[i]);
-                    m_TEMP[i] = temp;                    
-                }
-                // Scroll selected charactor left
-                if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadLeft, m_controllers[i]) || Input.GetKeyDown(KeyCode.LeftArrow)))
-                {
-                    if (m_selectedModels[i]-- <= 0)
-                    {
-                        m_selectedModels[i] = m_playerPrefabs.Length - 1;
-                    }
-
-                    GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
-
-                    if (m_selectedModels[i] == 0)
-                    {
-                        temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
-                    }
-                    else if (m_selectedModels[i] == 1)
-                    {
-                        temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
-                    }
-
-                    Destroy(m_TEMP[i]);
-                    m_TEMP[i] = temp;                    
+                    playersReady++;
                 }
             }
 
-            // When player one presses the start button
-            if (start)
+            // if the players have joined and have readied up
+            if (playersReady != 0 && canStart)
             {
-                // instantiate each player
+                m_startGame.enabled = true;
+
+                bool start = false;
                 for (int i = 0; i < m_playersReady.Length; i++)
                 {
-                    if (m_playersReady[i])
+                    if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.Start, m_controllers[i]) || Input.GetKeyDown(m_testButtons[i])))
                     {
-                        GameObject currentPlayer = Instantiate(m_playerPrefabs[m_selectedModels[i]], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
-                        GameObject weapon = Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                        start = true;
+                    }
 
-                        SkinnedMeshRenderer renderer = currentPlayer.GetComponentInChildren<SkinnedMeshRenderer>();
+                    // Scroll selected weapon up
+                    if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadUp, m_controllers[i]) || Input.GetKeyDown(KeyCode.UpArrow)))
+                    {
+                        if (m_selectedWeapons[i]++ >= m_playerWeapons.Length - 1)
+                        {
+                            m_selectedWeapons[i] = 0;
+                        }
+
+                        // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
+                        if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
+                        {
+                            Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
+                        }
+                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+
+                    }
+                    // Scroll selected weapon down
+                    if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadDown, m_controllers[i]) || Input.GetKeyDown(KeyCode.DownArrow)))
+                    {
+                        if (m_selectedWeapons[i]-- <= 0)
+                        {
+                            m_selectedWeapons[i] = m_playerWeapons.Length - 1;
+                        }
+
+                        // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
+                        if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
+                        {
+                            Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
+                        }
+                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                    }
+                    // Scroll selected charactor right
+                    if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadRight, m_controllers[i]) || Input.GetKeyDown(KeyCode.RightArrow)))
+                    {
+                        if (m_selectedModels[i]++ >= m_playerPrefabs.Length - 1)
+                        {
+                            m_selectedModels[i] = 0;
+                        }
+
+                        GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
+
                         if (m_selectedModels[i] == 0)
                         {
-                            renderer.material = m_candyCornMaterials[i];
+                            temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
                         }
                         else if (m_selectedModels[i] == 1)
                         {
-                            renderer.material = m_blueberryMaterials[i];
+                            temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
                         }
 
-                        Player playerScript = currentPlayer.GetComponent<Player>();
-                        playerScript.m_playerNumber = i + 1;
-                        playerScript.m_hud = m_hud;
-                        playerScript.m_audioSourceSFX = m_audioSourceSFX;
-                        playerScript.m_weaponCollider = weapon.GetComponent<Collider>();
-
-                        if (m_playerNumberSprites.Length > 0)
-                        {
-                            playerScript.DisplayPlayerNumber(m_playerNumberSprites[Mathf.Min(i, m_playerNumberSprites.Length - 1)]);
-                        }
-
-                        m_players.Add(playerScript);
+                        Destroy(m_TEMP[i]);
+                        m_TEMP[i] = temp;
                     }
-                }
-
-                for (int i = 0; i < 4; i++)
-                {
-                    if (m_TEMP[i] != null)
+                    // Scroll selected charactor left
+                    if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadLeft, m_controllers[i]) || Input.GetKeyDown(KeyCode.LeftArrow)))
                     {
-                        m_TEMP[i].SetActive(false);
+                        if (m_selectedModels[i]-- <= 0)
+                        {
+                            m_selectedModels[i] = m_playerPrefabs.Length - 1;
+                        }
+
+                        GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
+
+                        if (m_selectedModels[i] == 0)
+                        {
+                            temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                        }
+                        else if (m_selectedModels[i] == 1)
+                        {
+                            temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
+                        }
+
+                        Destroy(m_TEMP[i]);
+                        m_TEMP[i] = temp;
                     }
                 }
 
-                // give objects access to the players
-                m_spawner.m_players = m_players.ToArray();
-                m_hud.m_players = m_players.ToArray();
-                m_pauseMenu.m_players = m_players.ToArray();
-                m_endGame.m_players = m_players.ToArray();
-
-                List<Actor> cameraTargets = new List<Actor>();
-                foreach (Actor current in m_camera.m_Targets)
+                // When player one presses the start button
+                if (start)
                 {
-                    cameraTargets.Add(current);
-                }
-                foreach (Player current in m_players)
-                {
-                    cameraTargets.Add(current);
-                }
-                m_camera.m_Targets = cameraTargets.ToArray();
+                    // instantiate each player
+                    for (int i = 0; i < m_playersReady.Length; i++)
+                    {
+                        if (m_playersReady[i])
+                        {
+                            GameObject currentPlayer = Instantiate(m_playerPrefabs[m_selectedModels[i]], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
+                            GameObject weapon = Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
-                foreach (MonoBehaviour current in m_gameplayScripts)
-                {
-                    current.enabled = true;
-                }
+                            SkinnedMeshRenderer renderer = currentPlayer.GetComponentInChildren<SkinnedMeshRenderer>();
+                            if (m_selectedModels[i] == 0)
+                            {
+                                renderer.material = m_candyCornMaterials[i];
+                            }
+                            else if (m_selectedModels[i] == 1)
+                            {
+                                renderer.material = m_blueberryMaterials[i];
+                            }
 
-                m_spawner.enabled = true;
-                m_hud.enabled = true;
-                m_pauseMenu.enabled = true;
-                m_camera.enabled = true;
+                            Player playerScript = currentPlayer.GetComponent<Player>();
+                            playerScript.m_playerNumber = i + 1;
+                            playerScript.m_hud = m_hud;
+                            playerScript.m_audioSourceSFX = m_audioSourceSFX;
+                            playerScript.m_weaponCollider = weapon.GetComponent<Collider>();
 
-                m_hud.gameObject.SetActive(true);
-                m_audioSourceMusic.loop = false;
-                m_audioSourceMusic.Stop();
-                if (m_roundStart != null)
-                {
-                    m_audioSourceMusic.PlayOneShot(m_roundStart);                 
+                            if (m_playerNumberSprites.Length > 0)
+                            {
+                                playerScript.DisplayPlayerNumber(m_playerNumberSprites[Mathf.Min(i, m_playerNumberSprites.Length - 1)]);
+                            }
+
+                            m_players.Add(playerScript);
+                        }
+                    }
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (m_TEMP[i] != null)
+                        {
+                            m_TEMP[i].SetActive(false);
+                        }
+                    }
+
+                    // give objects access to the players
+                    m_spawner.m_players = m_players.ToArray();
+                    m_hud.m_players = m_players.ToArray();
+                    m_pauseMenu.m_players = m_players.ToArray();
+                    m_endGame.m_players = m_players.ToArray();
+
+                    List<Actor> cameraTargets = new List<Actor>();
+                    foreach (Actor current in m_camera.m_Targets)
+                    {
+                        cameraTargets.Add(current);
+                    }
+                    foreach (Player current in m_players)
+                    {
+                        cameraTargets.Add(current);
+                    }
+                    m_camera.m_Targets = cameraTargets.ToArray();
+
+                    foreach (MonoBehaviour current in m_gameplayScripts)
+                    {
+                        current.enabled = true;
+                    }
+
+                    m_spawner.enabled = true;
+                    m_hud.enabled = true;
+                    m_pauseMenu.enabled = true;
+                    m_camera.enabled = true;
+
+                    m_hud.gameObject.SetActive(true);
+                    m_audioSourceMusic.loop = false;
+                    m_audioSourceMusic.Stop();
+                    if (m_roundStart != null)
+                    {
+                        m_audioSourceMusic.PlayOneShot(m_roundStart);
+                    }
+                    this.enabled = false;
+                    gameObject.SetActive(false);
                 }
-                this.enabled = false;
-                gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            if (XCI.GetButtonDown(XboxButton.Start))
+            {
+                m_cutSence.SetActive(false);
             }
         }
     }

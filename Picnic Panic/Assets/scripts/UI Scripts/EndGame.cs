@@ -28,6 +28,8 @@ public class EndGame : MonoBehaviour
     public Text[] m_player4Values;
     public float m_length;
     public Image m_backGround;
+    public Camera m_mainCamera;
+    public Camera m_sideCamera;
 
     private float m_timer;
     private int m_minutes;
