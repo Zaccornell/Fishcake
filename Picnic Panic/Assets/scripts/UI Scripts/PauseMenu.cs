@@ -101,7 +101,7 @@ public class PauseMenu : MonoBehaviour
         //{
         //    XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
         //}
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(Random.Range(1, 5));
         //Time.timeScale = 1;
         ToggleObjects();
     }

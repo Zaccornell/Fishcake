@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     public Button m_backButton;
     public Button m_playButton;
 
+
 	// Use this for initialization
 	void Start ()
     {
@@ -31,7 +32,8 @@ public class MainMenu : MonoBehaviour
 
     public void PlayClick()
     {
-        SceneManager.LoadScene(1);
+        
+        SceneManager.LoadScene(Random.Range(1, 5));
     }
     // open Option once the button is clicked
     public void OptionClick()

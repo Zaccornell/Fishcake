@@ -27,6 +27,7 @@ public class EndGame : MonoBehaviour
     public Text[] m_player3Values;
     public Text[] m_player4Values;
     public float m_length;
+    public Image m_backGround;
 
     private float m_timer;
     private int m_minutes;
@@ -48,7 +49,15 @@ public class EndGame : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+
         m_timer -= Time.deltaTime;
+
+        Color c = m_backGround.color; //creating a veriable for back ground color
+
+        c.a = 1 - m_timer / m_length; // setting the the color alpha to slowly fade in 
+
+        m_backGround.color = c; // seeting the color to slowly fade in
+
         if (m_timer <= 0 && !m_check)
         {
             foreach(GameObject current in m_children)
@@ -166,7 +175,7 @@ public class EndGame : MonoBehaviour
         {
             child.SetActive(true); // turning the object off inside the array
         }
-        SceneManager.LoadScene(1); // loading the scene up of the gmae
+        SceneManager.LoadScene(Random.Range(1, 5)); // loading the scene up of the gmae
     }
 
     public void MainMenuButton()
