@@ -141,7 +141,11 @@ public class EndGame : MonoBehaviour
                 }
             }
 
-            Time.timeScale = 0;
+            foreach (MovingActor enemy in m_spawner.m_enemies)
+            {
+                enemy.Alive = false;
+            }
+
             m_check = true;
         }
 	}

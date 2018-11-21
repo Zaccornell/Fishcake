@@ -15,25 +15,13 @@ public class Player : MovingActor
 {
     #region Variables
     #region Public
-    public bool m_showDebug;
     public float m_knockBackDistance; // to able the designer to give a value how far the knock back will be 
     public float m_knockbackCooldown;
     public float m_dashStrengthMin;
     public float m_dashStrengthMax;
     public float m_timeToFull;
     public float m_dashCooldown;
-    public float m_COOPDashCooldownIncrease;
     public bool m_instantDash;
-    public float m_attackDistance;
-    public float m_attackRadius;
-    public float m_attackHeightOffset;
-    public float m_360PlayerDistance;
-    public float m_360Cooldown;
-    public float m_heavyAttackCooldown;
-    public int m_heavyAttackDamage;
-    public bool m_attacksNeedPlayer;
-    public float m_invulLength;
-    public Renderer m_facing;
     public int m_playerNumber;
     public GameObject m_corpsePrefab;
     public HUD m_hud;
@@ -70,12 +58,9 @@ public class Player : MovingActor
     private bool m_canRespawn = false;
     private float m_knockbackTimer;
     private float m_invulTimer;
-    private bool m_invulToggle;
     private float m_vibrationTimer;
     private bool m_vibrationToggle;
     private int m_killCount;
-    private float m_360Timer;
-    private float m_heavyAttackTimer;
     private Animator m_animator;
     private Collider m_collider;
 
@@ -88,7 +73,9 @@ public class Player : MovingActor
     private int m_roachKills;
     private int m_healsUsed;
     #endregion
-    #endregion 
+    #endregion
+
+    #region Get/Set
     public bool CanRespawn
     {
         get { return m_canRespawn; }
@@ -118,10 +105,10 @@ public class Player : MovingActor
         get { return m_healsUsed; }
     }
     public Animator Animator
-        {
-            get { return m_animator; }
-        }
-
+    {
+        get { return m_animator; }
+    }
+    #endregion
 
     // Use this for initialization
     void Start ()
@@ -133,8 +120,6 @@ public class Player : MovingActor
         m_health = m_maxHealth;
         m_alive = true;
         m_dashStrength = m_dashStrengthMin;
-        m_360Timer = m_360Cooldown;
-        m_heavyAttackTimer = m_heavyAttackCooldown;
         m_healthSlider.maxValue = m_maxHealth;        
 
         m_controller = (XboxController)m_playerNumber;
@@ -144,31 +129,10 @@ public class Player : MovingActor
     void Update ()
     {
         m_vibrationTimer -= Time.deltaTime;
-        //m_dashTimer -= Time.deltaTime;
         m_attackTimer -= Time.deltaTime;
         m_knockbackTimer -= Time.deltaTime;
         m_invulTimer -= Time.deltaTime;
-        m_360Timer -= Time.deltaTime;
-        m_heavyAttackTimer -= Time.deltaTime;
-
-        bool playerInRange = false;
-        Collider[] colliders = Physics.OverlapSphere(transform.position, m_360PlayerDistance);
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject.tag == "Player" && collider.gameObject != gameObject)
-            {
-                playerInRange = true;
-            }
-        }
-
-        if (playerInRange)
-        {
-            m_dashTimer -= Time.deltaTime * m_COOPDashCooldownIncrease;
-        }
-        else
-        {
-            m_dashTimer -= Time.deltaTime;
-        }
+        m_dashTimer -= Time.deltaTime;        
 
         m_healthSlider.value = m_health;
 
@@ -176,7 +140,8 @@ public class Player : MovingActor
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
         m_movement.Normalize();
 
-         m_animator.SetFloat("Character Walk", m_movement.magnitude);        
+        m_animator.SetFloat("Character Walk", m_movement.magnitude);
+        m_animator.SetFloat("Rotation", (Vector3.Dot(transform.forward, m_movement) + 1) / 2);
 
         // getting the button X to call a Funtion
         if (XCI.GetButtonDown(XboxButton.X, m_controller))
@@ -189,10 +154,7 @@ public class Player : MovingActor
             if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
             {
                 if (m_movement.magnitude != 0)
-                {
-      
-
-
+                {   
                     Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrengthMax * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                     m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                     m_dashTimer = m_dashCooldown;
@@ -204,9 +166,6 @@ public class Player : MovingActor
                             m_audioSourceSFX.PlayOneShot(m_playerDash[index]);
                         }
                     }
-
-                    m_invulTimer = m_invulLength;
-                    Physics.IgnoreLayerCollision(8, 9, true);
                 }
             }
         }
@@ -243,9 +202,6 @@ public class Player : MovingActor
                             m_audioSourceSFX.PlayOneShot(m_playerDash[index]);
                         }
                     }
-
-                    m_invulTimer = m_invulLength;
-                    Physics.IgnoreLayerCollision(8, 9, true);
                 }
 
                 m_dashing = false;
@@ -266,82 +222,6 @@ public class Player : MovingActor
             {
                 m_animator.SetTrigger("Attack Pressed");               
 
-                Vector3 height = transform.position;
-                height.y += m_attackHeightOffset;
-                //m_audioSource.PlayOneShot(m_playerAttack[Random.Range(0, m_playerAttack.Length)]);
-                Collider[] hits = Physics.OverlapSphere(height + transform.forward * m_attackDistance, m_attackRadius);
-                List<GameObject> targets = new List<GameObject>();   
-                
-                foreach (Collider current in hits)
-                {
-                    bool unique = true;
-                    foreach (GameObject target in targets)
-                    {
-                        if (target == current.gameObject)
-                        {
-                            unique = false;
-                        }
-                    }
-
-                    if (unique)
-                    {
-                        targets.Add(current.gameObject);
-                    }
-                }
-                bool AttackHit = false;
-                foreach (GameObject current in targets)
-                {
-                    if (current.tag == "Enemy")
-                    {
-                      
-                         current.GetComponent<MovingActor>().TakeDamage(m_attackDamage, this);
-                      
-                        AttackHit = true;
-                        if (!current.GetComponent<MovingActor>().Alive)
-                        {
-                            m_killCount++; // adding a plus one to kill count 
-                            if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
-                            {
-                                m_killCount = m_neededKills; // setting the kill count to the max amount
-                            }
-                            if (m_killCount >= m_neededKills)
-                            {
-                                m_healParticles.Play();
-                            }
-                        }     
-                    }
-                    if (PlayerOptions.Instance.m_firendlyFire && current != gameObject && current.tag == "Player")
-                    {
-                        current.GetComponent<Player>().TakeDamage(m_attackDamage, this);
-                    }
-                }
-                if (AttackHit)
-                {
-                    if (m_hitAttacks.Length > 0)
-                    {
-                        int index = Random.Range(0, m_hitAttacks.Length);
-                        if (m_hitAttacks[index] != null)
-                        {
-                            m_audioSourceSFX.PlayOneShot(m_hitAttacks[index]);
-
-                        }
-                    }
-                   
-                }
-                else
-                {
-                    if (m_missAttacks.Length > 0)
-                    {
-                        int index = Random.Range(0, m_missAttacks.Length);
-                        if (m_missAttacks[index] != null)
-                        {
-                            m_audioSourceSFX.PlayOneShot(m_missAttacks[index]);
-
-                        }
-                    }  
-                }
-                
-                m_facing.material.color = new Color(1, 0, 0);
                 m_canAttack = false;
                 m_attackTimer = m_attackSpeed;
                 m_attackPressed = true;
@@ -353,40 +233,9 @@ public class Player : MovingActor
         }
         if (m_attackTimer < 0 && !m_canAttack)
         {
-            m_facing.material.color = new Color(1, 1, 1);
             m_canAttack = true;
         }
 
-        // 360 attack
-        if (XCI.GetButtonDown(XboxButton.B, m_controller))
-        {
-            if (m_360Timer <= 0)
-            {
-                if (playerInRange)
-                {
-                    m_animator.SetTrigger("360 Attack");
-                    m_360Timer = m_360Cooldown;
-                }
-            }
-        }
-
-        // Heavy attack
-        if (XCI.GetButtonDown(XboxButton.RightBumper, m_controller))
-        {
-            if (m_heavyAttackTimer <= 0)
-            {
-                if (playerInRange)
-                {
-                    m_animator.SetTrigger("Heavy Attack");
-                    m_heavyAttackTimer = m_heavyAttackCooldown;
-                }
-            }
-        }
-
-        if (m_invulTimer <= 0)
-        {
-            Physics.IgnoreLayerCollision(8, 9, false);
-        }
         // counting the timer down 
         if (m_vibrationTimer <= 0)
         {            
@@ -409,18 +258,14 @@ public class Player : MovingActor
         }   
 
         Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX, m_controller), 0, XCI.GetAxis(XboxAxis.RightStickY, m_controller));
-        //AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
-        //if (state.IsName("Character_Idle_001_ANIM") || state.IsName("Character_Attack_001_ANIM"))
-        //{
-            if (functional.magnitude > 0)
-            {
-                m_rigidBody.rotation = Quaternion.LookRotation(functional.normalized);
-            }
-            else if (m_movement.magnitude > 0)
-            {
-                m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
-            }
-        //}
+        if (functional.magnitude > 0)
+        {
+            m_rigidBody.rotation = Quaternion.LookRotation(functional.normalized);
+        }
+        else if (m_movement.magnitude > 0)
+        {
+            m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
+        }
     }
 
     /*
@@ -483,6 +328,9 @@ public class Player : MovingActor
         }
     }
 
+    /* 
+     * Resets the players values to default
+     */
     public void ResetValues()
     {
         m_health = m_maxHealth;
@@ -504,6 +352,7 @@ public class Player : MovingActor
         Vector3 spawnPos;
         bool validPos = false;
 
+        // Don't spawn in areas with items in it
         do
         {
             spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
@@ -546,16 +395,6 @@ public class Player : MovingActor
         m_deaths++;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (m_showDebug)
-        {
-            Vector3 height = transform.position;
-            height.y += m_attackHeightOffset;
-
-            Gizmos.DrawSphere(height + transform.forward * m_attackDistance, m_attackRadius);
-        }
-    }
     public void FallDamage(int damage)
     {
         if (m_alive)

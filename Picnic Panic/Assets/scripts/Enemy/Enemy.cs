@@ -185,6 +185,9 @@ public class Enemy : MovingActor
 
     public void Attack()
     {
-        m_states[m_stateIndex].Attack();
+        if (m_alive)
+        {
+            m_states[m_stateIndex].Attack();
+        }
     }
 }

@@ -248,14 +248,6 @@ public class PlayerSelect : MonoBehaviour
                         }
                     }
 
-                    for (int i = 0; i < 4; i++)
-                    {
-                        if (m_TEMP[i] != null)
-                        {
-                            m_TEMP[i].SetActive(false);
-                        }
-                    }
-
                     // give objects access to the players
                     m_spawner.m_players = m_players.ToArray();
                     m_hud.m_players = m_players.ToArray();

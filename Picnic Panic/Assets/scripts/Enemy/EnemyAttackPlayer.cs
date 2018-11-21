@@ -164,6 +164,9 @@ public class EnemyAttackPlayer : EnemyState
 
     public override void Attack()
     {
-        m_target.TakeDamage(m_attackDamage, m_owner);
+        if (m_target)
+        {
+            m_target.TakeDamage(m_attackDamage, m_owner);
+        }
     }
 }
