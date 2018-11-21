@@ -49,9 +49,7 @@ public class Player : MovingActor
     public Text m_dashStrengthDisplay;
     public Image m_playerNumberDisplay;
     public int m_healCount;
-    public Image m_fillArea;
-    public Color m_c1;
-    public Color m_c2;
+    public Slider m_healReady;
     #endregion
 
     #region Private
@@ -120,7 +118,8 @@ public class Player : MovingActor
         m_health = m_maxHealth;
         m_alive = true;
         m_dashStrength = m_dashStrengthMin;
-        m_healthSlider.maxValue = m_maxHealth;        
+        m_healthSlider.maxValue = m_maxHealth;
+        m_healReady.maxValue = m_neededKills;
 
         m_controller = (XboxController)m_playerNumber;
     }
@@ -250,14 +249,11 @@ public class Player : MovingActor
                 m_healLerpTimer -= Time.deltaTime;
             if (m_healLerpTimer > 1 || m_healLerpTimer < 0)
                 m_countUp = !m_countUp;
-
-            m_fillArea.color = Color.Lerp(m_c1, m_c2, m_healLerpTimer);
-            m_fillArea.rectTransform.localScale = Vector3.Lerp(new Vector3(1, 1, 1), new Vector3(2, 2, 1), m_healLerpTimer);
         }
     }
 
     /*
-     * Handles rigid body movement
+     * Handles rigid body movement and functional direction
      */
     private void FixedUpdate()
     {
@@ -388,6 +384,7 @@ public class Player : MovingActor
         m_collider.enabled = true;
         m_rigidBody.isKinematic = false;
         m_healthSlider.gameObject.SetActive(true);
+        m_healReady.gameObject.SetActive(true);
     }
 
     /*
@@ -403,6 +400,7 @@ public class Player : MovingActor
         m_collider.enabled = false;
         m_rigidBody.isKinematic = true;
         m_healthSlider.gameObject.SetActive(false);
+        m_healReady.gameObject.SetActive(true);
 
         m_deaths++;
     }
@@ -457,6 +455,7 @@ public class Player : MovingActor
             m_killCount -= m_neededKills; // removing amount of kills from kill count
             m_healParticles.Stop(); // stop particles
             m_healParticles.Clear();
+            m_healReady.value = 0;
         }
     }
 
@@ -498,6 +497,7 @@ public class Player : MovingActor
                 if (!enemy.Alive)
                 {
                     m_killCount++; // adding a plus one to kill count 
+                    m_healReady.value = m_killCount;
                     m_kills++;
                     if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
                     {
