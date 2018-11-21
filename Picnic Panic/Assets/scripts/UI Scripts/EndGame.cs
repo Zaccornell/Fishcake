@@ -160,7 +160,7 @@ public class EndGame : MonoBehaviour
         foreach (MovingActor current in m_spawner.m_enemies)
         {
             current.enabled = false;
-            ((Enemy)current).Animator.enabled = false;
+            current.Animator.enabled = false;
         }
         foreach (GameObject child in m_objects) // going though and selecting every child inside of the array
         {

@@ -49,6 +49,9 @@ public class Player : MovingActor
     public Text m_dashStrengthDisplay;
     public Image m_playerNumberDisplay;
     public int m_healCount;
+    public Image m_fillArea;
+    public Color m_c1;
+    public Color m_c2;
     #endregion
 
     #region Private
@@ -61,7 +64,6 @@ public class Player : MovingActor
     private float m_vibrationTimer;
     private bool m_vibrationToggle;
     private int m_killCount;
-    private Animator m_animator;
     private Collider m_collider;
 
     private bool m_dashing;
@@ -72,6 +74,8 @@ public class Player : MovingActor
     private int m_antKills;
     private int m_roachKills;
     private int m_healsUsed;
+    private float m_healLerpTimer;
+    private bool m_countUp;
     #endregion
     #endregion
 
@@ -103,10 +107,6 @@ public class Player : MovingActor
     public int HealsUsed
     {
         get { return m_healsUsed; }
-    }
-    public Animator Animator
-    {
-        get { return m_animator; }
     }
     #endregion
 
@@ -241,6 +241,19 @@ public class Player : MovingActor
         {            
             GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 0, 0); // stop the vibration             
         }
+
+        if (m_killCount >= m_neededKills)
+        {
+            if (m_countUp)
+                m_healLerpTimer += Time.deltaTime;
+            else
+                m_healLerpTimer -= Time.deltaTime;
+            if (m_healLerpTimer > 1 || m_healLerpTimer < 0)
+                m_countUp = !m_countUp;
+
+            m_fillArea.color = Color.Lerp(m_c1, m_c2, m_healLerpTimer);
+            m_fillArea.rectTransform.localScale = Vector3.Lerp(new Vector3(1, 1, 1), new Vector3(2, 2, 1), m_healLerpTimer);
+        }
     }
 
     /*
@@ -323,7 +336,6 @@ public class Player : MovingActor
                     m_canRespawn = m_hud.UseLife();
                     m_vibrationTimer = m_vibrationDeath;
                 }
-
             }
         }
     }

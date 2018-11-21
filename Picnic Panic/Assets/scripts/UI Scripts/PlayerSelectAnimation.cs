@@ -7,8 +7,7 @@ public class PlayerSelectAnimation : MonoBehaviour
 {
     public GameObject[] m_states;
     public float m_length;
-    public float m_start;
-    public float m_end;
+    public float m_edgeBuffer;
 
     private bool m_countUp;
     private float m_timer;
@@ -43,6 +42,6 @@ public class PlayerSelectAnimation : MonoBehaviour
             m_states[0].SetActive(false);
             m_states[1].SetActive(true);
         }
-        m_rectTransform.position = Vector2.Lerp(new Vector2(-1000 + m_rectTransform.rect.width, m_rectTransform.position.y), new Vector2(Screen.width + 1000 - m_rectTransform.rect.width, m_rectTransform.position.y), m_timer / m_length);   
+        m_rectTransform.position = Vector2.Lerp(new Vector2(-m_edgeBuffer + m_rectTransform.rect.width, m_rectTransform.position.y), new Vector2(Screen.width + m_edgeBuffer - m_rectTransform.rect.width, m_rectTransform.position.y), m_timer / m_length);   
 	}
 }

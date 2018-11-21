@@ -404,7 +404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1871539808632228
 GameObject:
   m_ObjectHideFlags: 1
@@ -849,8 +849,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_length: 7
-  m_start: -400
-  m_end: 1400
+  m_edgeBuffer: 1250
 --- !u!114 &114396641086962876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1174,8 +1173,8 @@ MonoBehaviour:
   - {fileID: 1032940098977998, guid: 924185ef1bef0f84da487ef8e31f2cc3, type: 2}
   - {fileID: 1560482311617848, guid: 03847b3bb54f2a9459cd9bcc06a0b9ae, type: 2}
   m_playerModels:
-  - {fileID: 1769286371164400, guid: f9ec96ba5d7ea144e9565d887eba8105, type: 2}
-  - {fileID: 1151642031478226, guid: d409fdfd6b3466d42b9e4733c96d387a, type: 2}
+  - {fileID: 1459457605534810, guid: beb81e0361fa7834f9261621856c668e, type: 2}
+  - {fileID: 1071373357854544, guid: 464efb0f4757af543be5e966c814817a, type: 2}
   m_playerWeapons:
   - {fileID: 1561896232599252, guid: 432f5177868f58c4bb2b2c2554eb33ec, type: 2}
   - {fileID: 1782817178387138, guid: ca4336587fe33984c98a786c538ede50, type: 2}
@@ -1831,8 +1830,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -761, y: 40}
-  m_SizeDelta: {x: 552.4, y: -215.59998}
+  m_AnchoredPosition: {x: -1053.8, y: 48}
+  m_SizeDelta: {x: 742.1, y: -396.8}
   m_Pivot: {x: 0.49999988, y: 0.4338496}
 --- !u!224 &224463934555892456
 RectTransform:

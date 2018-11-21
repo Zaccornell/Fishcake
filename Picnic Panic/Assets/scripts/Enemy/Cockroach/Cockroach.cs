@@ -22,7 +22,6 @@ public class Cockroach : MovingActor
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
     private int m_areaMask;
-    private Animator m_animator;
 
     // Use this for initialization
     void Start ()

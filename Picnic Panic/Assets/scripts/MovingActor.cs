@@ -15,6 +15,7 @@ public class MovingActor : Actor
     public int m_attackDamage;
     public bool m_useForce;
     public Type m_type;
+    protected Animator m_animator;
 
     protected float m_attackTimer;
     protected bool m_canAttack;
@@ -28,5 +29,9 @@ public class MovingActor : Actor
     public Vector3 Movement
     {
         get { return m_movement; }
+    }
+    public Animator Animator
+    {
+        get { return m_animator; }
     }
 }

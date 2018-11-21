@@ -104,6 +104,7 @@ public class PlayerSelect : MonoBehaviour
                         canStart = false;
 
                         m_TEMP[i] = Instantiate(m_playerModels[0/*Mathf.Min(m_playerModels.Length - 1, i)*/], m_displayLocations[i]);
+                        Instantiate(m_playerWeapons[m_selectedWeapons[0]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
                         m_selectedModels[i] = 0;
                         m_selectedWeapons[i] = 0;
 
@@ -185,6 +186,8 @@ public class PlayerSelect : MonoBehaviour
                             temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
                         }
 
+                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], temp.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+
                         Destroy(m_TEMP[i]);
                         m_TEMP[i] = temp;
                     }
@@ -206,6 +209,8 @@ public class PlayerSelect : MonoBehaviour
                         {
                             temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
                         }
+
+                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], temp.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
                         Destroy(m_TEMP[i]);
                         m_TEMP[i] = temp;

@@ -32,12 +32,6 @@ public class Enemy : MovingActor
     private EnemyAttackKing m_attackKing;
     private int m_stateIndex;
     private int m_areaMask;
-    private Animator m_animator;
-
-    public Animator Animator
-    {
-        get { return m_animator; }
-    }
 
     // Use this for initialization
     void Start()
