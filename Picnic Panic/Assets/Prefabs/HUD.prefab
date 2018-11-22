@@ -415,7 +415,6 @@ GameObject:
   - component: {fileID: 224322338219126696}
   - component: {fileID: 222657059624308226}
   - component: {fileID: 114556536372456588}
-  - component: {fileID: 114242078444945998}
   m_Layer: 5
   m_Name: UI_GameTimer_001_Text
   m_TagString: Untagged
@@ -575,21 +574,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114242078444945998
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1854112310467774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aa25343f0cd28c4b8474625220e29a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_maxHealth: 100
-  m_spawner: {fileID: 0}
-  m_restoreHealth: 0
-  m_shake: {fileID: 0}
 --- !u!114 &114250859131377732
 MonoBehaviour:
   m_ObjectHideFlags: 1
