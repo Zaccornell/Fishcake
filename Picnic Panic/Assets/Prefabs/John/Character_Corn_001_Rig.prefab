@@ -1638,7 +1638,7 @@ MonoBehaviour:
   m_playerNumberDisplay: {fileID: 114316129288987738}
   m_healCount: 0
   m_healReady: {fileID: 114716056229880144}
-  m_respawnOnRoundEnd: 0
+  m_respawnOnRoundEnd: 1
   m_respawnLength: 3
 --- !u!114 &114625636566169392
 MonoBehaviour:

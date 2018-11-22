@@ -28,12 +28,12 @@ public class PlayerSelect : MonoBehaviour
     public AudioSource m_audioSourceMusic;
     public AudioSource m_audioSourceSFX;
     public Transform[] m_displayLocations;
-    public GameObject[] m_TEMP;
     public GameObject m_cutSence;
 
     private XboxController[] m_controllers;
     private KeyCode[] m_testButtons;
     private List<Player> m_players;
+    private GameObject[] m_displayCharacters;
     private int[] m_selectedModels;
     private int[] m_selectedWeapons;
     private bool[] m_playersReady;
@@ -51,7 +51,7 @@ public class PlayerSelect : MonoBehaviour
         m_playersReady = new bool[4];
         m_selectedModels = new int[4];
         m_selectedWeapons = new int[4];
-        m_TEMP = new GameObject[4];
+        m_displayCharacters = new GameObject[4];
 
         m_hud.gameObject.SetActive(false);
 
@@ -105,12 +105,12 @@ public class PlayerSelect : MonoBehaviour
 
                         canStart = false;
 
-                        m_TEMP[i] = Instantiate(m_playerModels[0/*Mathf.Min(m_playerModels.Length - 1, i)*/], m_displayLocations[i]);
-                        Instantiate(m_playerWeapons[m_selectedWeapons[0]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                        m_displayCharacters[i] = Instantiate(m_playerModels[0/*Mathf.Min(m_playerModels.Length - 1, i)*/], m_displayLocations[i]);
+                        Instantiate(m_playerWeapons[m_selectedWeapons[0]], m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
                         m_selectedModels[i] = 0;
                         m_selectedWeapons[i] = 0;
 
-                        m_TEMP[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
+                        m_displayCharacters[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
 
                     }
                 }
@@ -149,12 +149,12 @@ public class PlayerSelect : MonoBehaviour
 
                         // Destroy the old weapon
                         // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
-                        if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
+                        if (m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
                         {
-                            Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
+                            Destroy(m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
                         }
                         // Create the new weapon
-                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
                     }
                     // Scroll selected weapon down
@@ -168,12 +168,12 @@ public class PlayerSelect : MonoBehaviour
 
                         // Destroy the old weapon
                         // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
-                        if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
+                        if (m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
                         {
-                            Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
+                            Destroy(m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
                         }
                         // Create the new weapon
-                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                        Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
                     }
                     // Scroll selected charactor right
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadRight, m_controllers[i]) || Input.GetKeyDown(KeyCode.RightArrow)))
@@ -201,8 +201,8 @@ public class PlayerSelect : MonoBehaviour
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], temp.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
                         
                         // Destroy the old character and add the new one to the array
-                        Destroy(m_TEMP[i]);
-                        m_TEMP[i] = temp;
+                        Destroy(m_displayCharacters[i]);
+                        m_displayCharacters[i] = temp;
                     }
                     // Scroll selected charactor left
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadLeft, m_controllers[i]) || Input.GetKeyDown(KeyCode.LeftArrow)))
@@ -230,8 +230,8 @@ public class PlayerSelect : MonoBehaviour
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], temp.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
                         // Destroy the old character and add the new one to the array
-                        Destroy(m_TEMP[i]);
-                        m_TEMP[i] = temp;
+                        Destroy(m_displayCharacters[i]);
+                        m_displayCharacters[i] = temp;
                     }
                 }
 
@@ -265,6 +265,7 @@ public class PlayerSelect : MonoBehaviour
                             playerScript.m_hud = m_hud;
                             playerScript.m_audioSourceSFX = m_audioSourceSFX;
                             playerScript.m_weaponCollider = weapon.GetComponent<Collider>();
+                            playerScript.m_corpsePrefab = m_displayCharacters[i];
 
                             if (m_playerNumberSprites.Length > 0)
                             {

@@ -1780,7 +1780,7 @@ MonoBehaviour:
   m_playerNumberDisplay: {fileID: 114915601570471280}
   m_healCount: 0
   m_healReady: {fileID: 114689095686196592}
-  m_respawnOnRoundEnd: 0
+  m_respawnOnRoundEnd: 1
   m_respawnLength: 3
 --- !u!136 &136420925382995068
 CapsuleCollider:

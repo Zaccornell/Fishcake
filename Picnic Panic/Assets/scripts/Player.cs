@@ -357,7 +357,8 @@ public class Player : MovingActor
                     Death();
 
                     Vector3 position = gameObject.transform.position;
-                    Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+                    GameObject corpse = Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+                    corpse.AddComponent<PlayerCorpse>();
                     m_canRespawn = m_hud.UseLife();
                     if (!m_respawnOnRoundEnd)
                     {
