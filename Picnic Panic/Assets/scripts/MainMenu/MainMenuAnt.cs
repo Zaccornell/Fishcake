@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class MainMenuAnt : MonoBehaviour
 {
     public NavMeshAgent m_agent;
-    private Vector3 m_target;
 
 	// Use this for initialization
 	void Start ()

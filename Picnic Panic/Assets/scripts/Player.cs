@@ -50,6 +50,8 @@ public class Player : MovingActor
     public Image m_playerNumberDisplay;
     public int m_healCount;
     public Slider m_healReady;
+    public bool m_respawnOnRoundEnd;
+    public float m_respawnLength;
     #endregion
 
     #region Private
@@ -60,7 +62,6 @@ public class Player : MovingActor
     private float m_knockbackTimer;
     private float m_invulTimer;
     private float m_vibrationTimer;
-    private bool m_vibrationToggle;
     private int m_killCount;
     private Collider m_collider;
 
@@ -74,6 +75,7 @@ public class Player : MovingActor
     private int m_healsUsed;
     private float m_healLerpTimer;
     private bool m_countUp;
+    private float m_respawnTimer;
     #endregion
     #endregion
 
@@ -120,6 +122,7 @@ public class Player : MovingActor
         m_dashStrength = m_dashStrengthMin;
         m_healthSlider.maxValue = m_maxHealth;
         m_healReady.maxValue = m_neededKills;
+        m_healReady.value = 0;
 
         m_controller = (XboxController)m_playerNumber;
     }
@@ -131,7 +134,9 @@ public class Player : MovingActor
         m_attackTimer -= Time.deltaTime;
         m_knockbackTimer -= Time.deltaTime;
         m_invulTimer -= Time.deltaTime;
-        m_dashTimer -= Time.deltaTime;        
+        m_dashTimer -= Time.deltaTime;
+        if (!m_respawnOnRoundEnd)
+            m_respawnTimer -= Time.deltaTime;
 
         m_healthSlider.value = m_health;
 
@@ -250,6 +255,11 @@ public class Player : MovingActor
             if (m_healLerpTimer > 1 || m_healLerpTimer < 0)
                 m_countUp = !m_countUp;
         }
+
+        if (!m_respawnOnRoundEnd && !m_alive && m_canRespawn && m_respawnTimer <= 0)
+        {
+            Respawn();
+        }
     }
 
     /*
@@ -330,6 +340,10 @@ public class Player : MovingActor
                     Vector3 position = gameObject.transform.position;
                     Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
                     m_canRespawn = m_hud.UseLife();
+                    if (!m_respawnOnRoundEnd)
+                    {
+                        m_respawnTimer = m_respawnLength;
+                    }
                     m_vibrationTimer = m_vibrationDeath;
                 }
             }
@@ -352,39 +366,42 @@ public class Player : MovingActor
      */
     public void Respawn()
     {
-        if (PlayerOptions.Instance.m_vibrationToggle)
+        if (m_canRespawn)
         {
-             GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
+            if (PlayerOptions.Instance.m_vibrationToggle)
+            {
+                GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
+            }
+
+            Vector3 spawnPos;
+            //bool validPos = false;
+
+            // Don't spawn in areas with items in it
+            //do
+            //{
+                spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+                spawnPos.Normalize();
+                spawnPos *= 9;
+
+            //    validPos = Physics.CheckCapsule(new Vector3(spawnPos.x, 0.5f, spawnPos.z), new Vector3(spawnPos.x, 0.5f + 1.72f, spawnPos.z), 0.5f);
+            //} while (!validPos);
+
+            gameObject.transform.position = spawnPos;
+            m_vibrationTimer = m_virbationRespawn;
+            m_alive = true;
+            m_health = m_maxHealth;
+            m_canRespawn = false;
+
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+            foreach (Renderer current in renderers)
+            {
+                current.enabled = true;
+            }
+            m_collider.enabled = true;
+            m_rigidBody.isKinematic = false;
+            m_healthSlider.gameObject.SetActive(true);
+            m_healReady.gameObject.SetActive(true);
         }
-
-        Vector3 spawnPos;
-        bool validPos = false;
-
-        // Don't spawn in areas with items in it
-        do
-        {
-            spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-            spawnPos.Normalize();
-            spawnPos *= 9;
-
-            validPos = Physics.CheckCapsule(new Vector3(spawnPos.x, 0.5f, spawnPos.z), new Vector3(spawnPos.x, 0.5f + 1.72f, spawnPos.z), 0.5f);
-        } while (!validPos);
-
-
-
-        gameObject.transform.position = spawnPos;
-        m_vibrationTimer = m_virbationRespawn;
-        m_alive = true;
-
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        foreach (Renderer current in renderers)
-        {
-            current.enabled = true;
-        }
-        m_collider.enabled = true;
-        m_rigidBody.isKinematic = false;
-        m_healthSlider.gameObject.SetActive(true);
-        m_healReady.gameObject.SetActive(true);
     }
 
     /*
@@ -400,7 +417,7 @@ public class Player : MovingActor
         m_collider.enabled = false;
         m_rigidBody.isKinematic = true;
         m_healthSlider.gameObject.SetActive(false);
-        m_healReady.gameObject.SetActive(true);
+        m_healReady.gameObject.SetActive(false);
 
         m_deaths++;
     }

@@ -99,20 +99,20 @@ public class Spawner : MonoBehaviour
             m_antToSpawn += m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
             m_cockroachToSpawn += m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
 
-            // Respawn dead players
-            foreach (Actor player in m_players)
-            {
-                if (!player.gameObject.activeSelf || !player.Alive)
-                {
-                    Player playerScript = (Player)player;
+            //// Respawn dead players
+            //foreach (Actor player in m_players)
+            //{
+            //    if (!player.gameObject.activeSelf || !player.Alive)
+            //    {
+            //        Player playerScript = (Player)player;
 
-                    if (playerScript.CanRespawn)
-                    {
-                        playerScript.ResetValues();
-                        playerScript.Respawn();
-                    }
-                }
-            }
+            //        if (playerScript.CanRespawn)
+            //        {
+            //            playerScript.ResetValues();
+            //            playerScript.Respawn();
+            //        }
+            //    }
+            //}
             OnRoundEnd(); // event call
             CalculateDelay();
         }
@@ -446,6 +446,17 @@ public class Spawner : MonoBehaviour
             Gizmos.DrawLine(Vector3.zero, spawnAreaPositions[2]);
 
             Gizmos.DrawWireSphere(Vector3.zero, m_randomSpawnRadius);
+        }
+    }
+
+    private void OnEnable()
+    {
+        foreach (Actor player in m_players)
+        {
+            if (((Player)player).m_respawnOnRoundEnd)
+            {
+                OnRoundEnd += new MyDel(((Player)player).Respawn);
+            }
         }
     }
 }
