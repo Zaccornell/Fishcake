@@ -34,7 +34,7 @@ public class Cockroach : MovingActor
     public Spawner Spawner
     {
         get { return m_spawner; }
-        set { m_spawner = Spawner; }
+        set { m_spawner = value; }
     }
 
     // Use this for initialization
