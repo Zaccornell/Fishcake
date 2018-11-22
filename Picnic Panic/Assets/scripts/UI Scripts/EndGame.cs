@@ -17,10 +17,13 @@ public class EndGame : MonoBehaviour
     public GameObject[] m_objects;
     public Spawner m_spawner;
     public HUD m_hud;
+    public PlayerSelect m_playerSelect;
     public Player[] m_players;
     public Text m_roundValue;
     public Text m_endCauseValue;
     public Text m_gameTimer;
+    public Sprite[] m_weaponSprites;
+    public Image[] m_weaponImages;
     public GameObject[] m_playerStats;
     public Text[] m_player1Values;
     public Text[] m_player2Values;
@@ -28,8 +31,6 @@ public class EndGame : MonoBehaviour
     public Text[] m_player4Values;
     public float m_length;
     public Image m_backGround;
-    public Camera m_mainCamera;
-    public Camera m_sideCamera;
 
     private float m_timer;
     private int m_minutes;
@@ -51,7 +52,6 @@ public class EndGame : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
         m_timer -= Time.deltaTime;
 
         Color c = m_backGround.color; //creating a veriable for back ground color
@@ -97,6 +97,11 @@ public class EndGame : MonoBehaviour
             {
                 m_gameTimer.text = "You survived for " + m_hud.m_timer.ToString("0") + " seconds"; // if it doesnt go over a minute 
 
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                m_weaponImages[i].sprite = m_weaponSprites[m_playerSelect.SelectedWeapons[i]];
             }
 
             foreach (Player player in m_players)
@@ -181,7 +186,7 @@ public class EndGame : MonoBehaviour
         {
             child.SetActive(true); // turning the object off inside the array
         }
-        SceneManager.LoadScene(Random.Range(1, 5)); // loading the scene up of the gmae
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings - 2));
     }
 
     public void MainMenuButton()
