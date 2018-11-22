@@ -562,7 +562,9 @@ public class Player : MovingActor
         }
     }
 
-    // Enables and disables the weapon for the attack animation
+    /*    
+     * Enables and disables the weapon for the attack animation
+     */
     void EnableWeapon()
     {
         m_weaponCollider.enabled = true;

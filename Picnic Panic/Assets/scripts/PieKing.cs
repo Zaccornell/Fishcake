@@ -28,7 +28,7 @@ public class PieKing : Actor
 
     void Awake()
     {
-        m_spawner.OnRoundEnd += new MyDel(RoundEnd); // it heals at the end of rounds 
+        m_spawner.OnRoundEnd += new MyDel(RoundEnd); // Adding the RoundEnd function to the spawner's OnRoundEnd event
     }
 
     // Update is called once per frame
@@ -84,6 +84,9 @@ public class PieKing : Actor
         }
     }
 
+    /*
+     * Resets the kings health back to full
+     */
     public void ResetValues()
     {
         m_health = m_maxHealth;

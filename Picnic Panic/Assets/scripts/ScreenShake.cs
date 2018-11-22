@@ -39,6 +39,11 @@ public class ScreenShake : MonoBehaviour
         }
 	}
 
+    /*
+     * Function to set the shake timer to start the screen shake
+     * Checks the player options for if the screen shake is turned on
+     * Has a cooldown between each time the function can be called
+     */
     public void StartShake()
     {
         if (PlayerOptions.Instance.m_screenShake)

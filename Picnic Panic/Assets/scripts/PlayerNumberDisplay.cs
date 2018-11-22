@@ -16,6 +16,7 @@ public class PlayerNumberDisplay : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        // Gradually lowers the alpha of the image
         Color color = m_image.color;
         color.a -= 0.005f;
         m_image.color = color;

@@ -68,6 +68,7 @@ public class Spawner : MonoBehaviour
         m_antSpawnTimer = m_antSpawnDelay;
         m_cockroachSpawnTimer = m_cockroachSpawnDelay;
 
+        // Adds the set amount of enemies for the current round + an extra 25% for each player after 2
         m_antToSpawn += m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
         m_cockroachToSpawn += m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
 
@@ -77,9 +78,11 @@ public class Spawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        m_roundTimer -= Time.deltaTime; // counting down in delta time
+        // Timers
+        m_roundTimer -= Time.deltaTime; 
         m_antSpawnTimer -= Time.deltaTime;
         m_cockroachSpawnTimer -= Time.deltaTime;
+        //
 
         // checking to see if there is no enemies spawned and to spawn and the timer is higher then 5 seconds 
         if ((m_antToSpawn <= 0 && m_cockroachToSpawn <= 0) && m_roundTimer > 5.0f && m_enemySpawned <= 0) 
@@ -99,20 +102,6 @@ public class Spawner : MonoBehaviour
             m_antToSpawn += m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
             m_cockroachToSpawn += m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
 
-            //// Respawn dead players
-            //foreach (Actor player in m_players)
-            //{
-            //    if (!player.gameObject.activeSelf || !player.Alive)
-            //    {
-            //        Player playerScript = (Player)player;
-
-            //        if (playerScript.CanRespawn)
-            //        {
-            //            playerScript.ResetValues();
-            //            playerScript.Respawn();
-            //        }
-            //    }
-            //}
             OnRoundEnd(); // event call
             CalculateDelay();
         }
@@ -127,8 +116,9 @@ public class Spawner : MonoBehaviour
             NavMeshHit hit = new NavMeshHit();
             if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
             {
-                // Allocate all values for the enemy
+                // Spawn the enemy prefab at the determined location
                 GameObject newEnemy = Instantiate(m_antPrefab, spawnPosition, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
+                // Allocate needed values in the enemy script
                 Enemy enemyScript = newEnemy.GetComponent<Enemy>();
                 enemyScript.m_players = m_players;
                 enemyScript.m_spawner = this;
@@ -151,8 +141,9 @@ public class Spawner : MonoBehaviour
             NavMeshHit hit = new NavMeshHit();
             if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
             {
-                // Allocate values for the enemy
+                // Spawn the cockroach prefab at the determined location
                 GameObject newCockroach = Instantiate(m_cockroachPrefab, hit.position, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
+                // Allocate needed values in the enemy script
                 Cockroach cockroachScript = newCockroach.GetComponent<Cockroach>();
                 cockroachScript.m_spawner = this;
                 cockroachScript.m_king = m_king;
@@ -166,7 +157,7 @@ public class Spawner : MonoBehaviour
 
     /*
      * Controls the length between enemy spawns
-     * Will ensure all enemies spawn within the allotted time
+     * Will ensure all enemies spawn between the start of the round and the end of round buffer
      */
     private void CalculateDelay()
     {
@@ -304,6 +295,11 @@ public class Spawner : MonoBehaviour
         return spawnPosition;
     }
 
+    /*
+     * Removes the enemy from the enemy array
+     * Params:
+     *      Enemy: the enemy that has died and needs to be removed
+     */
     public void EnemyDeath(MovingActor enemy)
     {
         m_enemies.Remove(enemy);
@@ -449,6 +445,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    /*
+     * Assigns the player's respawn function to the OnRoundEnd event if the players are set to spawn at the end of the round
+     */
     private void OnEnable()
     {
         foreach (Actor player in m_players)

@@ -21,6 +21,12 @@ public class Actor : MonoBehaviour
         set { m_alive = value; }
     }
 
+    /*
+     * The base take damage function for the actor class
+     * Params:
+     *      Damage: The amount of damage for the actor to take
+     *      Attacker: The actor the attacked the current one
+     */
     public virtual void TakeDamage(int damage, Actor attacker)
     {
 

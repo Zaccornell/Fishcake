@@ -16,6 +16,10 @@ public class KillZone : MonoBehaviour
     {
         
 	}
+
+    /*
+     * Handles killing actors that enter the trigger
+     */
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

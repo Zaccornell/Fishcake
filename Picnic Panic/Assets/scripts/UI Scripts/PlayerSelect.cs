@@ -281,6 +281,7 @@ public class PlayerSelect : MonoBehaviour
                     m_pauseMenu.m_players = m_players.ToArray();
                     m_endGame.m_players = m_players.ToArray();
 
+                    // Add the players to the camera's targets
                     List<Actor> cameraTargets = new List<Actor>();
                     foreach (Actor current in m_camera.m_Targets)
                     {
@@ -297,12 +298,15 @@ public class PlayerSelect : MonoBehaviour
                         current.enabled = true;
                     }
 
+                    // Enable the other scripts
                     m_spawner.enabled = true;
                     m_hud.enabled = true;
                     m_pauseMenu.enabled = true;
                     m_camera.enabled = true;
 
                     m_hud.gameObject.SetActive(true);
+
+                    // Play the ingame music
                     m_audioSourceMusic.loop = false;
                     m_audioSourceMusic.Stop();
                     if (m_roundStart != null)

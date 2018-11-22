@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 /*
- * Aurther: John
+ * Author: John
  * Date: 2018/10/17
  * 
- * 
+ * A singleton for storing the player options
  */
 public class PlayerOptions
 {
@@ -31,6 +31,9 @@ public class PlayerOptions
 
     }
 
+    /*
+     * Static function to get an instance of the function
+     */
     public static PlayerOptions Instance
     {
         get { return m_instance; }

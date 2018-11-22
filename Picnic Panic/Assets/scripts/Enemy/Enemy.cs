@@ -60,6 +60,9 @@ public class Enemy : MovingActor
         set { m_pathIndex = value; }
     }
 
+    /*
+     * Handles rigid body movement and rotation
+     */
     private void FixedUpdate()
     {
         if (m_useForce)
@@ -82,13 +85,13 @@ public class Enemy : MovingActor
     // Update is called once per frame
     void Update()
     {
-        m_states[m_stateIndex].Update();
+        m_states[m_stateIndex].Update(); // update the current state
         m_target = m_states[m_stateIndex].Target;
 
+        // When the path should be updated
         if (m_updatePath == 0)
         {
-            //NavMesh.CalculatePath(transform.position, m_target.transform.position, -1, m_path);
-            m_states[m_stateIndex].UpdatePath(ref m_path, m_areaMask);
+            m_states[m_stateIndex].UpdatePath(ref m_path, m_areaMask);  // get the new path from the current state
             m_updatePath = 5;
             m_pathIndex = 0;
             for(int i = 0; i < m_path.corners.Length; i++)
@@ -98,6 +101,7 @@ public class Enemy : MovingActor
         }
         m_updatePath--;
 
+        // When the ant is ready to move on to the next path node
         if (m_pathIndex < m_path.corners.Length && (transform.position - m_path.corners[m_pathIndex]).magnitude < 0.1)
         {
             m_pathIndex++;
@@ -112,6 +116,12 @@ public class Enemy : MovingActor
         m_animator.SetFloat("Speed", m_movement.magnitude);
     }
 
+    /*
+     * Causes the ant to take damage and handles the death of the ant
+     * Params:
+     *      Damage: the amount of damage to take
+     *      Attacker: the actor that attacked the ant
+     */
     public override void TakeDamage(int damage, Actor attacker)    
     {
         if (m_alive)
@@ -144,6 +154,11 @@ public class Enemy : MovingActor
         }
     }
 
+    /*
+     * Handles changing the current state
+     * Param:
+     *      Index: the index in the state array to change to
+     */
     public void ChangeState(int index)
     {
         m_stateIndex = index;
@@ -177,6 +192,10 @@ public class Enemy : MovingActor
         }
     }
 
+    /*
+     * The actual damage for the attack that is called during the attack animation
+     * Calls the attack function on the current state
+     */
     public void Attack()
     {
         if (m_alive)

@@ -5,6 +5,9 @@ using XInputDotNetPure;
 
 public class StopVibrationOnQuit : MonoBehaviour
 {
+    /*
+     * Simply turns off vibration when the application is exitted
+     */
     private void OnApplicationQuit()
     {
         GamePad.SetVibration(PlayerIndex.One, 0, 0);
