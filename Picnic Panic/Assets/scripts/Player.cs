@@ -130,6 +130,7 @@ public class Player : MovingActor
     // Update is called once per frame
     void Update ()
     {
+        // Timers
         m_vibrationTimer -= Time.deltaTime;
         m_attackTimer -= Time.deltaTime;
         m_knockbackTimer -= Time.deltaTime;
@@ -137,6 +138,7 @@ public class Player : MovingActor
         m_dashTimer -= Time.deltaTime;
         if (!m_respawnOnRoundEnd)
             m_respawnTimer -= Time.deltaTime;
+        //
 
         m_healthSlider.value = m_health;
 
@@ -153,15 +155,21 @@ public class Player : MovingActor
             Playerheal();
         }
 
+        // If the dash as a charge up or is instant
         if (m_instantDash)
         {
+            // if the player presses the dash button
             if ((Input.GetKeyDown(KeyCode.Space) || XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 1) && m_dashTimer < 0)
             {
+                // if the player is moving
                 if (m_movement.magnitude != 0)
-                {   
+                {
+                    // get the dash velocity and apply it to the player
                     Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrengthMax * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                     m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                     m_dashTimer = m_dashCooldown;
+
+                    // Dash sounds
                     if (m_playerDash.Length > 0)
                     {
                         int index = Random.Range(0, m_playerDash.Length);
@@ -193,11 +201,15 @@ public class Player : MovingActor
             // when dash button is let go
             if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) == 0)
             {
+                // if the player is moving
                 if (m_movement.magnitude != 0)
                 {
+                    // get the dash velocity and apply it to the player
                     Vector3 dashVelocity = Vector3.Scale(m_movement, m_dashStrength * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                     m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
                     m_dashTimer = m_dashCooldown;
+
+                    // Sounds
                     if (m_playerDash.Length > 0)
                     {
                         int index = Random.Range(0, m_playerDash.Length);
@@ -214,16 +226,19 @@ public class Player : MovingActor
             }
         }
 
+        // when the dash button is held
         if (m_dashing)
         {
-            m_dashStrengthDisplay.text = m_dashStrength.ToString("#.0");            
+            m_dashStrengthDisplay.text = m_dashStrength.ToString("#.0"); // display the dash strength      
         }
 
         // Attack
         if ((Input.GetMouseButtonDown(0) || XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) != 0 || XCI.GetButtonDown(XboxButton.A, m_controller)) && m_attackTimer <= 0)
         {
+            // check if the player has just pressed the attack button
             if (m_attackPressed == false)
             {
+                // start the attack animation
                 m_animator.SetTrigger("Attack Pressed");               
 
                 m_canAttack = false;
@@ -231,21 +246,24 @@ public class Player : MovingActor
                 m_attackPressed = true;
             }
         }
+        // if the user has let go of the attack button
         if (XCI.GetAxisRaw(XboxAxis.RightTrigger, m_controller) == 0)
         {
             m_attackPressed = false;
         }
+        // if the player can attack again
         if (m_attackTimer < 0 && !m_canAttack)
         {
             m_canAttack = true;
         }
 
-        // counting the timer down 
+        // when the vibration is done
         if (m_vibrationTimer <= 0)
         {            
             GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 0, 0); // stop the vibration             
         }
 
+        // TEMP - REMOVE
         if (m_killCount >= m_neededKills)
         {
             if (m_countUp)
@@ -256,6 +274,7 @@ public class Player : MovingActor
                 m_countUp = !m_countUp;
         }
 
+        // respawn the player if they don't respawn on the end of the round
         if (!m_respawnOnRoundEnd && !m_alive && m_canRespawn && m_respawnTimer <= 0)
         {
             Respawn();
@@ -536,12 +555,14 @@ public class Player : MovingActor
                 }
             }
         }
+        // if friendly fire is on
         if (PlayerOptions.Instance.m_firendlyFire && other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<Player>().TakeDamage(m_attackDamage, this);
         }
     }
 
+    // Enables and disables the weapon for the attack animation
     void EnableWeapon()
     {
         m_weaponCollider.enabled = true;

@@ -58,17 +58,20 @@ public class PauseMenu : MonoBehaviour
             }
         }
         
+        // if the pause menu is active
         if (m_active)
         {
+            // if the user presses the back button
             if (XCI.GetButtonDown(XboxButton.B, m_inputModule.m_controller))
             {
+                // if the options menu is open
                 if (m_optionOpen)
                 {
-                    BackButton();
+                    BackButton(); // return to the pause menu
                 }
                 else
                 {
-                    ToggleObjects();
+                    ToggleObjects(); // deactivate the pause menu
                 }
             }
         }
@@ -86,7 +89,7 @@ public class PauseMenu : MonoBehaviour
 	}
 
     /*
-     * Handles resetting all values in the level
+     * Handles resetting the level
      */
     public void ResetClick()
     {
@@ -116,48 +119,60 @@ public class PauseMenu : MonoBehaviour
      */
     private void ToggleObjects()
     {
+        // stops the toggle objects from being called multiple times per frame
         if (!m_toggledThisFrame)
         {
+            // if the pause menu is active
             if (m_active)
             {
+                // play the hud's music
                 m_hud.m_audioSource.loop = false;
                 m_hud.m_audioSource.Stop();
             }
             else
             {
+                // if the lobby music has been assigned
                 if (m_lobbyMusic != null)
                 {
+                    // play the lobby music
                     m_audioSource.loop = true;
                     m_audioSource.clip = m_lobbyMusic;
                     m_audioSource.Play();
                 }
             }
+            // disable vibration
             foreach (Player current in m_players)
             {
                 XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)current.m_playerNumber - 1, 0, 0); //. set the vibration stregnth 
             }
 
+            // toggle all the children
             foreach (GameObject child in m_children)
             {
                 child.SetActive(!m_active);
             }
+            // disable the options menu
             foreach (GameObject opchild in m_optionMenu)
             {
                 opchild.SetActive(false);
             }
+            // toggle all the enemies
             foreach (MovingActor current in m_spawner.m_enemies)
             {
                 current.enabled = m_active;
             }
+            // toggle any misc scipts
             foreach (MonoBehaviour script in m_gameplayScripts)
             {
                 script.enabled = m_active;
             }
+            // toggle all the players
             foreach (Player current in m_players)
             {
                 current.enabled = m_active;
             }
 
+            // Toggle the timescale
             if (m_active)
             {
                 Time.timeScale = 1f;
@@ -175,15 +190,6 @@ public class PauseMenu : MonoBehaviour
             m_screenShake.enabled = m_active;
             Physics.autoSimulation = m_active;
 
-            if (m_active)
-            {
-                Time.timeScale = 1;
-            }
-            else
-            {
-                Time.timeScale = 0;
-            }
-
             Cursor.visible = !m_active; // makes cursor visable
             m_active = !m_active;
 
@@ -196,10 +202,12 @@ public class PauseMenu : MonoBehaviour
      */
     public void OptionButton()
     {
+        // turns off the pause menu's children
         foreach (GameObject child in m_children)
         {
             child.SetActive(false);
         }
+        // turns on the option menu's children
         foreach (GameObject opchild in m_optionMenu)
         {
             opchild.SetActive(true);
@@ -214,10 +222,12 @@ public class PauseMenu : MonoBehaviour
      */
     public void BackButton()
     {
+        // turns on the pause menu's children
         foreach (GameObject child in m_children)
         {
             child.SetActive(true);
         }
+        // turns off the option menu's children
         foreach (GameObject opchild in m_optionMenu)
         {
             opchild.SetActive(false);
