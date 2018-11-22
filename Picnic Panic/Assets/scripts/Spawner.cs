@@ -39,8 +39,8 @@ public class Spawner : MonoBehaviour
     public AudioSource m_audioSourceSFX;
     public AudioClip[] m_kingLaugh;
 
-    [HideInInspector] public List<MovingActor> m_enemies = new List<MovingActor>();
 
+    private List<MovingActor> m_enemies = new List<MovingActor>();
     private int m_currentRound;
     private float m_roundTimer; 
     private int m_enemySpawned;
@@ -57,6 +57,10 @@ public class Spawner : MonoBehaviour
     public int CurrentRound
     {
         get { return m_currentRound; }
+    }
+    public List<MovingActor> Enemies
+    {
+        get { return m_enemies; }
     }
     public event MyDel OnRoundEnd;
 
@@ -120,9 +124,9 @@ public class Spawner : MonoBehaviour
                 GameObject newEnemy = Instantiate(m_antPrefab, spawnPosition, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
                 // Allocate needed values in the enemy script
                 Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-                enemyScript.m_players = m_players;
-                enemyScript.m_spawner = this;
-                enemyScript.m_king = m_king;
+                enemyScript.Players = m_players;
+                enemyScript.Spawner = this;
+                enemyScript.King = m_king;
                 enemyScript.m_audioSourceSFX = m_audioSourceSFX;
 
                 m_enemies.Add(enemyScript);
@@ -145,8 +149,8 @@ public class Spawner : MonoBehaviour
                 GameObject newCockroach = Instantiate(m_cockroachPrefab, hit.position, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
                 // Allocate needed values in the enemy script
                 Cockroach cockroachScript = newCockroach.GetComponent<Cockroach>();
-                cockroachScript.m_spawner = this;
-                cockroachScript.m_king = m_king;
+                cockroachScript.Spawner = this;
+                cockroachScript.King = m_king;
 
                 m_enemies.Add(cockroachScript);
                 m_cockroachToSpawn--;

@@ -13,9 +13,6 @@ public class Cockroach : MovingActor
     public float m_attackRadius;
     public float m_agroRange;
     public float m_height;
-    [HideInInspector] public Actor m_king = null;
-    [HideInInspector] public Spawner m_spawner = null;
-    [HideInInspector] public NavMeshPath m_path = null;
     public AudioSource m_audioSourceSFX;
     public AudioClip[] m_enemyDeath;
     public AudioClip[] m_enemyFall;
@@ -25,6 +22,20 @@ public class Cockroach : MovingActor
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
     private int m_areaMask;
+    private Actor m_king = null;
+    private Spawner m_spawner = null;
+    private NavMeshPath m_path = null;
+
+    public Actor King
+    {
+        get { return m_king; }
+        set { m_king = value; }
+    }
+    public Spawner Spawner
+    {
+        get { return m_spawner; }
+        set { m_spawner = Spawner; }
+    }
 
     // Use this for initialization
     void Start ()

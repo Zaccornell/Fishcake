@@ -14,17 +14,17 @@ public class Enemy : MovingActor
     public float m_attackRadius;
     public float m_agroRange;
     public float m_height;
-    [HideInInspector] public Actor[] m_players = null;
-    [HideInInspector] public Actor m_king = null;
-    [HideInInspector] public Spawner m_spawner = null;
-    [HideInInspector] public Actor m_target;
-    [HideInInspector] public NavMeshPath m_path = null;
     public AudioSource m_audioSourceSFX;
     public AudioClip[] m_enemyDeath;
     public AudioClip[] m_enemyFall;
     public AudioClip[] m_enemyAttack;
     public ParticleSystem m_eatingKing;
 
+    private Actor[] m_players = null;
+    private Actor m_king = null;
+    private Spawner m_spawner = null;
+    private Actor m_target;
+    private NavMeshPath m_path = null;
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
     private EnemyState[] m_states;
@@ -33,6 +33,18 @@ public class Enemy : MovingActor
     private int m_stateIndex;
     private int m_areaMask;
 
+    public Actor[] Players
+    {
+        set { m_players = value; }
+    }
+    public Actor King
+    {
+        set { m_king = value; }
+    }
+    public Spawner Spawner
+    {
+        set { m_spawner = value; }
+    }
     // Use this for initialization
     void Start()
     {

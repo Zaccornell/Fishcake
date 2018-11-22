@@ -150,7 +150,7 @@ public class EndGame : MonoBehaviour
                 }
             }
 
-            foreach (MovingActor enemy in m_spawner.m_enemies)
+            foreach (MovingActor enemy in m_spawner.Enemies)
             {
                 enemy.Alive = false;
             }
@@ -169,7 +169,7 @@ public class EndGame : MonoBehaviour
             player.enabled = false;
             player.Animator.enabled = false;
         }
-        foreach (MovingActor current in m_spawner.m_enemies)
+        foreach (MovingActor current in m_spawner.Enemies)
         {
             current.enabled = false;
             current.Animator.enabled = false;

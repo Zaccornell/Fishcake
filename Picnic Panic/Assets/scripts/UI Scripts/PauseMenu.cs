@@ -157,7 +157,7 @@ public class PauseMenu : MonoBehaviour
                 opchild.SetActive(false);
             }
             // toggle all the enemies
-            foreach (MovingActor current in m_spawner.m_enemies)
+            foreach (MovingActor current in m_spawner.Enemies)
             {
                 current.enabled = m_active;
             }

@@ -56,12 +56,12 @@ public class CameraControl : MonoBehaviour
 			averagePos += m_Targets[i].transform.position; // add the tanks postion to avgpos
 			numTargets++; // adding the tank to number of targets
 		}
-        for (int i = 0; i < m_Spawner.m_enemies.Count; i++)
+        for (int i = 0; i < m_Spawner.Enemies.Count; i++)
         {
-            if (!m_Spawner.m_enemies[i].gameObject.activeSelf || !m_Spawner.m_enemies[i].Alive) // if the target is not active it will continue
+            if (!m_Spawner.Enemies[i].gameObject.activeSelf || !m_Spawner.Enemies[i].Alive) // if the target is not active it will continue
                 continue;
 
-            averagePos += m_Spawner.m_enemies[i].transform.position; // add the tanks postion to avgpos
+            averagePos += m_Spawner.Enemies[i].transform.position; // add the tanks postion to avgpos
             numTargets++; // adding the tank to number of targets
         }
 		if(numTargets > 0) // cheekign to see if move then 0 targets
@@ -103,16 +103,16 @@ public class CameraControl : MonoBehaviour
                 size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x) / m_Camera.aspect);
             }
 		}
-        for (int i = 0; i < m_Spawner.m_enemies.Count; i++) // go through all the targets
+        for (int i = 0; i < m_Spawner.Enemies.Count; i++) // go through all the targets
         {
-            if (!m_Spawner.m_enemies[i].gameObject.activeSelf || !m_Spawner.m_enemies[i].Alive)// if they aren't active countinue on to the next target
+            if (!m_Spawner.Enemies[i].gameObject.activeSelf || !m_Spawner.Enemies[i].Alive)// if they aren't active countinue on to the next target
             {
                 continue;
             }
             else
             {
                 // otherwise, find the position of the target in the camera loacl space
-                Vector3 targetLocalPos = transform.InverseTransformPoint(m_Spawner.m_enemies[i].transform.position);
+                Vector3 targetLocalPos = transform.InverseTransformPoint(m_Spawner.Enemies[i].transform.position);
 
                 // find the position of the target from the deired position of the camera local space
                 Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
