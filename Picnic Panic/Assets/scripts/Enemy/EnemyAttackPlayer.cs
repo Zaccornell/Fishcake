@@ -59,6 +59,8 @@ public class EnemyAttackPlayer : EnemyState
 
         List<Actor> playersInRange = new List<Actor>();
         List<float> distanceToPlayers = new List<float>();
+
+        // Check for how many players are in range
         foreach (Actor current in m_players)
         {
             if (!current.gameObject.activeSelf || !current.Alive)
@@ -71,9 +73,11 @@ public class EnemyAttackPlayer : EnemyState
                 distanceToPlayers.Add(distance);
             }
         }
+        // if there is more than one player in range
         if (playersInRange.Count > 1)
         {
             int lowestIndex = 0;
+            // set the target to the nearest player
             for(int i = 1; i < playersInRange.Count; i++)
             {
                 if (distanceToPlayers[i] < distanceToPlayers[lowestIndex])
@@ -83,13 +87,15 @@ public class EnemyAttackPlayer : EnemyState
             }
             m_target = playersInRange[lowestIndex];
         }
+        // if there is only a single player in range
         else if (playersInRange.Count == 1)
         {
             m_target = playersInRange[0];
         }
+        // If there aren't any players in range
         else if (playersInRange.Count == 0)
         {
-            m_owner.ChangeState(0);
+            m_owner.ChangeState(0); // change to the attack king state
         }
 
         // Check if player is in attack range
@@ -162,6 +168,9 @@ public class EnemyAttackPlayer : EnemyState
         }
     }
 
+    /*
+     * The acutal damage of the attack called by the attack animation
+     */
     public override void Attack()
     {
         if (m_target)

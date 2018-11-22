@@ -18,6 +18,9 @@ public class SpeedHazard : MonoBehaviour
 		
 	}
 
+    /*
+     * Handles changing the speed of actors that enter the trigger
+     */
     private void OnTriggerEnter(Collider other)
     {
         MovingActor actor = other.gameObject.GetComponent<MovingActor>();
@@ -28,6 +31,9 @@ public class SpeedHazard : MonoBehaviour
         }
     }
 
+    /*
+     * Handles reverting the speed of actors who leave the trigger
+     */
     private void OnTriggerExit(Collider other)
     {
         MovingActor actor = other.gameObject.GetComponent<MovingActor>();

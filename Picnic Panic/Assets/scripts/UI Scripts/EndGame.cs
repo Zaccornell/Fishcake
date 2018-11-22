@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using XInputDotNetPure;
 
+/*
+ * Enum that specifies what causes the game to end
+ */
 public enum Cause
 {
     PieKing,
@@ -104,6 +107,7 @@ public class EndGame : MonoBehaviour
                 m_weaponImages[i].sprite = m_weaponSprites[m_playerSelect.SelectedWeapons[i]];
             }
 
+            // Activate the player stats for each player in the game
             foreach (Player player in m_players)
             {
                 switch (player.m_playerNumber)
@@ -155,6 +159,9 @@ public class EndGame : MonoBehaviour
         }
 	}
 
+    /*
+     * Disables the required objects when the endgame is enabled by the HUD
+     */
     private void OnEnable()
     {
         foreach (Player player in m_spawner.m_players)

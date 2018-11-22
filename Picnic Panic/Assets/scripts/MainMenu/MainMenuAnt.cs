@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+ * Basic ant controller for the main menu
+ */
 public class MainMenuAnt : MonoBehaviour
 {
     public NavMeshAgent m_agent;

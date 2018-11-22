@@ -20,6 +20,9 @@ public class BearTrap : MonoBehaviour
         m_animator = GetComponent<Animator>();
 	}
 
+    /*
+     * Handles stopping the affected actor's rigidbody from moving
+     */
     private void FixedUpdate()
     {
         if (m_affectedActor != null)
@@ -33,6 +36,7 @@ public class BearTrap : MonoBehaviour
     {
         m_timer -= Time.deltaTime;
 
+        // when the timer runs out free the player and run the open anim
         if (m_timer <= 0 && m_playerTrapped)
         {
             m_affectedActor.m_speed = m_originalSpeed;
@@ -47,6 +51,9 @@ public class BearTrap : MonoBehaviour
         }
     }
 
+    /*
+     * Handles trapping players that enter the trap's trigger
+     */
     private void OnTriggerEnter(Collider other)
     {
         if (!m_activated && other.gameObject.tag == "Player")

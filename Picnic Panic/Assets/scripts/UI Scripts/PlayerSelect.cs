@@ -88,8 +88,6 @@ public class PlayerSelect : MonoBehaviour
     {
         if (m_cutSence.activeSelf != true)
         {
-
-
             bool canStart = true;
 
             for (int i = 0; i < 4; i++)
@@ -143,44 +141,53 @@ public class PlayerSelect : MonoBehaviour
                     // Scroll selected weapon up
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadUp, m_controllers[i]) || Input.GetKeyDown(KeyCode.UpArrow)))
                     {
+                        // wrap the selected weapon back to 0 when is reaches the end of the array
                         if (m_selectedWeapons[i]++ >= m_playerWeapons.Length - 1)
                         {
                             m_selectedWeapons[i] = 0;
                         }
 
+                        // Destroy the old weapon
                         // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
                         if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
                         {
                             Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
                         }
+                        // Create the new weapon
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
                     }
                     // Scroll selected weapon down
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadDown, m_controllers[i]) || Input.GetKeyDown(KeyCode.DownArrow)))
                     {
+                        // wrap the selected weapon back to max when it goes less than 0
                         if (m_selectedWeapons[i]-- <= 0)
                         {
                             m_selectedWeapons[i] = m_playerWeapons.Length - 1;
                         }
 
+                        // Destroy the old weapon
                         // Character-Character_Root-Hips-Spine-Right_Arm-Right_Elbow-Right_Hand-Spatula
                         if (m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0) != null)
                         {
                             Destroy(m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject);
                         }
+                        // Create the new weapon
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_TEMP[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
                     }
                     // Scroll selected charactor right
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadRight, m_controllers[i]) || Input.GetKeyDown(KeyCode.RightArrow)))
                     {
+                        // Wrap the selected model back to 0 when it reaches the end of the array
                         if (m_selectedModels[i]++ >= m_playerPrefabs.Length - 1)
                         {
                             m_selectedModels[i] = 0;
                         }
 
+                        // Create the new model
                         GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
 
+                        // Change the selected material according to the player number
                         if (m_selectedModels[i] == 0)
                         {
                             temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
@@ -190,21 +197,26 @@ public class PlayerSelect : MonoBehaviour
                             temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
                         }
 
+                        // Create the selected weapon
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], temp.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
-
+                        
+                        // Destroy the old character and add the new one to the array
                         Destroy(m_TEMP[i]);
                         m_TEMP[i] = temp;
                     }
                     // Scroll selected charactor left
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadLeft, m_controllers[i]) || Input.GetKeyDown(KeyCode.LeftArrow)))
                     {
+                        // Wrap the selected model back to max when it goes less than 0
                         if (m_selectedModels[i]-- <= 0)
                         {
                             m_selectedModels[i] = m_playerPrefabs.Length - 1;
                         }
 
+                        // create the new model
                         GameObject temp = Instantiate(m_playerModels[m_selectedModels[i]], m_displayLocations[i]);
 
+                        // change the selected material according to the player number
                         if (m_selectedModels[i] == 0)
                         {
                             temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
@@ -214,8 +226,10 @@ public class PlayerSelect : MonoBehaviour
                             temp.GetComponentInChildren<SkinnedMeshRenderer>().material = m_blueberryMaterials[i];
                         }
 
+                        // create the selected weapon
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], temp.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
+                        // Destroy the old character and add the new one to the array
                         Destroy(m_TEMP[i]);
                         m_TEMP[i] = temp;
                     }
@@ -229,9 +243,12 @@ public class PlayerSelect : MonoBehaviour
                     {
                         if (m_playersReady[i])
                         {
+                            // create the player from the selected model
                             GameObject currentPlayer = Instantiate(m_playerPrefabs[m_selectedModels[i]], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
+                            // create the weapon from the selected weapon
                             GameObject weapon = Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
+                            // Change the material according to the player number
                             SkinnedMeshRenderer renderer = currentPlayer.GetComponentInChildren<SkinnedMeshRenderer>();
                             if (m_selectedModels[i] == 0)
                             {
@@ -242,6 +259,7 @@ public class PlayerSelect : MonoBehaviour
                                 renderer.material = m_blueberryMaterials[i];
                             }
 
+                            // setup some variables in the player script
                             Player playerScript = currentPlayer.GetComponent<Player>();
                             playerScript.m_playerNumber = i + 1;
                             playerScript.m_hud = m_hud;

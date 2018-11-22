@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+ * Basic spawner for the mainmenu
+ */
 public class MainMenuSpawner : MonoBehaviour
 {
     public GameObject m_antPrefab;
@@ -27,9 +30,10 @@ public class MainMenuSpawner : MonoBehaviour
 
         if (m_antSpawnTimer <= 0)
         {
-            int side = Random.Range(0, 4);
+            int side = Random.Range(0, 4); // get a random side of the play field
 
             Vector3 spawnPos = new Vector3();
+            // Get a random position along the choosen side
             switch (side)
             {
                 // top
@@ -53,6 +57,7 @@ public class MainMenuSpawner : MonoBehaviour
             NavMeshHit hit = new NavMeshHit();
             NavMesh.SamplePosition(spawnPos, out hit, 5, -1);
 
+            // spawn the main menu ant
             GameObject ant = Instantiate(m_antPrefab, hit.position, Quaternion.Euler(0, 0, 0));
             ant.GetComponent<MainMenuAnt>().SetTarget(-spawnPos);
 

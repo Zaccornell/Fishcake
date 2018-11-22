@@ -30,18 +30,21 @@ public class PlayerSelectAnimation : MonoBehaviour
         {
             m_timer -= Time.deltaTime;
         }
+        // change the currently activated gameobjects
         if (m_timer <= 0)
         {
             m_countUp = true;
             m_states[0].SetActive(true);
             m_states[1].SetActive(false);
         }
+        // change the currently activated gameobjects
         if (m_timer >= m_length)
         {
             m_countUp = false;
             m_states[0].SetActive(false);
             m_states[1].SetActive(true);
         }
+        // lerp the image across the screne
         m_rectTransform.position = Vector2.Lerp(new Vector2(-m_edgeBuffer + m_rectTransform.rect.width, m_rectTransform.position.y), new Vector2(Screen.width + m_edgeBuffer - m_rectTransform.rect.width, m_rectTransform.position.y), m_timer / m_length);   
 	}
 }

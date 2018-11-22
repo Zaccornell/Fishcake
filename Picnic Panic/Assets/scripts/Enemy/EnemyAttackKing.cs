@@ -69,19 +69,23 @@ public class EnemyAttackKing : EnemyState
             if (!current.gameObject.activeSelf || !current.Alive)
                 continue;
 
+            // if a player comes within the agro range
             if ((current.transform.position - m_owner.transform.position).sqrMagnitude < m_agroRange * m_agroRange)
             {
                 m_owner.ChangeState(1);
             }
         }
 
+        // if the ant can attack
         if (m_attackTimer <= 0)
         {
+            // check the attack area for targets
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
             foreach(Collider current in targets)
             {
                 if (current.gameObject == m_target.gameObject)
                 {
+                    // Player attack sounds
                     if (m_owner.m_enemyAttack.Length > 0)
                     {
                         int index = Random.Range(0, m_owner.m_enemyAttack.Length);
@@ -89,7 +93,8 @@ public class EnemyAttackKing : EnemyState
                         {
                             m_owner.m_audioSourceSFX.PlayOneShot(m_owner.m_enemyAttack[index]);
                         }
-                    }                    
+                    }   
+                    // play the attack animation
                     m_owner.Animator.SetTrigger("Attack");
                     m_attackTimer = m_attackSpeed;                    
                 }
@@ -107,6 +112,9 @@ public class EnemyAttackKing : EnemyState
         NavMesh.CalculatePath(m_owner.transform.position, hit.position, areaMask, path);
     }
 
+    /*
+     * The actual damage of the attack called by the enemy class
+     */
     public override void Attack()
     {
         m_target.TakeDamage(m_attackDamage, m_owner);

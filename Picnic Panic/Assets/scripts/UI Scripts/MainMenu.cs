@@ -30,6 +30,9 @@ public class MainMenu : MonoBehaviour
 		
 	}
 
+    /*
+     * Loads random game scene when the play button is clicked
+     */
     public void PlayClick()
     {         
         SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings - 2));
@@ -48,11 +51,17 @@ public class MainMenu : MonoBehaviour
         m_backButton.Select();
     }
     
+    /*
+     * Quits the application when the quit button is clicked
+     */
     public void QuitClick()
     {
         Application.Quit();
     }
     
+    /*
+     * Closes the options menu and returns back to the mainmenu
+     */
     public void BackToMainMenu()
     {
         foreach (GameObject current in m_mainMenu)

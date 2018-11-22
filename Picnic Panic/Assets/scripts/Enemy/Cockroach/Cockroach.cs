@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+ * The cockroach controller
+ */
 public class Cockroach : MovingActor
 {
     public float m_knockBackDistance;
@@ -36,6 +39,9 @@ public class Cockroach : MovingActor
         m_areaMask = (1 << 0) + (0 << 1) + (1 << 2) + (0 << 3);
     }
 
+    /*
+     * Handles moving the rigidbody and the rotation
+     */
     private void FixedUpdate()
     {
         if (m_useForce)
@@ -57,6 +63,7 @@ public class Cockroach : MovingActor
         m_attackTimer -= Time.deltaTime;
 
         bool kingInRange = false;
+        // check if the king is in the attack bubble
         Collider[] targetstemp = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
         foreach (Collider current in targetstemp)
         {
@@ -66,15 +73,19 @@ public class Cockroach : MovingActor
             }
         }
 
+        // if the cockroach can attack
         if (m_attackTimer <= 0)
         {
+            // if the king is in range
             if (kingInRange)
             {
+                // play the attack animation
                 m_animator.SetTrigger("Attack");
                 m_attackTimer = m_attackSpeed;
             }            
         }
 
+        // if the cockroach should update it's path
         if (m_updatePath == 0)
         {
             NavMeshHit hit = new NavMeshHit();
@@ -91,6 +102,7 @@ public class Cockroach : MovingActor
 
         m_updatePath--;
 
+        // if the cockroach should move onto the next path node
         if (m_pathIndex < m_path.corners.Length && (transform.position - m_path.corners[m_pathIndex]).magnitude < 0.1)
         {
             m_pathIndex++;
@@ -105,6 +117,12 @@ public class Cockroach : MovingActor
         m_animator.SetFloat("Speed", kingInRange ? 0 : m_movement.magnitude);
     }
 
+    /*
+     * Handles causing the cockroach to take damage from attacks
+     * Params: 
+     *      damage: the amount of damage
+     *      Attacker: the actor the attacked the cockroach
+     */
     public override void TakeDamage(int damage, Actor attacker)
     {
         if (m_alive)
@@ -114,10 +132,10 @@ public class Cockroach : MovingActor
             {               
                 if (m_enemyDeath.Length > 0)
                 {
-				int index = Random.Range(0, m_enemyDeath.Length);
-                if (m_enemyDeath[index] != null)
-                    m_audioSourceSFX.PlayOneShot(m_enemyDeath[index]); // play sound at random in array 
-                 }
+			        int index = Random.Range(0, m_enemyDeath.Length);
+                    if (m_enemyDeath[index] != null)
+                        m_audioSourceSFX.PlayOneShot(m_enemyDeath[index]); // play sound at random in array 
+                }
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
                 Destroy(gameObject);
@@ -140,8 +158,6 @@ public class Cockroach : MovingActor
         {
             if (m_enemyFall.Length > 0)
             {
-
-
                 int index = Random.Range(0, m_enemyFall.Length);
                 if (m_enemyFall[index] != null)
                 {
@@ -155,6 +171,9 @@ public class Cockroach : MovingActor
         }
     }
 
+    /*
+     * The actual damage that is called during the attack animation
+     */
     public void Attack()
     {
         m_king.TakeDamage(m_attackDamage, this);

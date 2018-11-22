@@ -18,7 +18,10 @@ public class IceHazard : MonoBehaviour
     {
 		
 	}
-
+    
+    /*
+     * Handles turning on force mode for actors the enter the trigger
+     */
     private void OnTriggerEnter(Collider other)
     {
         MovingActor actor = other.gameObject.GetComponent<MovingActor>();
@@ -36,6 +39,9 @@ public class IceHazard : MonoBehaviour
         }
     }
 
+    /*
+     * Handles turning off force mode when affected actors leave the trigger
+     */
     private void OnTriggerExit(Collider other)
     {
         MovingActor actor = other.gameObject.GetComponent<MovingActor>();
