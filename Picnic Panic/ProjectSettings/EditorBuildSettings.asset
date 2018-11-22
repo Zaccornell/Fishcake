@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Zac/Main_Beta_002.unity
     guid: 1d8ef2424a0998543b2eaf22e52c70f3
-  - enabled: 0
-    path: Assets/Scenes/Zac/Main_Beta_003.unity
-    guid: b3bf70fedee9cf649a4e5e97fd220832
   - enabled: 1
     path: Assets/Scenes/Zac/Main_Beta_004.unity
     guid: c9a04fd880ea26b40bff1dac0aa9d706

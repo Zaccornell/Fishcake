@@ -213,7 +213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1209544371681516
 GameObject:
   m_ObjectHideFlags: 1
@@ -436,7 +436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1423360662658632
 GameObject:
   m_ObjectHideFlags: 1
@@ -2479,10 +2479,21 @@ MonoBehaviour:
   - {fileID: 0}
   m_spawner: {fileID: 0}
   m_hud: {fileID: 0}
+  m_playerSelect: {fileID: 0}
   m_players: []
   m_roundValue: {fileID: 114059132275453340}
   m_endCauseValue: {fileID: 114497919368458724}
   m_gameTimer: {fileID: 114474669095606842}
+  m_weaponSprites:
+  - {fileID: 21300000, guid: 830c82dc526fbf248b1d1235d788a7da, type: 3}
+  - {fileID: 21300000, guid: 3d4a26219e198904e9da3e9fcb208699, type: 3}
+  - {fileID: 21300000, guid: 8922e3cc6dccf5741b7de277b3910281, type: 3}
+  - {fileID: 21300000, guid: 18169a10f63e4a0489d71fa59eda977c, type: 3}
+  m_weaponImages:
+  - {fileID: 114252887156859990}
+  - {fileID: 114906709273931420}
+  - {fileID: 114665116440286746}
+  - {fileID: 114039310629980830}
   m_playerStats:
   - {fileID: 1013409765588126}
   - {fileID: 1989809408750818}
@@ -2514,8 +2525,6 @@ MonoBehaviour:
   - {fileID: 114024741952162350}
   m_length: 5
   m_backGround: {fileID: 114111667722748650}
-  m_mainCamera: {fileID: 0}
-  m_sideCamera: {fileID: 0}
 --- !u!114 &114496319399287844
 MonoBehaviour:
   m_ObjectHideFlags: 1
