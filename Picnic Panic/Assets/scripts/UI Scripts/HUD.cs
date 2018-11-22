@@ -10,8 +10,9 @@ public class HUD : MonoBehaviour
     public Image[] m_playerColor;
     public Player[] m_players;
     public Actor m_king;
-    public Text m_kingDisplay;
-    public Text m_displayTimer;
+    public Text m_gameTimer;
+    public Text m_roundCountDown;
+    public Image m_roundCountImage;
     public Spawner m_spanwer;
     public GameObject m_endGame;
     public Button m_restartButton;
@@ -19,9 +20,12 @@ public class HUD : MonoBehaviour
     public AudioClip m_gameMusic;
     public float m_timer;
 
-    public Text m_enemyCounter;
+
 
     private int m_playerLives = 5;
+    private int m_minutes;
+    private float m_fadeOutTimer;
+   
 
     public int PlayerLives
     {
@@ -32,6 +36,7 @@ public class HUD : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        
 		foreach (Text current in m_playerDisplays)
         {
             current.enabled = false;
@@ -45,8 +50,58 @@ public class HUD : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        m_fadeOutTimer -= Time.deltaTime;
         m_timer += Time.deltaTime;
-      
+        m_minutes = Mathf.RoundToInt(m_timer) / 60; // dividing it from the time 
+        m_gameTimer.text = m_minutes.ToString("00") + ":" + (m_timer - m_minutes * 60).ToString("00"); // checking to see if its more than a minute
+
+        if (m_fadeOutTimer <= 0)
+        {
+            m_roundCountImage.rectTransform.sizeDelta = new Vector2(110, 110);
+            m_roundCountDown.enabled = false;
+            m_roundCountImage.enabled = false;
+        }
+        else
+        {
+            Color fadeIn = m_roundCountDown.color;
+            fadeIn.a = m_fadeOutTimer;
+            m_roundCountDown.color = fadeIn;
+            Color imageFade = m_roundCountImage.color;
+            imageFade.a = m_fadeOutTimer;
+            m_roundCountImage.color = imageFade;
+        }
+        if (Mathf.RoundToInt(m_spanwer.RoundTimer) <= 6 && Mathf.RoundToInt(m_spanwer.RoundTimer) > 0)
+        {
+            m_roundCountImage.enabled = true;
+            m_roundCountDown.enabled = true;
+           
+           Color fadeIn = m_roundCountDown.color;
+           fadeIn.a = 6 - m_spanwer.RoundTimer;
+           m_roundCountDown.color = fadeIn;
+            Color imageFade = m_roundCountImage.color;
+            imageFade.a = 6 - m_spanwer.RoundTimer;
+            m_roundCountImage.color = imageFade;
+            if (Mathf.RoundToInt(m_spanwer.RoundTimer) > 5)
+            {
+                m_roundCountDown.text = "5";
+            }
+            else
+            {
+                m_roundCountDown.text = m_spanwer.RoundTimer.ToString("0");
+            }
+
+        }
+        else if(Mathf.RoundToInt(m_spanwer.RoundTimer) <= 0)
+        {
+            m_roundCountImage.rectTransform.sizeDelta = new Vector2(500, 100);
+            m_fadeOutTimer = 1;
+            m_roundCountImage.enabled = true;
+            m_roundCountDown.enabled = true;
+            m_roundCountDown.text = "Round "+ m_spanwer.CurrentRound;
+        }
+
+
+
         foreach (Player current in m_players)
         {
             m_playerDisplays[current.m_playerNumber - 1].text = current.Health.ToString();
@@ -56,7 +111,6 @@ public class HUD : MonoBehaviour
         }
 
 
-        m_kingDisplay.text = m_king.Health.ToString();
       
         if (!m_audioSource.isPlaying)
         {
@@ -65,9 +119,7 @@ public class HUD : MonoBehaviour
             m_audioSource.Play();
         }
         
-        m_displayTimer.text = (Mathf.Ceil(m_spanwer.RoundTimer)).ToString(); // displays timer onto the HUD
-        m_enemyCounter.text = (m_spanwer.EnemyTotal).ToString();// displays the amount of enemies left to spawn and spawned
-       
+      
         int playersAlive = 0; // setting a verible to keep count of living players
         foreach (Player amount in m_players)
         {
