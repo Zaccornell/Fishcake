@@ -38,6 +38,10 @@ public class PlayerSelect : MonoBehaviour
     private int[] m_selectedWeapons;
     private bool[] m_playersReady;
 
+    public int[] SelectedWeapons
+    {
+        get { return m_selectedWeapons; }
+    }
 
 	// Use this for initialization
 	void Start ()
