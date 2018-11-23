@@ -38,20 +38,8 @@ public class HUD : MonoBehaviour
 
 	// Use this for initialization
 	void Start ()
-    {
-        
-		foreach (Text current in m_playerDisplays)
-        {
-            current.enabled = false;
-        }
-        foreach (Image child in m_playerColor)
-        {
-            child.enabled = false;
-        }
-        foreach (Image item in m_dashReady)
-        {
-            item.enabled = false;
-        }
+    {       
+		
     }
 	
 	// Update is called once per frame
@@ -180,12 +168,26 @@ public class HUD : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void AssignPlayers()
     {
+        foreach (Text current in m_playerDisplays)
+        {
+            current.enabled = false;
+        }
+        foreach (Image child in m_playerColor)
+        {
+            child.enabled = false;
+        }
+        foreach (Image item in m_dashReady)
+        {
+            item.enabled = false;
+        }
+
         for (int i = 0; i < m_players.Length; i++)
         {
             m_playerDisplays[m_players[i].m_playerNumber - 1].enabled = true;
             m_playerColor[m_players[i].m_playerNumber - 1].enabled = true;
+            m_dashReady[m_players[i].m_playerNumber - 1].enabled = true;
         }
         for (int i = 0; i < 4; i++)
         {
