@@ -47,4 +47,12 @@ public class ButtonFlash : MonoBehaviour
         m_flashTimer[(int)direction] = m_flashDuration;
         m_arrows[(int)direction].sprite = m_highlightSprite;
     }
+
+    public void EnableArrows()
+    {
+        foreach (Image current in m_arrows)
+        {
+            current.enabled = true;
+        }
+    }
 }

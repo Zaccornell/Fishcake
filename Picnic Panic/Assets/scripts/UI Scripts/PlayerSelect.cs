@@ -103,6 +103,7 @@ public class PlayerSelect : MonoBehaviour
                         m_playerSlots[i].gameObject.SetActive(false);
                         m_playerNumberCovers[i].SetActive(false);
                         m_playerJoin[i].enabled = false;
+                        m_buttons[i].EnableArrows();
                         m_playersReady[i] = true;
                         m_startGame.enabled = false;
 
