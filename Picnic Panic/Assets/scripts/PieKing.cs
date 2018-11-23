@@ -12,6 +12,8 @@ public class PieKing : Actor
     public int m_restoreHealth; // setting the amout of health to restore per round
     public ScreenShake m_shake;
     public Image m_warningBorder;
+
+    private Slider m_healthBar;
     //public Mesh[] m_pieKingMeshStates;
     //public Material[] m_pieKingMaterialStates;
 
@@ -23,7 +25,7 @@ public class PieKing : Actor
     {
         m_health = m_maxHealth; // setting the health to the max health 
         m_alive = true;
-
+        m_healthBar = GetComponentInChildren<Slider>();
         //m_filter = GetComponent<MeshFilter>();
         //m_renderer = GetComponent<MeshRenderer>();
 	}
@@ -45,6 +47,7 @@ public class PieKing : Actor
 		if (!PlayerOptions.Instance.m_invulToggle)
 		{
         	m_health -= damage; // taking damage 
+            m_healthBar.value = m_health;
             if (m_shake != null)
 			    m_shake.StartShake();
 
@@ -86,6 +89,7 @@ public class PieKing : Actor
     void RoundEnd()
     {
         m_health += m_restoreHealth; // restoring the health
+        m_healthBar.value = m_health;
         if (m_health >= m_maxHealth) // if the health is higher than max health
         {
             m_health = m_maxHealth; // reset health to max health 
