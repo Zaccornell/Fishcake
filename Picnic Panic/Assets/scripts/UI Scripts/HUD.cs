@@ -8,6 +8,7 @@ public class HUD : MonoBehaviour
     public Image[] m_lives;
     public Text[] m_playerDisplays;
     public Image[] m_playerColor;
+    public Sprite[] m_weaponSprites;
     public Player[] m_players;
     public Image[] m_dashReady;
     public Actor m_king;
@@ -15,6 +16,7 @@ public class HUD : MonoBehaviour
     public Text m_roundCountDown;
     public Image m_roundCountImage;
     public Spawner m_spanwer;
+    public PlayerSelect m_playerSelect;
     public GameObject m_endGame;
     public Button m_restartButton;
     public AudioSource m_audioSource;
@@ -110,8 +112,7 @@ public class HUD : MonoBehaviour
         foreach (Player current in m_players)
         {
             m_playerDisplays[current.m_playerNumber - 1].text = current.Health.ToString();
-            m_playerDisplays[current.m_playerNumber - 1].enabled = true;
-            m_playerColor[current.m_playerNumber - 1].enabled = true;
+            
 
         }
 
@@ -176,6 +177,22 @@ public class HUD : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private void OnEnable()
+    {
+        for (int i = 0; i < m_players.Length; i++)
+        {
+            m_playerDisplays[m_players[i].m_playerNumber - 1].enabled = true;
+            m_playerColor[m_players[i].m_playerNumber - 1].enabled = true;
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (m_playerColor[i].enabled)
+            {
+                m_playerColor[i].sprite = m_weaponSprites[m_playerSelect.SelectedWeapons[i]];
+            }
         }
     }
 
