@@ -915,6 +915,11 @@ Prefab:
       objectReference: {fileID: 1789537350}
     - target: {fileID: 114904869368712404, guid: 916a598228613914ab9782a2cfaffa48,
         type: 2}
+      propertyPath: m_playerSelect
+      value: 
+      objectReference: {fileID: 2117857664}
+    - target: {fileID: 114904869368712404, guid: 916a598228613914ab9782a2cfaffa48,
+        type: 2}
       propertyPath: m_endGame
       value: 
       objectReference: {fileID: 439048161}
@@ -930,12 +935,7 @@ Prefab:
       objectReference: {fileID: 1428667281}
     - target: {fileID: 1137892358737284, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224769542954567718, guid: 916a598228613914ab9782a2cfaffa48,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 60.06006
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
@@ -3086,11 +3086,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1166890444 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1966483193548906, guid: 3d198a7a9b6288741a959c3fffe7c406,
-    type: 2}
-  m_PrefabInternal: {fileID: 817955045}
 --- !u!1 &1173556590 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1137892358737284, guid: 916a598228613914ab9782a2cfaffa48,
@@ -3559,11 +3554,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4930197772665220, guid: 05d3543c5a850bb4a95cda00fb802c01,
     type: 2}
   m_PrefabInternal: {fileID: 529171381}
---- !u!1 &1345998922 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1736476717133772, guid: 3d198a7a9b6288741a959c3fffe7c406,
-    type: 2}
-  m_PrefabInternal: {fileID: 817955045}
 --- !u!1 &1348015585
 GameObject:
   m_ObjectHideFlags: 0
@@ -5101,20 +5091,6 @@ Prefab:
       propertyPath: m_displayLocations.Array.data[3]
       value: 
       objectReference: {fileID: 1339818616}
-    - target: {fileID: 114386931450979388, guid: c801a55aeaa55294aae7dcc2e5092095,
-        type: 2}
-      propertyPath: m_states.Array.data[0]
-      value: 
-      objectReference: {fileID: 1166890444}
-    - target: {fileID: 114386931450979388, guid: c801a55aeaa55294aae7dcc2e5092095,
-        type: 2}
-      propertyPath: m_states.Array.data[1]
-      value: 
-      objectReference: {fileID: 1345998922}
-    - target: {fileID: 1825242516784456, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
   m_IsPrefabParent: 0
