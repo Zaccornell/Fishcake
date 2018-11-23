@@ -37,6 +37,7 @@ public class PlayerSelect : MonoBehaviour
     private int[] m_selectedModels;
     private int[] m_selectedWeapons;
     private bool[] m_playersReady;
+    private ButtonFlash[] m_buttons;
 
     public int[] SelectedWeapons
     {
@@ -75,6 +76,8 @@ public class PlayerSelect : MonoBehaviour
         m_testButtons[1] = KeyCode.J;
         m_testButtons[2] = KeyCode.K;
         m_testButtons[3] = KeyCode.L;
+
+        m_buttons = GetComponentsInChildren<ButtonFlash>();
 
         m_controllers = new XboxController[4];
         for (int i = 0; i < 4; i++)
@@ -156,6 +159,7 @@ public class PlayerSelect : MonoBehaviour
                         // Create the new weapon
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
+                        m_buttons[i].Flash(Direction.Up);
                     }
                     // Scroll selected weapon down
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadDown, m_controllers[i]) || Input.GetKeyDown(KeyCode.DownArrow)))
@@ -174,6 +178,8 @@ public class PlayerSelect : MonoBehaviour
                         }
                         // Create the new weapon
                         Instantiate(m_playerWeapons[m_selectedWeapons[i]], m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+
+                        m_buttons[i].Flash(Direction.Down);
                     }
                     // Scroll selected charactor right
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadRight, m_controllers[i]) || Input.GetKeyDown(KeyCode.RightArrow)))
@@ -203,6 +209,8 @@ public class PlayerSelect : MonoBehaviour
                         // Destroy the old character and add the new one to the array
                         Destroy(m_displayCharacters[i]);
                         m_displayCharacters[i] = temp;
+
+                        m_buttons[i].Flash(Direction.Right);
                     }
                     // Scroll selected charactor left
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.DPadLeft, m_controllers[i]) || Input.GetKeyDown(KeyCode.LeftArrow)))
@@ -232,6 +240,8 @@ public class PlayerSelect : MonoBehaviour
                         // Destroy the old character and add the new one to the array
                         Destroy(m_displayCharacters[i]);
                         m_displayCharacters[i] = temp;
+
+                        m_buttons[i].Flash(Direction.Left);
                     }
                 }
 
