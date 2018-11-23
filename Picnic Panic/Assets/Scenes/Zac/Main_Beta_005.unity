@@ -927,18 +927,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1338957431051530, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251093219616936, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251093219616936, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114197923530946410, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_spawner
@@ -949,15 +937,20 @@ Prefab:
       propertyPath: m_shake
       value: 
       objectReference: {fileID: 1835428523}
+    - target: {fileID: 114197923530946410, guid: ef63f5eab7d77624986c003f9b186bea,
+        type: 2}
+      propertyPath: m_warningBorder
+      value: 
+      objectReference: {fileID: 2007505986}
     - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
@@ -1289,6 +1282,10 @@ Prefab:
       propertyPath: m_displayLocations.Array.data[3]
       value: 
       objectReference: {fileID: 1935393315}
+    - target: {fileID: 1829870696780952, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
   m_IsPrefabParent: 0
@@ -3670,6 +3667,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &2007505986 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114617565041748110, guid: 916a598228613914ab9782a2cfaffa48,
+    type: 2}
+  m_PrefabInternal: {fileID: 1217967125}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &2016360660
 Prefab:
   m_ObjectHideFlags: 0
