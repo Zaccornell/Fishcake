@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 /*
  *Author: Bradyn Corkill
  * Date: 2018/10/3
@@ -10,6 +11,7 @@ public class PieKing : Actor
     public Spawner m_spawner; // calling spanwer class
     public int m_restoreHealth; // setting the amout of health to restore per round
     public ScreenShake m_shake;
+    public Image m_warningBorder;
     //public Mesh[] m_pieKingMeshStates;
     //public Material[] m_pieKingMaterialStates;
 
@@ -34,7 +36,7 @@ public class PieKing : Actor
     // Update is called once per frame
     void Update ()
     {
-    
+        
 	}
 
     // calling from another source to damage the king
@@ -45,15 +47,21 @@ public class PieKing : Actor
         	m_health -= damage; // taking damage 
             if (m_shake != null)
 			    m_shake.StartShake();
-		}
-        if (m_health < 0)
-        {
-            m_health -= damage; // taking damage 
+
             if (m_health < 0)
             {
-                m_health = 0;
+                m_health -= damage; // taking damage 
+                if (m_health < 0)
+                {
+                    m_health = 0;
+                }
             }
-        }
+
+            if ((float)m_health / m_maxHealth <= 0.1)
+            {
+                m_warningBorder.enabled = true;
+            }
+		}
 
         //float percent = m_health / (float)m_maxHealth;
 
@@ -81,6 +89,10 @@ public class PieKing : Actor
         if (m_health >= m_maxHealth) // if the health is higher than max health
         {
             m_health = m_maxHealth; // reset health to max health 
+        }
+        if (m_health / m_maxHealth > 0.1)
+        {
+            m_warningBorder.enabled = false;
         }
     }
 

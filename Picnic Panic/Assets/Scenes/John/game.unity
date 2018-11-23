@@ -919,10 +919,6 @@ Prefab:
       propertyPath: m_spanwer
       value: 
       objectReference: {fileID: 1789537350}
-    - target: {fileID: 1137892358737284, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114904869368712404, guid: 916a598228613914ab9782a2cfaffa48,
         type: 2}
       propertyPath: m_endGame
@@ -933,17 +929,16 @@ Prefab:
       propertyPath: m_restartButton
       value: 
       objectReference: {fileID: 91127861}
-    - target: {fileID: 1667448672763158, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 114904869368712404, guid: 916a598228613914ab9782a2cfaffa48,
         type: 2}
       propertyPath: m_audioSource
       value: 
       objectReference: {fileID: 1428667281}
-    m_RemovedComponents:
-    - {fileID: 114892604644088106, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
+    - target: {fileID: 1137892358737284, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &367784915
@@ -3943,10 +3938,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa25343f0cd28c4b8474625220e29a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 10000
+  m_maxHealth: 100
   m_spawner: {fileID: 1789537350}
   m_restoreHealth: 100
   m_shake: {fileID: 1233075788}
+  m_warningBorder: {fileID: 2121167831}
 --- !u!1 &1481808355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5083,7 +5079,7 @@ MonoBehaviour:
   m_showDebug: 0
   m_roundLength: 35
   m_roundEndBuffer: 30
-  m_antCount: 0a0000000000000014000000140000001400000014000000
+  m_antCount: 010000000000000014000000140000001400000014000000
   m_cockroachCount: 000000000000000000000000010000000300000005000000
   m_players: []
   m_king: {fileID: 1440455306}
@@ -5097,7 +5093,6 @@ MonoBehaviour:
   m_spawnJitter: 0.3
   m_audioSourceSFX: {fileID: 1428667281}
   m_kingLaugh: []
-  m_enemies: []
 --- !u!4 &1789537351
 Transform:
   m_ObjectHideFlags: 0
@@ -5935,6 +5930,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1870167691}
   m_Script: {fileID: 11500000, guid: be537ef8aea946244b293a49be307bad, type: 3}
+--- !u!114 &2121167831 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114617565041748110, guid: 916a598228613914ab9782a2cfaffa48,
+    type: 2}
+  m_PrefabInternal: {fileID: 307506276}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2138358603
 GameObject:
   m_ObjectHideFlags: 0
