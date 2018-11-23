@@ -9,45 +9,44 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1248694319515256}
+  m_RootGameObject: {fileID: 1574997730317514}
   m_IsPrefabParent: 1
---- !u!1 &1248694319515256
+--- !u!1 &1574997730317514
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4629974123431070}
-  - component: {fileID: 33189681765842904}
-  - component: {fileID: 64677301009928062}
-  - component: {fileID: 23673550256703790}
+  - component: {fileID: 4813256122656190}
+  - component: {fileID: 33131749546559616}
+  - component: {fileID: 23164528721754150}
   m_Layer: 0
-  m_Name: Environment_Grass_001
+  m_Name: Environment_GrassMesh_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4629974123431070
+--- !u!4 &4813256122656190
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1248694319515256}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.20200661, y: -1.25, z: 3.4}
-  m_LocalScale: {x: 12.982616, y: 1, z: 11.109721}
+  m_GameObject: {fileID: 1574997730317514}
+  m_LocalRotation: {x: -0, y: -0.8093883, z: -0, w: 0.5872739}
+  m_LocalPosition: {x: -1.44, y: 0, z: 0.51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23673550256703790
+  m_LocalEulerAnglesHint: {x: 0, y: -67.012, z: 0}
+--- !u!23 &23164528721754150
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1248694319515256}
+  m_GameObject: {fileID: 1574997730317514}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,7 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2f35dec855fe81b4ca3b03a0fa0fbafc, type: 2}
+  - {fileID: 2100000, guid: af9f3a792461aa84fb55f864c47494d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -64,7 +63,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -76,24 +75,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33189681765842904
+--- !u!33 &33131749546559616
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1248694319515256}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64677301009928062
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1248694319515256}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_GameObject: {fileID: 1574997730317514}
+  m_Mesh: {fileID: 4300000, guid: 6c8c5f7f9ccef864a9ee75fdced57ae1, type: 3}

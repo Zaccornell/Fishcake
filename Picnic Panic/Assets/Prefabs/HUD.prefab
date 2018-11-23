@@ -1298,9 +1298,9 @@ MonoBehaviour:
   - {fileID: 114058978758576424}
   - {fileID: 114258111911691820}
   m_weaponSprites:
-  - {fileID: 21300000, guid: b4d9600cf4ee55d4a87d04f664add090, type: 3}
-  - {fileID: 21300000, guid: 7d54cce122b0fa0439070a40691a019b, type: 3}
   - {fileID: 21300000, guid: b2f020715f928204397a696cfae685b6, type: 3}
+  - {fileID: 21300000, guid: 7d54cce122b0fa0439070a40691a019b, type: 3}
+  - {fileID: 21300000, guid: b4d9600cf4ee55d4a87d04f664add090, type: 3}
   - {fileID: 21300000, guid: 61db6dbb83a789e4384c519d786b8355, type: 3}
   m_players: []
   m_dashReady:
