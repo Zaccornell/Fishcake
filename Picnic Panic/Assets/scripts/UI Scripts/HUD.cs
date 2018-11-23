@@ -9,6 +9,7 @@ public class HUD : MonoBehaviour
     public Text[] m_playerDisplays;
     public Image[] m_playerColor;
     public Player[] m_players;
+    public Image[] m_dashReady;
     public Actor m_king;
     public Text m_gameTimer;
     public Text m_roundCountDown;
@@ -44,6 +45,10 @@ public class HUD : MonoBehaviour
         foreach (Image child in m_playerColor)
         {
             child.enabled = false;
+        }
+        foreach (Image item in m_dashReady)
+        {
+            item.enabled = false;
         }
     }
 	
@@ -97,7 +102,7 @@ public class HUD : MonoBehaviour
             m_fadeOutTimer = 1;
             m_roundCountImage.enabled = true;
             m_roundCountDown.enabled = true;
-            m_roundCountDown.text = "Round "+ m_spanwer.CurrentRound;
+            m_roundCountDown.text = "Round "+ (m_spanwer.CurrentRound + 2);
         }
 
 
@@ -110,6 +115,18 @@ public class HUD : MonoBehaviour
 
         }
 
+        for (int i = 0; i < m_players.Length; i++)
+        {
+            if (m_players[i].DashReady)
+            {
+                m_dashReady[i].enabled = true;
+            }
+            else
+            {
+                m_dashReady[i].enabled = false;
+            }
+
+        }
 
       
         if (!m_audioSource.isPlaying)

@@ -108,6 +108,10 @@ public class Player : MovingActor
     {
         get { return m_healsUsed; }
     }
+    public bool DashReady
+    {
+        get { return m_dashTimer <= 0; }
+    }
     #endregion
 
     // Use this for initialization
