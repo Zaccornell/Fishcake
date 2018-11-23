@@ -288,7 +288,9 @@ public class PlayerSelect : MonoBehaviour
 
                     // give objects access to the players
                     m_spawner.m_players = m_players.ToArray();
+                    m_hud.gameObject.SetActive(true);
                     m_hud.m_players = m_players.ToArray();
+                    m_hud.AssignPlayers();
                     m_pauseMenu.m_players = m_players.ToArray();
                     m_endGame.m_players = m_players.ToArray();
 
@@ -315,7 +317,6 @@ public class PlayerSelect : MonoBehaviour
                     m_pauseMenu.enabled = true;
                     m_camera.enabled = true;
 
-                    m_hud.gameObject.SetActive(true);
 
                     // Play the ingame music
                     m_audioSourceMusic.loop = false;
