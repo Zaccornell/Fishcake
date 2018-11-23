@@ -19,6 +19,7 @@ public class Enemy : MovingActor
     public AudioClip[] m_enemyFall;
     public AudioClip[] m_enemyAttack;
     public ParticleSystem m_eatingKing;
+    public GameObject m_deathParticles;
 
     private Actor[] m_players = null;
     private Actor m_king = null;
@@ -153,6 +154,7 @@ public class Enemy : MovingActor
                 }
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
+                Instantiate(m_deathParticles, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
 

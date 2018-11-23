@@ -175,7 +175,14 @@ public class EnemyAttackPlayer : EnemyState
     {
         if (m_target)
         {
-            m_target.TakeDamage(m_attackDamage, m_owner);
+            Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
+            foreach (Collider current in targets)
+            {
+                if (current.gameObject == m_target.gameObject)
+                {
+                    m_target.TakeDamage(m_attackDamage, m_owner);
+                }
+            }
         }
     }
 }
