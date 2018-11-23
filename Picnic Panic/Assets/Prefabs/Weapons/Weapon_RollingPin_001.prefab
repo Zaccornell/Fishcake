@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4512808039854156}
   - component: {fileID: 33186264293921660}
   - component: {fileID: 23700229471782226}
+  - component: {fileID: 65689106507650550}
   m_Layer: 0
   m_Name: Weapon_RollingPin_001
   m_TagString: Untagged
@@ -34,13 +35,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030217483504124}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.198589, y: -0.9, z: -25.076056}
+  m_LocalRotation: {x: 0.5766002, y: 0.44864425, z: 0.4282881, w: 0.53180814}
+  m_LocalPosition: {x: -0.126, y: -0.049, z: -0.628}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -179.999, y: 93.869995, z: -89.03998}
 --- !u!23 &23700229471782226
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030217483504124}
   m_Mesh: {fileID: 4300000, guid: c910bb5e3356e3b4db536694bfc11178, type: 3}
+--- !u!65 &65689106507650550
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030217483504124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.23321614, y: 1.82, z: 0.232923}
+  m_Center: {x: 0, y: 0.000000059604645, z: -0.00000024586916}
