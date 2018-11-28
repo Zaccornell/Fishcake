@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 222600238808702844}
   - component: {fileID: 114674698078217964}
   m_Layer: 5
-  m_Name: DownArrow
+  m_Name: UI_DownArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 222876660059892776}
   - component: {fileID: 114511920962216028}
   m_Layer: 5
-  m_Name: DownArrow
+  m_Name: UI_DownArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 222890546147593592}
   - component: {fileID: 114823965208609824}
   m_Layer: 5
-  m_Name: Player 3 Slot
+  m_Name: UI_Player3Slot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 222782168538357640}
   - component: {fileID: 114257921414245076}
   m_Layer: 5
-  m_Name: RightArrow
+  m_Name: UI_RightArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 222142211520175094}
   - component: {fileID: 114086901004507516}
   m_Layer: 5
-  m_Name: DownArrow
+  m_Name: UI_DownArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 222516410129698846}
   - component: {fileID: 114618486083662428}
   m_Layer: 5
-  m_Name: Player 2 Slot
+  m_Name: UI_Player2Slot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 222095868559307990}
   - component: {fileID: 114313293831367250}
   m_Layer: 5
-  m_Name: StartGame
+  m_Name: UI_StartGameText_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 222635913042735944}
   - component: {fileID: 114532741173394258}
   m_Layer: 5
-  m_Name: RightArrow
+  m_Name: UI_RightArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 222658390538984678}
   - component: {fileID: 114909279389136170}
   m_Layer: 5
-  m_Name: LeftArrow
+  m_Name: UI_LeftArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 222984011482041958}
   - component: {fileID: 114325687790168492}
   m_Layer: 5
-  m_Name: UpArrow
+  m_Name: UI_UpArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 222319583916624328}
   - component: {fileID: 114149302596870298}
   m_Layer: 5
-  m_Name: UpArrow
+  m_Name: UI_UpArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 222514088208282566}
   - component: {fileID: 114461722622448458}
   m_Layer: 5
-  m_Name: LeftArrow
+  m_Name: UI_LeftArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 222214544494874330}
   - component: {fileID: 114880028076847444}
   m_Layer: 5
-  m_Name: UpArrow
+  m_Name: UI_UpArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 222161428778301204}
   - component: {fileID: 114793327708906100}
   m_Layer: 5
-  m_Name: LeftArrow
+  m_Name: UI_LeftArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 222063180551077968}
   - component: {fileID: 114974290267940376}
   m_Layer: 5
-  m_Name: Player 1 Slot
+  m_Name: UI_Player1Slot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 222751401810109688}
   - component: {fileID: 114967593789819596}
   m_Layer: 5
-  m_Name: LeftArrow
+  m_Name: UI_LeftArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 222725354397067270}
   - component: {fileID: 114112122109345722}
   m_Layer: 5
-  m_Name: RightArrow
+  m_Name: UI_RightArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 222984187265394566}
   - component: {fileID: 114881561097042504}
   m_Layer: 5
-  m_Name: DownArrow
+  m_Name: UI_DownArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 222614429877934802}
   - component: {fileID: 114904077294621074}
   m_Layer: 5
-  m_Name: Player 4 Slot
+  m_Name: UI_Player4Slot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 222532927533742148}
   - component: {fileID: 114497922990292694}
   m_Layer: 5
-  m_Name: RightArrow
+  m_Name: UI_RightArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -777,7 +777,7 @@ GameObject:
   - component: {fileID: 222021352856228866}
   - component: {fileID: 114076310205053794}
   m_Layer: 5
-  m_Name: UpArrow
+  m_Name: UI_UpArrow_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
