@@ -93,7 +93,10 @@ public class Spawner : MonoBehaviour
         if ((m_antToSpawn <= 0 && m_cockroachToSpawn <= 0) && m_roundTimer > 5.0f && m_enemySpawned <= 0) 
         {
             m_roundTimer = 5.0f; // setting the timer to 5 secounds 
-            m_audioSourceSFX.PlayOneShot(m_kingLaugh[Random.Range(0, m_kingLaugh.Length)]);
+            if (m_kingLaugh.Length > 0)
+            {
+                m_audioSourceSFX.PlayOneShot(m_kingLaugh[Random.Range(0, m_kingLaugh.Length)]);
+            }
         }
 
         // round system
