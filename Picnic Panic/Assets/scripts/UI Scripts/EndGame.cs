@@ -34,6 +34,8 @@ public class EndGame : MonoBehaviour
     public Text[] m_player4Values;
     public float m_length;
     public Image m_backGround;
+    public AudioClip m_gameOver;
+    public AudioSource m_audioSource;
 
     private float m_timer;
     private int m_minutes;
@@ -65,7 +67,13 @@ public class EndGame : MonoBehaviour
 
         if (m_timer <= 0 && !m_check)
         {
-            foreach(GameObject current in m_children)
+            if (m_gameOver != null)
+            {
+                m_audioSource.loop = true;
+                m_audioSource.clip = m_gameOver;
+                m_audioSource.Play();
+            }
+            foreach (GameObject current in m_children)
             {
                 current.SetActive(true);
             }
@@ -74,7 +82,7 @@ public class EndGame : MonoBehaviour
 
             if (m_cause == Cause.PieKing)
             {
-                m_endCauseValue.text = "You let your king die";
+                m_endCauseValue.text = "Your Pie King has fallen";
             }
             else
             {

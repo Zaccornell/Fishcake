@@ -38,6 +38,7 @@ public class Spawner : MonoBehaviour
     public float m_spawnJitter;
     public AudioSource m_audioSourceSFX;
     public AudioClip[] m_kingLaugh;
+    public AudioClip[] m_roundStarter;
 
 
     private List<MovingActor> m_enemies = new List<MovingActor>();
@@ -98,6 +99,15 @@ public class Spawner : MonoBehaviour
         // round system
         if (m_roundTimer <= 0.0f)
         {
+            if (m_roundStarter.Length > 0)
+            {
+                int index = Random.Range(0, m_roundStarter.Length);
+                if (m_roundStarter[index] != null)
+                {
+                    m_audioSourceSFX.PlayOneShot(m_roundStarter[index]);
+
+                }
+            }
             m_roundTimer = m_roundLength; // setting the Round timer to the round length 
             // checking to see if it doesn't go over the limit
             if (m_currentRound + 1  < m_antCount.Length)

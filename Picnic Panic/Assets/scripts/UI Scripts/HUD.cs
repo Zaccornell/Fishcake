@@ -92,7 +92,7 @@ public class HUD : MonoBehaviour
             m_fadeOutTimer = 1;
             m_roundCountImage.enabled = true;
             m_roundCountDown.enabled = true;
-            m_roundCountDown.text = "Round "+ (m_spanwer.CurrentRound + 2);
+            m_roundCountDown.text = "Round "+ (m_spanwer.CurrentRound );
         }
 
 

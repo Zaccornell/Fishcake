@@ -698,7 +698,7 @@ Prefab:
     - target: {fileID: 224683674449389292, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224683674449389292, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
@@ -708,12 +708,12 @@ Prefab:
     - target: {fileID: 224504898839948676, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224504898839948676, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224504898839948676, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
@@ -723,7 +723,7 @@ Prefab:
     - target: {fileID: 224417802319689544, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 224417802319689544, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
@@ -733,12 +733,12 @@ Prefab:
     - target: {fileID: 224548628994997048, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 224548628994997048, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 224548628994997048, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
@@ -748,7 +748,7 @@ Prefab:
     - target: {fileID: 224321858763763322, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 224321858763763322, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
@@ -758,12 +758,12 @@ Prefab:
     - target: {fileID: 224895805901729166, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 224895805901729166, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 224895805901729166, guid: f92f433a0a771154b8340af58fd8ee4f,
         type: 2}
@@ -1978,11 +1978,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 641500147}
   m_Script: {fileID: 11500000, guid: 3b0b4b50daaa4874eab8c0ee3f262d63, type: 3}
---- !u!1 &1781003831 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1888492569343830, guid: f92f433a0a771154b8340af58fd8ee4f,
-    type: 2}
-  m_PrefabInternal: {fileID: 641500147}
 --- !u!1 &1793962975 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1630598765664880, guid: f92f433a0a771154b8340af58fd8ee4f,
@@ -2106,7 +2101,6 @@ MonoBehaviour:
   - {fileID: 1469410607}
   m_OptionMenu:
   - {fileID: 1419692289}
-  - {fileID: 1781003831}
   - {fileID: 683409060}
   - {fileID: 1107344397}
   - {fileID: 1344161817}

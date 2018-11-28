@@ -44,6 +44,8 @@ public class Player : MovingActor
     public AudioClip[] m_playerAttack;
     public AudioClip[] m_playerDash;
     public AudioClip[] m_playerFall;
+    public AudioClip[] m_playerdie;
+    public AudioClip[] m_playerHeals;
     public AudioSource m_audioSourceSFX;
     #endregion
     public Text m_dashStrengthDisplay;
@@ -353,6 +355,15 @@ public class Player : MovingActor
                 // if the player has died
                 if (m_health <= 0)
                 {
+                    if (m_playerdie.Length > 0)
+                    {
+                        int index = Random.Range(0, m_playerdie.Length);
+                        if (m_playerdie[index] != null)
+                        {
+                            m_audioSourceSFX.PlayOneShot(m_playerdie[index]);
+
+                        }
+                    }
                     m_killCount = 0; // resetting kill count once die
                     m_healParticles.Stop(); // stop particles 
                     m_health = 0;
@@ -489,6 +500,15 @@ public class Player : MovingActor
             m_healCount++;
             m_healsUsed++;
 
+            if (m_playerHeals.Length > 0)
+            {
+                int index = Random.Range(0, m_playerHeals.Length);
+                if (m_playerHeals[index] != null)
+                {
+                    m_audioSourceSFX.PlayOneShot(m_playerHeals[index]);
+
+                }
+            }
             Vector3 spawnPosition = transform.position;
             spawnPosition.y = 0;
             Instantiate(m_healZonePrefab, spawnPosition, Quaternion.Euler(-90, 0, 0));
@@ -499,16 +519,7 @@ public class Player : MovingActor
             m_healReady.value = 0;
         }
     }
-
-    // healing the player
-    public void ShareHealing()
-    {
-        m_health += m_healAmount; // adding the amount of health 
-        if (m_health >= m_maxHealth) // checking to see if the health is more than max health
-        {
-            m_health = m_maxHealth;// if so setting the health to max health 
-        }
-    }
+    
 
     public void RestoreHealth(int amount)
     {

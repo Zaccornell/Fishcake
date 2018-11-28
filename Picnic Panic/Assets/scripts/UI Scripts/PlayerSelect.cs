@@ -47,6 +47,8 @@ public class PlayerSelect : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+
+        m_cutSence.SetActive(PlayerOptions.Instance.m_cutsceneToggle);
         m_players = new List<Player>();
         //m_playerOrder = new List<int>();
         m_playersReady = new bool[4];
@@ -332,7 +334,7 @@ public class PlayerSelect : MonoBehaviour
         }
         else
         {
-            if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.H) || PlayerOptions.Instance.m_cutsceneToggle)
+            if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.H) || !PlayerOptions.Instance.m_cutsceneToggle)
             {
                 m_cutSence.SetActive(false);
             }
