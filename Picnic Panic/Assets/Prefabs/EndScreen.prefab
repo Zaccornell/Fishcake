@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224808323177251804}
   m_Layer: 5
-  m_Name: Player 1 Stats
+  m_Name: UI_Player1Stats_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 222106850303632250}
   - component: {fileID: 114259255096358746}
   m_Layer: 5
-  m_Name: RoachKillsTitle
+  m_Name: UI_RoachKillsTitle_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 222069583092270408}
   - component: {fileID: 114313632989893106}
   m_Layer: 5
-  m_Name: HealsUsedValue
+  m_Name: UI_HealsUsedValue_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 114793690337001998}
   - component: {fileID: 114185077453951234}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: UI_RestartButton_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 222163504435500106}
   - component: {fileID: 114870008006858818}
   m_Layer: 5
-  m_Name: DeathsTitle
+  m_Name: UI_DeathsTitle_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 222292932356566500}
   - component: {fileID: 114120844089534578}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UI_MainMenuText_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 222628869566482470}
   - component: {fileID: 114304499861026778}
   m_Layer: 5
-  m_Name: RoachKillsTitle
+  m_Name: UI_RoachKillsTitle_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 222873574246166066}
   - component: {fileID: 114416442353789374}
   m_Layer: 5
-  m_Name: HealsUsedTitle
+  m_Name: UI_HealsUsedTitle_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 222281136342682452}
   - component: {fileID: 114801609850917090}
   m_Layer: 5
-  m_Name: KillsValue
+  m_Name: UI_KillsValue_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 222086115459922448}
   - component: {fileID: 114857281421720652}
   m_Layer: 5
-  m_Name: PlayerNumber
+  m_Name: UI_PlayerNumber_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 222991284134119570}
   - component: {fileID: 114252887156859990}
   m_Layer: 5
-  m_Name: WeaponImage
+  m_Name: UI_WeaponImage_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 222542551379707110}
   - component: {fileID: 114135444060314694}
   m_Layer: 5
-  m_Name: RoachKillsValue
+  m_Name: UI_RoachKillsValue_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 222621446027532484}
   - component: {fileID: 114111667722748650}
   m_Layer: 5
-  m_Name: Background
+  m_Name: UI_Background_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 222303771866741046}
   - component: {fileID: 114159575314194386}
   m_Layer: 5
-  m_Name: AntKillsTitle
+  m_Name: UI_AntKillsTitle_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 222217434575034170}
   - component: {fileID: 114455364872255126}
   m_Layer: 5
-  m_Name: KillsValue
+  m_Name: UI_KillsValue_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 222871453637617768}
   - component: {fileID: 114024741952162350}
   m_Layer: 5
-  m_Name: HealsUsedValue
+  m_Name: UI_HealsUsedValue_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 222522184205881520}
   - component: {fileID: 114152925343824038}
   m_Layer: 5
-  m_Name: DeathsTitle
+  m_Name: UI_DeathsTitle_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 222525812837225902}
   - component: {fileID: 114009383347836404}
   m_Layer: 5
-  m_Name: HealsUsedValue
+  m_Name: UI_HealsUsedValue_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 222425836072727046}
   - component: {fileID: 114190229878040088}
   m_Layer: 5
-  m_Name: HealsUsedValue
+  m_Name: UI_HealsUsedValue_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 222956342633526826}
   - component: {fileID: 114270644536651020}
   m_Layer: 5
-  m_Name: HealsUsedTitle
+  m_Name: UI_HealsUsedTitle_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 222058778242772688}
   - component: {fileID: 114860588594158310}
   m_Layer: 5
-  m_Name: AntKillsTitle
+  m_Name: UI_AntKillsTitle_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 222240919329308840}
   - component: {fileID: 114538670170526222}
   m_Layer: 5
-  m_Name: AntKillsTitle
+  m_Name: UI_AntKillsTitle_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 222260058299322964}
   - component: {fileID: 114937180972645042}
   m_Layer: 5
-  m_Name: KillsValue
+  m_Name: UI_KillsValue_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 222886375123405736}
   - component: {fileID: 114016813964958592}
   m_Layer: 5
-  m_Name: RoachKillsTitle
+  m_Name: UI_RoachKillsTitle_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 222564153316720504}
   - component: {fileID: 114916672234854862}
   m_Layer: 5
-  m_Name: RoachKillsValue
+  m_Name: UI_RoachKillsValue_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 222059535435392202}
   - component: {fileID: 114707659363708770}
   m_Layer: 5
-  m_Name: AntKillsValue
+  m_Name: UI_AntKillsValue_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 222953389276135290}
   - component: {fileID: 114079437289421654}
   m_Layer: 5
-  m_Name: Player4Portrait
+  m_Name: UI_Player4Portrait_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 222985890471604028}
   - component: {fileID: 114573167832508310}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UI_RestartText_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 222737031826279224}
   - component: {fileID: 114039310629980830}
   m_Layer: 5
-  m_Name: WeaponImage
+  m_Name: WeaponImage_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 222569391476957034}
   - component: {fileID: 114118570677930506}
   m_Layer: 5
-  m_Name: KillsTitle
+  m_Name: UI_KillsTitle_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224427003214432932}
   m_Layer: 5
-  m_Name: Player 4 Stats
+  m_Name: UI_Player4Stats_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 222239537709289632}
   - component: {fileID: 114497919368458724}
   m_Layer: 5
-  m_Name: EndCause
+  m_Name: UI_EndCauseText_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 222189830958793224}
   - component: {fileID: 114344055518854738}
   m_Layer: 5
-  m_Name: PlayerNumber
+  m_Name: UI_PlayerNumber_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 114418016256831324}
   - component: {fileID: 114656062685926646}
   m_Layer: 5
-  m_Name: Main Menu
+  m_Name: UI_MainMenuButton_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 222637312114815478}
   - component: {fileID: 114512055509449540}
   m_Layer: 5
-  m_Name: PlayerNumber
+  m_Name: UI_PlayerNumber_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 222670646431637608}
   - component: {fileID: 114333319054597034}
   m_Layer: 5
-  m_Name: AntKillsTitle
+  m_Name: UI_AntKillsTitle_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 222516302259580794}
   - component: {fileID: 114898152668931226}
   m_Layer: 5
-  m_Name: PlayerNumber
+  m_Name: UI_PlayerNumber_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 222482294613135958}
   - component: {fileID: 114676253230708972}
   m_Layer: 5
-  m_Name: KillsTitle
+  m_Name: UI_KillsTitle_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 222847733030889448}
   - component: {fileID: 114501938634778220}
   m_Layer: 5
-  m_Name: HealsUsedTitle
+  m_Name: UI_HealsUsedTitle_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 222620207607466818}
   - component: {fileID: 114815636151180134}
   m_Layer: 5
-  m_Name: RoachKillsValue
+  m_Name: UI_RoachKillsValue_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -719,7 +719,7 @@ GameObject:
   - component: {fileID: 222367198244304214}
   - component: {fileID: 114285733771725778}
   m_Layer: 5
-  m_Name: DeathsValue
+  m_Name: UI_DeathsValue_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 114852338294031404}
   - component: {fileID: 114111526192379346}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: UI_QuitButton_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 222626338873589866}
   - component: {fileID: 114588737961605872}
   m_Layer: 5
-  m_Name: AntKillsValue
+  m_Name: UI_AntKillsValue_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 222327803255256666}
   - component: {fileID: 114059132275453340}
   m_Layer: 5
-  m_Name: RoundValue
+  m_Name: UI_RoundValueText_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 222439416503590812}
   - component: {fileID: 114702218820908726}
   m_Layer: 5
-  m_Name: AntKillsValue
+  m_Name: UI_AntKillsValue_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 222084400343273040}
   - component: {fileID: 114264441951882278}
   m_Layer: 5
-  m_Name: Button Panel
+  m_Name: UI_ButtonPanel_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 222601562096712320}
   - component: {fileID: 114460456118662928}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: UI_GameOverText_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 222904678507840646}
   - component: {fileID: 114004865791599272}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UI_QuitText_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 222560338229501900}
   - component: {fileID: 114474669095606842}
   m_Layer: 5
-  m_Name: EndTimer
+  m_Name: UI_EndTimerText_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 222684420436438150}
   - component: {fileID: 114496319399287844}
   m_Layer: 5
-  m_Name: RoachKillsTitle
+  m_Name: UI_RoachKillsTitle_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,7 +888,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224904023830617540}
   m_Layer: 5
-  m_Name: Player 3 Stats
+  m_Name: UI_Player3Stats_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 222676500212751262}
   - component: {fileID: 114458870704128934}
   m_Layer: 5
-  m_Name: Player3Portrait
+  m_Name: UI_Player3Portrait_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 222042084764848468}
   - component: {fileID: 114665116440286746}
   m_Layer: 5
-  m_Name: WeaponImage
+  m_Name: UI_WeaponImage_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -939,7 +939,7 @@ GameObject:
   - component: {fileID: 222106909567560142}
   - component: {fileID: 114518789247092880}
   m_Layer: 5
-  m_Name: KillsTitle
+  m_Name: UI_KillsTitle_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 222081953113711236}
   - component: {fileID: 114008068861256386}
   m_Layer: 5
-  m_Name: Player2Portrait
+  m_Name: UI_Player2Portrait_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -973,7 +973,7 @@ GameObject:
   - component: {fileID: 222667321680131174}
   - component: {fileID: 114589779039258662}
   m_Layer: 5
-  m_Name: AntKillsValue
+  m_Name: UI_AntKillsValue_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: 222030290416943674}
   - component: {fileID: 114000487610919576}
   m_Layer: 5
-  m_Name: KillsTitle
+  m_Name: UI_KillsTitle_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1007,7 +1007,7 @@ GameObject:
   - component: {fileID: 222852410971717730}
   - component: {fileID: 114906709273931420}
   m_Layer: 5
-  m_Name: WeaponImage
+  m_Name: UI_WeaponImage_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 222308264361923264}
   - component: {fileID: 114905100061695398}
   m_Layer: 5
-  m_Name: DeathsValue
+  m_Name: UI_DeathsValue_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,7 +1041,7 @@ GameObject:
   - component: {fileID: 222976161804857806}
   - component: {fileID: 114163331485296538}
   m_Layer: 5
-  m_Name: DeathsTitle
+  m_Name: UI_DeathsTitle_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 222765220473929364}
   - component: {fileID: 114115080108442536}
   m_Layer: 5
-  m_Name: KillsValue
+  m_Name: UI_KillsValue_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 222338240393171552}
   - component: {fileID: 114088520876378262}
   m_Layer: 5
-  m_Name: RoachKillsValue
+  m_Name: UI_RoachKillsValue_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1092,7 +1092,7 @@ GameObject:
   - component: {fileID: 222049268182324176}
   - component: {fileID: 114285304897074490}
   m_Layer: 5
-  m_Name: DeathsValue
+  m_Name: DeathsValue_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 222163987079537590}
   - component: {fileID: 114536855456423578}
   m_Layer: 5
-  m_Name: HealsUsedTitle
+  m_Name: UI_HealsUsedTitle_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,7 +1126,7 @@ GameObject:
   - component: {fileID: 222091451715035672}
   - component: {fileID: 114126766607651860}
   m_Layer: 5
-  m_Name: DeathsValue
+  m_Name: UI_DeathsValue_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1143,7 +1143,7 @@ GameObject:
   - component: {fileID: 222357769607908714}
   - component: {fileID: 114352354804889216}
   m_Layer: 5
-  m_Name: DeathsTitle
+  m_Name: UI_DeathsTitle_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1160,7 +1160,7 @@ GameObject:
   - component: {fileID: 222539266878666650}
   - component: {fileID: 114914703784339278}
   m_Layer: 5
-  m_Name: Player1Portrait
+  m_Name: UI_Player1Portrait_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1175,7 +1175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224905045633966190}
   m_Layer: 5
-  m_Name: Player 2 Stats
+  m_Name: UI_Player2Stats_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
