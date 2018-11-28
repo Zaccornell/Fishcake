@@ -13,7 +13,7 @@ public class PlayerOptions
 
     public bool m_invulToggle;
     public bool m_vibrationToggle;
-    public bool m_cutsceneToggle;
+    public bool m_cutsceneToggle = true;
     public float m_SFX;
     public float m_music;
     public bool m_firendlyFire;
