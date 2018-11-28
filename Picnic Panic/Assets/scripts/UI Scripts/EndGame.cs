@@ -77,8 +77,14 @@ public class EndGame : MonoBehaviour
             {
                 current.SetActive(true);
             }
-
-            m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
+            if (m_spawner.CurrentRound == 1)
+            {
+                m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " round";
+            }
+            else
+            {
+                m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
+            }
 
             if (m_cause == Cause.PieKing)
             {
