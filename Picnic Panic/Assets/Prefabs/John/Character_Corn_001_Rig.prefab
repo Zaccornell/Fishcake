@@ -1405,7 +1405,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &114125015854966134
@@ -1506,6 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89df4252e24eef84a97d95ec21bc227b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_camera: {fileID: 0}
 --- !u!114 &114316129288987738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1615,6 +1616,8 @@ MonoBehaviour:
   m_playerDash:
   - {fileID: 8300000, guid: e39875dec0be4ef42baea5c70f94b369, type: 3}
   m_playerFall: []
+  m_playerdie: []
+  m_playerHeals: []
   m_audioSourceSFX: {fileID: 0}
   m_dashStrengthDisplay: {fileID: 114945719083881902}
   m_playerNumberDisplay: {fileID: 114316129288987738}
@@ -1685,7 +1688,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
