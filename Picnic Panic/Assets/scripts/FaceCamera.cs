@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    public Camera m_camera;
+    Camera m_camera;
 
 	// Use this for initialization
 	void Start ()
     {
-
-    }
+        m_camera = GameObject.Find("Camera_MainCamera_001").GetComponent<Camera>();
+	}
 	
 	// Update is called once per frame
 	void Update ()
