@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 224099716256871540}
   - component: {fileID: 114698852759712292}
   m_Layer: 5
-  m_Name: FriendlyFire
+  m_Name: UI_FriendlyFire_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 224221443248080826}
   - component: {fileID: 114612134145785046}
   m_Layer: 5
-  m_Name: GodMode
+  m_Name: UI_GodMode_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 114303439444084276}
   - component: {fileID: 114331767161156234}
   m_Layer: 5
-  m_Name: ResetButton
+  m_Name: UI_ResetButton_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 222442873055117538}
   - component: {fileID: 114915177376567182}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UI_BacktoPauseMenu_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 222025847704612574}
   - component: {fileID: 114071705488029222}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: UI_Panel_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 114411299792293206}
   - component: {fileID: 114671176847177448}
   m_Layer: 5
-  m_Name: OptionButton
+  m_Name: UI_OptionButton_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 224443151560371954}
   - component: {fileID: 114646256982977894}
   m_Layer: 5
-  m_Name: SFX
+  m_Name: UI_SFX_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 114551658429534964}
   - component: {fileID: 114260076249856522}
   m_Layer: 5
-  m_Name: BacktoPauseMenu
+  m_Name: UI_BacktoPauseMenu_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 224455336707434962}
   - component: {fileID: 114846446883464006}
   m_Layer: 5
-  m_Name: Vibration
+  m_Name: UI_Vibration_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 114093778724105996}
   - component: {fileID: 114520223875774750}
   m_Layer: 5
-  m_Name: ResumeButton
+  m_Name: UI_ResumeButton_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 114719483552685768}
   - component: {fileID: 114862858408167688}
   m_Layer: 5
-  m_Name: QuitButton
+  m_Name: UI_QuitButton_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 224532842595280162}
   - component: {fileID: 114237997579195380}
   m_Layer: 5
-  m_Name: Master
+  m_Name: UI_Master_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 222370657699742762}
   - component: {fileID: 114117496860521740}
   m_Layer: 5
-  m_Name: Background
+  m_Name: UI_Background_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 224550729371937250}
   - component: {fileID: 114653199387859274}
   m_Layer: 5
-  m_Name: Music
+  m_Name: UI_Music_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 114834414813487760}
   - component: {fileID: 114746360182775830}
   m_Layer: 5
-  m_Name: OptionMenu
+  m_Name: UI_OptionMenu_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 224569872438894796}
   - component: {fileID: 114314240324840112}
   m_Layer: 5
-  m_Name: ScreenShake
+  m_Name: UI_ScreenShake_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

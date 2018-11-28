@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222909507214727598}
   - component: {fileID: 114949711790879350}
   m_Layer: 0
-  m_Name: Fill
+  m_Name: Enviroment_Fill_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 114061999558037566}
   - component: {fileID: 114134782690370922}
   m_Layer: 0
-  m_Name: HealthWheel
+  m_Name: Enviroment_HealthWheel_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 224152193248850892}
   - component: {fileID: 114947186791935254}
   m_Layer: 0
-  m_Name: HealthBar
+  m_Name: Enviroment_HealthBar_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 222886659048116264}
   - component: {fileID: 114694828391404218}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Enviroment_Background_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 224103238529161542}
   - component: {fileID: 114126632757950034}
   m_Layer: 0
-  m_Name: Fill Area
+  m_Name: Enviroment_FillArea_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

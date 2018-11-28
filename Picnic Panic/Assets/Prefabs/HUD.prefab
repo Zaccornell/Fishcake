@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 222327267838375756}
   - component: {fileID: 114860880041749370}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: UI_Panel_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 222649905194672046}
   - component: {fileID: 114958081579937384}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: UI_Panel_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 114617565041748110}
   - component: {fileID: 114295956741160820}
   m_Layer: 5
-  m_Name: WarningBorder
+  m_Name: UI_WarningBorder_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 222718210767243636}
   - component: {fileID: 114380946471679786}
   m_Layer: 5
-  m_Name: Player1Color
+  m_Name: UI_Player1Color_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 222314744990459134}
   - component: {fileID: 114058978758576424}
   m_Layer: 5
-  m_Name: Player3Color
+  m_Name: UI_Player3Color_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 222050242734184314}
   - component: {fileID: 114933402461223968}
   m_Layer: 5
-  m_Name: Player2Color
+  m_Name: UI_Player2Color_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 222676657044171942}
   - component: {fileID: 114258111911691820}
   m_Layer: 5
-  m_Name: Player4Color
+  m_Name: UI_Player4Color_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

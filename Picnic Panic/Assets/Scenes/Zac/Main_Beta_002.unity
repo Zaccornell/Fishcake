@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 288981114}
   - component: {fileID: 288981113}
   m_Layer: 5
-  m_Name: Audio Source (SFX)
+  m_Name: Audio_Source (SFX)_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1783,10 +1783,6 @@ Prefab:
       propertyPath: m_shake
       value: 
       objectReference: {fileID: 281424107}
-    - target: {fileID: 1338957431051530, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114197923530946410, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_warningBorder
@@ -1795,20 +1791,12 @@ Prefab:
     - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457226623611392, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
-      propertyPath: m_Name
-      value: Enviroment_HealthWheel_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1462860353297876, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
-      propertyPath: m_Name
-      value: Enviroment_HealthBar_001
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
@@ -2061,6 +2049,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1825242516784456, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
+      propertyPath: m_Name
+      value: UI_PlayerSelect_001
+      objectReference: {fileID: 0}
     - target: {fileID: 114747936505821168, guid: c801a55aeaa55294aae7dcc2e5092095,
         type: 2}
       propertyPath: m_spawnPoints.Array.data[0]
@@ -2136,66 +2128,6 @@ Prefab:
       propertyPath: m_displayLocations.Array.data[3]
       value: 
       objectReference: {fileID: 1793400306}
-    - target: {fileID: 1829870696780952, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1825242516784456, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_PlayerSelect_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905773895203094, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Player1Background_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902137964447072, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Player2Background_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1447165042966040, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Player3Background_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1040693963686752, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Player4Background_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1910409083913844, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Panel_003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1234210187726712, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_PlayerSlotPanel_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1829870696780952, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_CutScene_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161731957932606, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_ContinueText001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690244030161470, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Player1Portrait_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1133842927331558, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Player2Portrait_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1274103839790524, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Player3Portrait_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573232593296570, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_Player4Portrait_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1825242516784456, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
   m_IsPrefabParent: 0
@@ -3206,77 +3138,9 @@ Prefab:
       propertyPath: m_audioSource
       value: 
       objectReference: {fileID: 1317556256}
-    - target: {fileID: 1860721916169986, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932344507663200, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_OptionMenu_001
-      objectReference: {fileID: 0}
     - target: {fileID: 1262480073334994, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
       propertyPath: m_Name
       value: UI_PauseMenu_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1797763236147852, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_Master_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1572976404425292, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_SFX_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1225217287688024, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_GodMode_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1897619610374586, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_Music_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1611338476857786, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_Vibration_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1068015757315486, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_FriendlyFire_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1981479561719278, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_ScreenShake_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1586272377313830, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_BacktoPauseMenu_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1384970394795676, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_BacktoPauseMenu_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1456647259262002, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_Panel_003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1371003864761812, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_ResetButton_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1779715693836288, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_ResumeButton_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1783129862714528, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_QuitButton_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1541096291355034, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_OptionButton_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1860721916169986, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
-      propertyPath: m_Name
-      value: UI_Background_002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
@@ -3494,65 +3358,17 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 223ddce828a0aa0479d33704e3aaecad, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1211538501
+--- !u!1 &1211538501 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1211538503}
-  - component: {fileID: 1211538502}
-  m_Layer: 0
-  m_Name: Enemy Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1211538502
+  m_PrefabParentObject: {fileID: 1829303425559158, guid: c9f789b3aea0a6643880507e9855aefb,
+    type: 2}
+  m_PrefabInternal: {fileID: 2080258896}
+--- !u!114 &1211538502 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1211538501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 114593522314799268, guid: c9f789b3aea0a6643880507e9855aefb,
+    type: 2}
+  m_PrefabInternal: {fileID: 2080258896}
   m_Script: {fileID: 11500000, guid: 21b018a526be85f44b6d6e18d6209b1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_showDebug: 1
-  m_roundLength: 30
-  m_roundEndBuffer: 10
-  m_antCount: 0f000000190000001e000000140000002800000032000000280000003c00000050000000
-  m_cockroachCount: 000000000000000000000000020000000400000008000000060000000900000014000000
-  m_players: []
-  m_king: {fileID: 973072186}
-  m_antPrefab: {fileID: 1312305954643220, guid: eeacc4f5450bc9f4aad5ed45d1996c17,
-    type: 2}
-  m_cockroachPrefab: {fileID: 1223827664196678, guid: 5bd80941c3bf6cd40be8990c6beedbcc,
-    type: 2}
-  m_hud: {fileID: 1114299478}
-  m_spawnArea: {x: 43, y: 30}
-  m_randomSpawnRadius: 9
-  m_spawnJitter: 0.5
-  m_audioSourceSFX: {fileID: 288981113}
-  m_kingLaugh:
-  - {fileID: 8300000, guid: cea8d497a6aba374494ef25d422da9b4, type: 3}
-  m_roundStarter: []
---- !u!4 &1211538503
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1211538501}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1217967125
 Prefab:
   m_ObjectHideFlags: 0
@@ -3662,6 +3478,11 @@ Prefab:
       objectReference: {fileID: 1211538502}
     - target: {fileID: 114904869368712404, guid: 916a598228613914ab9782a2cfaffa48,
         type: 2}
+      propertyPath: m_playerSelect
+      value: 
+      objectReference: {fileID: 2510089}
+    - target: {fileID: 114904869368712404, guid: 916a598228613914ab9782a2cfaffa48,
+        type: 2}
       propertyPath: m_endGame
       value: 
       objectReference: {fileID: 192229825}
@@ -3678,43 +3499,6 @@ Prefab:
     - target: {fileID: 1137892358737284, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
       propertyPath: m_Name
       value: UI_HUD(Canvas)_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 114904869368712404, guid: 916a598228613914ab9782a2cfaffa48,
-        type: 2}
-      propertyPath: m_playerSelect
-      value: 
-      objectReference: {fileID: 2510089}
-    - target: {fileID: 1335991806737768, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_Name
-      value: UI_Player1Color_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669512618459686, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_Name
-      value: UI_Player2Color_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1587736983636160, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_Name
-      value: UI_Player3Color_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812297696633502, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_Name
-      value: UI_Player4Color_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1228476097563864, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_Name
-      value: UI_WarningBorder_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1110020939919192, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1110020939919192, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_Name
-      value: UI_Panel_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1184244595382972, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_Name
-      value: UI_Panel_001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
@@ -3866,7 +3650,7 @@ GameObject:
   - component: {fileID: 1317556257}
   - component: {fileID: 1317556256}
   m_Layer: 5
-  m_Name: Audio Source (Music)
+  m_Name: Audio_Source(Music)_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5287,7 +5071,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4629974123431070, guid: 57b859827d3f3894fbd65e2d8094ebb7, type: 2}
       propertyPath: m_RootOrder
-      value: 26
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4629974123431070, guid: 57b859827d3f3894fbd65e2d8094ebb7, type: 2}
       propertyPath: m_LocalScale.z
@@ -5802,6 +5586,63 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.90989226, y: 2.2836502, z: 0.7983783}
   m_Center: {x: 0.003097683, y: 1.1434656, z: -0.0013087093}
+--- !u!1001 &2080258896
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4769771879740564, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769771879740564, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769771879740564, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769771879740564, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769771879740564, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769771879740564, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769771879740564, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769771879740564, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114593522314799268, guid: c9f789b3aea0a6643880507e9855aefb,
+        type: 2}
+      propertyPath: m_king
+      value: 
+      objectReference: {fileID: 973072186}
+    - target: {fileID: 114593522314799268, guid: c9f789b3aea0a6643880507e9855aefb,
+        type: 2}
+      propertyPath: m_hud
+      value: 
+      objectReference: {fileID: 1114299478}
+    - target: {fileID: 114593522314799268, guid: c9f789b3aea0a6643880507e9855aefb,
+        type: 2}
+      propertyPath: m_audioSourceSFX
+      value: 
+      objectReference: {fileID: 288981113}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &2086122892
 Prefab:
   m_ObjectHideFlags: 0
