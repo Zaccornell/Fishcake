@@ -2129,10 +2129,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1825242516784456, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_Name
-      value: UI_PlayerSelect_001
-      objectReference: {fileID: 0}
+    - target: {fileID: 114913091002069686, guid: c801a55aeaa55294aae7dcc2e5092095,
+        type: 2}
+      propertyPath: m_states.Array.data[0]
+      value: 
+      objectReference: {fileID: 1518117042}
+    - target: {fileID: 114913091002069686, guid: c801a55aeaa55294aae7dcc2e5092095,
+        type: 2}
+      propertyPath: m_states.Array.data[1]
+      value: 
+      objectReference: {fileID: 1110078707}
     - target: {fileID: 114747936505821168, guid: c801a55aeaa55294aae7dcc2e5092095,
         type: 2}
       propertyPath: m_spawnPoints.Array.data[0]
@@ -2208,25 +2214,6 @@ Prefab:
       propertyPath: m_displayLocations.Array.data[3]
       value: 
       objectReference: {fileID: 1793400306}
-    - target: {fileID: 1829870696780952, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114913091002069686, guid: c801a55aeaa55294aae7dcc2e5092095,
-        type: 2}
-      propertyPath: m_states.Array.data[0]
-      value: 
-      objectReference: {fileID: 1518117042}
-    - target: {fileID: 114913091002069686, guid: c801a55aeaa55294aae7dcc2e5092095,
-        type: 2}
-      propertyPath: m_states.Array.data[1]
-      value: 
-      objectReference: {fileID: 1110078707}
-    - target: {fileID: 114747936505821168, guid: c801a55aeaa55294aae7dcc2e5092095,
-        type: 2}
-      propertyPath: m_playerWeapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
   m_IsPrefabParent: 0
@@ -3661,6 +3648,11 @@ Prefab:
     - target: {fileID: 1137892358737284, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
       propertyPath: m_Name
       value: UI_HUD(Canvas)_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 224322338219126696, guid: 916a598228613914ab9782a2cfaffa48,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -22.299805
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 916a598228613914ab9782a2cfaffa48, type: 2}

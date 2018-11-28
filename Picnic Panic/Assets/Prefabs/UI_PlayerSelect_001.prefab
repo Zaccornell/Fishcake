@@ -559,7 +559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1853351250984540
 GameObject:
   m_ObjectHideFlags: 1
@@ -1811,7 +1811,7 @@ MonoBehaviour:
   - {fileID: 1071373357854544, guid: 464efb0f4757af543be5e966c814817a, type: 2}
   m_playerWeapons:
   - {fileID: 1561896232599252, guid: 432f5177868f58c4bb2b2c2554eb33ec, type: 2}
-  - {fileID: 1782817178387138, guid: ca4336587fe33984c98a786c538ede50, type: 2}
+  - {fileID: 1782817178387138, guid: 6718c8ec36e739e40aec38db7355eb73, type: 2}
   - {fileID: 1030217483504124, guid: e7d4a345415d605469237edf2d1209bf, type: 2}
   - {fileID: 1461773694798990, guid: 36c54d33b66a5bb4eac2f4b1efb39107, type: 2}
   m_candyCornMaterials:
