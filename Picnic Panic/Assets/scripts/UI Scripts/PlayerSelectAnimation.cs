@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Author: John Plant
+ * Date: 2018/11/29
+ */
 public class PlayerSelectAnimation : MonoBehaviour
 {
     public GameObject[] m_states;

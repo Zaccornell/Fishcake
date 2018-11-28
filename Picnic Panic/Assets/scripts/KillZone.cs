@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Author: Bradyn Corkill 
+ * Date: 2018/11/29
+ */
 public class KillZone : MonoBehaviour
 {
     

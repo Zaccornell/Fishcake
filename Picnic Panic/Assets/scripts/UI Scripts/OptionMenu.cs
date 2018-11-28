@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
+/*
+ * Author: John Plant / Bradyn Corkill
+ * Date: 2018/11/29
+ */
 public class OptionMenu : MonoBehaviour
 {
 

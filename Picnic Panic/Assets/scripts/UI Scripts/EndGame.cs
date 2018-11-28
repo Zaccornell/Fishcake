@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using XInputDotNetPure;
 
 /*
+ * Author: John Plant / Bradyn Corkill
+ * Date: 2018/11/29
+ *
  * Enum that specifies what causes the game to end
  */
 public enum Cause

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /*
- *Author: Bradyn Corkill
+ *Author: Bradyn Corkill / John Plant
  * Date: 2018/10/3
  */
 public class PieKing : Actor

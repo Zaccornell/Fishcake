@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using XboxCtrlrInput;
+/*
+ * Author: John Plant
+ * Date: 2018/11/29
+ */
 public class PlayerSelect : MonoBehaviour
 {
     public Text[] m_playerSlots;

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
-
+/*
+ * Author: John Plant
+ * Date: 2018/11/29
+ */
 public class StopVibrationOnQuit : MonoBehaviour
 {
     /*

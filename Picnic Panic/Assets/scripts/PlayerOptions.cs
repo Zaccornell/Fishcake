@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 /*
- * Author: John
+ * Author: John Plant / Bradyn Corkill
  * Date: 2018/10/17
  * 
  * A singleton for storing the player options

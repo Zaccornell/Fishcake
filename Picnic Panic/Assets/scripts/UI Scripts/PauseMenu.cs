@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using XboxCtrlrInput;
-
+/*
+ * Author: Bradyn Corkill / John Plant
+ * Date: 2018/11/29
+ */
 public class PauseMenu : MonoBehaviour
 {
     public Button m_resumeButton;

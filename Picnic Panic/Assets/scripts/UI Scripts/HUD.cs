@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Author: John Plant / Bradyn Corkill
+ * Date: 2018/11/29
+ */
 public class HUD : MonoBehaviour
 {
     public Image[] m_lives;

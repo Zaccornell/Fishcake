@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using XboxCtrlrInput;
-
+/*
+ * Author: John Plant
+ * Date: 2018/11/29
+ */
 /*
  * Custom input to allow the UI to use xInput
  */

@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using XboxCtrlrInput;
-
+/*
+ * Author: John Plant
+ * Date: 2018/11/29
+ */
 public class CustomEventSystem : StandaloneInputModule
 {
     public CustomInputModule m_cim;
