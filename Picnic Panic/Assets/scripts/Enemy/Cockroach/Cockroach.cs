@@ -18,6 +18,8 @@ public class Cockroach : MovingActor
     public AudioClip[] m_enemyFall;
     public AudioClip[] m_enemyAttack;
     public ParticleSystem m_eatingKing;
+    public ParticleSystem m_hitParticle;
+    public GameObject m_deathParticles;
 
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
@@ -149,6 +151,7 @@ public class Cockroach : MovingActor
                 }
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
+                Instantiate(m_deathParticles, transform.position, transform.rotation);               
                 Destroy(gameObject);
             }
 
@@ -158,6 +161,10 @@ public class Cockroach : MovingActor
                 // using Velocity and distance to push the enemy back
                 Vector3 dashVelocity = Vector3.Scale((gameObject.transform.position - attacker.gameObject.transform.position).normalized, m_knockBackDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_rigidBody.drag + 1)) / -Time.deltaTime)));
                 m_rigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
+              
+                // Face the hit particle towards the attacker and play it
+                m_hitParticle.transform.rotation = Quaternion.LookRotation((attacker.transform.position - transform.position).normalized);
+                m_hitParticle.Play();
             }
         }
     }
@@ -188,6 +195,7 @@ public class Cockroach : MovingActor
     public void Attack()
     {
         m_king.TakeDamage(m_attackDamage, this);
+        m_eatingKing.Play();
     }
 
     private void OnDrawGizmos()

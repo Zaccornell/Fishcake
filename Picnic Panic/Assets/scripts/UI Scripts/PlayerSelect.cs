@@ -259,7 +259,7 @@ public class PlayerSelect : MonoBehaviour
                             // create the player from the selected model
                             GameObject currentPlayer = Instantiate(m_playerPrefabs[m_selectedModels[i]], m_spawnPoints[i].position, m_spawnPoints[i].rotation);
                             // create the weapon from the selected weapon
-                            GameObject weapon = Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                            Instantiate(m_playerWeapons[m_selectedWeapons[i]], currentPlayer.transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
 
                             // Change the material according to the player number
                             SkinnedMeshRenderer renderer = currentPlayer.GetComponentInChildren<SkinnedMeshRenderer>();

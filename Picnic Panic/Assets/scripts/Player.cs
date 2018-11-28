@@ -371,8 +371,7 @@ public class Player : MovingActor
 
                     Death();
 
-                    Vector3 position = gameObject.transform.position;
-                    GameObject corpse = Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+                    GameObject corpse = Instantiate(m_corpsePrefab, gameObject.transform.position, gameObject.transform.rotation);
                     corpse.AddComponent<PlayerCorpse>();
                     m_canRespawn = m_hud.UseLife();
                     if (!m_respawnOnRoundEnd)
@@ -435,6 +434,7 @@ public class Player : MovingActor
             m_collider.enabled = true;
             m_rigidBody.isKinematic = false;
             m_healthSlider.gameObject.SetActive(true);
+            m_healReady.value = 0;
             m_healReady.gameObject.SetActive(true);
         }
     }
@@ -483,9 +483,8 @@ public class Player : MovingActor
 
                 Death();
 
-                Vector3 position = gameObject.transform.position;
-                position.y -= 0.5f;
-                Instantiate(m_corpsePrefab, position, gameObject.transform.rotation);
+                GameObject corpse = Instantiate(m_corpsePrefab, gameObject.transform.position, gameObject.transform.rotation);
+                corpse.AddComponent<PlayerCorpse>();
                 m_canRespawn = m_hud.UseLife();
                 m_vibrationTimer = m_vibrationDeath;
             }

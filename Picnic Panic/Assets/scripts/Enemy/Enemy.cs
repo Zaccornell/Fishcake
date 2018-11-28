@@ -24,7 +24,6 @@ public class Enemy : MovingActor
     private Actor[] m_players = null;
     private Actor m_king = null;
     private Spawner m_spawner = null;
-    private Actor m_target;
     private NavMeshPath m_path = null;
     private int m_pathIndex = 0;
     private int m_updatePath = 0;
@@ -99,7 +98,6 @@ public class Enemy : MovingActor
     void Update()
     {
         m_states[m_stateIndex].Update(); // update the current state
-        m_target = m_states[m_stateIndex].Target;
 
         // When the path should be updated
         if (m_updatePath == 0)
