@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4340937964217318}
   - component: {fileID: 33743268758398306}
   - component: {fileID: 23028286255162984}
-  - component: {fileID: 65456255949579880}
   m_Layer: 0
   m_Name: Character_WeaponSpatula_001
   m_TagString: Untagged
@@ -83,15 +82,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561896232599252}
   m_Mesh: {fileID: 4300002, guid: 64c95f1f60b3e4d4f8050d205e4e3e00, type: 3}
---- !u!65 &65456255949579880
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1561896232599252}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.7, z: 1.85}
-  m_Center: {x: 0.02, y: -0.040299635, z: 0.92}

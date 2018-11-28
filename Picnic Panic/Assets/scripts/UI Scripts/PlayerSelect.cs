@@ -275,7 +275,6 @@ public class PlayerSelect : MonoBehaviour
                             playerScript.m_playerNumber = i + 1;
                             playerScript.m_hud = m_hud;
                             playerScript.m_audioSourceSFX = m_audioSourceSFX;
-                            playerScript.m_weaponCollider = weapon.GetComponent<Collider>();
                             playerScript.m_corpsePrefab = m_displayCharacters[i];
 
                             if (m_playerNumberSprites.Length > 0)

@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4512808039854156}
   - component: {fileID: 33186264293921660}
   - component: {fileID: 23700229471782226}
-  - component: {fileID: 65689106507650550}
   m_Layer: 0
   m_Name: Weapon_RollingPin_001
   m_TagString: Untagged
@@ -83,15 +82,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030217483504124}
   m_Mesh: {fileID: 4300000, guid: c910bb5e3356e3b4db536694bfc11178, type: 3}
---- !u!65 &65689106507650550
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030217483504124}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 1.85, z: 0.2}
-  m_Center: {x: 0.02, y: -0.29, z: 0}
