@@ -1791,6 +1791,16 @@ Prefab:
       propertyPath: m_warningBorder
       value: 
       objectReference: {fileID: 2010388120}
+    - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
   m_IsPrefabParent: 0
@@ -2113,6 +2123,10 @@ Prefab:
       propertyPath: m_displayLocations.Array.data[3]
       value: 
       objectReference: {fileID: 1793400306}
+    - target: {fileID: 1829870696780952, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
   m_IsPrefabParent: 0
