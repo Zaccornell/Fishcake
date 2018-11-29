@@ -922,7 +922,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1560482311617848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.906899, y: -0.1595181, z: -10.253642}
+  m_LocalPosition: {x: -19.761028, y: -0.1595181, z: -0.4241501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4599071398065284}
@@ -1300,10 +1300,10 @@ BoxCollider:
   m_GameObject: {fileID: 1705624740835014}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4, z: 2.03}
-  m_Center: {x: -0.1, y: 0, z: -0.82}
+  m_Size: {x: 0.70453846, y: 0.6866288, z: 2.03}
+  m_Center: {x: -0.1033378, y: 0.08455688, z: -0.82}
 --- !u!65 &65208782700207520
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1550,7 +1550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.13103437, a: 1}
+  m_Color: {r: 0.9882353, g: 1, b: 0.13333334, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1656,7 +1656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89df4252e24eef84a97d95ec21bc227b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_camera: {fileID: 0}
 --- !u!114 &114795177720069046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1733,8 +1732,7 @@ MonoBehaviour:
   m_dashCooldown: 2
   m_instantDash: 1
   m_playerNumber: 2
-  m_corpsePrefab: {fileID: 1284227549011586, guid: df60536e4ee77fe48854068101c3e352,
-    type: 2}
+  m_corpsePrefab: {fileID: 0}
   m_hud: {fileID: 0}
   m_healthSlider: {fileID: 114052039985154082}
   m_weaponCollider: {fileID: 65107211651957272}
