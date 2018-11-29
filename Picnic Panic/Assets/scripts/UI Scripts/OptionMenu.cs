@@ -22,6 +22,10 @@ public class OptionMenu : MonoBehaviour
     public Slider m_music;
     public AudioMixer m_audioMixer;
     public Toggle m_cutScene;
+    public Button m_creditButton;
+    public GameObject[] m_credit;
+    public Button m_backToOption;
+    public GameObject[] m_OptionMenu;
 
 
     // Use this for initialization
@@ -65,4 +69,27 @@ public class OptionMenu : MonoBehaviour
         m_audioMixer.SetFloat("Master Volume", m_master.value);
     }
 
+    public void CreditButton()
+    {
+        foreach (GameObject child in m_OptionMenu)
+        {
+            child.SetActive(false);
+        }
+        foreach (GameObject current in m_credit)
+        {
+            current.SetActive(true);
+        }
+    }
+
+    public void BackToOption()
+    {
+        foreach (GameObject child in m_OptionMenu)
+        {
+            child.SetActive(true);
+        }
+        foreach (GameObject current in m_credit)
+        {
+            current.SetActive(false);
+        }
+    }
 }

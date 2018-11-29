@@ -11,9 +11,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
+    
     public GameObject[] m_mainMenu;
     public GameObject[] m_OptionMenu;
+    public GameObject[] m_credit;
     public Button m_backButton;
     public Button m_playButton;
 
@@ -74,4 +75,6 @@ public class MainMenu : MonoBehaviour
         }
         m_playButton.Select();
     }
+
+   
 }

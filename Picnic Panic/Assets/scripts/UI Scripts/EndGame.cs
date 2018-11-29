@@ -39,6 +39,7 @@ public class EndGame : MonoBehaviour
     public Image m_backGround;
     public AudioClip m_gameOver;
     public AudioSource m_audioSource;
+    public Button m_mainMenu;
 
     private float m_timer;
     private int m_minutes;
@@ -71,6 +72,7 @@ public class EndGame : MonoBehaviour
         // if the timer for the fade has ended and the statement has not been checked before
         if (m_timer <= 0 && !m_check)
         {
+            m_mainMenu.Select();
             // if the gameover sound exists
             if (m_gameOver != null)
             {
