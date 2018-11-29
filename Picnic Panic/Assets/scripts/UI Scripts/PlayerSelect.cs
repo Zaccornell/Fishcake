@@ -28,6 +28,7 @@ public class PlayerSelect : MonoBehaviour
     public CameraControl m_camera;
     public MonoBehaviour[] m_gameplayScripts;
     public Image[] m_playerJoin;
+    public GameObject m_loadingAnim;
     public AudioClip m_lobbyMusic;
     public AudioClip m_roundStart;
     public AudioSource m_audioSourceMusic;
@@ -72,6 +73,10 @@ public class PlayerSelect : MonoBehaviour
         m_pauseMenu.enabled = false;
         m_camera.enabled = false;
         m_pieKing.enabled = false;
+        if (m_cutSence.activeSelf == true)
+        {
+            m_loadingAnim.SetActive(false);
+        }
         if (m_lobbyMusic != null)
         {
             m_audioSourceMusic.clip = m_lobbyMusic;
@@ -352,6 +357,7 @@ public class PlayerSelect : MonoBehaviour
             if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.H) || !PlayerOptions.Instance.m_cutsceneToggle)
             {
                 m_cutSence.SetActive(false);
+                m_loadingAnim.SetActive(true);
             }
         }
 

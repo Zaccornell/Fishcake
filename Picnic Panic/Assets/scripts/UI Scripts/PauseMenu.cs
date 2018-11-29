@@ -84,15 +84,6 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        if (m_active) // if Puase Menu is up will ...
-        {
-            Cursor.lockState = CursorLockMode.None; // unlock cursor
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked; // keeped locked
-        }
-
         m_toggledThisFrame = false;
 	}
 
@@ -202,7 +193,6 @@ public class PauseMenu : MonoBehaviour
             m_resumeButton.Select();
             m_resumeButton.OnSelect(null);
 
-            Cursor.visible = !m_active; // makes cursor visable
             m_active = !m_active;
 
             m_toggledThisFrame = true; // stops the pause menu from closing itself in the same frame

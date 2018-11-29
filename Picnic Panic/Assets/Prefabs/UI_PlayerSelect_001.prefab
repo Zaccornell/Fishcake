@@ -1861,14 +1861,13 @@ MonoBehaviour:
   m_pauseMenu: {fileID: 0}
   m_endGame: {fileID: 0}
   m_camera: {fileID: 0}
-  m_gameplayScripts:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_gameplayScripts: []
   m_playerJoin:
   - {fileID: 114310344501404992}
   - {fileID: 114375951649192214}
   - {fileID: 114973096711995456}
   - {fileID: 114310671626263102}
+  m_loadingAnim: {fileID: 1749252316866224}
   m_lobbyMusic: {fileID: 8300000, guid: dce42e32ed57a734eb8a196d60566293, type: 3}
   m_roundStart: {fileID: 8300000, guid: 74f6fff742b58ea42a88c1967784c8b4, type: 3}
   m_audioSourceMusic: {fileID: 0}
