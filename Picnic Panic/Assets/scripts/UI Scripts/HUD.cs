@@ -128,11 +128,11 @@ public class HUD : MonoBehaviour
             // if the player's dash is ready 
             if (m_players[i].DashReady)
             {
-                m_dashReady[i].enabled = true; // enable the dash ready image 
+                m_dashReady[m_players[i].m_playerNumber - 1].enabled = true; // enable the dash ready image 
             }
             else
             {
-                m_dashReady[i].enabled = false; // disable the dash ready image
+                m_dashReady[m_players[i].m_playerNumber - 1].enabled = false; // disable the dash ready image
             }
         }
       
