@@ -36,7 +36,6 @@ public class Player : MovingActor
     public int m_healAmount;
     public float m_healRadius;
     public GameObject m_healZonePrefab;
-    public ParticleSystem m_healParticles;
     #region Music
     public AudioClip[] m_missAttacks;
     public AudioClip[] m_hitAttacks;
@@ -75,7 +74,6 @@ public class Player : MovingActor
     private int m_antKills;
     private int m_roachKills;
     private int m_healsUsed;
-    private bool m_countUp;
     private float m_respawnTimer;
     #endregion
     #endregion
@@ -365,8 +363,7 @@ public class Player : MovingActor
                         }
                     }
 
-                    m_killCount = 0; // resetting kill count once die
-                    m_healParticles.Stop(); // stop particles 
+                    m_killCount = 0; // resetting kill count once die 
                     m_health = 0;
                     m_alive = false;
 
@@ -484,7 +481,6 @@ public class Player : MovingActor
 
                     }
                 }
-                m_healParticles.Stop(); // stop particles 
                 m_health = 0;
                 m_alive = false;
 
@@ -522,8 +518,6 @@ public class Player : MovingActor
             Instantiate(m_healZonePrefab, spawnPosition, Quaternion.Euler(-90, 0, 0)); // spawn the heal zone at the above position
 
             m_killCount -= m_neededKills; // removing amount of kills from kill count
-            m_healParticles.Stop(); // stop particles
-            m_healParticles.Clear();
             m_healReady.value = 0;
         }
     }
@@ -566,10 +560,6 @@ public class Player : MovingActor
                     if (m_killCount > m_neededKills) // checking if the kill count is above the max amount
                     {
                         m_killCount = m_neededKills; // setting the kill count to the max amount
-                    }
-                    if (m_killCount >= m_neededKills)
-                    {
-                        m_healParticles.Play();
                     }
 
                     // add the stats depending on the type of enemy
