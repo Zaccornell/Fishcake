@@ -73,6 +73,7 @@ public class EndGame : MonoBehaviour
         if (m_timer <= 0 && !m_check)
         {
             m_mainMenu.Select();
+            m_mainMenu.OnSelect(null);
             // if the gameover sound exists
             if (m_gameOver != null)
             {
