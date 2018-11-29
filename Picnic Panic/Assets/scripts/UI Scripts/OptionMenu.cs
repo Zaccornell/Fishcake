@@ -26,6 +26,7 @@ public class OptionMenu : MonoBehaviour
     public GameObject[] m_credit;
     public Button m_backToOption;
     public GameObject[] m_OptionMenu;
+    public Button m_backToMenu;
 
 
     // Use this for initialization
@@ -79,6 +80,8 @@ public class OptionMenu : MonoBehaviour
         {
             current.SetActive(true);
         }
+        m_backToOption.Select();
+        m_backToOption.OnSelect(null);
     }
 
     public void BackToOption()
@@ -91,5 +94,7 @@ public class OptionMenu : MonoBehaviour
         {
             current.SetActive(false);
         }
+        m_backToMenu.Select();
+        m_backToMenu.OnSelect(null);
     }
 }
