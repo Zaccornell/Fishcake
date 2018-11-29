@@ -1692,12 +1692,12 @@ Prefab:
     - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
@@ -4009,6 +4009,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 72c7c4feac570794c82269bd2f10f53c,
         type: 3}
+    - target: {fileID: 114758018866729452, guid: 2d3526ab6fc487140b3e1684b69d3f72,
+        type: 2}
+      propertyPath: m_Text
+      value: Friendly Fire
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
   m_IsPrefabParent: 0
@@ -4532,6 +4537,18 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019144901612974, guid: f37437804f796bc42919228cf936b51a,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Protect your Pie King
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114816619187325072, guid: f37437804f796bc42919228cf936b51a,
+        type: 2}
+      propertyPath: m_Text
+      value: From The Insects!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f37437804f796bc42919228cf936b51a, type: 2}
