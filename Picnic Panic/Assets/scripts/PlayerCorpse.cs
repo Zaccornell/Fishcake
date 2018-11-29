@@ -31,16 +31,21 @@ public class PlayerCorpse : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        // waits for a set amount of time
         m_waitTimer -= Time.deltaTime;
+
+        // after the wait time is finished
         if (m_waitTimer <= 0)
-        {
+        {          
             m_disappearTimer -= Time.deltaTime;
 
+            // lerp the position of the corpse under the floor
             gameObject.transform.position = Vector3.Lerp(m_endPos, m_startPos, m_disappearTimer / m_disappearLength);
 
+            // when the disappear timer is finished
             if (m_disappearTimer <= 0)
             {
-                Destroy(gameObject);
+                Destroy(gameObject); // destroy the gameobject
             }
         }
 

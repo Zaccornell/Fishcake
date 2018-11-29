@@ -38,25 +38,30 @@ public class PauseMenu : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        // Dev keyboard controls
 		if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleObjects();
         }
+        // if the pause menu is active and the controller that paused it presses the start button
         if (m_active && XCI.GetButtonDown(XboxButton.Start, m_inputModule.m_controller))
         {
             ToggleObjects();
 
-            m_inputModule.m_controller = XboxController.All;
+            m_inputModule.m_controller = XboxController.All; // set the current controller back to all
         }
+        // for each controller
         for (int i = 1; i <= 4; i++)
         {
+            // if the menu is not active
             if (!m_active)
             {
+                // if any controller presses the start button
                 if (XCI.GetButtonDown(XboxButton.Start, (XboxController)i))
                 {
                     ToggleObjects();
                     
-                    m_inputModule.m_controller = (XboxController)i;                                                             
+                    m_inputModule.m_controller = (XboxController)i; // set the controller that has control of the pause menu to the one that pressed start
                 }
             }
         }
@@ -185,18 +190,22 @@ public class PauseMenu : MonoBehaviour
                 Time.timeScale = 0f;
             }
 
-            m_resumeButton.Select();
-            m_resumeButton.OnSelect(null);
+            // Toggle objects
             m_king.enabled = m_active;
             m_spawner.enabled = m_active;
             m_hud.gameObject.SetActive(m_active);
             m_screenShake.enabled = m_active;
             Physics.autoSimulation = m_active;
+            //
+
+            // select the resume button
+            m_resumeButton.Select();
+            m_resumeButton.OnSelect(null);
 
             Cursor.visible = !m_active; // makes cursor visable
             m_active = !m_active;
 
-            m_toggledThisFrame = true;
+            m_toggledThisFrame = true; // stops the pause menu from closing itself in the same frame
         }
     }
 
@@ -216,7 +225,7 @@ public class PauseMenu : MonoBehaviour
             opchild.SetActive(true);
         }
 
-        m_backButton.Select();
+        m_backButton.Select(); // select the back button
         m_optionOpen = true;
     }
 

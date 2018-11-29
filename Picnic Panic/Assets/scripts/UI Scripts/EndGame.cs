@@ -68,27 +68,34 @@ public class EndGame : MonoBehaviour
 
         m_backGround.color = c; // seeting the color to slowly fade in
 
+        // if the timer for the fade has ended and the statement has not been checked before
         if (m_timer <= 0 && !m_check)
         {
+            // if the gameover sound exists
             if (m_gameOver != null)
             {
                 m_audioSource.loop = true;
                 m_audioSource.clip = m_gameOver;
                 m_audioSource.Play();
             }
+            // set all of the children to active
             foreach (GameObject current in m_children)
             {
                 current.SetActive(true);
             }
+            m_spawner.enabled = false; // disable the spawner
+
+            // display the the current round text
             if (m_spawner.CurrentRound == 1)
             {
-                m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " round";
+                m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " round"; // remove the s when there is only 1 round
             }
             else
             {
                 m_roundValue.text = "You survived for " + m_spawner.CurrentRound.ToString() + " rounds";
             }
 
+            // display the end cause text
             if (m_cause == Cause.PieKing)
             {
                 m_endCauseValue.text = "Your Pie King has fallen";
@@ -119,6 +126,7 @@ public class EndGame : MonoBehaviour
 
             }
 
+            // change the weapon images for each player to the weapon they selected
             for (int i = 0; i < 4; i++)
             {
                 m_weaponImages[i].sprite = m_weaponSprites[m_playerSelect.SelectedWeapons[i]];
@@ -127,6 +135,7 @@ public class EndGame : MonoBehaviour
             // Activate the player stats for each player in the game
             foreach (Player player in m_players)
             {
+                // Set the values from each player
                 switch (player.m_playerNumber)
                 {
                     case 1:
@@ -167,6 +176,7 @@ public class EndGame : MonoBehaviour
                 }
             }
 
+            // Set all the enemies in the spawner to not alive
             foreach (MovingActor enemy in m_spawner.Enemies)
             {
                 enemy.Alive = false;
@@ -181,32 +191,47 @@ public class EndGame : MonoBehaviour
      */
     private void OnEnable()
     {
+        // Disable the players' scripts and animators
         foreach (Player player in m_spawner.m_players)
         {
             player.enabled = false;
             player.Animator.enabled = false;
         }
-        foreach (MovingActor current in m_spawner.Enemies)
+        // if the cause was not the player
+        if (m_cause != Cause.Player)
         {
-            if (current != null)
+            // for each of the enemies in spawner
+            foreach (MovingActor current in m_spawner.Enemies)
             {
-                current.enabled = false;
-                if (current.Animator != null)
-                    current.Animator.enabled = false;
+                // disable the enemy's script and animator
+                if (current != null)
+                {
+                    current.enabled = false;
+                    if (current.Animator != null)
+                        current.Animator.enabled = false;
+                }
             }
+            m_spawner.enabled = false;
+        }
+        else
+        {
+            m_spawner.NoDelay = true; // enable the NoDelay of the spawner
         }
         foreach (GameObject child in m_objects) // going though and selecting every child inside of the array
         {
             child.SetActive(false); // turning the object off inside the array
         }
-        m_spawner.enabled = false;             
 
+        // Disable vibration
         GamePad.SetVibration(PlayerIndex.One, 0, 0);
         GamePad.SetVibration(PlayerIndex.Two, 0, 0);
         GamePad.SetVibration(PlayerIndex.Three, 0, 0);
         GamePad.SetVibration(PlayerIndex.Four, 0, 0);        
     }
 
+    /*
+     * Un-pauses the game and loads a random scene
+     */
     public void RestartButton()
     {
         Time.timeScale = 1;
@@ -217,6 +242,9 @@ public class EndGame : MonoBehaviour
         SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings - 2));
     }
 
+    /*
+     * Un-pauses the game and loads the main menu scene
+     */
     public void MainMenuButton()
     {
         Time.timeScale = 1;
@@ -227,6 +255,9 @@ public class EndGame : MonoBehaviour
         SceneManager.LoadScene(0); // loading the screen up for mainmenu
     }
 
+    /*
+     * Quits the application
+     */
     public void QuitButton()
     {
         Application.Quit();

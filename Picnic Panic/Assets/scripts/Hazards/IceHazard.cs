@@ -27,18 +27,20 @@ public class IceHazard : MonoBehaviour
      */
     private void OnTriggerEnter(Collider other)
     {
+        // get the actor component of the object that entered
         MovingActor actor = other.gameObject.GetComponent<MovingActor>();
 
+        // if the object that entered has an actor component
         if (actor != null)
         {
-            actor.m_useForce = true;
+            actor.m_useForce = true; // Set the force mode of the actor to true
 
-            m_affectedPlayers.Add(actor);
-            m_originalDrag.Add(actor.RigidBody.drag);
+            m_affectedPlayers.Add(actor); // save actor
+            m_originalDrag.Add(actor.RigidBody.drag); // save the actor's current drag
 
-            actor.RigidBody.drag = 0;
+            actor.RigidBody.drag = 0; // remove drag from the actor's rigid body
 
-            actor.RigidBody.AddForce(actor.Movement * actor.m_speed, ForceMode.VelocityChange);            
+            actor.RigidBody.AddForce(actor.Movement * actor.m_speed, ForceMode.VelocityChange); // set the velocity of the rigid body to its current movement
         }
     }
 
@@ -47,15 +49,18 @@ public class IceHazard : MonoBehaviour
      */
     private void OnTriggerExit(Collider other)
     {
+        // get the actor component of the object that left
         MovingActor actor = other.gameObject.GetComponent<MovingActor>();
 
+        // if the object has an actor component
         if (actor != null)
         {
-            actor.m_useForce = false;
+            actor.m_useForce = false; // turn off force mode
 
-            int index = m_affectedPlayers.IndexOf(actor);
-            actor.RigidBody.drag = m_originalDrag[index];
+            int index = m_affectedPlayers.IndexOf(actor); // get the index of the actor
+            actor.RigidBody.drag = m_originalDrag[index]; // set the actor's drag back to what was saved when it entered
 
+            // remove the player from the arrays
             m_affectedPlayers.RemoveAt(index);
             m_originalDrag.RemoveAt(index);            
         }

@@ -26,11 +26,13 @@ public class SpeedHazard : MonoBehaviour
      */
     private void OnTriggerEnter(Collider other)
     {
+        // get the actor component of the object
         MovingActor actor = other.gameObject.GetComponent<MovingActor>();
 
+        // if the component exists
         if (actor != null)
         {
-            actor.m_speed += m_speedChange;
+            actor.m_speed += m_speedChange; // add the set speed change to the actor
         }
     }
 
@@ -39,11 +41,13 @@ public class SpeedHazard : MonoBehaviour
      */
     private void OnTriggerExit(Collider other)
     {
+        // get the actor component of the object
         MovingActor actor = other.gameObject.GetComponent<MovingActor>();
 
+        // if the component exists
         if (actor != null)
         {
-            actor.m_speed -= m_speedChange;
+            actor.m_speed -= m_speedChange; // remove the speed change from the actor
         }
     }
 }

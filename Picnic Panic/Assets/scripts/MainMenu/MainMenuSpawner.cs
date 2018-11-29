@@ -5,8 +5,7 @@ using UnityEngine.AI;
 /*
  * Author: John Plant
  * Date: 2018/11/29
- */
-/*
+ * 
  * Basic spawner for the mainmenu
  */
 public class MainMenuSpawner : MonoBehaviour
@@ -62,7 +61,7 @@ public class MainMenuSpawner : MonoBehaviour
 
             // spawn the main menu ant
             GameObject ant = Instantiate(m_antPrefab, hit.position, Quaternion.Euler(0, 0, 0));
-            ant.GetComponent<MainMenuAnt>().SetTarget(-spawnPos);
+            ant.GetComponent<MainMenuAnt>().SetTarget(-spawnPos); // set the target of the ant to the opposite side of the
 
             m_antSpawnTimer = m_antSpawnDelay;
         }

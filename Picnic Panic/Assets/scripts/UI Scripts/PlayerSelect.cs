@@ -95,6 +95,7 @@ public class PlayerSelect : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        // if the cut scene is not active
         if (m_cutSence.activeSelf != true)
         {
             bool canStart = true;
@@ -104,28 +105,32 @@ public class PlayerSelect : MonoBehaviour
                 // when a controller presses the join button
                 if (XCI.GetButtonDown(XboxButton.A, m_controllers[i]) || Input.GetKeyDown(m_testButtons[i]))
                 {
+                    // if the player has not readied up before
                     if (!m_playersReady[i])
                     {
+                        // disable the images for the empty slot
                         m_playerSlots[i].gameObject.SetActive(false);
                         m_playerNumberCovers[i].SetActive(false);
                         m_playerJoin[i].enabled = false;
-                        m_buttons[i].EnableArrows();
-                        m_playersReady[i] = true;
+
+                        m_buttons[i].EnableArrows(); // enable the arrows on the button flash
+                        m_playersReady[i] = true; // set the player to ready
                         m_startGame.enabled = false;
 
                         canStart = false;
 
-                        m_displayCharacters[i] = Instantiate(m_playerModels[0/*Mathf.Min(m_playerModels.Length - 1, i)*/], m_displayLocations[i]);
-                        Instantiate(m_playerWeapons[m_selectedWeapons[0]], m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0));
+                        m_displayCharacters[i] = Instantiate(m_playerModels[0], m_displayLocations[i]); // create the display character model
+                        Instantiate(m_playerWeapons[m_selectedWeapons[0]], m_displayCharacters[i].transform.GetChild(1).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0)); // spawn the weapon in the character's hand
+
                         m_selectedModels[i] = 0;
                         m_selectedWeapons[i] = 0;
 
-                        m_displayCharacters[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i];
-
+                        m_displayCharacters[i].GetComponentInChildren<SkinnedMeshRenderer>().material = m_candyCornMaterials[i]; // set the material of the model depending on the player number
                     }
                 }
             }
 
+            // get the amount of players that are ready
             int playersReady = 0;
             for (int i = 0; i < m_playersReady.Length; i++)
             {
@@ -139,10 +144,11 @@ public class PlayerSelect : MonoBehaviour
             if (playersReady != 0 && canStart)
             {
                 m_startGame.enabled = true;
-
-                bool start = false;
+               
+                bool start = false;               
                 for (int i = 0; i < m_playersReady.Length; i++)
                 {
+                    // if any player presses start, start the game
                     if (m_playersReady[i] && (XCI.GetButtonDown(XboxButton.Start, m_controllers[i]) || Input.GetKeyDown(m_testButtons[i])))
                     {
                         start = true;
@@ -338,6 +344,7 @@ public class PlayerSelect : MonoBehaviour
         }
         else
         {
+            // if the a player presses start disable the cutscene
             if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.H) || !PlayerOptions.Instance.m_cutsceneToggle)
             {
                 m_cutSence.SetActive(false);

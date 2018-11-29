@@ -18,6 +18,7 @@ public class DestroyParticleEffect : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        // check if all the particle systems are finished
         bool destroy = true;
         foreach (ParticleSystem current in m_particleSystem)
         {
@@ -28,6 +29,7 @@ public class DestroyParticleEffect : MonoBehaviour
             }
         }
 
+        // if they are destroy the gameobject
 		if (destroy)
         {
             Destroy(gameObject);

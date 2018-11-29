@@ -6,9 +6,7 @@ using UnityEngine.AI;
 /*
  * Author: John Plant
  * Date: 2018/10/5
- */
-
-/*
+ * 
  * Enemy behaviour for attacking the king
  * inherits from the base enemy state
  */
@@ -72,7 +70,7 @@ public class EnemyAttackKing : EnemyState
             // if a player comes within the agro range
             if ((current.transform.position - m_owner.transform.position).sqrMagnitude < m_agroRange * m_agroRange)
             {
-                m_owner.ChangeState(1);
+                m_owner.ChangeState(1); // change to the attack king state
             }
         }
 
@@ -83,6 +81,7 @@ public class EnemyAttackKing : EnemyState
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
             foreach(Collider current in targets)
             {
+                // if the target is in the attack area
                 if (current.gameObject == m_target.gameObject)
                 {
                     // Player attack sounds

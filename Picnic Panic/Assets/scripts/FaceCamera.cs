@@ -18,6 +18,6 @@ public class FaceCamera : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        transform.forward = m_camera.transform.forward;
+        transform.forward = m_camera.transform.forward; // face the gameobject towards the camera
 	}
 }

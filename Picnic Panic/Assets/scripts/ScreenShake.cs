@@ -29,16 +29,18 @@ public class ScreenShake : MonoBehaviour
             m_cooldownTimer -= Time.deltaTime;
         }
 
+        // if the shake timer is still running
 		if (m_shakeTimer > 0)
         {
-            transform.localPosition = m_originalPosition + Random.insideUnitSphere * m_shakeAmount;
+            transform.localPosition = m_originalPosition + Random.insideUnitSphere * m_shakeAmount; // random position on in a sphere whoose radius is defined by shake amount
+                                                                                                    // set the position of the camera to the new position
 
-            m_shakeTimer -= Time.deltaTime;
+            m_shakeTimer -= Time.deltaTime; // count down
         }
         else
         {
             m_shakeTimer = 0f;
-            transform.localPosition = m_originalPosition;
+            transform.localPosition = m_originalPosition; // set the position of the camera back to the original
         }
 	}
 
@@ -49,12 +51,14 @@ public class ScreenShake : MonoBehaviour
      */
     public void StartShake()
     {
+        // if screen shake is turned on 
         if (PlayerOptions.Instance.m_screenShake)
         {
+            // if the cool down is finished
             if (m_cooldownTimer <= 0)
             {
-                m_shakeTimer = m_shakeDuration;
-                m_cooldownTimer = m_cooldownLength;
+                m_shakeTimer = m_shakeDuration; // start the shake timer
+                m_cooldownTimer = m_cooldownLength; // start the cooldown timer
             }
         }
     }

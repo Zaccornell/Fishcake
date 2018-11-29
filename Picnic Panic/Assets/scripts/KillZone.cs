@@ -25,13 +25,15 @@ public class KillZone : MonoBehaviour
      */
     private void OnTriggerEnter(Collider other)
     {
+        // if the object is a player
         if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<Player>().FallDamage(999);
+            other.gameObject.GetComponent<Player>().FallDamage(999); // call the falldamage function on the player to kill them even in god mode
         }
+        // if the object is an enemy
         if (other.tag == "Enemy")
         {
-            other.gameObject.GetComponent<MovingActor>().TakeDamage(999, null);
+            other.gameObject.GetComponent<MovingActor>().TakeDamage(999, null); // call the take damage function of the enemy
         }
         
     }

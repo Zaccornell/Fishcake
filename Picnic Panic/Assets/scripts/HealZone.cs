@@ -23,7 +23,8 @@ public class HealZone : MonoBehaviour
 	void Update ()
     {
         m_timer -= Time.deltaTime;
-
+        
+        // Destory the gameobject after the timer runs out
         if (m_timer <= 0)
         {
             Destroy(gameObject);
@@ -35,12 +36,14 @@ public class HealZone : MonoBehaviour
      */
     private void OnTriggerEnter(Collider other)
     { 
+        // if the object that entered the collider is a player
         if (other.gameObject.tag == "Player")
         {
+            // if the player hasn't already been healed
             if (!m_players.Contains(other.gameObject))
-            {
-                m_players.Add(other.gameObject);
-                other.gameObject.GetComponent<Player>().RestoreHealth(m_healAmount);
+            {                
+                m_players.Add(other.gameObject); // store the player
+                other.gameObject.GetComponent<Player>().RestoreHealth(m_healAmount); // heal the player
             }
         }
     

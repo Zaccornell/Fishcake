@@ -44,25 +44,26 @@ public class PieKing : Actor
     // calling from another source to damage the king
     public override void TakeDamage(int damage, Actor attacker)
     {
+        // if god mode is not turned on
 		if (!PlayerOptions.Instance.m_invulToggle)
 		{
         	m_health -= damage; // taking damage 
-            m_healthBar.value = m_health;
+            m_healthBar.value = m_health; // update the health bar
+
+            // start the screen shake
             if (m_shake != null)
 			    m_shake.StartShake();
 
+            // if the king was killed
             if (m_health < 0)
             {
-                m_health -= damage; // taking damage 
-                if (m_health < 0)
-                {
-                    m_health = 0;
-                }
+                m_health = 0;                
             }
 
-            if ((float)m_health / m_maxHealth <= 0.1)
+            // if the king's health is less than or equal to 30%
+            if ((float)m_health / m_maxHealth <= 0.3)
             {
-                m_warningBorder.enabled = true;
+                m_warningBorder.enabled = true; // enable the warning border
             }
 		}
 
@@ -89,12 +90,12 @@ public class PieKing : Actor
     void RoundEnd()
     {
         m_health += m_restoreHealth; // restoring the health
-        m_healthBar.value = m_health;
+        m_healthBar.value = m_health; // update the health bar
         if (m_health >= m_maxHealth) // if the health is higher than max health
         {
             m_health = m_maxHealth; // reset health to max health 
         }
-        if (m_health / m_maxHealth > 0.1)
+        if ((float)m_health / m_maxHealth > 0.3)
         {
             m_warningBorder.enabled = false;
         }

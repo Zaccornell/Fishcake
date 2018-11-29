@@ -5,6 +5,8 @@ using UnityEngine.AI;
 /*
  * Author: Bradyn Corkill / John Plant
  * Date: 2018/10/5
+ * 
+ * The main ant class and the statemachine for the ant
  */
 public class Enemy : MovingActor
 {
@@ -77,6 +79,7 @@ public class Enemy : MovingActor
      */
     private void FixedUpdate()
     {
+        // if the rigidbody should use force to move the ant
         if (m_useForce)
         {
             m_rigidBody.AddForce(m_movement * m_speed * 2, ForceMode.Acceleration);
@@ -86,11 +89,7 @@ public class Enemy : MovingActor
             m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
         }
 
-        if (m_rigidBody.velocity.magnitude > m_speed)
-        {
-            m_rigidBody.velocity = m_rigidBody.velocity.normalized * m_speed;
-        }
-
+        // if the ant is moving look in that direction
         if (m_movement.magnitude != 0)
             m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
     }
@@ -103,6 +102,8 @@ public class Enemy : MovingActor
         if (m_updatePath == 0)
         {
             m_states[m_stateIndex].UpdatePath(ref m_path, m_areaMask);  // get the new path from the current state
+            
+            // Reset path variables
             m_updatePath = 5;
             m_pathIndex = 0;
             for(int i = 0; i < m_path.corners.Length; i++)
@@ -112,19 +113,20 @@ public class Enemy : MovingActor
         }
         m_updatePath--;
 
-        // When the ant is ready to move on to the next path node
+        // When the ant has reached the current path node
         if (m_pathIndex < m_path.corners.Length && (transform.position - m_path.corners[m_pathIndex]).magnitude < 0.1)
         {
-            m_pathIndex++;
+            m_pathIndex++; // move to the next node
         }
+        // if the current path index does not exceed the array
         if (m_pathIndex < m_path.corners.Length)
-            m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized;
+            m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized; // get the direction of movement from the current position to the path node
         else
             m_movement = Vector3.zero;
         
         m_movement.y = 0;
 
-        m_animator.SetFloat("Speed", m_movement.magnitude);
+        m_animator.SetFloat("Speed", m_movement.magnitude); // set the speed variable of the animator to the magnitude of movement
     }
 
     /*
@@ -135,27 +137,31 @@ public class Enemy : MovingActor
      */
     public override void TakeDamage(int damage, Actor attacker)    
     {
+        // if the ant is currently alive
         if (m_alive)
         {
-            m_health -= damage;
-          
+            m_health -= damage; // take away the damage
+            // if the damage caused the cockroach to die
             if (m_health <= 0)
             {
+                // check for sounds in the enemy death array and play a random one
                 if (m_enemyDeath.Length > 0)
                 {
                     int index = Random.Range(0, m_enemyDeath.Length);
                     if (m_enemyDeath[index] != null)
                     {
                         m_audioSourceSFX.PlayOneShot(m_enemyDeath[index]);
-
                     }
                 }
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
+
+                // replace the ant with the death particles
                 Instantiate(m_deathParticles, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
 
+            // if the attacker exists and the ant is still alive
             if (attacker != null && m_alive)
             {
                 // creating a knock back feel to the enemy once you hit it
@@ -174,7 +180,7 @@ public class Enemy : MovingActor
     public void ChangeState(int index)
     {
         m_stateIndex = index;
-        m_animator.SetTrigger("StateChanged");
+        m_animator.SetTrigger("StateChanged"); // trigger the StateChanged variable to interupt the attack
     }
 
     private void OnDrawGizmos()
@@ -210,9 +216,10 @@ public class Enemy : MovingActor
      */
     public void Attack()
     {
+        // if the ant is alive
         if (m_alive)
         {
-            m_states[m_stateIndex].Attack();
+            m_states[m_stateIndex].Attack(); // call the attack function of the current state
         }
     }
 }

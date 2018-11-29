@@ -75,7 +75,6 @@ public class Player : MovingActor
     private int m_antKills;
     private int m_roachKills;
     private int m_healsUsed;
-    private float m_healLerpTimer;
     private bool m_countUp;
     private float m_respawnTimer;
     #endregion
@@ -146,19 +145,22 @@ public class Player : MovingActor
             m_respawnTimer -= Time.deltaTime;
         //
 
-        m_healthSlider.value = m_health;
+        m_healthSlider.value = m_health; // update the health bar
 
+        // get the movement input
         m_movement.z = XCI.GetAxisRaw(XboxAxis.LeftStickY, m_controller);
         m_movement.x = XCI.GetAxisRaw(XboxAxis.LeftStickX, m_controller);
         m_movement.Normalize();
-
+        //
+        
+        // Set the animator variables
         m_animator.SetFloat("Character Walk", m_movement.magnitude);
         m_animator.SetFloat("Rotation", (Vector3.Dot(transform.forward, m_movement) + 1) / 2);
 
-        // getting the button X to call a Funtion
+        // if the heal button is pressed 
         if (XCI.GetButtonDown(XboxButton.X, m_controller))
         {
-            Playerheal();
+            Playerheal(); // call the heal function
         }
 
         // If the dash as a charge up or is instant
@@ -198,10 +200,11 @@ public class Player : MovingActor
             // when dash button is held
             if (m_dashing && XCI.GetAxisRaw(XboxAxis.LeftTrigger, m_controller) > 0)
             {
-                m_dashStrength += (Time.deltaTime / m_timeToFull) * (m_dashStrengthMax - m_dashStrengthMin);
+                m_dashStrength += (Time.deltaTime / m_timeToFull) * (m_dashStrengthMax - m_dashStrengthMin); // increase the dash stength according to delta time
+                // is dash stength exceeds the max amount
                 if (m_dashStrength > m_dashStrengthMax)
                 {
-                    m_dashStrength = m_dashStrengthMax;
+                    m_dashStrength = m_dashStrengthMax; // cap dash strength to the max
                 }
             }
             // when dash button is let go
@@ -267,18 +270,7 @@ public class Player : MovingActor
         if (m_vibrationTimer <= 0)
         {            
             GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 0, 0); // stop the vibration             
-        }
-
-        // TEMP - REMOVE
-        if (m_killCount >= m_neededKills)
-        {
-            if (m_countUp)
-                m_healLerpTimer += Time.deltaTime;
-            else
-                m_healLerpTimer -= Time.deltaTime;
-            if (m_healLerpTimer > 1 || m_healLerpTimer < 0)
-                m_countUp = !m_countUp;
-        }
+        }     
 
         // respawn the player if they don't respawn on the end of the round
         if (!m_respawnOnRoundEnd && !m_alive && m_canRespawn && m_respawnTimer <= 0)
@@ -292,6 +284,7 @@ public class Player : MovingActor
      */
     private void FixedUpdate()
     {
+        // if the rigid body should use force to move
         if (m_useForce)
         {
             m_rigidBody.AddForce(m_movement * m_speed * 2, ForceMode.Acceleration);
@@ -301,14 +294,17 @@ public class Player : MovingActor
             m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
         }   
 
+        // get the functional direction from right stick
         Vector3 functional = new Vector3(XCI.GetAxis(XboxAxis.RightStickX, m_controller), 0, XCI.GetAxis(XboxAxis.RightStickY, m_controller));
+        // if the right stick is being used
         if (functional.magnitude > 0)
         {
-            m_rigidBody.rotation = Quaternion.LookRotation(functional.normalized);
+            m_rigidBody.rotation = Quaternion.LookRotation(functional.normalized); // rotate towards the functional direction
         }
+        // else if the player is moving
         else if (m_movement.magnitude > 0)
         {
-            m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
+            m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized); // rotate towards the movement direction
         }
     }
 
@@ -327,16 +323,19 @@ public class Player : MovingActor
             if (m_invulTimer <= 0)
             {
                 m_health -= damage;
+
+                // check if the player damage array has music in it
                 if (m_playerDamage.Length > 0)
                 {
+                    // play a random sound from the array
                     int index = Random.Range(0, m_playerDamage.Length);
                     if (m_playerDamage[index] != null)
                     {
                         m_audioSourceSFX.PlayOneShot(m_playerDamage[index]);
-
                     }
                 }
-               
+                
+                // if vibration is turned on
                 if (PlayerOptions.Instance.m_vibrationToggle)
                 {
                      GamePad.SetVibration((PlayerIndex)m_playerNumber -1, 100, 100); //. set the vibration stregnth 
@@ -355,15 +354,17 @@ public class Player : MovingActor
                 // if the player has died
                 if (m_health <= 0)
                 {
+                    // if the player die array has sounds in it
                     if (m_playerdie.Length > 0)
                     {
+                        // play a random sound
                         int index = Random.Range(0, m_playerdie.Length);
                         if (m_playerdie[index] != null)
                         {
                             m_audioSourceSFX.PlayOneShot(m_playerdie[index]);
-
                         }
                     }
+
                     m_killCount = 0; // resetting kill count once die
                     m_healParticles.Stop(); // stop particles 
                     m_health = 0;
@@ -371,12 +372,16 @@ public class Player : MovingActor
 
                     Death();
 
+                    // spawn the corpse prefab
                     GameObject corpse = Instantiate(m_corpsePrefab, gameObject.transform.position, gameObject.transform.rotation);
                     corpse.AddComponent<PlayerCorpse>();
-                    m_canRespawn = m_hud.UseLife();
+
+                    m_canRespawn = m_hud.UseLife(); // true to use a life from the hud
+
+                    // if the player is not set to spawn on round end
                     if (!m_respawnOnRoundEnd)
                     {
-                        m_respawnTimer = m_respawnLength;
+                        m_respawnTimer = m_respawnLength; // start the respawn timer
                     }
                     m_vibrationTimer = m_vibrationDeath;
                 }
@@ -400,39 +405,39 @@ public class Player : MovingActor
      */
     public void Respawn()
     {
+        // if the player can respawn
         if (m_canRespawn)
         {
+            // if vibration is turned on
             if (PlayerOptions.Instance.m_vibrationToggle)
             {
                 GamePad.SetVibration((PlayerIndex)m_playerNumber - 1, 100, 100); //. set the vibration stregnth 
             }
 
+            // get spawn position at a 9 radius of the king
             Vector3 spawnPos;
-            //bool validPos = false;
+            spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+            spawnPos.Normalize();
+            spawnPos *= 9;
 
-            // Don't spawn in areas with items in it
-            //do
-            //{
-                spawnPos = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-                spawnPos.Normalize();
-                spawnPos *= 9;
-
-            //    validPos = Physics.CheckCapsule(new Vector3(spawnPos.x, 0.5f, spawnPos.z), new Vector3(spawnPos.x, 0.5f + 1.72f, spawnPos.z), 0.5f);
-            //} while (!validPos);
-
+            // move the player to the spawn position
             gameObject.transform.position = spawnPos;
             m_vibrationTimer = m_virbationRespawn;
+
+            // reset values
             m_alive = true;
             m_health = m_maxHealth;
             m_canRespawn = false;
 
+            // re-enable the renderers of the player
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
             foreach (Renderer current in renderers)
             {
                 current.enabled = true;
             }
             m_collider.enabled = true;
-            m_rigidBody.isKinematic = false;
+            m_rigidBody.isKinematic = false; // enable rigid body collisions
+            // re-enable the health sliders
             m_healthSlider.gameObject.SetActive(true);
             m_healReady.value = 0;
             m_healReady.gameObject.SetActive(true);
@@ -444,13 +449,15 @@ public class Player : MovingActor
      */
     public void Death()
     {
+        // Disable all the player's renderers
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
         foreach (Renderer current in renderers)
         {
             current.enabled = false;
         }
         m_collider.enabled = false;
-        m_rigidBody.isKinematic = true;
+        m_rigidBody.isKinematic = true; // stop rigid body collisions
+        // disable the health sliders
         m_healthSlider.gameObject.SetActive(false);
         m_healReady.gameObject.SetActive(false);
 
@@ -499,18 +506,20 @@ public class Player : MovingActor
             m_healCount++;
             m_healsUsed++;
 
+            // check the player heals array for sounds
             if (m_playerHeals.Length > 0)
             {
+                // play random sound
                 int index = Random.Range(0, m_playerHeals.Length);
                 if (m_playerHeals[index] != null)
                 {
                     m_audioSourceSFX.PlayOneShot(m_playerHeals[index]);
-
                 }
             }
+            // get the x/z position of the player
             Vector3 spawnPosition = transform.position;
             spawnPosition.y = 0;
-            Instantiate(m_healZonePrefab, spawnPosition, Quaternion.Euler(-90, 0, 0));
+            Instantiate(m_healZonePrefab, spawnPosition, Quaternion.Euler(-90, 0, 0)); // spawn the heal zone at the above position
 
             m_killCount -= m_neededKills; // removing amount of kills from kill count
             m_healParticles.Stop(); // stop particles
@@ -539,12 +548,16 @@ public class Player : MovingActor
      */
     private void OnTriggerEnter(Collider other)
     {
+        // if an enemy is hit by the weapon collider
         if (other.gameObject.tag == "Enemy")
         {
+            // get the actor component of the object
             MovingActor enemy = other.gameObject.GetComponent<MovingActor>();
             if (enemy != null)
             {
-                enemy.TakeDamage(m_attackDamage, this);
+                enemy.TakeDamage(m_attackDamage, this); // call take damage on the player
+
+                // if the damage killed the enemy
                 if (!enemy.Alive)
                 {
                     m_killCount++; // adding a plus one to kill count 
@@ -559,6 +572,7 @@ public class Player : MovingActor
                         m_healParticles.Play();
                     }
 
+                    // add the stats depending on the type of enemy
                     if (enemy.m_type == Type.Ant)
                     {
                         m_antKills++;
@@ -573,7 +587,7 @@ public class Player : MovingActor
         // if friendly fire is on
         if (PlayerOptions.Instance.m_firendlyFire && other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Player>().TakeDamage(m_attackDamage, this);
+            other.gameObject.GetComponent<Player>().TakeDamage(m_attackDamage, this); // call take damage on the player other player
         }
     }
 

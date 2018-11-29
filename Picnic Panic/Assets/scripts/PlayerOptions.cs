@@ -12,7 +12,7 @@ public class PlayerOptions
     private static readonly PlayerOptions m_instance = new PlayerOptions();
 
     public bool m_invulToggle;
-    public bool m_vibrationToggle;
+    public bool m_vibrationToggle = true;
     public bool m_cutsceneToggle = true;
     public float m_SFX;
     public float m_music;
@@ -22,7 +22,7 @@ public class PlayerOptions
 
 	public PlayerOptions()
     {
-	    m_vibrationToggle = true;
+
     }
 	
 	 

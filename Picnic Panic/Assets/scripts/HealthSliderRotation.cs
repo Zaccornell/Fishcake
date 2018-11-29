@@ -7,10 +7,9 @@ using UnityEngine;
  */
 public class HealthSliderRotation : MonoBehaviour
 {
-    public bool m_UseRelativeRotation = true;       // Use relative rotation should be used for this gameobject?
+    public bool m_UseRelativeRotation = true;
 
-
-    private Quaternion m_RelativeRotation;          // The local rotatation at the start of the scene.
+    private Quaternion m_RelativeRotation;
 
 
     private void Start()

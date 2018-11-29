@@ -5,8 +5,7 @@ using UnityEngine.AI;
 /*
  * Author: John Plant
  * Date: 2018/11/29
- */
-/*
+ * 
  * The cockroach controller
  */
 public class Cockroach : MovingActor
@@ -60,6 +59,7 @@ public class Cockroach : MovingActor
      */
     private void FixedUpdate()
     {
+        // if the rigidbody should use force to move the cockroach
         if (m_useForce)
         {
             m_rigidBody.AddForce(m_movement * m_speed * 2, ForceMode.Acceleration);
@@ -69,6 +69,7 @@ public class Cockroach : MovingActor
             m_rigidBody.MovePosition(m_rigidBody.position + (m_movement * Time.deltaTime * m_speed));
         }
 
+        // if the cockroach is moving look in that direction
         if (m_movement.magnitude != 0)
             m_rigidBody.rotation = Quaternion.LookRotation(m_movement.normalized);
     }
@@ -79,6 +80,7 @@ public class Cockroach : MovingActor
         m_attackTimer -= Time.deltaTime;
 
         bool kingInRange = false;
+
         // check if the king is in the attack bubble
         Collider[] targetstemp = Physics.OverlapSphere(transform.position + transform.forward * m_attackDistance, m_attackRadius);
         foreach (Collider current in targetstemp)
@@ -105,9 +107,12 @@ public class Cockroach : MovingActor
         if (m_updatePath == 0)
         {
             NavMeshHit hit = new NavMeshHit();
+            // Get the nearest position on the navmesh between the cockroach and the king
             NavMesh.SamplePosition(m_king.transform.position + (transform.position - m_king.transform.position).normalized, out hit, 5, m_areaMask);
+            // Get a path from the navmesh between the cockroach's position and the position found above
             NavMesh.CalculatePath(transform.position, hit.position, m_areaMask, m_path);
 
+            // Reset path variables
             m_updatePath = 5;
             m_pathIndex = 0;
             for (int i = 0; i < m_path.corners.Length; i++)
@@ -118,19 +123,20 @@ public class Cockroach : MovingActor
 
         m_updatePath--;
 
-        // if the cockroach should move onto the next path node
+        // if the cockroach has reached the current path node
         if (m_pathIndex < m_path.corners.Length && (transform.position - m_path.corners[m_pathIndex]).magnitude < 0.1)
         {
-            m_pathIndex++;
+            m_pathIndex++; // move to the next node
         }
+        // if the current path index does not exceed the array and the king is not in range
         if (m_pathIndex < m_path.corners.Length && !kingInRange)
-            m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized;
+            m_movement = (m_path.corners[m_pathIndex] - transform.position).normalized; // get the direction of movement from the current position to the path node
         else
             m_movement = Vector3.zero;
 
         m_movement.y = 0;        
 
-        m_animator.SetFloat("Speed", kingInRange ? 0 : m_movement.magnitude);
+        m_animator.SetFloat("Speed", kingInRange ? 0 : m_movement.magnitude); // set the speed variable of the animator to the magnitude of movement
     }
 
     /*
@@ -141,11 +147,14 @@ public class Cockroach : MovingActor
      */
     public override void TakeDamage(int damage, Actor attacker)
     {
+        // if the cockroach is currently alive
         if (m_alive)
         {
-            m_health -= damage;
+            m_health -= damage; // take away the damage
+            // if the damage caused the cockroach to die
             if (m_health <= 0)
-            {               
+            {       
+                // check for sounds in the enemy death array and play a random one
                 if (m_enemyDeath.Length > 0)
                 {
 			        int index = Random.Range(0, m_enemyDeath.Length);
@@ -154,10 +163,13 @@ public class Cockroach : MovingActor
                 }
                 m_spawner.EnemyDeath(this);
                 m_alive = false;
+
+                // replace the cockroach with the death particles
                 Instantiate(m_deathParticles, transform.position, transform.rotation);               
                 Destroy(gameObject);
             }
 
+            // if the attacker exists and the cockroach is still alive
             if (attacker != null && m_alive)
             {
                 // creating a knock back feel to the enemy once you hit it
@@ -172,6 +184,7 @@ public class Cockroach : MovingActor
         }
     }
 
+    // TEMP - REMOVE
     public void FallDamage(int damage)
     {
         m_health -= damage;

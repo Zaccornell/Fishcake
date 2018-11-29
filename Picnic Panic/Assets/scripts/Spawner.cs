@@ -45,6 +45,7 @@ public class Spawner : MonoBehaviour
     private int m_currentRound;
     private float m_roundTimer; 
     private int m_enemySpawned;
+    private bool m_noDelay;
 
 
     public float RoundTimer
@@ -62,6 +63,20 @@ public class Spawner : MonoBehaviour
     public List<MovingActor> Enemies
     {
         get { return m_enemies; }
+    }
+    public bool NoDelay
+    {
+        set
+        {
+            m_noDelay = value;
+            if (value == true)
+            {
+                m_antSpawnDelay = 0.1f;
+                m_antSpawnTimer = 0.1f;
+                m_cockroachSpawnDelay = 0.3f;
+                m_cockroachSpawnTimer = 0.3f;
+            }
+        }
     }
     public event MyDel OnRoundEnd;
 
@@ -89,85 +104,162 @@ public class Spawner : MonoBehaviour
         m_cockroachSpawnTimer -= Time.deltaTime;
         //
 
-        // checking to see if there is no enemies spawned and to spawn and the timer is higher then 5 seconds 
-        if ((m_antToSpawn <= 0 && m_cockroachToSpawn <= 0) && m_roundTimer > 5.0f && m_enemySpawned <= 0) 
+        // if no delay is turned on
+        if (m_noDelay)
         {
-            m_roundTimer = 5.0f; // setting the timer to 5 secounds 
-            if (m_kingLaugh.Length > 0)
+            Vector3 spawnPosition = new Vector3();
+
+            // Pick a random side of the map
+            int side = Random.Range(1, 5);
+            // Spawn position is randomly chosen on along the chosen side
+            switch (side)
             {
-                m_audioSourceSFX.PlayOneShot(m_kingLaugh[Random.Range(0, m_kingLaugh.Length)]);
+                case 1:
+                    spawnPosition.x = m_spawnArea.x / 2;
+                    spawnPosition.z = Random.Range(m_spawnArea.y / -2, m_spawnArea.y / 2);
+                    break;
+                case 2:
+                    spawnPosition.x = Random.Range(m_spawnArea.y / -2, m_spawnArea.y / 2);
+                    spawnPosition.z = m_spawnArea.y / -2;
+                    break;
+                case 3:
+                    spawnPosition.x = m_spawnArea.x / -2;
+                    spawnPosition.z = Random.Range(m_spawnArea.y / -2, m_spawnArea.y / 2);
+                    break;
+                case 4:
+                    spawnPosition.x = Random.Range(m_spawnArea.y / -2, m_spawnArea.y / 2);
+                    spawnPosition.z = m_spawnArea.y / 2;
+                    break;
             }
-        }
 
-        // round system
-        if (m_roundTimer <= 0.0f)
-        {
-            if (m_roundStarter.Length > 0)
+            // Spawn ant
+            if (m_antSpawnTimer <= 0.0f)
             {
-                int index = Random.Range(0, m_roundStarter.Length);
-                if (m_roundStarter[index] != null)
-                {
-                    m_audioSourceSFX.PlayOneShot(m_roundStarter[index]);
+                m_antSpawnTimer = m_antSpawnDelay;
 
+                NavMeshHit hit = new NavMeshHit();
+                if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
+                {
+                    // Spawn the enemy prefab at the determined location
+                    GameObject newEnemy = Instantiate(m_antPrefab, spawnPosition, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
+                    // Allocate needed values in the enemy script
+                    Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+                    enemyScript.Players = m_players;
+                    enemyScript.Spawner = this;
+                    enemyScript.King = m_king;
+                    enemyScript.m_audioSourceSFX = m_audioSourceSFX;
+
+                    m_enemies.Add(enemyScript);
+                    m_antToSpawn--; // removing the limit to spanw 
+                    m_enemySpawned++; // adding what has been spawned 
                 }
             }
-            m_roundTimer = m_roundLength; // setting the Round timer to the round length 
-            // checking to see if it doesn't go over the limit
-            if (m_currentRound + 1  < m_antCount.Length)
-                m_currentRound++; // add to the current round
 
-            m_antToSpawn += m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
-            m_cockroachToSpawn += m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
-
-            OnRoundEnd(); // event call
-            CalculateDelay();
-        }
-
-        // Spawn ant
-        if (m_antSpawnTimer <= 0.0f && m_antToSpawn > 0)
-        {
-            m_antSpawnTimer = m_antSpawnDelay;
-            
-            Vector3 spawnPosition = GetSpawnPosition();
-
-            NavMeshHit hit = new NavMeshHit();
-            if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
+            // Spawn cockroach
+            if (m_cockroachSpawnTimer <= 0.0f)
             {
-                // Spawn the enemy prefab at the determined location
-                GameObject newEnemy = Instantiate(m_antPrefab, spawnPosition, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
-                // Allocate needed values in the enemy script
-                Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-                enemyScript.Players = m_players;
-                enemyScript.Spawner = this;
-                enemyScript.King = m_king;
-                enemyScript.m_audioSourceSFX = m_audioSourceSFX;
+                m_cockroachSpawnTimer = m_cockroachSpawnDelay;
 
-                m_enemies.Add(enemyScript);
-                m_antToSpawn--; // removing the limit to spanw 
-                m_enemySpawned++; // adding what has been spawned 
+                NavMeshHit hit = new NavMeshHit();
+                if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
+                {
+                    // Spawn the cockroach prefab at the determined location
+                    GameObject newCockroach = Instantiate(m_cockroachPrefab, hit.position, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
+                    // Allocate needed values in the enemy script
+                    Cockroach cockroachScript = newCockroach.GetComponent<Cockroach>();
+                    cockroachScript.Spawner = this;
+                    cockroachScript.King = m_king;
+
+                    m_enemies.Add(cockroachScript);
+                    m_cockroachToSpawn--;
+                    m_enemySpawned++;
+                }
             }
         }
-
-        // Spawn cockroach
-        if (m_cockroachSpawnTimer <= 0.0f && m_cockroachToSpawn > 0)
+        else
         {
-            m_cockroachSpawnTimer = m_cockroachSpawnDelay;
-
-            Vector3 spawnPosition = GetSpawnPosition();
-
-            NavMeshHit hit = new NavMeshHit();
-            if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
+            // checking to see if there is no enemies to spawn and the timer is higher then 5 seconds 
+            if ((m_antToSpawn <= 0 && m_cockroachToSpawn <= 0) && m_roundTimer > 5.0f && m_enemySpawned <= 0)
             {
-                // Spawn the cockroach prefab at the determined location
-                GameObject newCockroach = Instantiate(m_cockroachPrefab, hit.position, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
-                // Allocate needed values in the enemy script
-                Cockroach cockroachScript = newCockroach.GetComponent<Cockroach>();
-                cockroachScript.Spawner = this;
-                cockroachScript.King = m_king;
+                m_roundTimer = 5.0f; // setting the timer to 5 secounds 
+                if (m_kingLaugh.Length > 0)
+                {
+                    m_audioSourceSFX.PlayOneShot(m_kingLaugh[Random.Range(0, m_kingLaugh.Length)]);
+                }
+            }
 
-                m_enemies.Add(cockroachScript);
-                m_cockroachToSpawn--;
-                m_enemySpawned++;
+            // round system
+            // if the round timer is finished 
+            if (m_roundTimer <= 0.0f)
+            {
+                if (m_roundStarter.Length > 0)
+                {
+                    int index = Random.Range(0, m_roundStarter.Length);
+                    if (m_roundStarter[index] != null)
+                    {
+                        m_audioSourceSFX.PlayOneShot(m_roundStarter[index]);
+                    }
+                }
+                m_roundTimer = m_roundLength; // start the round timer
+                // checking to see if it doesn't go over the limit
+                if (m_currentRound + 1 < m_antCount.Length)
+                    m_currentRound++; // add to the current round
+                
+                m_antToSpawn += m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
+                m_cockroachToSpawn += m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
+
+                OnRoundEnd(); // event call
+                CalculateDelay();
+            }
+
+            // Spawn ant
+            if (m_antSpawnTimer <= 0.0f && m_antToSpawn > 0)
+            {
+                m_antSpawnTimer = m_antSpawnDelay; // start the ant spawn timer
+
+                Vector3 spawnPosition = GetSpawnPosition(); // get the spawn position
+
+                NavMeshHit hit = new NavMeshHit();
+                // if the spawn position is valid
+                if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
+                {
+                    // Spawn the enemy prefab at the determined location
+                    GameObject newEnemy = Instantiate(m_antPrefab, spawnPosition, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
+                    // Allocate needed values in the enemy script
+                    Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+                    enemyScript.Players = m_players;
+                    enemyScript.Spawner = this;
+                    enemyScript.King = m_king;
+                    enemyScript.m_audioSourceSFX = m_audioSourceSFX;
+
+                    m_enemies.Add(enemyScript);
+                    m_antToSpawn--; // removing the limit to spanw 
+                    m_enemySpawned++; // adding what has been spawned 
+                }
+            }
+
+            // Spawn cockroach
+            if (m_cockroachSpawnTimer <= 0.0f && m_cockroachToSpawn > 0)
+            {
+                m_cockroachSpawnTimer = m_cockroachSpawnDelay; // start the cockroach spawn timer
+
+                Vector3 spawnPosition = GetSpawnPosition(); // get the spawn position
+
+                NavMeshHit hit = new NavMeshHit();
+                // if the spawn position is valid
+                if (NavMesh.SamplePosition(spawnPosition, out hit, 5, -1))
+                {
+                    // Spawn the cockroach prefab at the determined location
+                    GameObject newCockroach = Instantiate(m_cockroachPrefab, hit.position, Quaternion.LookRotation((m_king.transform.position - spawnPosition).normalized));
+                    // Allocate needed values in the enemy script
+                    Cockroach cockroachScript = newCockroach.GetComponent<Cockroach>();
+                    cockroachScript.Spawner = this;
+                    cockroachScript.King = m_king;
+
+                    m_enemies.Add(cockroachScript);
+                    m_cockroachToSpawn--;
+                    m_enemySpawned++;
+                }
             }
         }
 	}
@@ -178,6 +270,7 @@ public class Spawner : MonoBehaviour
      */
     private void CalculateDelay()
     {
+        // delay = time / amount
         m_antSpawnDelay = (m_roundLength - m_roundEndBuffer) / (m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)));
         m_antSpawnTimer = m_antSpawnDelay;
         m_cockroachSpawnDelay = (m_roundLength - m_roundEndBuffer) / (m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)));
@@ -195,6 +288,7 @@ public class Spawner : MonoBehaviour
         Vector3 playerPosition = new Vector3();
 
         int playerCount = 0;
+        // get average position of all the players
         foreach (Actor current in m_players)
         {
             if (current.Alive)
@@ -284,8 +378,7 @@ public class Spawner : MonoBehaviour
         else
         {
             // Pick a random side of the map
-            System.Random rnd = new System.Random();
-            int side = rnd.Next(1, 4);
+            int side = Random.Range(1, 5);
 
             // Spawn position is randomly chosen on along the chosen side
             switch (side)
@@ -331,11 +424,11 @@ public class Spawner : MonoBehaviour
         m_currentRound = 0;
         m_antToSpawn = m_antCount[m_currentRound] + Mathf.RoundToInt(m_antCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
         m_cockroachToSpawn = m_cockroachCount[m_currentRound] + Mathf.RoundToInt(m_cockroachCount[m_currentRound] * 0.25f * (m_players.Length > 2 ? m_players.Length - 2 : 0)); // adding the limit that needs to be spawned
-        m_roundTimer = m_roundLength;
+        m_roundTimer = m_roundLength; // start the round timer
         m_enemySpawned = 0;
-        CalculateDelay();
-        m_antSpawnTimer = m_antSpawnDelay;
-        m_cockroachSpawnTimer = m_cockroachSpawnDelay;
+        CalculateDelay(); // calculate the delay between spawns
+        m_antSpawnTimer = m_antSpawnDelay; // start the ant spawn timer
+        m_cockroachSpawnTimer = m_cockroachSpawnDelay; // start the cockroach spawn timer
 
         foreach (MovingActor current in m_enemies)
         {

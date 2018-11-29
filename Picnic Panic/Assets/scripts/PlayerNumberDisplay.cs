@@ -24,9 +24,10 @@ public class PlayerNumberDisplay : MonoBehaviour
         color.a -= 0.005f;
         m_image.color = color;
 
+        // when the alpha of the image reaches 0
         if (color.a <= 0)
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(false); // disable the gameobject
         }
 	}
 }

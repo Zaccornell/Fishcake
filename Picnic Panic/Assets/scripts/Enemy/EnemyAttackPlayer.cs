@@ -6,9 +6,7 @@ using UnityEngine.AI;
 /*
  * Author: John Plant
  * Date: 2018/10/4
- */
-
-/*
+ * 
  * Enemy behaviour for attacking the player
  * inherits from the base enemy state
  */
@@ -66,9 +64,11 @@ public class EnemyAttackPlayer : EnemyState
             if (!current.gameObject.activeSelf || !current.Alive)
                 continue;
 
-            float distance = (current.transform.position - m_owner.transform.position).sqrMagnitude;
+            float distance = (current.transform.position - m_owner.transform.position).sqrMagnitude; // get the distance between the ant and the current player
+            // if the distance is within the agro range
             if (distance <= m_agroRange * m_agroRange)
             {
+                // store the player and its distance
                 playersInRange.Add(current);
                 distanceToPlayers.Add(distance);
             }
@@ -80,17 +80,18 @@ public class EnemyAttackPlayer : EnemyState
             // set the target to the nearest player
             for(int i = 1; i < playersInRange.Count; i++)
             {
+                // if the distance to of the current player is less than the previous lowest
                 if (distanceToPlayers[i] < distanceToPlayers[lowestIndex])
                 {
-                    lowestIndex = i;
+                    lowestIndex = i; // set the lowest to the current player
                 }
             }
-            m_target = playersInRange[lowestIndex];
+            m_target = playersInRange[lowestIndex]; // set the target to the nearest player
         }
         // if there is only a single player in range
         else if (playersInRange.Count == 1)
         {
-            m_target = playersInRange[0];
+            m_target = playersInRange[0]; // set the target to the player in range
         }
         // If there aren't any players in range
         else if (playersInRange.Count == 0)
@@ -101,16 +102,19 @@ public class EnemyAttackPlayer : EnemyState
         // Check if player is in attack range
         if (m_attackTimer <= 0 && m_target != null)
         {
+            // Check the attack bubble for the target
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
             bool foundPlayer = false;
             foreach (Collider current in targets)
             {
+                // if the target is found
                 if ( current.gameObject == m_target.gameObject)
                 {
+                    // is not currently attackable
                     if (m_playerAttackable == false)
                     {
                         m_playerAttackable = true;
-                        m_windUpTimer = m_windUpLength;
+                        m_windUpTimer = m_windUpLength; // start the windup timer
                     }
                     foundPlayer = true;
                 }
@@ -130,29 +134,37 @@ public class EnemyAttackPlayer : EnemyState
         // attack the player
         if (m_windUpTimer <= 0 && m_playerAttackable && m_attackTimer <= 0)
         {
+            // check the attack button for the target
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
             foreach (Collider current in targets)
             {                 
+                // if the target is found
                 if (m_target.gameObject == current.gameObject)
                 {
+                    // check the enemy attack array for sounds
                     if (m_owner.m_enemyAttack.Length > 0)
                     {
+                        // play a random sound
                         int index = Random.Range(0, m_owner.m_enemyAttack.Length);
                         if (m_owner.m_enemyAttack[index] != null)
                         {
-                            m_owner.m_audioSourceSFX.PlayOneShot(m_owner.m_enemyAttack[index]);
+                            m_owner.m_audioSourceSFX.PlayOneShot(m_owner.m_enemyAttack[index]); 
                         }
                     }                   
                 }                                                      
             }
+            // start the attack animation
             m_owner.Animator.SetTrigger("Attack");
+
+            // reset attack variables
             m_attackTimer = m_attackSpeed;
             m_playerAttackable = false;
             m_windUpTimer = m_windUpLength;
 
+            // if the target was killed
             if (!m_target.gameObject.activeSelf || !m_target.Alive)
             {
-                m_target = null;
+                m_target = null; // set the target to null
             }
         }
     }
@@ -173,14 +185,17 @@ public class EnemyAttackPlayer : EnemyState
      */
     public override void Attack()
     {
-        if (m_target)
+        // if the target exists
+        if (m_target != null)
         {
+            // Check the attack bubble for the target
             Collider[] targets = Physics.OverlapSphere(m_owner.transform.position + m_owner.transform.forward * m_attackDistance, m_attackRadius);
             foreach (Collider current in targets)
             {
+                // if the target is found
                 if (current.gameObject == m_target.gameObject)
                 {
-                    m_target.TakeDamage(m_attackDamage, m_owner);
+                    m_target.TakeDamage(m_attackDamage, m_owner); // attack the target
                 }
             }
         }
