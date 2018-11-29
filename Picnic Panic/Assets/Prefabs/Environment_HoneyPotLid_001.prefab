@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 33532441099676456}
   - component: {fileID: 23611646017788898}
   - component: {fileID: 95109632639884602}
+  - component: {fileID: 65396142565327252}
   m_Layer: 0
   m_Name: Environment_HoneyPotLid_001
   m_TagString: Untagged
@@ -384,7 +385,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804143397580514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.77, y: 0, z: 21.74}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4856061525452866}
@@ -933,6 +934,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1972296297801400}
   m_Mesh: {fileID: 4300018, guid: 2bbb41296e717884baab1e1b2aac3054, type: 3}
+--- !u!65 &65396142565327252
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1804143397580514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3036966, y: 8.29, z: 2.3036966}
+  m_Center: {x: -0.0026670694, y: 0.2773619, z: 0.006044984}
 --- !u!95 &95109632639884602
 Animator:
   serializedVersion: 3
