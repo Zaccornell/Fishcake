@@ -84,6 +84,7 @@
      <Compile Include="Assets\scripts\UI Scripts\ButtonFlash.cs" />
      <Compile Include="Assets\scripts\UI Scripts\CutScene.cs" />
      <Compile Include="Assets\scripts\UI Scripts\EndGame.cs" />
+     <Compile Include="Assets\scripts\UI Scripts\FadeOut.cs" />
      <Compile Include="Assets\scripts\UI Scripts\HUD.cs" />
      <Compile Include="Assets\scripts\UI Scripts\MainMenu.cs" />
      <Compile Include="Assets\scripts\UI Scripts\OptionMenu.cs" />
