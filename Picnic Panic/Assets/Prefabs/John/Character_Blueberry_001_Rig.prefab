@@ -875,7 +875,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1560482311617848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.492449, y: -0.1595181, z: -5.5815387}
+  m_LocalPosition: {x: 6.7041335, y: -0.15951785, z: -8.06089}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4599071398065284}
@@ -1231,7 +1231,7 @@ BoxCollider:
   m_GameObject: {fileID: 1705624740835014}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.70453846, y: 0.6866288, z: 2.03}
   m_Center: {x: -0.1033378, y: 0.08455688, z: -0.82}
@@ -1658,7 +1658,6 @@ MonoBehaviour:
   m_healRadius: 6
   m_healZonePrefab: {fileID: 1821764085093514, guid: 3e239a5565abee745baaa9b3b9b89f89,
     type: 2}
-  m_healParticles: {fileID: 0}
   m_missAttacks:
   - {fileID: 8300000, guid: e3c56f852900673458eb40dbe2e20c66, type: 3}
   - {fileID: 8300000, guid: 4b4591c6f437e8e479483ba944888d53, type: 3}

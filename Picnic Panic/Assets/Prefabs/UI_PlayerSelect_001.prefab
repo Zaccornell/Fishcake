@@ -1861,7 +1861,9 @@ MonoBehaviour:
   m_pauseMenu: {fileID: 0}
   m_endGame: {fileID: 0}
   m_camera: {fileID: 0}
-  m_gameplayScripts: []
+  m_gameplayScripts:
+  - {fileID: 0}
+  - {fileID: 0}
   m_playerJoin:
   - {fileID: 114310344501404992}
   - {fileID: 114375951649192214}
