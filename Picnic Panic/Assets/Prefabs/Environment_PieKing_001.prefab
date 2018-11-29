@@ -255,8 +255,8 @@ MonoBehaviour:
   m_shake: {fileID: 0}
   m_warningBorder: {fileID: 0}
   m_damageSounds:
-  - {fileID: 8300000, guid: 89d75876032a62f4e8c335bd0106f5a6, type: 3}
-  - {fileID: 8300000, guid: 9305bded5b7ea4c4d99270cfe0ca90d4, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   m_damageSoundCooldown: 1
   m_audioSourceSFX: {fileID: 0}
   m_players: []
