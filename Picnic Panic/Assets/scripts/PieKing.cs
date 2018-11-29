@@ -12,23 +12,24 @@ public class PieKing : Actor
     public int m_restoreHealth; // setting the amout of health to restore per round
     public ScreenShake m_shake;
     public Image m_warningBorder;
+    public AudioClip[] m_damageSounds;
+    public float m_damageSoundCooldown;
+    public AudioSource m_audioSourceSFX;
+    public Player[] m_players;
+    public Material[] m_pieKingFaces;
 
     private Slider m_healthBar;
-    //public Mesh[] m_pieKingMeshStates;
-    //public Material[] m_pieKingMaterialStates;
+    private float m_damageSoundTimer;
+    private MeshRenderer m_renderer;
 
-    //private MeshFilter m_filter;
-    //private MeshRenderer m_renderer;
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         m_health = m_maxHealth; // setting the health to the max health 
         m_alive = true;
         m_healthBar = GetComponentInChildren<Slider>();
-        //m_filter = GetComponent<MeshFilter>();
-        //m_renderer = GetComponent<MeshRenderer>();
-	}
+        m_renderer = GetComponent<MeshRenderer>();
+    }
 
     void Awake()
     {
@@ -38,8 +39,45 @@ public class PieKing : Actor
     // Update is called once per frame
     void Update ()
     {
-        
-	}
+        m_damageSoundTimer -= Time.deltaTime;
+
+        List<float> distance = new List<float>();
+        for (int i = 0; i < m_players.Length; i++)
+        {
+            distance.Add((transform.position - m_players[i].transform.position).sqrMagnitude);
+        }
+        int lowestIndex = 0;
+        for (int i = 1; i < m_players.Length; i++)
+        {
+            if (distance[i] < distance[lowestIndex])
+            {
+                lowestIndex = i;
+            }
+        }
+
+        Vector3 direction = (m_players[lowestIndex].transform.position - transform.position).normalized;
+
+        // get the angle of the direction
+        float angle = Mathf.Atan2(direction.z, direction.x);
+        angle = (angle > 0 ? angle : (2 * Mathf.PI + angle)) * 360 / (2 * Mathf.PI);
+
+        if (angle > 0 && angle <= 90)
+        {
+            m_renderer.material = m_pieKingFaces[0];
+        }
+        else if (angle > 90 && angle <= 180)
+        {
+            m_renderer.material = m_pieKingFaces[1];
+        }
+        else if (angle > 180 && angle <= 270)
+        {
+            m_renderer.material = m_pieKingFaces[2];
+        }
+        else if (angle > 270 && angle <= 360)
+        {
+            m_renderer.material = m_pieKingFaces[3];
+        }
+    }
 
     // calling from another source to damage the king
     public override void TakeDamage(int damage, Actor attacker)
@@ -49,6 +87,16 @@ public class PieKing : Actor
 		{
         	m_health -= damage; // taking damage 
             m_healthBar.value = m_health; // update the health bar
+
+            if (m_damageSounds.Length > 0)
+            {
+                // play random sound
+                int index = Random.Range(0, m_damageSounds.Length);
+                if (m_damageSounds[index] != null)
+                {
+                    m_audioSourceSFX.PlayOneShot(m_damageSounds[index]);
+                }
+            }
 
             // start the screen shake
             if (m_shake != null)
@@ -66,24 +114,6 @@ public class PieKing : Actor
                 m_warningBorder.enabled = true; // enable the warning border
             }
 		}
-
-        //float percent = m_health / (float)m_maxHealth;
-
-        //if (percent < 0.3)
-        //{
-        //    m_filter.mesh = m_pieKingMeshStates[2];
-        //    m_renderer.material = m_pieKingMaterialStates[2];
-        //}
-        //else if (percent < 0.6)
-        //{
-        //    m_filter.mesh = m_pieKingMeshStates[1];
-        //    m_renderer.material = m_pieKingMaterialStates[1];
-        //}
-        //else if (percent < 0.9)
-        //{
-        //    m_filter.mesh = m_pieKingMeshStates[0];
-        //    m_renderer.material = m_pieKingMaterialStates[0];
-        //}
     }
 
     // end of each round will call this function

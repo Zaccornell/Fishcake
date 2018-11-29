@@ -1857,6 +1857,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 929ee2d7407e6884199861cd8ce0e2ea, type: 3}
   m_spawner: {fileID: 0}
   m_hud: {fileID: 0}
+  m_pieKing: {fileID: 0}
   m_pauseMenu: {fileID: 0}
   m_endGame: {fileID: 0}
   m_camera: {fileID: 0}

@@ -22,6 +22,7 @@ public class PlayerSelect : MonoBehaviour
     public Sprite[] m_playerNumberSprites;
     public Spawner m_spawner;
     public HUD m_hud;
+    public PieKing m_pieKing;
     public PauseMenu m_pauseMenu;
     public EndGame m_endGame;
     public CameraControl m_camera;
@@ -70,6 +71,7 @@ public class PlayerSelect : MonoBehaviour
         m_hud.enabled = false;
         m_pauseMenu.enabled = false;
         m_camera.enabled = false;
+        m_pieKing.enabled = false;
         if (m_lobbyMusic != null)
         {
             m_audioSourceMusic.clip = m_lobbyMusic;
@@ -305,6 +307,7 @@ public class PlayerSelect : MonoBehaviour
                     m_hud.AssignPlayers();
                     m_pauseMenu.m_players = m_players.ToArray();
                     m_endGame.m_players = m_players.ToArray();
+                    m_pieKing.m_players = m_players.ToArray();
 
                     // Add the players to the camera's targets
                     List<Actor> cameraTargets = new List<Actor>();
@@ -328,6 +331,7 @@ public class PlayerSelect : MonoBehaviour
                     m_hud.enabled = true;
                     m_pauseMenu.enabled = true;
                     m_camera.enabled = true;
+                    m_pieKing.enabled = true;
 
 
                     // Play the ingame music

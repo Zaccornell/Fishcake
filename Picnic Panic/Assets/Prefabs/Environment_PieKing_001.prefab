@@ -254,6 +254,15 @@ MonoBehaviour:
   m_restoreHealth: 100
   m_shake: {fileID: 0}
   m_warningBorder: {fileID: 0}
+  m_damageSounds: []
+  m_damageSoundCooldown: 1
+  m_audioSourceSFX: {fileID: 0}
+  m_players: []
+  m_pieKingFaces:
+  - {fileID: 2100000, guid: 7d16ba8f3182fff448bfb996541d2553, type: 2}
+  - {fileID: 2100000, guid: d6b695212a1ee74448e5a732d919e854, type: 2}
+  - {fileID: 2100000, guid: 5f7f9f7cb95334c48a66a1a4ce1baf10, type: 2}
+  - {fileID: 2100000, guid: d481467504227b542a0048d67166835e, type: 2}
 --- !u!114 &114694828391404218
 MonoBehaviour:
   m_ObjectHideFlags: 1
