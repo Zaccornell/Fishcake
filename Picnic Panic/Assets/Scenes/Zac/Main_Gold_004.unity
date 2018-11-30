@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 288981114}
   - component: {fileID: 288981113}
   m_Layer: 5
-  m_Name: Audio Source (SFX)
+  m_Name: Audio_Source (SFX)_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1969,6 +1969,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114562896438675784, guid: f37437804f796bc42919228cf936b51a,
+        type: 2}
+      propertyPath: m_length
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f37437804f796bc42919228cf936b51a, type: 2}
   m_IsPrefabParent: 0
@@ -2394,7 +2399,7 @@ GameObject:
   - component: {fileID: 1211538503}
   - component: {fileID: 1211538502}
   m_Layer: 0
-  m_Name: Enemy Spawner
+  m_Name: Enemy_Spawner_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2807,7 +2812,7 @@ GameObject:
   - component: {fileID: 1317556257}
   - component: {fileID: 1317556256}
   m_Layer: 5
-  m_Name: Audio Source (Music)
+  m_Name: Audio_Source(Music)_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3388,6 +3393,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114747936505821168, guid: c801a55aeaa55294aae7dcc2e5092095,
+        type: 2}
+      propertyPath: m_gameplayScripts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224391902881135538, guid: c801a55aeaa55294aae7dcc2e5092095,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -3490,7 +3500,7 @@ Prefab:
       objectReference: {fileID: 1594612158}
     - target: {fileID: 1825242516784456, guid: c801a55aeaa55294aae7dcc2e5092095, type: 2}
       propertyPath: m_Name
-      value: PlayerSelect
+      value: UI_PlayerSelect_001
       objectReference: {fileID: 0}
     - target: {fileID: 114747936505821168, guid: c801a55aeaa55294aae7dcc2e5092095,
         type: 2}

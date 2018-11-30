@@ -92,7 +92,7 @@ public class PauseMenu : MonoBehaviour
      */
     public void ResetClick()
     {
-        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings - 2));
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
         ToggleObjects();
     }
 

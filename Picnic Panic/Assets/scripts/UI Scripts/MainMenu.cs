@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour
      */
     public void PlayClick()
     {         
-        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings - 2));
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
     }
     // open Option once the button is clicked
     public void OptionClick()

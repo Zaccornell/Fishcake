@@ -1139,6 +1139,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114747936505821168, guid: c801a55aeaa55294aae7dcc2e5092095,
+        type: 2}
+      propertyPath: m_gameplayScripts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224391902881135538, guid: c801a55aeaa55294aae7dcc2e5092095,
         type: 2}
       propertyPath: m_LocalPosition.x
