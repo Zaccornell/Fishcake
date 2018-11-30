@@ -1692,12 +1692,12 @@ Prefab:
     - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224340281559687054, guid: ef63f5eab7d77624986c003f9b186bea,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef63f5eab7d77624986c003f9b186bea, type: 2}
@@ -6591,6 +6591,11 @@ Prefab:
       propertyPath: m_audioSourceSFX
       value: 
       objectReference: {fileID: 288981113}
+    - target: {fileID: 114593522314799268, guid: c9f789b3aea0a6643880507e9855aefb,
+        type: 2}
+      propertyPath: m_cockroachCount.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9f789b3aea0a6643880507e9855aefb, type: 2}
   m_IsPrefabParent: 0

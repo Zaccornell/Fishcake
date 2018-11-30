@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa25343f0cd28c4b8474625220e29a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 200
+  m_maxHealth: 300
   m_spawner: {fileID: 0}
   m_restoreHealth: 100
   m_shake: {fileID: 0}
@@ -332,9 +332,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 200
+  m_MaxValue: 300
   m_WholeNumbers: 0
-  m_Value: 200
+  m_Value: 300
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
