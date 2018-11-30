@@ -2579,44 +2579,6 @@ Prefab:
       propertyPath: m_Name
       value: HUD(Canvas)
       objectReference: {fileID: 0}
-    - target: {fileID: 1137892358737284, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1587736983636160, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224232979049251014, guid: 916a598228613914ab9782a2cfaffa48,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 224430555191614562, guid: 916a598228613914ab9782a2cfaffa48,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 224785113132449430, guid: 916a598228613914ab9782a2cfaffa48,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 224410901772538664, guid: 916a598228613914ab9782a2cfaffa48,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 224758667632848220, guid: 916a598228613914ab9782a2cfaffa48,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 224764955529873748, guid: 916a598228613914ab9782a2cfaffa48,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 916a598228613914ab9782a2cfaffa48, type: 2}
   m_IsPrefabParent: 0
