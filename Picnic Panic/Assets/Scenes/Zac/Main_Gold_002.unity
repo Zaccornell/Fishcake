@@ -3344,6 +3344,18 @@ Prefab:
       propertyPath: m_audioSource
       value: 
       objectReference: {fileID: 1317556256}
+    - target: {fileID: 1014219668560850, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
+      propertyPath: m_Name
+      value: UI_Background_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526968600420336, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
+      propertyPath: m_Name
+      value: UI_Checkmark_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549559482780984, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
+      propertyPath: m_Name
+      value: UI_Label_001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d3526ab6fc487140b3e1684b69d3f72, type: 2}
   m_IsPrefabParent: 0
