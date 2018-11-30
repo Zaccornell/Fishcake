@@ -8,18 +8,23 @@ public class Credits : MonoBehaviour
     public Scrollbar m_scrollbar;
     public float m_offset;
 
-    private Vector3 m_originalPosition;
+    private float m_originalOffset;
+    private RawImage m_image;
 	// Use this for initialization
 	void Start ()
     {
-        m_originalPosition = transform.position;
+        m_image = GetComponent<RawImage>();
+        m_originalOffset = m_image.uvRect.y;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        Vector3 newPos = m_originalPosition;
-        newPos.y += m_offset * m_scrollbar.value;
-        transform.position = newPos;
+        float newOffset = m_originalOffset;
+        newOffset += m_offset * m_scrollbar.value;
+
+        Rect newRect = m_image.uvRect;
+        newRect.y = newOffset;
+        m_image.uvRect = newRect;
 	}
 }
